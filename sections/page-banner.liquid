@@ -1,0 +1,201 @@
+<link rel="stylesheet" href="{{ 'page-banner.css' | asset_url }}" type="text/css">
+
+
+<div class="page-banner-wrapper{% if section.settings.general_title_background_image != blank %} banner-has-image{% else %} banner-no-image{% endif %}">
+  <div class="banner-page-main {{ section.settings.breadcrumb_position }}">
+    <div class="page-width-desktop">
+      {% if template contains 'product' %}
+        {% elsif template == 'cart'  %}
+          <h1 class="page-title">{{ 'cart.general.title' | t }}
+          </h1>
+        {% elsif template contains 'collection' and collection.handle %}
+          <h1 class="page-title ">{{ collection.title }}
+          </h1>
+          <h4 class="page-sub-title {% if section.settings.hidden_subtile %}hidden-desktop {% endif %} {% if section.settings.hidden_subtile_mb %}hidden-mb {% endif %}">{{ section.settings.subtile }}
+          </h4>
+          <div class="bre-show-hide {% if section.settings.hidden_breadcrumbs %}hidden-desktop {% endif %} {% if section.settings.hidden_breadcrumbs_mb %}hidden-mb {% endif %}">
+            {% render 'breadcrumb' %}
+          </div>
+
+        {% elsif template == 'blog' %}
+          <h1 class="page-title">{{ blog.title }}
+          </h1>
+        {% elsif template contains 'article' %}
+        {% elsif template contains 'page' %}
+          <h1 class="page-title">{{ page.title }}
+          </h1>
+          {% if section.settings.hidden_breadcrumbs_dk %}
+            <div class="desktop-hidden">
+              {% render 'breadcrumb' %}
+            </div>
+          {% else %}
+            {% render 'breadcrumb' %}
+          {% endif %}
+
+        {% elsif template contains 'search' %}
+          {% if search.performed == false %}
+            <h1 class="page-title">{{ 'templates.search.title' | t }}
+            </h1>
+          {% else %}
+            <h1 class="page-title">
+              <span class="visually-hidden">{{ 'templates.search.title' | t: count: search.results_count }}
+                :</span>
+              {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+            </h1>
+          {% endif %}
+        {% else %}
+          <h1 class="page-title">{{ page_title }}
+          </h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% style %}
+  {% if section.settings.general_title_background_image != blank %}
+    .page-banner-wrapper.banner-has-image .banner-page-main {
+      background-image: url('{{ section.settings.general_title_background_image | image_url: width: 2800 }}');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      padding: {{ section.settings.padding_tb_mb }}px 24px;
+    }
+
+    @media(min-width:1025px) {
+      .page-banner-wrapper.banner-has-image .banner-page-main {
+        padding: {{ section.settings.padding_tb }}px 24px;
+      }
+    }
+  {% endif %}
+  .page-banner-wrapper .banner-page-main .breadcrumb span {
+    color: {{ section.settings.color_text_breadcrumb }};
+  }
+  .page-banner-wrapper .banner-page-main .breadcrumb a {
+    color: {{ section.settings.color_text_breadcrumb_link }};
+  }
+  .page-banner-wrapper.banner-no-image .banner-page-main {
+    background: {{ section.settings.background_color_breadcrumb }};
+    padding: {{ section.settings.padding_tb_mb }}px 24px;
+  }
+  .page-banner-wrapper .page-title {
+    color: {{ section.settings.color_title }};
+  }
+  .page-banner-wrapper .page-sub-title p {
+    color: {{ section.settings.color_subtitle }};
+  }
+  .page-banner-wrapper .page-sub-title p a {
+    color: {{ section.settings.color_subtitle }};
+    font-weight: 600;
+  }
+  .page-banner-wrapper .banner-page-main .breadcrumb li svg path {
+    stroke: {{ section.settings.color_text_breadcrumb_link }};
+  }
+  .page-banner-wrapper .breadcrumb li a.breadcrumb-link {
+    color: {{ section.settings.color_text_breadcrumb_link }};
+  }
+  .page-banner-wrapper .breadcrumb li span {
+    color: {{ section.settings.color_text_breadcrumb }};
+  }
+  .page-banner-wrapper .breadcrumb li svg path {
+    stroke: {{ section.settings.color_text_breadcrumb }};
+  }
+  .page-banner-wrapper {
+    margin-top: {{ section.settings.margin_top_mb }}px;
+  }
+  @media(min-width:1025px) {
+    .page-banner-wrapper.banner-no-image .banner-page-main {
+      padding: {{ section.settings.padding_tb }}px 24px;
+    }
+    .page-banner-wrapper {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+  }
+{% endstyle %}
+
+
+{% schema %}
+  {
+    "name": "Page banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "general_title_background_image",
+        "label": "Background image",
+        "info": "Only show when page image blank"
+      },
+      {
+        "type": "color",
+        "id": "background_color_breadcrumb",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_tb",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding",
+        "default": 96
+      }, {
+        "type": "color",
+        "id": "color_title",
+        "label": "Color title",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "color_text_breadcrumb_link",
+        "label": "Color text link breadcrumbs",
+        "default": "#FAFAFA"
+      }, {
+        "type": "color",
+        "id": "color_text_breadcrumb",
+        "label": "Color text breadcrumbs",
+        "default": "#FFFFFF"
+      }, {
+        "type": "header",
+        "content": "Setting Mobile"
+      }, {
+        "type": "range",
+        "id": "margin_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 0
+      }, {
+        "type": "range",
+        "id": "padding_tb_mb",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding",
+        "default": 24
+      }, {
+        "type": "checkbox",
+        "id": "hidden_breadcrumbs_dk",
+        "label": "Hide breadcrumbs in desktop",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Page banner"
+      }
+    ]
+  }
+{% endschema %}

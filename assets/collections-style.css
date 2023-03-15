@@ -1,0 +1,14 @@
+.section-header.ohio{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;;
+}
+.section-header.shopify-section-header-hidden.ohio{
+    transform: inherit;
+}
+#recently-viewed-products {
+    padding-top: 0;
+}
+@media (min-width:1025px) {
+}

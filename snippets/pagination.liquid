@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="{{ 'component-pagination.css' | asset_url }}" media="print" onload="this.media='all'">
+
+{%- if paginate.parts.size > 0 -%}
+  <div class="pagination-wrapper">
+    <div class="pagination-desktop">
+      <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
+        <div class="w-33">
+          {%- if paginate.previous -%}
+            <div class="btn-arrow btn-prev">
+              <a href="{{ paginate.previous.url }}{{ anchor }}" class="pagination__item pagination__item--next pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.previous' | t }}">
+                {{ 'paginate.previous' | t }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="pagination_center">
+          <p>{{ 'paginate.page' | t }}:</p>
+          <div class='pa-custom-select'>
+            <div class="pa-selected">
+              <span class='text' onchange="window.location='{{ collection.url }}?page=:page' .replace(':page', this.value)">{{ current_page }}</span>
+              {% render 'icon-drop-down' %}
+            </div>
+            <div class='pa-select-box pagination__list' id="pagination">
+              <ul class='pa-select-list' id="collection-pagination">
+              {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+
+              {% comment %} Use string splitting to pull the value from content_for_header and apply some string clean up {% endcomment %}
+              {% assign sectionID = 'section_id=' | append: section.id | append: '&'  %}
+              {%- assign pageUrl = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |
+                 replace:'\/','/' | 
+                 replace:'%20',' ' | 
+                 replace:'\u0026','&' | 
+                 replace: sectionID, ''
+              -%}
+
+              {% assign pageUrlss = pageUrl | remove: "customchic.co.uk" %}
+              {% assign pageUrls = pageUrl | remove: "customchic.co.uk/collections/" %}
+                {% assign count = paginate.pages %}
+                {% for part in (1..count) %}
+                      <li {% if paginate.current_page == part %}class="active"{% endif %}><a href=" {{ pageUrls }}{% if pageUrlss == collection.url  %}?{% else %}&{% endif %}page={{ forloop.index }}" data-item="{{ forloop.index }}">{{ forloop.index }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <p>of
+            {{ paginate.pages }}
+          </p>
+        </div>
+        <div class="w-33">
+          {%- if paginate.next -%}
+            <div class="btn-arrow btn-next">
+              <a href="{{ paginate.next.url }}{{ anchor }}" class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.next' | t }}">
+                {{ 'paginate.next' | t }}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      </nav>
+    </div>
+
+    <div class="pagination-mobile">
+      <ul class="pagination__list list-unstyled" role="list">
+        {%- if paginate.previous -%}
+          <li class="icon-arrow-left">
+            <a href="{{ paginate.previous.url }}{{ anchor }}" class="pagination__item pagination__item--next pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.previous' | t }}">
+              {% render 'icon-check-left' %}
+            </a>
+          </li>
+        {%- endif -%}
+
+        {%- for part in paginate.parts -%}
+
+          {%- if part.is_link -%}
+            <li>
+              <a href="{{ part.url }}{{ anchor }}" class="pagination__item link" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>
+            </li>
+          {%- else -%}
+            {%- if part.title == paginate.current_page -%}
+              <li class="actived">
+                <a role="link" aria-disabled="true" class="pagination__item pagination__item--current light" aria-current="page" aria-label="{{ 'general.pagination.page' | t: number: part.title }}">{{ part.title }}</a>
+              </li>
+            {%- else -%}
+              <li>
+                <span class="pagination__item">{{ part.title }}</span>
+              </li>
+            {%- endif -%}
+          {%- endif -%}
+
+        {%- endfor -%}
+
+        {%- if paginate.next -%}
+          <li class="icon-arrow-right">
+            <a href="{{ paginate.next.url }}{{ anchor }}" class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce" aria-label="{{ 'general.pagination.next' | t }}">
+              {%- render 'icon-check-right' -%}
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}

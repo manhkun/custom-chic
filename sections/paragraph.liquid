@@ -1,0 +1,155 @@
+{{ 'paragraph.css' | asset_url | stylesheet_tag }}
+
+
+<div class="paragraph-section" data-section-id="{{ section.id }}">
+  <div class="paragraph__wrapper page-width-desktop ">
+    <div class="paragraph-text__blocks {{ section.settings.content_alignment }}">
+      {%- if section.settings.heading_section != blank -%}
+        <h2 class="heading-section">{{ section.settings.heading_section }}</h2>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'heading' -%}
+            {%- if block.settings.heading != blank -%}
+              <h2 class="paragraph-text__heading rte {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                {{ block.settings.heading | replace: 'p>', 'span>' }}
+              </h2>
+            {%- endif -%}
+          {%- when 'text' -%}
+            <div class="paragraph-text__text rte" {{ block.shopify_attributes }}>
+              {{ block.settings.text }}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+{%- style -%}
+[data-section-id="{{ section.id }}"].paragraph-section .paragraph-text__blocks {
+     padding-top: {{ section.settings.padding_top_mb}}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb}}px;
+  }
+@media (min-width:1025px) {
+  [data-section-id="{{ section.id }}"].paragraph-section .paragraph-text__blocks {
+     padding-top: {{ section.settings.padding_top}}px;
+    padding-bottom: {{ section.settings.padding_bottom}}px;
+  }
+}
+{%- endstyle -%}
+
+{% schema %}
+  {
+    "name": "Paragraph",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading_section",
+        "default": "TERMS AND CONDITIONS OF SALE",
+        "label": "Heading section"
+      },
+      {
+        "type": "select",
+        "id": "content_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:sections.rich-text.settings.content_alignment.options__1.label"
+          }, {
+            "value": "center",
+            "label": "t:sections.rich-text.settings.content_alignment.options__2.label"
+          }, {
+            "value": "right",
+            "label": "t:sections.rich-text.settings.content_alignment.options__3.label"
+          }
+        ],
+        "default": "left",
+        "label": "t:sections.rich-text.settings.content_alignment.label"
+      },
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 46
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 46
+      }, {
+        "type": "header",
+        "content": "Mobile setting"
+      }, {
+        "type": "range",
+        "id": "padding_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 46
+      }, {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 46
+      }
+    ],
+    "blocks": [
+      {
+        "type": "heading",
+        "name": "t:sections.rich-text.blocks.heading.name",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "heading",
+            "default": "<p>Talk about your brand</p>",
+            "label": "t:sections.rich-text.blocks.heading.settings.heading.label"
+          }
+        ]
+      }, {
+        "type": "text",
+        "name": "t:sections.rich-text.blocks.text.name",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "label": "t:sections.rich-text.blocks.text.settings.text.label"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Paragraph",
+        "blocks": [
+          {
+            "type": "heading"
+          }, {
+            "type": "text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,270 @@
+<link rel="stylesheet" href="{{ 'our-recipients.css' | asset_url }}" media="print" onload="this.media='all'">
+
+
+{%- style -%}
+  .recipient {
+    background: {{ section.settings.background_color }};
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+{%- endstyle -%}
+
+<div class=" recipient bg-{{ section.settings.background_color}} p-{{ section.settings.padding_top}}-{{ section.settings.padding_bottom}}">
+  <div class=" page-width-desktop">
+    <div class=" recipient-title-wrapper">
+      <h2 class=" heading-title">{{ section.settings.heading | escape }}
+      </h2>
+      {% if section.blocks.size > 5 %}
+        <div class="text-left pagination-wrapper">
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.url_button_seemore }}" class=" view-all-dt link underlined-link">
+              {{ section.settings.button_label }}
+            </a>
+            <a href="{{ section.settings.url_button_seemore }}" class=" view-all link underlined-link btn-mobile">
+              {{ section.settings.button_label_mb }}
+            </a>
+          {%- endif -%}
+          <ul class="pagination-custom pagination-custom-our">
+            <button id="prev-control-{{ section.id }}" type="button" class=" prev-{{ section.id }} prev-wrapper pagination__item pagination__item--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}"> {%- render 'icon-prev' -%}</button>
+            <button id="next-control-{{ section.id }}" type="button" class=" next-{{ section.id }} next-wrapper pagination__item pagination__item--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-next' -%}</button>
+
+          </ul>
+        </div>
+      {% else %}
+        <a href="{{ section.settings.url_button_seemore }}" class=" view-all-dt link underlined-link">
+          {{ section.settings.button_label }}
+        </a>
+        <a href="{{ section.settings.url_button_seemore }}" class=" view-all link underlined-link btn-mobile">
+          {{ section.settings.button_label_mb }}
+        </a>
+      {%- endif -%}
+    </div>
+    {% if section.blocks.size > 0 %}
+    <div class="recipient-slider-{{ section.id }} recipients-list-wrapper">
+      <div id="list-item-{{ section.id }}" class=" recipients-wrapper {% if section.blocks.size > 5 %}recipients-slide-{{ section.id }} {% endif%}">
+        {% for block in section.blocks %}
+          <div class=" recipients-wrapper-item {{ block.settings.align_item}}">
+            <a href="{{ block.settings.url_item }}">
+              {% if  block.settings.icon_image != blank %}
+                <img src="{{ block.settings.icon_image | image_url: width: 533 }}" srcset="{%- if block.settings.icon_image.width >= 375 -%}{{ block.settings.icon_image | image_url: width: 375 }} 375w,{%- endif -%}{%- if block.settings.icon_image.width >= 750 -%}{{ block.settings.icon_image | image_url: width: 750 }} 750w,{%- endif -%}{%- if block.settings.icon_image.width >= 1100 -%}{{ block.settings.icon_image | image_url: width: 1100 }} 1100w,{%- endif -%}{%- if block.settings.icon_image.width >= 1500 -%}{{ block.settings.icon_image | image_url: width: 1500 }} 1500w,{%- endif -%}{%- if block.settings.icon_image.width >= 1780 -%}{{ block.settings.icon_image | image_url: width: 1780 }} 1780w,{%- endif -%}{%- if block.settings.icon_image.width >= 2000 -%}{{ block.settings.icon_image | image_url: width: 2000 }} 2000w,{%- endif -%}{%- if block.settings.icon_image.width >= 2800 -%}{{ block.settings.icon_image | image_url: width: 2800 }} 2800w{%- endif -%}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="{{ block.settings.icon_image.alt | escape }}" loading="lazy" width="{{ block.settings.icon_image.width }}" height="{{ block.settings.icon_image.height }}" class="motion-reduce"/>
+              {% else %}
+              {{ 'image' | placeholder_svg_tag }}
+              {% endif %}
+              {% if block.settings.content_services != blank or block.settings.title != blank %}
+                {% if block.settings.title %}
+                  <h3 class="item-title">{{ block.settings.title }}
+                  </h3>
+                {% endif %}
+              {% endif %}
+            </a>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+    <div class="scrollbar-product-slider scrollbar-product-slider-our">
+      <div class="handle">
+        <div class="mousearea"></div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+<script>
+  // ====== sly slider init !!!
+(function () {
+  var $frame = $('.recipient-slider-{{ section.id }}');
+  var $wrap  = $frame.parent();
+  setInterval(function () {
+  // Call Sly on frame
+  $frame.sly({
+    horizontal: 1,
+    itemNav: 'basic',
+    smart: 1,
+    activateOn: 'click',
+    mouseDragging: 1,
+    touchDragging: 1,
+    releaseSwing: 1,
+    startAt: 0,
+    scrollBar: $wrap.find('.scrollbar-product-slider'),
+    scrollBy: 1,
+    speed: 1000,
+    elasticBounds: 1,
+    startPaused: false,
+    easing: 'easeOutExpo',
+    dragHandle: 1,
+    dynamicHandle: 1,
+    clickBar: 1,
+
+    // Cycling
+    cycleBy: false,
+
+    // Buttons
+    //prev: $wrap.find('.prev'),
+    //next: $wrap.find('.next')
+  });
+
+  var ab = $('.recipients-wrapper').width();
+  }, 500);
+
+  $wrap.find('.next-{{ section.id }}').on('click', function () {
+    
+    $frame.sly('slideBy', 1);
+    
+  }); 
+  
+  $wrap.find('.prev-{{ section.id }}').on('click', function () {
+    //document.getElementById("next-control").removeAttribute("disabled");
+    $frame.sly('slideBy', -1);
+    
+  });
+
+  setInterval(function () {
+
+      var myElement = document.querySelector('#list-item-{{ section.id }}');
+      var style = window.getComputedStyle(myElement);
+      var matrix = new WebKitCSSMatrix(style.transform);
+      var widthSlide = parseFloat(document.getElementById('list-item-{{ section.id }}').style.width);
+      var maxWidth = parseFloat($("#list-item-{{ section.id }}").width());
+
+      if(widthSlide <= maxWidth){
+        $('.pagination-custom-our').css({"display": 'none'});
+        $('.scrollbar-product-slider-our').css({"display": 'none'});
+      }
+      
+      if(widthSlide - maxWidth + matrix.m41 <= 5){
+        document.getElementById("next-control-{{ section.id }}").disabled = "disabled";
+      }else{
+        document.getElementById("next-control-{{ section.id }}").removeAttribute("disabled");
+      }
+
+      if(matrix.m41>-1){
+        document.getElementById("prev-control-{{ section.id }}").disabled = "disabled";
+      }else{
+      document.getElementById("prev-control-{{ section.id }}").removeAttribute("disabled");
+    }
+  }, 100);
+}());
+</script>
+
+{% schema %}
+  {
+    "name": "Our recipients",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background color",
+        "default": "#FAFAFA"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "default": "Recipients",
+        "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "default": "Shop",
+        "label": "Button "
+      },
+      {
+        "type": "text",
+        "id": "button_label_mb",
+        "default": "View all",
+        "label": "Button mobile"
+      }, {
+        "type": "url",
+        "id": "url_button_seemore",
+        "label": "Url button "
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 72
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 72
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Recipients item",
+        "type": "recipients_item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon_image",
+            "label": "Image icon"
+          }, {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Heading item"
+          }, {
+            "type": "url",
+            "id": "url_item",
+            "label": "Url item"
+          }, {
+            "type": "select",
+            "id": "align_item",
+            "label": "Text alignment item",
+            "default": "text-center",
+            "options": [
+              {
+                "value": "text-left",
+                "label": "Left"
+              }, {
+                "value": "text-center",
+                "label": "Center"
+              }, {
+                "value": "text-right",
+                "label": "Right"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Our recipients",
+        "blocks": [
+          {
+            "type": "recipients_item",
+            "settings": {
+              "title": "Gifts for Mum"
+            }
+          }, {
+            "type": "recipients_item",
+            "settings": {
+              "title": "Gifts for Dad"
+            }
+          }, {
+            "type": "recipients_item",
+            "settings": {
+              "title": "Gifts for Grandma"
+            }
+          }, {
+            "type": "recipients_item",
+            "settings": {
+              "title": "Gifts for Grandpa"
+            }
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

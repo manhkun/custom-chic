@@ -1,0 +1,190 @@
+<ul class="site-nav list--inline">
+  {% for link in linklists[section.settings.menu].links limit: 6 %}
+    {% liquid
+      assign megamenu = '' 
+      if section.blocks.size > 0 
+        for block in section.blocks
+          assign link_handle = link.title | handle
+          assign block_handle = block.settings.title | handle
+          if block_handle == link_handle 
+              assign megamenu = megamenu | append: link_handle | append: " "
+              assign temp = 12 | divided_by: dropdownWidth
+              if colBannerClass > 12 
+                assign colBannerClass = 12 
+              endif 
+              assign colMenuClass = 12 
+              if colMenuClass <= 0 
+                assign colMenuClass = 12 
+              endif 
+              if block.settings.banner_content != blank
+                assign banner_content = block.settings.banner_content
+              endif
+              assign enable_banner = false
+              if block.settings.enable_banner and block.settings.banner_image != blank
+                assign enable_banner = true
+                assign banner_image = block.settings.banner_image
+              endif
+              assign enable_banner_two = false
+              if block.settings.enable_banner_two and block.settings.banner_image_two != blank
+                assign enable_banner_two = true
+                assign banner_image_two = block.settings.banner_image_two
+              endif
+              assign blockid = block.id
+              if block.settings.banner_url != blank
+               assign banner_url = block.settings.banner_url
+              endif
+               if block.settings.banner_url_two != blank
+               assign banner_url_two = block.settings.banner_url_two
+              endif
+              if block.settings.title_img_mega_menu != blank
+                assign title_img_mega_menu = block.settings.title_img_mega_menu
+              endif
+              assign banner_color = block.settings.banner_color
+              if block.settings.banner_url != blank
+                assign banner_url = block.settings.banner_url
+              endif
+          endif
+        endfor
+      endif 
+    %}
+    <li class="level0 {% if megamenu contains link_handle %} mega-menu {% endif %}">
+      <a href="{{ link.url }}">
+      <span>
+        {{ link.title | split: '[' | first }}
+        {%- if link.title contains '[' -%}
+          <span class="label-menu" {% if link.title contains '(' %}style="background: {{ link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ link.title | split: '[' | last | split: ']' | first }}</span>
+        {%- endif -%}
+      </span>
+      </a>
+      {% if link.links != blank %}
+        {% if megamenu contains link_handle %}
+          <div class="dropdown-menu fullwidthfluid">
+            <div class="mega-menu-content row fullwidthfluid">
+              <div class="middle-content {% if banner_image %}w-68{% endif %}">
+                {% for child_link in link.links %}  
+                  <div class="w-25 sub-menu-content">
+                    {% liquid
+                    assign child_list_handle = child_link.title | handle 
+                    assign hasChild = false 
+                    if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 
+                      assign hasChild = true 
+                    endif 
+                    %}
+                    <a href="{{ child_link.url }}" class="megamenu-sub-title">
+                      <span>
+                        {{ child_link.title | split: '[' | first }}
+                        {%- if child_link.title contains '[' -%}
+                          <span class="label-menu" {% if child_link.title contains '(' %}style="background: {{ child_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ child_link.title | split: '[' | last | split: ']' | first }}</span>
+                        {%- endif -%}
+                      </span>
+                    </a>
+                    {% if hasChild %}
+                      <span class="toggle-menu">
+                        <span class="icon-next"></span>
+                      </span>
+                      <ul class="sub-sub-menu">
+                        {% for grandchild_link in child_link.links %}
+                          <li>
+                            <a href="{{ grandchild_link.url }}">
+                              <span>
+                                {{ grandchild_link.title | split: '[' | first }}
+                                {%- if grandchild_link.title contains '[' -%}
+                                  <span class="label-menu" {% if grandchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
+                                {%- endif -%}
+                              </span>
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+              {% if banner_image or banner_image_two %}
+                <div data-block-id="{{ blockid }}"  class="banner-header-mega w-33">
+                  {% if title_img_mega_menu != blank %}
+                  <p class="title-banner-megamenu"> {{ title_img_mega_menu }} </p>
+                  {% endif %}
+                  {% if enable_banner %}
+                    {% if banner_image %}
+                    <div class="banner-mega-1">
+                      <a href="{% if banner_url != blank %} {{ banner_url }} {% else %}#{% endif %}">
+                        <img srcset="{%- if banner_image.width >= 180 -%}{{ banner_image | image_url: width: 180 }} 180w,{%- endif -%}
+                        {%- if banner_image.width >= 360 -%}{{ banner_image | image_url: width: 360 }} 360w,{%- endif -%}
+                        {%- if banner_image.width >= 540 -%}{{ banner_image | image_url: width: 540 }} 540w,{%- endif -%}
+                        {%- if banner_image.width >= 720 -%}{{ banner_image | image_url: width: 720 }} 720w,{%- endif -%}
+                        {%- if banner_image.width >= 900 -%}{{ banner_image | image_url: width: 900 }} 900w,{%- endif -%}
+                        {%- if banner_image.width >= 1080 -%}{{ banner_image | image_url: width: 1080 }} 1080w{%- endif -%}" 
+                        src="{{ banner_image | image_url: width: 737 }}" 
+                        sizes="calc(100vw - 30px)" 
+                        alt="{{ banner_image.alt | escape }}" 
+                        loading="lazy" 
+                        class="motion-reduce{% if banner_image != blank %} mobile-only{% endif %}" 
+                        width="{{ banner_image.width }}" height="{{ banner_image.height }}"/>
+                      </a>
+                    </div>
+                    {% endif %}
+                  {% endif %}
+                  {% if enable_banner_two %}
+                    {% if banner_image_two %}
+                    <div class="banner-mega-2">
+                      <a href="{% if banner_url_two != blank %} {{ banner_url_two }} {% else %}#{% endif %}">
+                        <img srcset="{%- if banner_image_two.width >= 180 -%}{{ banner_image_two | image_url: width: 180 }} 180w,{%- endif -%}
+                        {%- if banner_image_two.width >= 360 -%}{{ banner_image_two | image_url: width: 360 }} 360w,{%- endif -%}
+                        {%- if banner_image_two.width >= 540 -%}{{ banner_image_two | image_url: width: 540 }} 540w,{%- endif -%}
+                        {%- if banner_image_two.width >= 720 -%}{{ banner_image_two | image_url: width: 720 }} 720w,{%- endif -%}
+                        {%- if banner_image_two.width >= 900 -%}{{ banner_image_two | image_url: width: 900 }} 900w,{%- endif -%}
+                        {%- if banner_image_two.width >= 1080 -%}{{ banner_image_two | image_url: width: 1080 }} 1080w{%- endif -%}" 
+                        src="{{ banner_image_two | image_url: width: 737 }}" 
+                        sizes="calc(100vw - 30px)" 
+                        alt="{{ banner_image_two.alt | escape }}" 
+                        loading="lazy" 
+                        class="motion-reduce{% if banner_image_two != blank %} mobile-only{% endif %}" 
+                        width="{{ banner_image_two.width }}" height="{{ banner_image_two.height }}"/>
+                      </a>
+                    </div>
+                    {% endif %}
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          {% else %}
+          <div class="dropdown-menu normal-menu"> 
+            <ul class="sub-menu">
+              {% for child_link in link.links %}  
+              <li>
+                <a href= "{{ child_link.url }}">
+                <span>
+                  {{ child_link.title | split: '[' | first }}
+                  {%- if child_link.title contains '[' -%}
+                    <span class="label-menu" {% if child_link.title contains '(' %}style="background: {{ child_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ child_link.title | split: '[' | last | split: ']' | first }}</span>
+                  {%- endif -%}
+                </span>
+                </a>
+              {% if child_link.links != blank %}
+                <span class="toggle-menu">
+                  <span class="icon-next"></span>
+                </span>
+                <ul class="dropdown-menu">
+                {% for grandchild_link in child_link.links %}  
+                  <li><a href= "{{ grandchild_link.url }}">
+                    <span>
+                    {{ grandchild_link.title | split: '[' | first }}
+                    {%- if grandchild_link.title contains '[' -%}
+                      <span class="label-menu" {% if grandchild_link.title contains '(' %}style="background: {{ grandchild_link.title | split: '(' | last | split: ')' | first }}"{% else %}style="background: {{ settings.color_primary }}"{% endif %}>{{ grandchild_link.title | split: '[' | last | split: ']' | first }}</span>
+                    {%- endif -%}
+                  </span>
+                  </a></li>
+                {% endfor %}
+                </ul>
+              {% endif %}   
+              </li>
+              {% endfor %}
+            </ul> 
+          </div>
+        {% endif %} 
+      {% endif %} 
+    </li>
+  {% endfor %}
+</ul>

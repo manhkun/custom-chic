@@ -1,0 +1,98 @@
+
+
+.search__button:focus-visible {
+  background-color: rgb(var(--color-background));
+  z-index: 2;
+}
+
+.search__button:focus {
+  background-color: rgb(var(--color-background));
+  z-index: 2;
+}
+
+.search__button:not(:focus-visible):not(.focused){
+  box-shadow: inherit;
+  background-color: inherit;
+}
+.search__input {
+  background-color: #F2F2F2;
+  border-radius: 20px;
+  border: 0;
+  padding: 10px 0;
+  padding-left: 55px;
+  padding-right: 20px;
+  width: 100%;
+  font-family: var(--font-body-family);
+  line-height: 140%;
+  font-size: 14px;
+}
+
+.search__input::-webkit-input-placeholder {
+  color: #B3B3B3;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.5px;
+  font-family: var(--font-body-family);
+}
+
+.search__input:-ms-input-placeholder {
+  color: #B3B3B3;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.5px;
+  font-family: var(--font-body-family);
+}
+
+.search__input::placeholder {
+  color: #B3B3B3;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 140%;
+  letter-spacing: 0.5px;
+  font-family: var(--font-body-family);
+}
+.search-modal__content .search__input {
+  padding-left: 31px;
+}
+.search-icons {
+  width: 192px;
+  height: 40px;
+}
+.icon-search-wrapper {
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  line-height: 1;
+  left: 19px;
+  height: 20px;
+}
+.icon-search-wrapper button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background-color: transparent;
+}
+@media screen and (max-width: 1177px) {
+  .header-search-desktop .search-modal__form {
+    display: none;
+  }
+  .search-icons.header-search-desktop {
+    display: none;
+  }
+  .header .header__heading-logo {
+    max-width: 99px;
+  }
+  .right-content .header__icons {
+    margin-right: 20px;
+  }
+  .right-content header-drawer {
+    margin-left: 19px;
+  }
+}
+/* Remove extra spacing for search inputs in Safari */
+input::-webkit-search-decoration {
+  -webkit-appearance: none;
+}

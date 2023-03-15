@@ -1,0 +1,262 @@
+.accordion summary {
+  display: flex;
+  position: relative;
+  line-height: 1;
+  padding: 23.5px 0;
+  border-top:1px solid #D9D9D9 ;
+}
+
+.accordion .summary__title {
+  display: flex;
+  flex: 1;
+}
+.accordion .summary__title + .icon-caret {
+  height: calc(var(--font-heading-scale) * 0.6rem);
+}
+
+.accordion + .accordion {
+  margin-top: 0;
+  border-top: none;
+}
+
+.accordion {
+  margin-bottom: 0;
+  border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
+  border-bottom: 0.1rem solid rgba(var(--color-foreground), 0.08);
+}
+
+.accordion__title {
+  display: inline-block;
+  max-width: calc(100% - 6rem);
+  margin: 0;
+  word-break: break-word;
+  font-family: var(--font-heading-family);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.accordion .icon-accordion {
+  align-self: center;
+  fill: rgb(var(--color-foreground));
+  height: calc(var(--font-heading-scale) * 2rem);
+  margin-right: calc(var(--font-heading-scale) * 1rem);
+  width: calc(var(--font-heading-scale) * 2rem);
+}
+
+.accordion details[open] > summary .icon-caret {
+  transform: rotate(180deg);
+}
+
+.accordion__content {
+  word-break: break-word;
+}
+.product__accordion .button-see {
+  text-align: center;
+  cursor: pointer;
+}
+.button-see span:hover {
+  background: rgba(0,0,0,.1);
+  border-radius: 100px;
+}
+.button-see span {
+  font-weight: 500;
+  font-size: 12px;
+  font-family: var(--font-heading-family);
+  line-height: 15px;
+  text-transform: capitalize;
+  padding: 8px 16px;
+  color: #000;
+  cursor: pointer;
+  letter-spacing: 0;
+}
+.accordion__content-text {
+  position: relative;
+  margin-top: -16px;
+  overflow: hidden;
+  transition: all .25s ease;
+}
+.shipping_information .accordion__content .icon-text {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-right: 4px;
+}
+.accordion__content-text.active::after {
+content: none;
+}
+.shipping_information .accordion__content .date-text {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.shipping_information .accordion__content .icon-text .icon-text-wrapper div {
+  padding: 0 8px;
+  background-color: #fff;
+  z-index: 1;
+  width: fit-content;
+  margin-bottom: 6px;
+  align-items: inherit;
+}
+.shipping_information .accordion__content .icon-text .icon-text-wrapper .date-text {
+  margin-bottom: 16px;
+  margin-top: 3px;
+}
+.shipping_information .icon-text-wrapper .date-text span {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  font-family: var(--font-body-family);
+}
+.shipping_information .accordion__content .icon-text .icon-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: calc(100% / 3);
+  text-align: right;
+}
+.shipping_information .accordion__content .icon-text .icon-text-wrapper.left {
+  align-items: flex-start;
+  text-align: left;
+}
+.shipping_information .icon-text .icon-text-wrapper.left div {
+  padding-left: 0;
+}
+.shipping_information .accordion__content .icon-text .icon-text-wrapper.center {
+  align-items:center;
+  text-align: center;
+}
+.shipping_information .accordion__content .date-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  display: flex;
+  flex-direction: column;
+}
+.shipping_information .accordion__content .date-text .mess-note {
+  display: none;
+  position: absolute;
+}
+.shipping_information .accordion__content .date-text:hover .mess-note,
+.shipping_information .accordion__content .icon-text-wrapper div:hover~ .date-text .mess-note {
+  display: block;
+  top: 51px;
+  left: -102px;
+  width: 212px;
+  text-align: left;
+  line-height: 13.5px;
+  background: #FFFFFF;
+  box-shadow: 0 5px 15px #0000001a;
+  border-radius: 8px;
+  padding: 8px;
+  line-height: 13.5px;
+}
+.shipping_information .accordion__content .date-text:hover .mess-note span,
+.shipping_information .accordion__content .icon-text-wrapper div:hover~ .date-text .mess-note span {
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 140%;
+}
+.shipping_information .accordion__content .icon-text::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #e6e6e6;
+  top: 15px;
+  transform: translateY(-50%);
+}
+.shipping_information .accordion__content .icon-text span.icon {
+  padding: 6px;
+  background-color: #E6E6E6;
+  border-radius: 50%;
+  line-height: 0;
+  z-index: 2;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+}
+.shipping_information .accordion__content .icon-text span.icon svg {
+  width: 100%;
+}
+.shipping_information .accordion__content .sub-title {
+  color: #808080;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.shipping_information .accordion__content .title-date {
+  color: #333333;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 120%;
+  font-family: var(--font-heading-family);
+  margin-top: 7px;
+  margin-bottom: 10px;
+}
+.shipping_information .icon-text-wrapper .date-text span.note {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 140%;
+}
+.shipping_information .accordion__content .note {
+  --border-color: #808080;
+  --border-weight: 1px;
+  --dash-size: 7px;
+  --gap-size: 1px;
+  position: relative;
+  width: fit-content;
+  color: #808080;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+font-family: var(--font-body-family);
+}
+.shipping_information .accordion__content .note::after {
+  content:'';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(90deg, var(--border-color) 100%, transparent 100%) bottom left no-repeat,
+    linear-gradient(90deg, transparent calc(var(--gap-size) / 2), var(--border-color) calc(var(--gap-size) / 2), var(--border-color) calc(var(--gap-size) / 2 + var(--dash-size)), transparent calc(var(--gap-size) / 2 + var(--dash-size))) bottom center repeat-x,
+    linear-gradient(90deg, var(--border-color) 100%, transparent 100%) bottom right no-repeat;
+      
+  background-size: var(--dash-size) var(--border-weight), calc(var(--dash-size) + var(--gap-size)) var(--border-weight), var(--dash-size) var(--border-weight), var(--border-weight) var(--dash-size), var(--border-weight) calc(var(--dash-size) + var(--gap-size)), var(--border-weight) var(--dash-size);
+}
+
+.accordion__content .icon-text img {
+  max-width: 100%;
+}
+@media screen and (max-width: 1024px) {
+  .shipping_information .accordion__content .date-text:hover .mess-note {
+    left: unset;
+  }
+  .shipping_information .accordion__content .icon-text:before {
+    top: 15%;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .shipping_information .accordion__content .title-date {
+    margin-bottom: 8px;
+  }
+  .shipping_information .accordion__content .icon-text:before {
+    top: 13px;
+  }
+  .shipping_information .accordion__content .icon-text .icon-text-wrapper div {
+    margin-bottom: 4px;
+  }
+  .shipping_information .icon-text-wrapper .date-text span.note {
+    margin-top: 2px;
+  }
+  .shipping_information .accordion__content .icon-text .icon-text-wrapper .date-text {
+    margin-bottom: 17px;
+  }
+}

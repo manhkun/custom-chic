@@ -1,0 +1,111 @@
+.banner-desktop{
+    display: none;
+}
+.banner-item{
+    position: relative;
+}
+.banner__buttons a{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+font-family: var(--font-heading-family);
+    padding: 10px 16px;
+    border-radius: 100px;
+    letter-spacing: 0;
+    white-space: nowrap;
+    display: inline-block;
+    transition: 0.3s;
+}
+.banner-item-img{
+    position: relative;
+}
+.banner-item-img a {
+    display: block;
+}
+.banner-item-img img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.banner-mobile .banner-item .banner__buttons a{
+    padding: 6px 10px;
+    font-size: 8px;
+    line-height: 10px;
+    white-space: nowrap;
+    display: inline-block;
+    letter-spacing: 0;
+    transition: 0.3s;
+}
+.banner-item-content{
+    position: absolute;
+}
+.banner-section .slick-arrow{
+    display: none!important;
+}
+.banner-section .slick-dots{
+    position: absolute;
+    display: flex;
+    bottom: 8px;
+    list-style: none;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-left: 0;
+    cursor: pointer;
+    margin: 0;
+}
+.banner-section .slick-dots li{
+    margin: 0 4px;
+    width: 6px;
+    height: 6px;
+    background: #E6E6E6;
+    border-radius: 6px;
+}
+.banner-section .slick-dots li.slick-active{
+    background: #000000
+}
+.banner-section .slick-dots button{
+    opacity: 0;
+    visibility: hidden;
+}
+@media (min-width:768px) {
+    .banner-desktop.w-grid{
+        display: grid;
+        grid-gap: 9px;
+        grid-template-areas: 'c1 c2' 'c1 c3';
+        grid-template-columns: 66.3% 32.9%;
+    }
+    .banner-desktop.w-100{
+        width: 100%;
+        display: block;
+    }
+    .banner-desktop .banner-item:nth-child(1){      
+        grid-area: c1;
+    }
+    .banner-desktop .banner-item:nth-child(2){      
+        grid-area: c2;
+    }
+    .banner-desktop .banner-item:nth-child(3){      
+        grid-area: c3;
+        }
+    .banner-mobile{
+        display: none;
+    }
+    .banner-item-img img{
+        display: block;
+        width: 100%;
+      
+    }
+}
+@media (min-width:1025px) {
+    .banner__buttons a{
+        font-size: 16px;
+        line-height: 20px;
+        padding: 16px 24px;
+    }
+    .banner-item-img img{
+        display: block;
+        width: 100%;
+    }
+}

@@ -1,0 +1,105 @@
+.container-main{
+    padding: 0 16px;
+}
+.iconbox-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 22px;
+    justify-content: center;
+    margin: 0 -8px;
+}
+.icon-box-item{
+    width: 100%;
+    padding: 0 8px;
+}
+.icon-box-item-image {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+.icon-box-item-image img {
+    max-width: 100%;
+    height: auto;
+}
+.iconbox-heading .heading-2{
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    font-family: var(--font-heading-family);
+    margin-bottom: 24px;
+    margin-top: 0;
+    letter-spacing: 0;
+    font-size: 18px;
+    line-height: 120%;
+}
+.heading-2.text-center, .icon-box-item.text-center {
+    text-align: center;
+}
+.heading-2.text-left, .icon-box-item.text-left {
+    text-align: left;
+}
+.heading-2.text-right, .icon-box-item.text-right {
+    text-align: right;
+}
+.icon-box_item_content .sub-title{
+    margin: 17px 0 4px 0;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+font-family: var(--font-heading-family);
+}
+.content-services p{
+    margin: 0;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0px;
+    line-height: 160%;
+    font-family: var(--font-body-family);
+}
+.content-services p strong{
+    font-weight: 600;
+}
+.content-services p em{
+    font-style: italic;
+}
+.content-services p a {
+    text-decoration: none;
+  }
+@media (min-width:768px) {
+    .container-main{
+        padding: 0 30px;
+    }
+}
+@media (min-width:1025px) {
+    .container-main{
+        padding: 0 60px;
+    }
+    .icon-box_item_content .sub-title{
+        font-size: 14px;
+        line-height: 17px;
+        margin: 18px 0 4px;
+    }
+    .content-services p{
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .iconbox-wrapper{
+        row-gap: 64px;
+    }
+    .iconbox-heading .heading-2{
+        margin-bottom: 48px;
+        font-weight: 500;
+        font-size: 34px;    
+    }
+}
+@media (min-width:1200px) {
+    .container-main{
+        padding: 0;
+        max-width: 1190px;
+        margin: 0 auto;
+    }
+
+    
+}

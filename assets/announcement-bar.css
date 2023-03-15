@@ -1,0 +1,41 @@
+.announcement-section button{display: none!important;}
+.announcement-section .announcement-bar__message{
+    padding: 11.5px 0!important;
+    font-size: 10px;
+    line-height: 12px;
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+.announcement-section .announcement-bar__message p {
+  margin: 0;
+}
+.announcement-section .announcement-bar__link{
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+    font-family: var(--font-heading-family);
+    text-transform: uppercase;
+    padding: 0;
+}
+.announcement-section {
+    overflow: hidden;
+    max-height: 35px;
+}
+.announcement-section .announcement-bar{
+    background: var(--background-black);
+    color: var(--color-text-white);
+}
+@media (min-width:1025px) {
+    .announcement-section .announcement-bar__message{
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 0;
+        padding: 10px 0!important;
+    }
+    .announcement-section .announcement-bar__link{
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 0;
+    }
+}

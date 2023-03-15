@@ -1,0 +1,236 @@
+{%- liquid
+  assign sort_by = results.sort_by | default: results.default_sort_by
+  assign total_active_values = 0
+  assign navigation = navigation_filter
+  if results.url
+    assign results_url = results.url
+  else 
+    assign terms = results.terms | escape
+    assign results_url = '?q=' | append: terms | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+  endif
+  assign productType = 'product type'
+-%}
+{%- capture contentForQuerystring -%}
+  {{ content_for_header }}
+{%- endcapture -%}
+
+{% comment %}
+  Use string splitting to pull the value from content_for_header and apply some string clean up
+{% endcomment %}
+
+{%- liquid 
+  assign pageUrl = contentForQuerystring | split : '"pageurl" : "' | last | split : '"' | first | split:'.myshopify.com' | last |  replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&'
+  assign urlfilter = ''
+  assign urlremove = ''
+  assign pageQuerystring = pageUrl | split : '?' | last
+
+  for param in pageQuerystring
+    assign urlfilter = urlfilter | append : '?' | append: param
+  endfor
+
+  assign urlfilter = urlfilter | split: '&'
+
+  for param in urlfilter
+    if param contains '?'
+      assign urlremove = urlremove | append: param
+    else
+      assign urlremove = urlremove | append: '&' | append: param
+    endif
+  endfor 
+-%}
+
+{% if section.settings.enable_filtering %}
+  <facet-filters-form class="collection-filter__wrapper active facets">
+    <form class="facets__form" id="FacetFiltersForm">
+      <div class="facets__wrapper">
+        {%- for filter in results.filters -%}
+          {%- assign total_active_values = total_active_values | plus: filter.active_values.size -%}
+
+          {% case filter.type %}
+            {% when 'list' %}
+              {%- if filter.label == 'Product type' -%}
+                <div class="facets__display filters-{{ filter.label | downcase }}">
+                  <ul class="facets__list list-unstyled" role="list">
+                    <facet-remove class="active-facets__clear{% unless urlremove contains 'product_type' %} txt-inline{% endunless %}">
+                      <a href="{{ filter.url_to_remove }}" class="btn active-facets__button no-effect js-facet-remove">All</a>
+                    </facet-remove>
+
+                    {%- for value in filter.values -%}
+                      {%- assign filter_label = filter.label | downcase %}
+                      {%- if productType contains filter_label -%}
+                        <li class="list-menu__item facets__item{% if colorSwatchArr contains filter_label %} filter-color{% elsif swatchArr contains filter_label %} filter-size{% endif %}">
+                          <label class="facet-checkbox-top" for="Filter-{{ filter.label | remove: ' ' | append: '-' | append: forloop.index }}">
+                            {{ value.label | escape }}
+                            <input form="FacetFiltersFormMobile" type="radio" name="{{ value.param_name }}" value="{{ value.value }}" id="Filter-{{ filter.label | remove: ' ' | append: '-' | append: forloop.index }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
+                          </label>
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                  </ul>
+                </div>
+              {%- endif -%}
+
+            {% when 'boolean'%}
+              <details id="Details-Mobile-Top-{{ forloop.index }}-{{ section.id }}" class="hidden mobile-facets__details js-filter" data-index="mobile-{{ forloop.index }}">
+
+                <summary class="mobile-facets__summary focus-inset">
+                  <div class="title-filter">
+                    <span class="title-label">{{ filter.label | escape }}
+                    </span>
+                  </div>
+                </summary>
+
+                <div id="FacetMobile-Top-{{ forloop.index }}-{{ section.id }}" class="mobile-facets__submenu gradient">
+                  <ul class="mobile-facets__list list-unstyled" role="list">
+                    {%- for value in filter.values -%}
+                      <li class="mobile-facets__item list-menu__item{% if colorSwatchArr contains filter_label %} filter-color{% elsif swatchArr contains filter_label %} filter-size{% endif %}">
+
+                        <label for="Filter-Mb-top-{{ filter.param_name | escape }}-mobile-{{ forloop.index }}" class="mobile-facets__label{% if value.count == 0 and value.active == false %} mobile-facets__label--disabled{% endif %}">
+
+                          <input class="mobile-facets__checkbox" type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" id="Filter-Mb-top-{{ filter.param_name | escape }}-mobile-{{ forloop.index }}" {% if value.active %}checked{% endif %} {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                          <span aria-hidden="true">{{ value.label | escape }}({{ value.count }})</span>
+                          {%- liquid
+                            assign product_count_simple = 'products.facets.product_count_simple.other' | t: count: value.count
+                            if value.count == '1'
+                              assign product_count_simple ='products.facets.product_count_simple.one' | t: count: value.count
+                            endif
+                          -%}
+                          <span class="visually-hidden">{{ value.label | escape }}({{ product_count_simple }})</span>
+
+                        </label>
+
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </details>
+              
+            {% when 'list' %}
+              <details class="hidden mobile-facets__details js-filter filters-{{ filter.label | downcase }}" data-index="{{ forloop.index }}" open>
+
+                  <summary class="mobile-facets__summary">
+                    <div class="title-filter">
+                      <span class="title-label">{{ filter.label | escape }}</span>
+                    </div>
+                  </summary>
+
+                  <div id="FacetMobile-Top-{{ forloop.index }}-{{ section.id }}" class="mobile-facets__submenu gradient">
+                    <ul class="mobile-facets__list list-unstyled" role="list">
+                      {%- for value in filter.values -%}
+
+                        {% assign filter_label = filter.label | downcase %}
+
+                        <li class="mobile-facets__item list-menu__item facets__item{% if colorSwatchArr contains filter_label %} filter-color{% elsif swatchArr contains filter_label %} filter-size{% endif %}{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
+
+                          {% if colorSwatchArr contains filter_label or swatchArr contains filter_label %}
+                            <input type="checkbox" class="mobile-facets__checkbox"
+                              name="{{ value.param_name }}"
+                              value="{{ value.value }}"
+                              id="Filter-Mb-{{ filter.label | escape }}-{{ forloop.index }}"
+                              {% if value.active %}checked{% endif %}
+                              {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                          {% endif %}
+
+                          <label for="Filter-Mb-top{{ filter.label | escape }}-{{ forloop.index }}" class="checkbox-custom facet-checkbox{% if value.count == 0 and value.active == false %} facet-checkbox--disabled{% endif %}">
+                            {% if colorSwatchArr contains filter_label or swatchArr contains filter_label %}
+
+                              {% if colorSwatchArr contains filter_label %}
+                                {% assign variable = value.value | handle | append: '.' | append: 'png' %}
+                                <span class="color" style="background-image: url({{ variable | asset_img_url: '50x' }}); background-color: {{ value.value | split: ' ' | first | handle }};"></span>
+                                <span class="name-color">{{ value.value | escape }}</span>
+                              {% elsif swatchArr contains filter_label %}
+                                <span class="size">{{ value.value | escape }}</span>
+                              {% endif %}
+
+                            {% else %}
+                              <input type="checkbox"
+                                name="{{ value.param_name }}"
+                                value="{{ value.value }}"
+                                id="Filter-Mb-top-{{ filter.label | escape }}-{{ forloop.index }}"
+                                {% if value.active %} checked{% endif %}
+                                {% if value.count == 0 and value.active == false %} disabled{% endif %}
+                              >
+                              <span class="checkmark"></span>
+                              {{ value.label | escape }}
+                            {% endif %}
+                          </label>
+
+                        </li>
+
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+              </details>
+
+            {% when 'price_range' %}
+              <details id="Details-Mobile-Top{{ forloop.index }}-{{ section.id }}" class="hidden mobile-facets__details js-filter" data-index="mobile-{{ forloop.index }}" open>
+                <summary class="mobile-facets__summary focus-inset">
+                  <div class="title-filter">
+                    <span class="title-label">{{ filter.label | escape }}
+                    </span>
+                  </div>
+                </summary>
+
+                <div id="FacetMobile-{{ forloop.index }}-{{ section.id }}" class="mobile-facets__submenu gradient">
+                  <price-range class="facets__price">
+
+                    <div class="price-value">
+                      <span class="field__currency">{{ cart.currency.symbol }}<span class="min">0</span></span>
+                      <span class="icon-with">-</span>
+                      <span class="field__currency">{{ cart.currency.symbol }}<span class="max">{{ filter.range_max | money_without_currency | round }}</span></span>
+                    </div>
+
+                    <div class="range-slider">
+                      <label class="field__label" for="Filter-Mb-top-{{ filter.label | escape | append: 'min' }}-{{ forloop.index }}"></label>
+                      <input class="field__input min-field"
+                        name="{{ filter.min_value.param_name }}"
+                        id="Filter-Mb-top-{{ filter.label | escape | append: 'min' }}-{{ forloop.index }}"
+                        {% if filter.min_value.value %}
+                          {% if uses_comma_decimals %}
+                            value="{{ filter.min_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                          {% else %}
+                            value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                          {% endif %}
+                        {% else %}  
+                        value="0"
+                        {% endif %}
+                        type="range"
+                        placeholder="0"
+                        min="0"
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                      </input>
+
+                      <label class="field__label" for="Filter-Mb-top-{{ filter.label | escape | append: 'max' }}-{{ forloop.index | plus: 1 }}"></label>
+                      <input class="field__input max-field"
+                        name="{{ filter.max_value.param_name }}"
+                        id="Filter-Mb-top-{{ filter.label | escape | append: 'max' }}-{{ forloop.index | plus: 1 }}"
+                        {%- if filter.max_value.value -%}
+                          {%- if uses_comma_decimals -%}
+                            value="{{ filter.max_value.value | money_without_currency | replace: '.', '' | replace: ',', '.' }}"
+                          {%- else -%}
+                            value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                          {% endif %}
+                        {% else %}
+                          value="{{ filter.range_max | money_without_currency | replace: ',', '' }}"  
+                        {%- endif -%}
+                        type="range"
+                        placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                        min="0"
+                        max="{{ filter.range_max | money_without_currency | replace: ',', '' }}">
+                      </input>
+                      <div class="blackline"></div>
+                    </div>
+                    <div class="price-value-min-max">
+                      <span class="price-item price-min">{{ cart.currency.symbol }}<span class="min-price">0</span></span>
+                      <span class="price-item price-max">{{ cart.currency.symbol }}<span class="max-price">{{ filter.range_max | money_without_currency | round }}</span></span>
+                    </div>
+                  </price-range>
+                </div>
+              </details>
+          {% endcase %}
+        {%- endfor -%}
+      </div>
+    </form>
+  </facet-filters-form>
+{% endif %}

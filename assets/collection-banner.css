@@ -1,0 +1,115 @@
+.collection-banner-wrapper .page-title {
+    font-size: 24px;
+    line-height: 120%;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: 0.3px;
+    font-family: var(--font-heading-family);
+}
+.collection-banner-wrapper .page-sub-title p{
+  font-size: 16px;
+  line-height: 160%;
+  font-family: var(--font-body-family);
+  letter-spacing: 0;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: -0.12px;
+}
+.collection-banner-wrapper .page-sub-title p a:hover{
+  text-decoration: underline;
+}
+.collection-banner-wrapper .page-sub-title{
+    margin: 8px 0 0 0;
+}
+.collection-banner-wrapper .page-sub-title.hidden-mb{
+  display: none;
+}
+.collection-banner-wrapper .banner .breadcrumb{
+  padding-left: 0;
+  display: flex;
+  margin: 9px 0 0 0;
+}
+.collection-banner-wrapper .banner .breadcrumb li{
+  margin-right: 10px;
+}
+.collection-banner-wrapper .banner .breadcrumb a{
+  font-size: 12px;
+  line-height: 160%;
+  font-family: var(--font-body-family);
+  padding: 0 9px 0 0;
+    margin: 0;
+    letter-spacing: 0; 
+    font-weight: 300;
+}
+.collection-banner-wrapper .banner .breadcrumb span{
+  font-size: 12px;
+  font-weight: 400;
+  font-family: var(--font-body-family);
+  line-height: 160%;
+  letter-spacing: 0; 
+
+}
+.bre-show-hide.hidden-mb{
+  display: none;
+}
+.morecontent span{
+  display: none!important;
+}
+.morecontent.inherit span {
+  display: inherit!important;
+}
+.morelink {
+  display: inline-block;
+}
+
+@media (min-width:1025px) {
+
+  .collection-banner-wrapper .page-sub-title{
+    display: block;
+  }
+  .collection-banner-wrapper .page-sub-title.hidden-mb{
+    display: block;
+  }
+  .collection-banner-wrapper .page-sub-title.hidden-desktop{
+    display: none;
+  }
+  .bre-show-hide{
+    display: block;
+  }
+  .bre-show-hide.hidden-mb{
+    display: block;
+  }
+  .bre-show-hide.hidden-desktop{
+    display: none;
+  }
+  .collection-banner-wrapper .banner .breadcrumb li{
+    margin-right: 15px;
+  }
+  .collection-banner-wrapper .banner .breadcrumb a{
+    font-size: 14px;
+    line-height: 140%;
+    padding: 0 15px 0 0;
+  }
+  .collection-banner-wrapper .banner .breadcrumb span{
+    font-size: 14px;
+    line-height: 140%;
+  }
+  
+}
+@media (max-width:1024px) {
+  .collection-banner-wrapper .page-width-desktop {
+      max-width: var(--page-width);
+      padding: 0!important;
+  }
+  .collection-banner-wrapper.banner-has-image .banner {
+    padding: 21px 24px 22px;
+  }
+}
+@media (max-width:767px) { 
+  .collection-banner-wrapper .page-title {
+    font-weight: 500;
+  }
+}
+
+
+

@@ -1,0 +1,242 @@
+<link rel="stylesheet" href="{{ 'collection-banner.css' | asset_url }}" type="text/css">
+
+
+<div class="collection-banner-wrapper{% if section.settings.general_title_background_image != blank %} banner-has-image{% else %} banner-no-image{% endif %}">
+  <div class="page-width-desktop">
+    <div class="banner {{ section.settings.breadcrumb_position }}">
+      {% if template contains 'product' %}
+        {% elsif template == 'cart'  %}
+          <h1 class="page-title">{{ 'cart.general.title' | t }}
+          </h1>
+        {% elsif template contains 'collection' and collection.handle %}
+          <h1 class="page-title ">{{ collection.title }}
+          </h1>
+          <h4 class="page-sub-title{% if section.settings.hidden_subtile %} hidden-desktop{% endif %}{% if section.settings.hidden_subtile_mb %} hidden-mb{% endif %}">{{ section.settings.subtile }}
+          </h4>
+          <div class="bre-show-hide{% if section.settings.hidden_breadcrumbs %} hidden-desktop{% endif %}{% if section.settings.hidden_breadcrumbs_mb %} hidden-mb{% endif %}">
+            {% render 'breadcrumb' %}
+          </div>
+
+        {% elsif template == 'blog' %}
+          <h1 class="page-title">{{ blog.title }}
+          </h1>
+        {% elsif template contains 'article' %}
+        {% elsif template contains 'page' %}
+          <h1 class="page-title">{{ page.title }}
+          </h1>
+        {% elsif template contains 'search' %}
+          {% if search.performed == false %}
+            <h1 class="page-title">{{ 'templates.search.title' | t }}
+            </h1>
+          {% else %}
+            <h1 class="page-title">
+              <span class="visually-hidden">{{ 'templates.search.title' | t: count: search.results_count }}
+                :</span>
+              {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+            </h1>
+          {% endif %}
+        {% else %}
+          <h1 class="page-title">{{ page_title }}
+          </h1>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function() {
+
+// Configure/customize these variables.
+    var showChar = 100; // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "See more";
+    var lesstext = "See less";
+
+
+    $('.page-sub-title p').each(function() {
+      var content = $(this).html();
+
+      if (content.length > showChar) {
+
+        var c = content.substr(0, showChar);
+        var h = content.substr(showChar, content.length - showChar);
+
+        var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+        $(this).html(html);
+      }
+
+    });
+
+    $(".morelink").click(function() {
+
+      if ($(this).hasClass("less")) {
+        $(this).removeClass("less");
+        $(".morecontent").removeClass("inherit");
+        $(this).html(moretext);
+      } else {
+        $(this).addClass("less");
+        $(this).html(lesstext);
+        $(".morecontent").addClass("inherit");
+      }
+      $(this).parent().prev().toggle();
+      $(this).prev().toggle();
+      return false;
+    });
+  });
+</script>
+
+{% style %}
+  {% if section.settings.general_title_background_image != blank %}
+    .collection-banner-wrapper.banner-has-image .banner {
+      background-image: url('{{ section.settings.general_title_background_image | image_url: width: 2800 }}');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+    }
+    @media(min-width:1025px) {
+      .collection-banner-wrapper.banner-has-image .banner {
+        padding: {{ section.settings.padding_tb }}px 24px;
+      }
+    }
+  {% endif %}
+  .collection-banner-wrapper.banner-no-image .banner {
+    background: {{ section.settings.background_color_breadcrumb }};
+    padding: {{ section.settings.padding_tb }}px 24px;
+  }
+  .collection-banner-wrapper .page-title {
+    color: {{ section.settings.color_title }};
+  }
+  .collection-banner-wrapper .page-sub-title p {
+    color: {{ section.settings.color_subtitle }};
+  }
+  .collection-banner-wrapper .page-sub-title p a {
+    color: {{ section.settings.color_subtitle }};
+    font-weight: 600;
+  }
+  .collection-banner-wrapper .banner .breadcrumb li svg path {
+    stroke: {{ section.settings.color_text_breadcrumb_link }};
+  }
+  .collection-banner-wrapper .breadcrumb li a.breadcrumb-link {
+    color: {{ section.settings.color_text_breadcrumb_link }};
+  }
+  .collection-banner-wrapper .breadcrumb li span {
+    color: {{ section.settings.color_text_breadcrumb }};
+  }
+  .collection-banner-wrapper .breadcrumb li svg path {
+    stroke: {{ section.settings.color_text_breadcrumb }};
+  }
+  .collection-banner-wrapper {
+    margin-top: {{ section.settings.margin_top_mb }}px;
+  }
+  @media(min-width:1025px) {
+    .collection-banner-wrapper.banner-no-image .banner {
+      padding: {{ section.settings.padding_tb }}px 24px;
+    }
+    .collection-banner-wrapper {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+  }
+{% endstyle %}
+
+
+{% schema %}
+  {
+    "name": "Collection banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "general_title_background_image",
+        "label": "Background image",
+        "info": "Only show when collection image blank"
+      },
+      {
+        "type": "color",
+        "id": "background_color_breadcrumb",
+        "label": "Background color breadcrumb",
+        "default": "#e8e8e8"
+      },
+      {
+        "type": "range",
+        "id": "margin_top",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "padding_tb",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Padding",
+        "default": 28
+      }, {
+        "type": "richtext",
+        "id": "subtile",
+        "default": "<p>Slash Sales begins in April. Get up to 80% Discount on all products...</p>",
+        "label": "Subtitle"
+      }, {
+        "type": "checkbox",
+        "id": "hidden_subtile",
+        "label": "Hidden subtitle",
+        "default": false
+      }, {
+        "type": "checkbox",
+        "id": "hidden_breadcrumbs",
+        "label": "Hidden breadcrumbs",
+        "default": true
+      }, {
+        "type": "color",
+        "id": "color_title",
+        "label": "Color title",
+        "default": "#ffffff"
+      }, {
+        "type": "color",
+        "id": "color_subtitle",
+        "label": "Color subtitle",
+        "default": "#E6E6E6"
+      }, {
+        "type": "color",
+        "id": "color_text_breadcrumb_link",
+        "label": "Color text link breadcrumbs",
+        "default": "#FAFAFA"
+      }, {
+        "type": "color",
+        "id": "color_text_breadcrumb",
+        "label": "Color text breadcrumbs",
+        "default": "#FFFFFF"
+      }, {
+        "type": "header",
+        "content": "Setting Mobile"
+      }, {
+        "type": "range",
+        "id": "margin_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "Margin top",
+        "default": 0
+      },{
+        "type": "checkbox",
+        "id": "hidden_subtile_mb",
+        "label": "Hidden subtitle",
+        "default": true
+      }, {
+        "type": "checkbox",
+        "id": "hidden_breadcrumbs_mb",
+        "label": "Hidden breadcrumbs",
+        "default": false
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection banner"
+      }
+    ]
+  }
+{% endschema %}

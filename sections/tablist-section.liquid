@@ -1,0 +1,181 @@
+{{ 'tablist.css' | asset_url | stylesheet_tag }}
+
+{%- liquid 
+  if template contains 'product'
+    assign share_permalink = product.url
+    assign share_image = product.featured_image
+  elsif template contains 'collection'
+    assign share_permalink = collection.url
+  elsif template == 'cart'
+    assign share_permalink = cart.url
+  elsif template contains 'page'
+    assign share_permalink = page.url
+  endif
+-%}
+
+{% assign blog_handles = '' %}
+<div class="tablist-section" data-section-id="{{ section.id }}">
+  <div class="tablist__wrapper ">
+    <div class="head-search {% if section.settings.hidden_search %}hidden{%- endif -%}">
+      <div class="page-width-desktop">
+        {%- if section.settings.heading_search != blank -%}
+          <h3>{{ section.settings.heading_search }}</h3>
+        {%- endif -%}
+
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+          <div class="field">
+            <input type="hidden" name="type" value="article">
+            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
+            <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="tab-header">
+      <div class="page-width-desktop">
+        {%- if section.settings.menu != blank -%}
+          <ul class="list-menu-cate">
+            {%- for link in section.settings.menu.links -%}
+              {% assign url = link.url | split: "/" %}
+              {% assign url2 = url.last %}
+              {% assign blog_handles = blog_handles | append: url2 | append: ',' %}
+              <li>
+                <p id="cate{{ forloop.index }}" data-handle="{{ link.handle }}" class="link {% if link.active %} list-menu__item--active{% endif %}">
+                  {{ link.title }}
+                </p>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="all-tab">
+      <div class="page-width-desktop">
+        {% assign blog_handles1 = blog_handles | split: ',' %}
+        {% for handle in blog_handles1 %}
+          <div class="tab-main" id="cate{{ forloop.index }}Q">
+            <div class="tab-main-listpost">
+              <h2>{{ 'general.articles_in_this_category' | t }}</h2>
+              <div class='help-custom-select desktops-hide'>
+                <div class="help-selected">
+                  <span class='text'>
+                    {% for article in blogs[handle].articles reversed %}
+                      {% if forloop.first == true %}
+                        {{ article.title }}{% endif %}
+                    {% endfor %}
+                  </span>
+                  {% render 'icon-caret' %}
+                </div>
+                <div class='help-select-box'>
+                  <ul id="title-list" class="{{ handle }}" data-post="{{ handle }}">
+                    {% for article in blogs[handle].articles reversed %}
+                      <li data-post-content="{{ handle }}{{ forloop.index }}Q" id="{{ handle }}{{ forloop.index }}" data-section="{{ article.handle }}" class="post-item-title {% if forloop.first == false %}inactive{% endif %}">{{ article.title }}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-main-contentpost">
+              {% for article in blogs[handle].articles reversed %}
+                <div class="content-item {{ handle }}" id="{{ handle }}{{ forloop.index }}Q">
+                  {% if article.content == blank %}
+                    {{ 'general.social.alt_text.content_update' | t }}
+                  {% else %}
+                    <h2 class="title-post-helpcenter">{{ article.title }}</h2>
+                    {% if article.title contains "Tracking your order" %}
+                    {% else   %}
+                      <span class="date-post">
+                        {% render 'icon-clock' %}
+                        {% assign published_at = article.published_at | date: "%s" %}
+                        {% assign published_att =  "now" | date: "%s" | minus: published_at %}
+                        {% assign variablee =  published_att | date: "%d" %}
+                        {{ 'blogs.article.updated_article' | t: published_att: variablee }}
+                      </span>
+                    {% endif %}
+                    {{ article.content }}
+                    <div class="content-social-bot">
+                      <h3 class="social-title">{{ 'general.social.alt_text.share_this_article' | t }}</h3>
+                      <ul class="list-unstyled list-social" role="list">
+                        <li class="list-social__item">
+                          <a class="list-social__link link no-effect" href="//www.facebook.com/sharer.php?u={{ article.url | append: share_permalink }}" target="_blank">
+                            {% render 'icon-share-facebook' %}
+                            <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+                            <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                          </a>
+                          <span>{{ 'general.social.links.facebook' | t }}</span>
+                        </li>
+                        <li class="list-social__item twitter-item">
+                          <a class="list-social__link link no-effect" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                            {% render 'icon-share-twitter' %}
+                            <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+                            <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                          </a>
+                          <span>{{ 'general.social.links.twitter' | t }}</span>
+                        </li>
+                        <li class="list-social__item">
+                          <a class="list-social__link link no-effect" href="//instagram.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                          {%- render 'icon-instagram' -%}
+                          </a>
+                        </li>
+                        <li class="list-social__item">
+                          <a class="list-social__link link no-effect" href="//pinterest.com/pin/create/button/?url={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                            {% render 'icon-share-pinterest' %}
+                            <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+                            <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                          </a>
+                          <span>{{ 'general.social.links.pinterest' | t }}</span>
+                        </li>
+                        <li class="list-social__item mailto-item">
+                          <a class="list-social__link link no-effect" href="mailto:?body={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                            {% render 'icon-share-mail' %}
+                            <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+                            <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                          </a>
+                          <span>{{ 'general.social.links.mail' | t }}</span>
+                        </li>
+                      </ul>
+                    </div>
+                  {% endif%}
+
+
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Tablist",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "default": "footer",
+        "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+        "info": "Please select the menu that contains the article category"
+      }, {
+        "type": "header",
+        "content": "Setting search form"
+      }, {
+        "type": "text",
+        "id": "heading_search",
+        "default": "How can we help?",
+        "label": "Heading search form in mobile"
+      }, {
+        "type": "checkbox",
+        "id": "hidden_search",
+        "label": "Hide search form",
+        "default": false
+      }
+    ],
+    "blocks": []
+  }
+{% endschema %}

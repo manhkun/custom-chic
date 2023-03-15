@@ -1,0 +1,15 @@
+.totals {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #F2F2F2;
+}
+.totals__subtotal,
+.totals__subtotal-value {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 120%;
+  color: var(--color-text);
+  margin: 0;
+  text-transform: uppercase;
+}

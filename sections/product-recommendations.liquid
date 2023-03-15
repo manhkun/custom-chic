@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-product-recommendations.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-product-slider.css' | asset_url }}" type="text/css" media="all">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" type="text/css" media="all">
+<noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'section-product-recommendations.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+   [data-section-id="{{ section.id }}"].product-recommendations-wrapper {
+      background: {{ section.settings.background_color }};
+    }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div data-section-id="{{ section.id }}" class=" product-recommendations-wrapper  gradient no-js-hidden">
+  <div  class="gp-product-slider page-width-desktop">
+  <product-recommendations class="product-recommendations section-{{ section.id }}-padding isolate" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}">
+    {% if recommendations.performed and recommendations.products_count > 0 %}
+      <slider-component>
+        <div class="title-wrapper">
+        <p class="heading-title h2">{{ section.settings.heading | escape }}</p>
+        <div class="pagination-wrapper">
+          <div class="pagination-custom">
+            {%- liquid
+            assign products_to_display = recommendations.products_count
+
+            if recommendations.products_count> section.settings.products_to_show
+              assign products_to_display = section.settings.products_to_show 
+            endif
+          -%}
+          <div class="slider-counter caption hidden">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
+            <span class="slider-counter--total">{{ products_to_display }}</span>
+          </div>
+          <button id="prev-control-{{ section.id }}" type="button" class=" prev-recomment pagination__item pagination__item--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}"> {%- render 'icon-prev' -%}</button>
+          <button id="next-control-{{ section.id }}" type="button" class=" next-recomment pagination__item pagination__item--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-next' -%}</button>
+          </div>
+        </div>
+        </div>
+        <div class="sly-slider-recomment">
+          <ul id="list-item-{{ section.id }}" class="recommendations product-grid-slider grid--{{ section.settings.product_per_row }}-col-desktop grid--{{ section.settings.product_per_row_tablet }}-col-tablet grid--2-col">
+              {% for recommendation in recommendations.products %}
+                <li class="slider-li grid__item slider__slide grid-product">
+                  {% render 'product-card',
+                    product: recommendation,
+                    media_size: settings.image_ratio,
+                    add_image_padding: section.settings.add_image_padding,
+                    show_secondary_image: settings.show_secondary_image
+                  %}
+                </li>
+              {% endfor %}
+          </ul>
+        </div>
+        <div class="scrollbar-product-slider">
+          <div class="handle">
+            <div class="mousearea"></div>
+          </div>
+        </div>
+      </slider-component>
+    {% endif %}
+  </product-recommendations>
+  </div>
+</div>
+<script>
+// ====== sly slider init !!!
+(function () {
+
+    setInterval(function () {
+        var myElement = document.querySelector('#list-item-{{ section.id }}');
+        var style = window.getComputedStyle(myElement);
+        var matrix = new WebKitCSSMatrix(style.transform);
+        var widthSlide = parseFloat(document.getElementById('list-item-{{ section.id }}').style.width);
+        var maxWidth = parseFloat($("#list-item-{{ section.id }}").width());
+        
+        if(widthSlide - maxWidth + matrix.m41 <= 5){
+          document.getElementById("next-control-{{ section.id }}").disabled = "disabled";
+        }else{
+          document.getElementById("next-control-{{ section.id }}").removeAttribute("disabled");
+        }
+
+        if(matrix.m41>-1){
+          document.getElementById("prev-control-{{ section.id }}").disabled = "disabled";
+        }else{
+        document.getElementById("prev-control-{{ section.id }}").removeAttribute("disabled");
+      }
+    }, 100);
+}());
+</script>
+{% schema %}
+{
+  "name": "t:sections.product-recommendations.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "t:sections.product-recommendations.settings.paragraph__1.content"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FAFAFA"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "t:sections.product-recommendations.settings.heading.label"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "t:sections.product-recommendations.settings.products_to_show.label"
+    },
+    {
+      "type": "range",
+      "id": "product_per_row",
+      "label": "Products per row",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "product_per_row_tablet",
+      "label": "Products per row tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

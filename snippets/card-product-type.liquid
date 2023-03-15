@@ -1,0 +1,71 @@
+{% comment %}
+    Renders a collection card
+
+    Accepts:
+    - card_collection: {Object} Collection Liquid object
+    - media_aspect_ratio: {String} Size of the product image card. Values are "square" and "portrait". Default is "square" (optional)
+    - columns: {Number} 
+    - extend_height: {Boolean} Card height extends to available container space. Default: false (optional)
+    - wrapper_class: {String} Wrapper class for card (optional)
+
+    Usage:
+    {% render 'card-collection' %}
+{% endcomment %}
+
+{%- liquid
+  assign ratio = 1
+  if card_collection.featured_image and media_aspect_ratio == 'portrait'
+    assign ratio = 0.8
+  elsif card_collection.featured_image and media_aspect_ratio == 'adapt'
+    assign ratio = card_collection.featured_image.aspect_ratio
+  endif
+  if ratio == 0 or ratio == nil
+    assign ratio = 1
+  endif
+-%}
+{% if image_block != blank %}
+<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
+  <div class="card
+    card
+    card--standard
+    card--media
+    style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
+  >
+    <div class="card__inner color-background-2 gradient ratio" style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;">
+        <div class="card__media">
+          <div class="media media--transparent media--hover-effect">
+            <img
+              srcset="{%- if image_block.width >= 165 -%}{{ image_block | image_url: width: 165 }} 165w,{%- endif -%}
+                {%- if image_block.width >= 330 -%}{{ image_block | image_url: width: 330 }} 330w,{%- endif -%}
+                {%- if image_block.width >= 535 -%}{{ image_block | image_url: width: 535 }} 535w,{%- endif -%}
+                {%- if image_block.width >= 750 -%}{{ image_block | image_url: width: 750 }} 750w,{%- endif -%}
+                {%- if image_block.width >= 1000 -%}{{ image_block | image_url: width: 1000 }} 1000w,{%- endif -%}
+                {%- if image_block.width >= 1500 -%}{{ image_block | image_url: width: 1500 }} 1500w,{%- endif -%}
+                {%- if image_block.width >= 3000 -%}{{ image_block | image_url: width: 3000 }} 3000w,{%- endif -%}
+                {{ image_block | image_url }} {{ image_block.width }}w"
+              src="{{ image_block | image_url: width: 1500 }}"
+              sizes="
+              (min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: columns }}px,
+              (min-width: 750px) {% if columns > 1 %}calc((100vw - 10rem) / 2){% else %}calc(100vw - 10rem){% endif %},
+              calc(100vw - 3rem)"
+              alt=""
+              height="{{ image_block.height }}"
+              width="{{ image_block.width }}"
+              loading="lazy"
+              class="motion-reduce"
+            >
+          </div>
+        </div>
+    </div>
+    <div class="card__content">
+      <div class="card__information">
+        <h3 class="card__heading">
+          <a href="{{ button_link_block }}" class="full-unstyled-link">
+            {{ button_label_block }}
+          </a>
+        </h3>
+      </div>   
+    </div>
+  </div>
+</div>
+{% endif %}

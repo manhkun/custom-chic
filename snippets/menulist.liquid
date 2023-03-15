@@ -1,0 +1,9 @@
+<ul class="site-nav list--inline">
+  {%- for link in linklists[section.settings.navigation].links -%}
+    <li class="level0{% if link.url == request.path %} link-active{% endif %}">
+      <a href="{{ link.url }}">
+        <span>{{ link.title }}</span>
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

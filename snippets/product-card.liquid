@@ -1,0 +1,102 @@
+{% comment %}
+Renders a product card
+
+Accepts:
+- product: {Object} Product Liquid object (optional)
+- media_size: {String} Size of the product image card. Values are "square" and "portrait". Default is "square"
+(optional)
+- show_secondary_image: {Boolean} Show the secondary image on hover. Default: false (optional)
+- add_image_padding: {Boolean} Enables padding on the image to space out the grid
+- show_vendor: {Boolean} Show the product vendor. Default: false
+- show_image_outline: {Boolean} Show card outline. Default: true (optional)
+- show_rating: {Boolean} Show the product rating. Default: false
+
+Usage:
+{% render 'product-card', show_vendor: section.settings.show_vendor %}
+{% endcomment %}
+{% liquid
+if media_size == blank
+  assign media_size = settings.image_ratio
+endif
+if show_secondary_image == blank
+  assign show_secondary_image = settings.show_secondary_image
+endif
+if view_mode == "list-grid" or view_mode == "list"
+  assign view = "list"
+else
+  assign view = "grid"
+endif 
+%}
+
+<div class="card-wrapper product-{{ view }}">
+  <div class="card-media{% if product.featured_media == nil %} no-effect card--text-only card--soft{% endif %}{% if product.featured_media != nil and show_image_outline %} card--outline{% endif %}">
+    <div class="card__inner" >
+      {%- liquid
+        assign featured_media_aspect_ratio = product.featured_media.aspect_ratio
+        if product.featured_media.aspect_ratio == nil
+          assign featured_media_aspect_ratio = 1
+        endif
+      -%}
+      {%- if product.featured_media -%}
+        <a href="{{ product.url | within: collection | default: '#' }}" class="no-effect media media--transparent media--{{ media_size }} media--hover-effect{% if product.media[1] != nil and show_secondary_image %} hover-second-image{% endif %}" {% if media_size == 'adapt' and product.featured_media %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;" {% endif %}>
+          <img srcset="
+          {{ product.featured_media | image_url: width: 480 }} {{ product.featured_media.width }}w" 
+          src="{{ product.featured_media | image_url: width: 480 }}" 
+          sizes="(min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)" 
+          alt="{{ product.featured_media.alt | escape }}" class="motion-reduce" width="{{ product.featured_media.width }}" 
+          height="{{ product.featured_media.height }}">
+          {%- if product.media[1] != nil and show_secondary_image -%}
+            <img srcset="
+            {{ product.media[1] | image_url: width: 480 }} {{ product.media[1].width }}w" 
+            src="{{ product.media[1] | image_url: width: 480 }}" 
+            sizes="(min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)" 
+            alt="{{ product.media[1].alt | escape }}" 
+            class="motion-reduce" 
+            width="{{ product.media[1].width }}" 
+            height="{{ product.media[1].height }}">
+          {%- endif -%}
+        </a>
+      {%- else -%}
+      <a  href="{{ product.url | within: collection | default: '#' }}" class="no-effect media media--transparent media--{{ media_size }} media--hover-effect"
+        {% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% endif %}>
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      </a>
+      {%- endif -%}
+    <div class="title-shop-now btn-secondary">
+      <a href="{{ product.url | within: collection }}">shop now</a>
+    </div>
+    <div class="wishlist-wrapper wishlist-link" data-product-id="{{ product.id }}">
+    </div>
+    </div>
+  </div>
+  <div class="card-details">
+    <div class="price-badges bagdges-top">
+      {% render 'product-badges',
+      product: product,
+      collection: collections
+       %}
+    </div>
+    <div class="product-title"><a href="{{ product.url | within: collection }}">
+      {% assign title = product.title | split: " -" %}
+      {{ title[0] }}
+      </a></div>
+    {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+    {%- liquid 
+      unless settings.hide_vendor
+        echo product.vendor | prepend: '<span class="product-vendor h5">' | append: '</span>'
+      endunless 
+      unless settings.hide_product_type 
+        if product.type != blank
+          echo product.type  | prepend: '<div class="product-type-wrapper h5"><span class="product-vendor h5">' | append: '</span></div>'
+        endif
+      endunless
+    -%}
+    <div class="price-badges  bagdges-bottom">
+      {% render 'price', product: product, price_class: '' %}
+      {% render 'product-badges',
+      product: product,
+      collection: collections
+       %}
+    </div>
+  </div>
+</div>

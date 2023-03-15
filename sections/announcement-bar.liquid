@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="{{ 'announcement-bar.css' | asset_url }}" type="text/css">
+
+
+{%- style -%}
+  {% for block in section.blocks %}
+    [data-block-id="{{ block.id }}"].announcement-bar .announcement-bar__message {
+      color: {{ block.settings.colors_text_white }};
+    }
+    .announcement-section [data-block-id="{{ block.id }}"].announcement-bar {
+      background: {{ block.settings.colors_background_section }};
+    }
+    .announcement-section {
+      background: {{ block.settings.colors_background_section }};
+    }
+  {% endfor %}
+{%- endstyle -%}
+<div class="announcement-section">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'announcement' -%}
+        <div data-block-id="{{ block.id }}" class="announcement-bar color-{{ block.settings.colors_text_white }} gradient" role="region" aria-label="{{ 'sections.header.announcement' | t }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.text != blank -%}
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" {% if block.settings.open_new_window %} target="_blank"{% endif %} class="announcement-bar__link link link--text focus-inset animate-arrow">
+              {%- endif -%}
+              <div class="page-width-desktop">
+                <div class="announcement-bar__message {{ block.settings.text_alignment }} h5">
+                  {{ block.settings.text }}
+                </div>
+              </div>
+              {%- if block.settings.link != blank -%}
+              </a>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+</div>
+
+{% schema %}
+  {
+    "name": "t:sections.announcement-bar.name",
+    "max_blocks": 12,
+    "blocks": [
+      {
+        "type": "announcement",
+        "name": "t:sections.announcement-bar.blocks.announcement.name",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>Welcome to our store</p>",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+          },
+          {
+            "type": "select",
+            "id": "text_alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__1.label"
+              }, {
+                "value": "center",
+                "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__2.label"
+              }, {
+                "value": "right",
+                "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__3.label"
+              }
+            ],
+            "default": "center",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.label"
+          },
+          {
+            "type": "color",
+            "id": "colors_text_white",
+            "default": "#ffffff",
+            "label": "Color text",
+            "info": "t:settings_schema.colors.settings.colors_text.info"
+          },
+          {
+            "type": "color",
+            "id": "colors_background_section",
+            "default": "#000000",
+            "label": "Background color"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+          }, {
+            "type": "checkbox",
+            "id": "open_new_window",
+            "label": "Open new tab",
+            "default": false
+          }
+        ]
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  }
+{% endschema %}

@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="{{ 'share-social.css' | asset_url }}" type="text/css">
+
+
+{%- liquid 
+  if template contains 'product'
+    assign share_permalink = product.url
+    assign share_image = product.featured_image
+  elsif template contains 'collection'
+    assign share_permalink = collection.url
+  elsif template == 'cart'
+    assign share_permalink = cart.url
+  elsif template contains 'page'
+    assign share_permalink = page.url
+  endif
+-%}
+<div class="share-social-section in">
+  <div class="titile-share">
+    <div class="titile-sharee">
+      {% render 'icon-share-social' %}<span class="active">Share</span>
+    </div>
+  </div>
+  <div class="popup-share-wrapper">
+     <div class="popup-share">
+    <p>Share via</p>
+    <ul class="social-sharing list-social list-unstyled">
+      <li class="list-social__item copy-item">
+        <div class="clipboard">
+          <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="46" height="46" rx="23" fill="#808080"/>
+          <path d="M14.9 23C14.9 21.29 16.29 19.9 18 19.9H22V18H18C15.24 18 13 20.24 13 23C13 25.76 15.24 28 18 28H22V26.1H18C16.29 26.1 14.9 24.71 14.9 23ZM19 24H27V22H19V24ZM28 18H24V19.9H28C29.71 19.9 31.1 21.29 31.1 23C31.1 24.71 29.71 26.1 28 26.1H24V28H28C30.76 28 33 25.76 33 23C33 20.24 30.76 18 28 18Z" fill="white"/>
+          </svg>
+
+        </div>
+        <span>Copy</span>
+      </li>
+      <li class="list-social__item">
+        <a class="list-social__link link no-effect" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}" target="_blank">
+          {% render 'icon-share-facebook' %}
+          <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+          <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+        </a>
+        <span>Facebook</span>
+      </li>
+      <li class="list-social__item">
+        <a class="list-social__link link no-effect" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: share_permalink }}" target="_blank">
+          {% render 'icon-share-twitter' %}
+          <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+          <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+        </a>
+        <span>Twitter</span>
+      </li>
+
+      <li class="list-social__item">
+        <a class="list-social__link link no-effect" href="//pinterest.com/pin/create/button/?url={{ shop.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+          {% render 'icon-share-pinterest' %}
+          <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+          <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+        </a>
+        <span>Pinterest</span>
+      </li>
+      <li class="list-social__item">
+        <a class="list-social__link link no-effect" href="mailto:?body={{ shop.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+          {% render 'icon-share-mail' %}
+          <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+          <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+        </a>
+        <span>Mail</span>
+      </li>
+    </ul>
+  </div>
+  </div>
+</div>

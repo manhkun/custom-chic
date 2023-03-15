@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="{{ 'related-categories.css' | asset_url }}" onload="this.media='all'">
+{%- style -%}
+  @media screen and (min-width: 768px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+<div data-section-id="{{ section.id }}" class="page-width-desktop related-categories-wrapper section-{{ section.id }}-padding" >
+  <div class="text_alignment_{{ section.settings.text_alignment }} related-categories-title">
+    {% if section.settings.heading != blank %}
+      <h4 class="{{ section.settings.heading_size }} heading-text">{{ section.settings.heading | escape }}</h4>
+    {% endif %}
+  </div>
+    <div class="related-content-wrapper">
+      {% for collection in product.collections %}
+         <span class="related-content"> {{- collection.title | link_to: collection.url }}</span>
+      {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Related categories",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Explore related categories",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        }, 
+        {
+          "value": "center",
+          "label": "Center"
+        }, 
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related categories"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,11 @@
+.search-result-top {
+    display: flex;
+    justify-content: space-between;
+}
+.search-result-left {
+    width: 50%;
+    text-align: left;
+}
+.search-result-top .template-search__search {
+    margin: 0;
+}

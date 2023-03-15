@@ -1,0 +1,87 @@
+.product-recommendations {
+  display: block;
+}
+product-recommendations .title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 23px;
+  flex-wrap: wrap;
+}
+.template-product  product-recommendations .title-wrapper {
+  margin-bottom: 16px;
+}
+product-recommendations .slider .grid__item {
+  padding-bottom: 48px;
+}
+.product-recommendations .title-wrapper .heading-title {
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+.recommendations {
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.recommendations .slider-li {
+  padding: 0 1px;
+}
+.sly-slider-recomment {
+  margin: 0 0 0 -1px;
+}
+@media screen and (min-width: 768px) {
+  .template-cart .product-recommendations .title-wrapper .heading-title {
+    letter-spacing: 0;
+  }
+  .recommendations .slider-li {
+    padding: 0 5px;
+  }
+  .sly-slider-recomment {
+    margin: 0 -5px;
+  }
+}
+@media screen and (max-width: 767px) {
+  product-recommendations .title-wrapper {
+    margin-bottom: 15px;
+  }
+  .template-cart .product-recommendations .title-wrapper {
+    padding: 0 16px;
+  }
+  product-recommendations .grid--2-col .grid__item {
+    width: calc(50%);
+    max-width: calc(50%);;
+  }
+  product-recommendations .slider .grid__item {
+    padding-bottom: 16px;
+  }
+  product-recommendations .grid {
+    column-gap: 2px;
+  }
+  .product-recommendations-wrapper {
+    background: #fff!important;
+  }
+  .product-recommendations {
+    padding-top: 32px;
+    padding-bottom: 30px;
+  }
+  .product-recommendations-wrapper .pagination-wrapper{
+    display: none;
+  }
+  .product-recommendations  {
+    padding-top: 137px !important;
+    padding-bottom: 32px !important;
+  }
+  .product-recommendations-wrapper .product-recommendations {
+    padding-top: 141px!important;
+    padding-bottom: 10px!important;
+  }
+  .template-product .product-recommendations-wrapper .product-recommendations {
+    padding-top: 33px!important;
+    padding-bottom: 10px!important;
+  }
+  .template-product .product-recommendations .title-wrapper .heading-title {
+    letter-spacing: 0;
+  }
+}

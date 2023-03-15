@@ -1,0 +1,89 @@
+.gp-product-slider-wrapper .shop-products {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0px;
+  font-family: var(--font-heading-family);
+  letter-spacing: .8px;
+  color: var(--color-text);
+}
+.gp-product-slider-wrapper .title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.gp-product-slider-wrapper .title-wrapper .heading-title {
+  margin: 0;
+}
+.gp-product-slider-wrapper .product-grid-slider {
+  padding-bottom: 48px;
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#cycleitems {
+  margin: 0 -1px;
+}
+.gp-product-slider .slick-list {
+  margin: 0px -5px;
+}
+.gp-product-slider .slick-track .slider__slide {
+  padding: 0 5px;
+}
+.gp-product-slider-wrapper .product-grid-slider .slider-li {
+  padding: 0 1px;
+}
+.gp-product-slider-wrapper .recommendations.product-grid-slider .slider-li {
+  padding: 0;
+}
+@media screen and (min-width: 768px) {
+  .gp-product-slider-wrapper .title-wrapper .heading-title {
+    letter-spacing: 0;
+  }
+  .gp-product-slider-wrapper .product-grid-slider .slider-li {
+    padding: 0px 5px;
+  }
+  #cycleitems {
+    margin: 0 -5px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .gp-product-slider .slick-list {
+    margin: 0px -1px;
+  }
+  .gp-product-slider .slick-track .slider__slide {
+    padding: 0 2px;
+  }
+  .gp-product-slider-wrapper .product-grid-slider {
+    padding-bottom: 14px;
+  }
+  .gp-product-slider-wrapper .title-wrapper {
+    margin-bottom: 16px;
+  }
+  .gp-product-slider-wrapper .grid--2-col .grid__item {
+    width: calc(50%);
+    max-width: calc(50%);
+  }
+  .gp-product-slider-wrapper .grid {
+    column-gap: 2px;
+  }
+  .shopify-section .gp-product-slider-wrapper .gp-section-wrapper {
+    padding-bottom: 37px !important;
+    background: #fff!important;
+  }
+  .gp-product-slider {
+   padding: 0;
+  }
+  .gp-product-slider-wrapper {
+    background-color: #fff !important;
+  }
+  .gp-product-slider-wrapper .title-wrapper {
+    padding: 0 16px;
+  }
+}

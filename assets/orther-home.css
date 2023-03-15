@@ -1,0 +1,5 @@
+@media (max-width:750px) {
+    #MainContent .shopify-section.section .page-width {
+        padding: 0 0 0 16px!important;
+    }
+}

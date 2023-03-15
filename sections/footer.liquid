@@ -1,0 +1,584 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-list-social.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+  .footer {
+    padding-top: {{ section.settings.padding_top_mb }}px;
+    padding-bottom: {{ section.settings.padding_bottom_mb }}px;
+    background: {{ section.settings.color_footer }};
+    color: {{ section.settings.color_text }};
+  }
+  .footer__bottom{
+    margin-top:{{ section.settings.mar_top_mb }}px;
+    padding: {{ section.settings.padding_tb_mb }}px 0;
+    background: {{ section.settings.bg_color_cr }};
+  }
+  .footer__bottom p{
+    color: {{ section.settings.color_text_cr }};
+  }
+  .footer-block__heading {
+    color: {{ section.settings.color_heading }};
+  }
+  .infomation-footer li a, .infomation-footer p{
+    color: {{ section.settings.color_text }};
+  }
+  .footer-block__details-content li a:hover {
+    color: {{ section.settings.color_hover }};
+  }
+  .infomation-footer svg{
+    fill: {{ section.settings.color_text }};
+  }
+  @media screen and (min-width: 1024px) {
+    .footer__bottom{
+      padding: {{ section.settings.padding_tb }}px 0px;
+      margin-top:{{ section.settings.mar_top }}px;
+    }
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    {% for block in section.blocks %}
+      [data-block-id="{{ block.id }}"].footer-block{
+        width: {{ block.settings.width }}%!important;
+      }
+      [data-block-id="{{ block.id }}"].footer-block-image img{
+        width: {{ block.settings.image_width }}px;
+      }
+    {% endfor %}
+  }
+{%- endstyle -%}
+<footer class="footer color-{{ section.settings.color_footer }} p-{{ section.settings.padding_top }}-{{ section.settings.padding_bottom }}">
+  <div class="footer__content page-width-desktop">
+    {%- if section.blocks.size > 0 -%}
+      <div class="footer__blocks-wrapper">
+        {%- for block in section.blocks -%}
+          <div data-block-id="{{ block.id }}" class="footer-block {{ block.settings.width_text }}">
+            {%- if block.settings.heading != blank -%}
+              <div class="heading-block">
+                <h2 class="footer-block__heading">{{- block.settings.heading | escape -}}
+                </h2>
+                <span class="icon-add">{%- render 'icon-add' -%}</span>
+                <span class="icon-minus">{%- render 'icon-minus' -%}</span>
+              </div>
+            {%- endif -%}
+
+            {%- case block.type -%}
+              {%- when 'text' -%}
+                <div class="footer-block__details-content block-text">
+                  {% if block.settings.subtext != blank %}
+                    {{ block.settings.subtext }}
+                  {% endif %}
+
+                  <ul class="infomation-footer list-unstyled">
+                    {%- if block.settings.email != blank -%}
+                      <li>
+                        <a href="mailto:{{ block.settings.email }}">
+                          {%- render 'icon-mail' -%}{{ block.settings.email }}
+                        </a>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.address != blank -%}
+                      <li>
+                        <p>
+                          {%- render 'icon-map' -%}{{ block.settings.address }}
+                        </ap>
+                      </li>
+                    {%- endif -%}
+                    {%- if block.settings.time_work != blank -%}
+                      <li>
+                        <p>
+                          {%- render 'icon-hour' -%}{{ block.settings.time_work }}
+                        </p>
+                      </li>
+                    {%- endif -%}
+                  </ul>
+
+                  {%- if block.settings.show_social == true -%}
+                    <ul class="footer__list-social list-unstyled list-social" role="list">
+                      {%- if settings.social_facebook_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_facebook_link }}" class="link list-social__link" >
+                            {%- render 'icon-facebook' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_twitter_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_twitter_link }}" class="link list-social__link" >
+                            {%- render 'icon-twitter' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_instagram_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_instagram_link }}" class="link list-social__link" >
+                            {%- render 'icon-instagram' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_tiktok_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_tiktok_link }}" class="link list-social__link" >
+                            {%- render 'icon-tiktok' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_youtube_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_youtube_link }}" class="link list-social__link" >
+                            {%- render 'icon-youtube' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_pinterest_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_pinterest_link }}" class="link list-social__link" >
+                            {%- render 'icon-pinterest' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_tumblr_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_tumblr_link }}" class="link list-social__link" >
+                            {%- render 'icon-tumblr' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_snapchat_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_snapchat_link }}" class="link list-social__link" >
+                            {%- render 'icon-snapchat' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+
+                      {%- if settings.social_vimeo_link != blank -%}
+                        <li class="list-social__item">
+                          <a href="{{ settings.social_vimeo_link }}" class="link list-social__link" >
+                            {%- render 'icon-vimeo' -%}
+                            <span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+                          </a>
+                        </li>
+                      {%- endif -%}
+                    </ul>
+                  {%- endif -%}
+
+                  {%- if block.settings.payment_enable == true -%}
+                    <div class="footer__payment">
+                      <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+                      <ul class="list list-payment" role="list">
+                        {% if block.settings.use_payment_default %}
+                          {%- assign enabled_payment_types = shop.enabled_payment_types -%}
+                        {% else %}
+                          {%- assign enabled_payment_types = block.settings.custom_payment | remove: ' ' | split: ',' -%}
+                        {% endif %}
+                        {% for type in enabled_payment_types %}
+                          <li class="list-payment__item">
+                            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  {%- endif -%}
+                </div>
+
+              {%- when 'link_list' -%}
+                {%- if block.settings.menu != blank -%}
+                  <ul class="footer-block__details-content list-unstyled">
+                    {%- for link in block.settings.menu.links -%}
+                      <li>
+                        <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link">
+                          {{ link.title }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+
+              {%- when 'image' -%}
+                <div data-block-id="{{ block.id }}" class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
+                  {%- if block.settings.image != blank -%}
+                    {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                    <img srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x" src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy" width="{{ block.settings.image.width }}">
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                  {%- endif -%}
+                </div>
+                {% if settings.block_text_trustpilot != blank and settings.hidden_item_trustpilot == false %}
+                <div class="trustpilot">
+                  {{ settings.block_text_trustpilot }}
+                </div>
+                {% endif %}
+            {%- endcase -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  <div class="footer__bottom m-{{ section.settings.mar_top }}-mb-{{ section.settings.mar_top_mb }} p-{{ section.settings.padding_tb }}-mb-{{ section.settings.padding_tb_mb }} bg-{{ section.settings.bg_color_cr }}">
+    <div class="page-width-desktop">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.payment_enable -%}
+          <div class="footer__payment">
+            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+            <ul class="list list-payment" role="list">
+              {% for type in enabled_payment_types %}
+                <li class="list-payment__item">
+                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if section.blocks.size > 0 -%}
+        {% if  section.settings.copyright != blank %}
+          <p class="{{ section.settings.alignment_coppyright }}">{{ section.settings.copyright }}</p>
+        {% endif %}
+      {% endif %}
+    </div>
+    
+  </div>
+  <div id="scrollToTop" class="">
+    {%- render 'icon-back' -%}
+  </div>
+</footer>
+
+
+{% schema %}
+  {
+    "name": "t:sections.footer.name",
+    "blocks": [
+      {
+        "type": "link_list",
+        "name": "t:sections.footer.blocks.link_list.name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "width",
+            "info": " unit:%",
+            "label": "Width block"
+          }, 
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Quick links",
+            "label": "Heading"
+          }, 
+          {
+            "type": "link_list",
+            "id": "menu",
+            "default": "footer",
+            "label": "Menu",
+            "info": "Displays only top-level menu items."
+          }
+        ]
+      }, 
+      {
+        "type": "text",
+        "name": "t:sections.footer.blocks.text.name",
+        "settings": [
+          {
+            "type": "text",
+            "id": "width",
+            "info": " unit: %",
+            "label": "Width block"
+          },
+          {
+            "type": "text",
+            "id": "heading",
+            "default": "Heading",
+            "label": "Heading"
+          },
+          {
+            "type": "text",
+            "id": "email",
+            "default": "support@customchic.co.uk",
+            "label": "Email"
+          },
+          {
+            "type": "text",
+            "id": "address",
+            "default": "120 Holland Rd, London W14 8BD",
+            "label": "Address"
+          }, 
+          {
+            "type": "text",
+            "id": "time_work",
+            "default": "Mon - Fri 9h00 - 18h00 London Time",
+            "label": "Time work"
+          },
+          {
+            "type": "header",
+            "content": "Setting social media"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_social",
+            "default": false,
+            "label": "t:sections.footer.settings.show_social.label"
+          },
+          {
+            "type": "header",
+            "content": "Setting payment"
+          },
+          {
+            "type": "checkbox",
+            "id": "payment_enable",
+            "default": true,
+            "label": "t:sections.footer.settings.payment_enable.label"
+          },
+          {
+            "type": "checkbox",
+            "id": "use_payment_default",
+            "default": false,
+            "label": "Use payment icons default"
+          },
+          {
+            "type": "text",
+            "id": "custom_payment",
+            "default": "american_express,apple_pay,master,paypal,visa",
+            "label": "Custom payment icons",
+            "info": "Divided by comma. [Learn more](https://help.shopify.com/en/manual/online-store/themes/themes-by-shopify/vintage-themes/customizing-vintage-themes/add-credit-card-icons)"
+          }
+        ]
+      }, 
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "width",
+            "info": " unit: %",
+            "label": "Width block"
+          }, 
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, 
+          {
+            "type": "range",
+            "id": "image_width",
+            "min": 100,
+            "max": 200,
+            "step": 1,
+            "unit": "px",
+            "label": "Image width",
+            "default": 192
+          }, 
+          {
+            "type": "select",
+            "id": "alignment",
+            "label": "Image alignment on large screen",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left"
+              }, 
+              {
+                "value": "center",
+                "label": "Center"
+              }, 
+              {
+                "value": "right",
+                "label": "Right"
+              }
+            ],
+            "default": "left"
+          }
+        ]
+      }
+    ],
+    "settings": [
+      {
+        "type": "header",
+        "content": "Section desktop setting"
+      },
+      {
+        "type": "color",
+        "id": "color_footer",
+        "default": "#000000",
+        "label": "Background color footer"
+      },
+      {
+        "type": "color",
+        "id": "color_heading",
+        "default": "#ffffff",
+        "label": "Heading"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "default": "#ffffff",
+        "label": "Color text"
+      },
+      {
+        "type": "color",
+        "id": "color_hover",
+        "default": "#ffffff",
+        "label": "Color text hover"
+      }, {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 80
+      }, {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 24
+      },
+      {
+        "type": "header",
+        "content": "Section mobile setting"
+      },
+      {
+        "type": "range",
+        "id": "padding_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 48
+      }, 
+      {
+        "type": "range",
+        "id": "padding_bottom_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 44
+      },
+      {
+        "type": "header",
+        "content": "Copyright section"
+      },
+      {
+        "type": "textarea",
+        "id": "copyright",
+        "default": "© 2022 CustomChic™️. Powered by Shopify",
+        "label": "Copyright"
+      },
+      {
+        "type": "select",
+        "id": "alignment_coppyright",
+        "label": "Text alignment on large screen",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, 
+          {
+            "value": "center",
+            "label": "Center"
+          }, 
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "range",
+        "id": "mar_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Top margin",
+        "default": 64
+      },
+      {
+        "type": "range",
+        "id": "padding_tb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+      }, 
+      {
+        "type": "color",
+        "id": "bg_color_cr",
+        "default": "#000000",
+        "label": "Background section"
+      },
+      {
+        "type": "color",
+        "id": "color_text_cr",
+        "default": "#E6E6E6",
+        "label": "Color text"
+      },
+      {
+        "type": "range",
+        "id": "mar_top_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Top margin mobile",
+        "default": 48
+      },
+      {
+        "type": "range",
+        "id": "padding_tb_mb",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top on mobile",
+        "default": 0
+      }
+    ],
+    "default": {
+      "blocks": [
+        {
+          "type": "link_list"
+        }, 
+        {
+          "type": "text"
+        }
+      ]
+    }
+  }
+{% endschema %}

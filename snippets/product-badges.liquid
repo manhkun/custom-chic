@@ -1,0 +1,41 @@
+<div class="card__badge">
+  {%- liquid 
+      assign product_created_at = product.created_at | date: '%s'
+      assign percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | floor
+      assign title_lists = false
+      for products in collections['bestsellers'].products limit: 20
+      assign title_list = title_list | append: products.title | append: ','
+        if product.title contains products.title
+        assign title_lists = true
+        endif
+      endfor
+
+      assign title_check = false
+      for products in collections['new-arrivals'].products limit: 20
+      assign title_list = title_list | append: products.title | append: ','
+        if product.title contains products.title
+        assign title_check = true
+        endif
+      endfor
+      if product.available == false
+        echo 'products.product.sold_out' | t | prepend: '<span class="badge sold-out">' | append: '</span>'
+      elsif title_lists == true
+        echo '<span class="badge best_seller">'
+        render 'icon-fire'
+        echo '<span class="sale-sub">'
+          echo 'products.product.best_seller' | t 
+        echo '</span>'
+      echo '</span>'
+      elsif title_check == true
+        echo 'products.product.new' | t | prepend: '<span class="badge new">' | append: '</span>'
+      elsif product.compare_at_price > product.price and product.available and percent >= 30 and page.template_suffix != 'product'
+        echo '<span class="badge sale">'
+          render 'icon-sale'
+          echo'<span class="badge sale">'
+          echo percent
+          echo '% OFF'
+          echo'</span>'
+        echo '</span>'
+      endif
+    -%}
+</div>

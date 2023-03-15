@@ -1,0 +1,219 @@
+{{ 'contact-section.css' | asset_url | stylesheet_tag }}
+
+<div class="contact-section pd-{{ section.settings.pd }}-{{ section.settings.pd_mb }}">
+  <div class="page-width-desktop">
+    <div class="contact-header {{ section.settings.text_alignment }}">
+      {%- if section.settings.heading_contact != blank -%}
+        <h3>{{ section.settings.heading_contact }}</h3>
+      {%- endif -%}
+      {%- if section.settings.sub_heading_contact != blank -%}
+        <p>{{ section.settings.sub_heading_contact }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="contact-main">
+      <diV class="contact-main-head">
+        <ul>
+          <li id="tab1" class="">{% render 'icon-mailfill' %}</li>
+          <li id="tab2">{% render 'icon-chat' %}</li>
+        </ul>
+      </diV>
+      <div class="contact-main-content">
+        <div id="tab1Q" class="contact-item">
+          <div class="icon-image-head">{% render 'icon-mailfill' %}</div>
+          <div class="globo-formbuilder ckll-form" data-id="{{ section.settings.id_form }}"></div>
+        </div>
+        <div class="or">
+          <p>or</p>
+        </div>
+        <div id="tab2Q" class="contact-item">
+          <div class="contact-item-around">
+            <div class="icon-image-head">{% render 'icon-chat' %}</div>
+            <h3>Live chat</h3>
+            <p>We’re sorry if you still having an issue, please let us know how we can help</p>
+            <div data-id="424bfb275f" class="livechat_button">
+              <a href="https://www.livechat.com/utm-builder/?utm_source=chat_button&utm_medium=referral&utm_campaign=lc_14814486">Chat with us now</a>
+            </div>
+            <!-- Start of LiveChat (www.livechat.com) code -->
+            <script>
+              window.__lc = window.__lc || {};
+              window.__lc.license = 14814486;;
+              (function(n, t, c) {
+                function i(n) {
+                  return e._h
+                    ? e._h.apply(null, n)
+                    : e._q.push(n)
+                }
+                var e = {
+                  _q: [],
+                  _h: null,
+                  _v: "2.0",
+                  on: function() {
+                    i(["on", c.call(arguments)])
+                  },
+                  once: function() {
+                    i(["once", c.call(arguments)])
+                  },
+                  off: function() {
+                    i(["off", c.call(arguments)])
+                  },
+                  get: function() {
+                    if (! e._h) 
+                      throw new Error("[LiveChatWidget] You can't use getters before load.");
+                    
+
+
+
+                    return i(["get", c.call(arguments)])
+                  },
+                  call: function() {
+                    i(["call", c.call(arguments)])
+                  },
+                  init: function() {
+                    var n = t.createElement("script");
+                    n.async = !0,
+                    n.type = "text/javascript",
+                    n.src = "https://cdn.livechatinc.com/tracking.js",
+                    t.head.appendChild(n)
+                  }
+                };
+                ! n.__lc.asyncInit && e.init(),
+                n.LiveChatWidget = n.LiveChatWidget || e
+              }(window, document, [].slice))
+            </script>
+            <noscript>
+              <a href="https://www.livechat.com/chat-with/14814486/" rel="nofollow">Chat with us</a>, powered by
+              <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a>
+            </noscript>
+            <!-- End of LiveChat code -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script></script>
+
+{%- style -%}
+
+  .contact-section {
+    background: {{ section.settings.colors_background_section }};
+    padding: {{ section.settings.pd_mb }}px 0;
+  }
+  .contact-section .contact-header h3 {
+    color: {{ section.settings.colors_title }};
+  }
+  .contact-section .contact-header p {
+    color: {{ section.settings.colors_subtitle }};
+  }
+  @media(min-width:1025px) {
+    .contact-section {
+      background: {{ section.settings.colors_background_section }};
+      padding: {{ section.settings.pd_top }}px 0 {{ section.settings.pd_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{% schema %}
+  {
+    "name": "Contact section",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Setting contact us"
+      },
+      {
+        "type": "text",
+        "id": "heading_contact",
+        "default": "Contact us",
+        "label": "Heading contact section"
+      },
+      {
+        "type": "textarea",
+        "id": "sub_heading_contact",
+        "default": "If you have any questions, we would love to hear from you, whether it's a complaint or a compliment. Contact us now!",
+        "label": "Subtitle contact section"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__1.label"
+          }, {
+            "value": "center",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__2.label"
+          }, {
+            "value": "right",
+            "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.options__3.label"
+          }
+        ],
+        "default": "center",
+        "label": "t:sections.announcement-bar.blocks.announcement.settings.text_alignment.label"
+      }, {
+        "type": "text",
+        "id": "id_form",
+        "default": "OTkyNjA=",
+        "label": "Id form builder",
+        "info": "Please copy the id of form generated from the Powerful Contact Form Builder app"
+      }, {
+        "type": "color",
+        "id": "colors_background_section",
+        "default": "#FAFAFA",
+        "label": "Background color"
+      }, {
+        "type": "color",
+        "id": "colors_title",
+        "default": "#000000",
+        "label": "Color title"
+      }, {
+        "type": "color",
+        "id": "colors_subtitle",
+        "default": "#808080",
+        "label": "Color subtitle"
+      }, 
+      {
+        "type": "range",
+        "id": "pd_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 80
+      },
+      {
+        "type": "range",
+        "id": "pd_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 83
+      }, 
+      {
+        "type": "header",
+        "content": "Setting Mobile"
+      }, {
+        "type": "range",
+        "id": "pd_mb",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Padding mobile",
+        "default": 48
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Contact section"
+      }
+    ]
+  }
+{% endschema %}

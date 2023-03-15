@@ -1,0 +1,25 @@
+.image a img,
+.image a {
+  width: 100%;
+  object-fit: cover;
+}
+#recently-viewed-products .image {
+  line-height: 0;
+}
+.recently-viewed-products-wrapper {
+  overflow: hidden;
+}
+#recently-viewed-products .slider-li  {
+  padding: 0 1px;
+}
+#recently-viewed-wrapper{
+  margin: 0 -1px;
+}
+@media screen and (min-width: 768px){
+  #recently-viewed-products .slider-li  {
+    padding: 0 5px;
+  }
+  #recently-viewed-wrapper{
+    margin: 0 -5px;
+  }
+}

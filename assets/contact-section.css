@@ -1,0 +1,359 @@
+.contact-section .contact-header h3{
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 120%;
+    font-family: var(--font-heading-family);
+    margin:0 0 8px 0;
+    text-transform: uppercase;
+}
+.contact-section .contact-header p{
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: -0.1px;
+    font-family: var(--font-body-family);
+    margin: 0 0 46px 0;
+}
+.contact-main{
+    background: #F2F2F2;
+    padding: 24px 16px;
+}
+.contact-main-head{
+
+}
+.contact-main-head ul{
+    padding-left: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.contact-main-head ul li{
+    width: 50%;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #808080;
+    cursor: pointer;
+}
+.contact-main-head ul li.inactive{
+    border-bottom: 1px solid #D9D9D9;
+}
+.contact-main-head ul li svg{
+    fill: #000;
+}
+.contact-main-head ul li.inactive svg{
+    fill: #B3B3B3;
+}
+.contact-main-content .or{
+    display: none;
+}
+.contact-main-content .contact-item{
+    padding: 24px 8px 0;
+}
+#tab1Q .globo-formbuilder.ckll-form .globo-form-app {
+    margin: 0!important;
+    text-align: center!important;
+    padding: 0!important;
+    box-shadow: none!important;
+}
+.globo-formbuilder.ckll-form .globo-form-app .header .title{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 120%;
+    font-family: var(--font-heading-family);
+    margin-bottom: 8px;
+}
+.globo-formbuilder.ckll-form .description.globo-description p {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 160%;
+    color: #808080;
+    font-family: var(--font-body-family);
+}
+.globo-formbuilder.ckll-form .header{
+    margin-bottom: 20px;
+}
+.globo-formbuilder.ckll-form .globo-form-control{
+    margin-bottom: 8px;
+}
+.globo-formbuilder.ckll-form .globo-form-control label{
+    display: none;
+}
+.globo-formbuilder.ckll-form .globo-form-control:last-child label{
+    display: block;
+}
+.globo-formbuilder.ckll-form .globo-form-control .globo-form-input input {
+    border: 1px solid #D9D9D9;
+    background: #fff;
+    box-shadow: 0px 1px 2px rgb(16 24 40 / 5%);
+    border-radius: 2px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 140%;
+    padding: 10px 14px;
+    font-family: var(--font-body-family);
+    letter-spacing: -0.1px;
+}
+.globo-formbuilder.ckll-form .globo-form-control textarea{
+    border: 1px solid #D9D9D9;
+    background: #fff;
+    box-shadow: 0px 1px 2px rgb(16 24 40 / 5%);
+    border-radius: 2px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 140%;
+    padding: 10px 14px;
+    font-family: var(--font-body-family);
+    letter-spacing: -0.1px;
+    height: 80px;
+    resize: none;
+}
+.globo-formbuilder.ckll-form .globo-form-control:last-child .classic-label{
+    margin-top: 16px;
+}
+.globo-formbuilder.ckll-form .globo-form-control:last-child .globo-form-input{
+    border: 1px dashed #808080;
+    border-radius: 4px;
+    background: transparent;
+    padding: 16px 0;
+    text-align: center;
+}
+.globo-formbuilder.ckll-form .globo-form-control:last-child .globo-form-input .globo-form-icon{
+    box-shadow: none;
+    width: 30%;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    border-radius: 0;
+}
+.globo-formbuilder.ckll-form .globo-form-control:last-child .globo-form-input input{
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    font-size: 14px;
+    padding: 0;
+    height: fit-content;
+    margin-bottom: 0;
+}
+.globo-formbuilder.ckll-form .globo-form-control .classic-label .label-content{
+    font-weight: 400;
+    font-size: 14px;
+    font-family: var(--font-body-family);
+    line-height: 140%;
+}
+.globo-formbuilder.ckll-form .message+.footer {
+    margin-top: 16px;
+    padding: 0;
+}
+
+.globo-formbuilder.ckll-form .globo-form-control label {
+    margin-bottom: 6px;
+}
+
+.globo-formbuilder.ckll-form .footer .classic-button.submit{
+    width: 100%;
+    background-color: #000!important;
+    border: 0;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 11px 16px;
+    border-radius: 100px;
+    border:1px solid #000;
+    transition: 0.7s;
+    font-family: var(--font-heading-family);
+}
+.globo-formbuilder.ckll-form .footer .classic-button.submit:hover{
+    background-color: #fff!important;
+    color: #000;
+}
+.globo-formbuilder.ckll-form .footer button.action.loading:before {
+    opacity: 0;
+    position: absolute;
+}
+.globo-formbuilder.ckll-form .footer button.action.loading .spinner{
+    background-color: transparent!important;
+    color: #ffffff!important;
+    position: absolute;
+}
+
+.icon-image-head {
+    display: none;
+}
+.contact-item-around {
+    text-align: center;
+}
+.contact-item-around h3 {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 120%;
+    font-family: var(--font-heading-family);
+    color: #000000;
+    margin: 0;
+}
+.contact-item-around p {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 160%;
+    font-family: var(--font-body-family);
+    color: #808080;
+    margin: 4px 0 24px 0;
+}
+.contact-item-around a {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    background: #000;
+    color: #FFFFFF;
+    width: 100%;
+    padding: 12px 16px;
+    font-family: var(--font-heading-family);
+    text-transform: capitalize;
+    border-radius: 100px;
+    border: 1px solid #000;
+    transition: 0.7s;
+}
+.contact-item-around a:hover {
+    background: #fff;
+    color: #000;
+
+}
+@media(min-width:768px) {
+    .contact-main-content .or{
+        display: block;
+        width: 72px;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-top: 2px;
+    }
+    .contact-main-content .or p{
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        text-transform: uppercase;
+        color: #000;
+        margin: 0;
+        font-family: var(--font-heading-family);
+    }
+    .contact-main-content .contact-item{
+        width: calc((100% - 74px) / 2);
+        background: #F2F2F2;
+    }
+    .contact-main-head {
+        display: none;
+    }
+    .contact-main-content {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+    }
+    .contact-main{
+        background:transparent;
+        padding: 40px 0 0;
+    }
+    .contact-main-content .contact-item {
+        padding: 24px 24px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .globo-formbuilder.ckll-form .globo-form-control .globo-form-input input{
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 160%;
+        height: 46px;
+        margin-bottom: 8px;
+    }
+    .globo-formbuilder.ckll-form .globo-form-control textarea{
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 160%;
+        height: 92px;
+    }
+    .globo-formbuilder.ckll-form .footer .classic-button.submit{
+        padding: 12px 0;
+        font-family: var(--font-heading-family);
+    }
+    .globo-formbuilder.ckll-form .globo-form-control label{
+        margin-bottom: 8px;
+    }
+    .globo-formbuilder.ckll-form .globo-form-control{
+        margin-bottom: 0px;
+    }
+    .globo-formbuilder.ckll-form .globo-form-control:last-child .classic-label {
+        margin-top: 24px;
+    }
+    .icon-image-head svg {
+        width: 64px;
+        height: 64px;
+    }
+    .icon-image-head {
+        display: block;
+        text-align: center;
+        margin-bottom: 21px;
+    }
+    #tab2Q .icon-image-head {
+        margin-bottom: 13px;
+    }
+    .globo-formbuilder.ckll-form .globo-form-app .header .title{
+        font-size: 16px;
+        line-height: 120%;
+        margin-bottom: 4px;
+        letter-spacing: 0;
+    }
+    .globo-formbuilder.ckll-form .description.globo-description{
+        margin-bottom: 0;
+    }
+    .globo-formbuilder.ckll-form .description.globo-description p {
+        letter-spacing: -0.1px;
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .contact-item-around p {
+        font-size: 14px;
+        line-height: 140%;
+    }
+    .contact-item-around h3 {
+        font-size: 16px;
+        line-height: 120%;
+    }
+    .globo-formbuilder.ckll-form .header{
+        margin-bottom: 24px;
+    }
+    .globo-formbuilder.ckll-form .globo-form-control:last-child .globo-form-input{
+        padding: 15px 0;
+    }
+    .globo-formbuilder.ckll-form .message+.footer {
+        margin-top: 24px;
+    }
+}
+@media(min-width:1025px) {
+    .contact-section .contact-header h3{
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 120%;
+        text-transform: capitalize;
+    }
+    .contact-section .contact-header p{
+        font-size: 16px;
+        line-height: 160%;
+        max-width: 525px;
+    }
+    .contact-section .contact-header.left p {
+        margin: 0 auto 0 0 ;
+    }
+    .contact-section .contact-header.center p {
+        margin: 0 auto;
+    }
+    .contact-section .contact-header.right p {
+        margin: 0 0 0 auto;
+    }
+    .contact-main-content {
+        padding: 0 168px;
+    }
+    
+    
+}

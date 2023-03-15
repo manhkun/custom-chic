@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="{{ 'breadcrumbs.css' | asset_url }}" type="text/css">
+
+<div class="breadcrumbs-section section-{{ section.id }}-padding p-{{ section.settings.padding_tb }} bg-{{ section.settings.background_color_breadcrumb }} {% if section.settings.hidden_breadcrumbs %}hidden-mb {% endif %}">
+  <div class="page-width-desktop">
+    {% render 'breadcrumb' %}
+  </div>
+</div>
+{%- style -%}
+  .breadcrumbs-section {
+    background: {{ section.settings.background_color_breadcrumb_mb }};
+  }
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  .breadcrumbs-section .breadcrumb {
+    justify-content: {{ section.settings.text_alignment }};
+  }
+  .breadcrumb li a.breadcrumb-link {
+    color: {{ section.settings.color_text_breadcrumb__link_mb }};
+  }
+  .breadcrumbs-section .breadcrumb li span {
+    color: {{ section.settings.color_text_breadcrumb_mb }};
+  }
+  .breadcrumbs-section .breadcrumb li svg path {
+    stroke: {{ section.settings.color_text_breadcrumb__link_mb }};
+  }
+  @media(min-width:1025px) {
+    .breadcrumbs-section {
+      background: {{ section.settings.background_color_breadcrumb }};
+    }
+    .breadcrumbs-section .breadcrumb li a.breadcrumb-link {
+      color: {{ section.settings.color_text_breadcrumb_link }};
+    }
+    .breadcrumbs-section .breadcrumb li span {
+      color: {{ section.settings.color_text_breadcrumb }};
+    }
+    .breadcrumbs-section .breadcrumb li svg path {
+      stroke: {{ section.settings.color_text_breadcrumb_link }};
+    }
+  }
+{%- endstyle -%}
+{% schema %}
+  {
+    "name": "Breadcrumbs section",
+    "settings": [
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_top",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "t:sections.all.padding.padding_bottom",
+        "default": 52
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, {
+            "value": "center",
+            "label": "Center"
+          }, {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center",
+        "label": "Alignment text breadcrumb"
+      },
+      {
+        "type": "color",
+        "id": "background_color_breadcrumb",
+        "label": "Background color breadcrumbs",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "color_text_breadcrumb_link",
+        "label": "Color text link breadcrumbs",
+        "default": "#808080"
+      }, 
+      {
+        "type": "color",
+        "id": "color_text_breadcrumb",
+        "label": "Color text breadcrumbs",
+        "default": "#000000"
+      }, 
+      {
+        "type": "header",
+        "content": "Setting Mobile"
+      }, 
+      {
+        "type": "color",
+        "id": "background_color_breadcrumb_mb",
+        "label": "Background color breadcrumbs",
+        "default": "#000"
+      }, 
+      {
+        "type": "color",
+        "id": "color_text_breadcrumb__link_mb",
+        "label": "Color text link breadcrumbs",
+        "default": "#FAFAFA"
+      }, 
+      {
+        "type": "color",
+        "id": "color_text_breadcrumb_mb",
+        "label": "Color text breadcrumbs",
+        "default": "#FFFFFF"
+      }, 
+      {
+        "type": "checkbox",
+        "id": "hidden_breadcrumbs",
+        "label": "Hidden breadcrumbs",
+        "default": true
+      }
+    ],
+    "presets": [
+      {
+        "name": "Breadcrumbs section"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,251 @@
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-article-card.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-featured-blog.css' | asset_url }}" media="print" onload="this.media='all'">
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign allBlogPost = blog.articles
+  for link in linklists.blog-menu.links
+    assign item = link.object
+    assign allBlogPost = allBlogPost | concat: item.articles
+  endfor 
+-%}
+{%- paginate blog.articles by 9 -%}
+<div class="blog page-width-desktop main-blogs-wrapper section-{{ section.id }}-padding">
+  <div class=" blog-list-wrapper">
+    <div class="blog-wrapper ">
+      <div class="blog-wrapper-item main-blog-wrapper-item grid--tb--2-col grid--3-col">
+        {% for article in blog.articles limit: 2 %}
+          {%- render 'article-card',
+            article: article,
+            media_height: 'adapt',
+            media_aspect_ratio: article.image.aspect_ratio,
+            show_image: section.settings.show_image,
+            show_date: section.settings.show_date,
+            media_aspect_ratio: 1.625,
+            show_author: section.settings.show_author,
+            show_blog_title: section.settings.show_blog_title,
+            show_excerpt: true,
+            template: template
+          -%}
+        {% endfor %} 
+        {% if section.settings.blog != blank %}
+          <div class="main-blog-article article-card-wrapper">
+            <div class="article-card-wrapper-sidebar">
+              {% if section.settings.title_sidebar != blank %}
+                <h3 class="widget-title">
+                  <span>{{ section.settings.title_sidebar }}</span>
+                </h3>
+              {% endif %}
+              <ul class="list-blog">
+                {%- liquid 
+                  assign blog_selected = section.settings.blog
+                  if blog_selected == 'all-blogs'
+                    assign blogsidebar = allBlogPost
+                  else
+                   assign blogsidebar = blogs[blog_selected].articles 
+                  endif 
+                -%}
+                {% for article in blogsidebar limit: 3 %}
+                  <li class="item-blog">
+                    <div class="blog-item-wrapper">
+                      <div class="img-blog">
+                        {% if article.image != blank %}
+                          <a href="{{ article.url }}" title="{{ article.title }}" class="no-effect">
+                            <img src="{{ article.image | image_url: width: 750 }}" srcset="{%- if article.image.width >= 375 -%}{{ article.image | image_url: width: 375 }} 375w,{%- endif -%} {%- if article.image.width >= 750 -%}{{ article.image | image_url: width: 750 }} 750w,{%- endif -%} {%- if article.image.width >= 1100 -%}{{ article.image | image_url: width: 1100 }} 1100w,{%- endif -%} {%- if article.image.width >= 1500 -%}{{ article.image | image_url: width: 1500 }} 1500w,{%- endif -%} {%- if article.image.width >= 1780 -%}{{ article.image | image_url: width: 1780 }} 1780w,{%- endif -%} {%- if article.image.width >= 2000 -%}{{ article.image | image_url: width: 2000 }} 2000w,{%- endif -%} {%- if article.image.width >= 2800 -%}{{ article.image | image_url: width: 2800 }} 2800w{%- endif -%}" alt="{{ article.image.alt | escape }}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" loading="lazy" width="{{ article.image.width }}" height="{{ article.image.height }}">
+                          </a>
+                        {% else %}
+                          {{ 'image' | placeholder_svg_tag }}
+                        {% endif %}
+                      </div>
+                      <div class="info">
+                        <a class="article-title" href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a>
+                        {%- if article.content.size > 0 -%}
+                          <p class="article-content">
+                             <span>{{ article.content | strip_html | truncatewords: 17 }}</span><a href="{{ article.url }}">{{ 'blogs.article.read_more' | t }}</a>
+                          </p>
+                        {%- endif -%}
+                      </div>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+          {% liquid 
+            assign pageurl = content_for_header | split:'"pageurl":"' | last | split:'"' | first | split: request.host | last | replace:'\/','/' | replace:'%20',' ' | replace:'\u0026','&' 
+            assign page = pageurl | split:'page=' | last  
+            if page contains "blog"
+              assign page = 1
+            endif
+            assign page_float = page | times: 1.0
+            assign blog_limit = 3
+            assign blog_limit_float = blog_limit | times: 1.0 
+            assign hasNext = blog.articles | size | minus: 2 | divided_by: blog_limit_float    
+            assign startFrom = page | times: blog_limit 
+          %}
+
+        {% for article in blog.articles limit: startFrom offset: 2 %}
+          {% if forloop.index > 2 %}
+            {%- render 'article-card',
+              article: article,
+              media_height: 'adapt',
+              media_aspect_ratio: article.image.aspect_ratio,
+              show_image: section.settings.show_image,
+              show_date: section.settings.show_date,
+              media_aspect_ratio: 1.625,
+              show_author: section.settings.show_author,
+              show_blog_title: section.settings.show_blog_title,
+              show_excerpt: true
+            -%}
+          {% endif %}
+        {% endfor %}
+      </div>
+       {% if hasNext > page_float %}
+        <div class="load-more">
+          <a class="load-more_btn btn" onclick="loadMoreProducts(event)" data-page="{{ page | plus: 1 }}">Load More</a>
+          <div class="load-more_spinner"></div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{%- endpaginate -%}
+
+<script>
+  var products_on_page = $('.blog-wrapper');
+
+  var load_more_btn = $('.load-more_btn ');
+  var load_more_spinner = $('.load-more_spinner');
+
+  function loadMoreProducts(e) {
+    $.ajax({
+      url: window.location.pathname + '?page=' + $(e.target).attr('data-page'),
+      type: 'GET',
+      dataType: 'html',
+      beforeSend: function() {
+        load_more_btn.hide();
+        load_more_spinner.show();
+      }
+
+    }).done(function(next_page) {
+
+      load_more_spinner.hide();
+
+      var new_products = $(next_page).find('.blog-wrapper');
+      products_on_page.html(new_products.html());
+    })
+  }
+</script>
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section main-blogs-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:sections.main-blog.settings.layout.options__1.label"
+        },
+        {
+          "value": "collage",
+          "label": "t:sections.main-blog.settings.layout.options__2.label"
+        }
+      ],
+      "default": "collage",
+      "label": "t:sections.main-blog.settings.layout.label",
+      "info": "t:sections.main-blog.settings.layout.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_blog_title",
+      "default": true,
+      "label": "Show blog title"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-blog.settings.paragraph.content"
+    },
+    {
+      "type": "header",
+      "content": "Blog sidebar"
+    },
+    {
+      "type": "text",
+      "id": "title_sidebar",
+      "label": "Heading"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select blog"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

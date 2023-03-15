@@ -1,0 +1,256 @@
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .main-article-wrapper {
+    background-color: {{ section.settings.background_color }} ;
+  }
+{%- endstyle -%}
+<div class="page-width-desktop main-article">
+<article class="article-template {% if section.settings.blog != blank %}article-wrapper-sidebar{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        <div class="">
+          {% render block %}
+        </div>
+      {%- when 'featured_image'-%}
+        {%- if article.image -%}
+          <div class="article-template__hero-container" {{ block.shopify_attributes }}>
+            <div class="article-template__hero-small media"
+              itemprop="image"
+            >
+              <img
+                srcset="{% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                  {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                  {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                  {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                  {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                  {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                  {{ article.image | image_url }} {{ article.image.width }}w"
+                sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                src="{{ article.image | image_url: width: 1100 }}"
+                loading="eager"
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+                alt="{{ article.image.alt | escape }}">
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- when 'title'-%}
+          <header class="" {{ block.shopify_attributes }}>
+           {%- if block.settings.show_blog_title -%}
+              <div class="blog-title-wrapper">{{ blog.title }}</div>
+            {%- endif -%}
+            <h1 class="article-template__title" itemprop="headline">{{ article.title | escape }}</h1>
+            {%- if block.settings.blog_show_date -%}
+              <div class="date">
+                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.4">
+                  <path d="M10.1986 1.66663C5.60357 1.66663 1.86523 5.40496 1.86523 9.99996C1.86523 14.595 5.60357 18.3333 10.1986 18.3333C14.7936 18.3333 18.5319 14.595 18.5319 9.99996C18.5319 5.40496 14.7936 1.66663 10.1986 1.66663ZM10.1986 16.6666C6.52273 16.6666 3.5319 13.6758 3.5319 9.99996C3.5319 6.32413 6.52273 3.33329 10.1986 3.33329C13.8744 3.33329 16.8652 6.32413 16.8652 9.99996C16.8652 13.6758 13.8744 16.6666 10.1986 16.6666Z" fill="black"/>
+                  <path d="M11.0319 5.83337H9.36523V10.8334H14.3652V9.16671H11.0319V5.83337Z" fill="black"/>
+                  </g>
+                </svg>
+                <span class="circle-divider">{{ 'blogs.article.Posted' | t }}{{ article.created_at | date: '%d %b %Y' }}</span>
+            </div>
+            {%- endif -%}
+            
+          </header>
+
+        {%- when 'content'-%}
+          <div class="article-template__content rte" itemprop="articleBody" {{ block.shopify_attributes }}>
+              {{ article.content }}
+          </div>
+
+        {%- when 'article-bottom' -%}
+          <div class="article-bottom" {{ block.shopify_attributes }} >
+            {%- if block.settings.blog_show_share -%}
+                <div class="share-bottom">
+                    {% render 'share-blog'%}
+                </div>
+              {%- endif -%}
+            {%- if block.settings.blog_show_author -%}
+              <div class="author-bottom">
+                {% render 'icon-mini-logo' %} <span>{{ 'blogs.article.by' | t }}{{ article.author }}</span>
+              </div>
+          {%- endif -%}
+          </div>
+    {%- endcase -%}
+  {%- endfor -%}
+
+ 
+ 
+</article>
+{% assign allBlogPost = blog.articles %}
+{% for link in linklists.blog-menu.links %}
+  {% assign item = link.object %}
+  {% assign allBlogPost = allBlogPost | concat: item.articles %}
+{% endfor %}
+        {% if section.settings.blog != blank %}
+          <div class="main-blog-article article-card-wrapper ">
+          <div class="article-card-wrapper-sidebar">
+            {% if section.settings.title_sidebar != blank %}
+              <h3 class="widget-title">
+                <span>{{ section.settings.title_sidebar }}</span>
+              </h3>
+            {% endif %}
+            <ul class="list-blog">
+              {% assign blog_selected = section.settings.blog %}
+              {% if blog_selected == 'all-blogs' %}
+               {%- assign blogsidebar = allBlogPost -%} 
+              {% else %}
+               {%- assign blogsidebar = blogs[blog_selected].articles -%}  
+              {% endif %}
+              {% for article in blogsidebar limit: 3 %}
+                <li class="item-blog">
+                  <div class="blog-item-wrapper">
+                    <div class="img-blog">
+                      {% if article.image != blank %}
+                        <a href="{{ article.url }}" title="{{ article.title }}" class="no-effect">
+                          <img src="{{ article.image | image_url: width: 750 }}" srcset="{%- if article.image.width >= 375 -%}{{ article.image | image_url: width: 375 }} 375w,{%- endif -%} {%- if article.image.width >= 750 -%}{{ article.image | image_url: width: 750 }} 750w,{%- endif -%} {%- if article.image.width >= 1100 -%}{{ article.image | image_url: width: 1100 }} 1100w,{%- endif -%} {%- if article.image.width >= 1500 -%}{{ article.image | image_url: width: 1500 }} 1500w,{%- endif -%} {%- if article.image.width >= 1780 -%}{{ article.image | image_url: width: 1780 }} 1780w,{%- endif -%} {%- if article.image.width >= 2000 -%}{{ article.image | image_url: width: 2000 }} 2000w,{%- endif -%} {%- if article.image.width >= 2800 -%}{{ article.image | image_url: width: 2800 }} 2800w{%- endif -%}" alt="{{ article.image.alt | escape }}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" loading="lazy" width="{{ article.image.width }}" height="{{ article.image.height }}">
+                        </a>
+                      {% else %}
+                        {{ 'image' | placeholder_svg_tag }}
+                      {% endif %}
+                    </div>
+                    <div class="info">
+                      <a class="article-title" href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}</a>
+                      {%- if article.content.size > 0 -%}
+                        <p class="article-content">
+                            <span>{{ article.content | strip_html | truncatewords: 17 }}</span><a href="{{article.url}}">{{ 'blogs.article.read_more' | t }}</a>
+                        </p>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          </div>
+        {% endif %}
+</div>
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "articleBody": {{ article.content | strip_html | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ request.origin | append: page.url | json }}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | json }},
+    {% endif %}
+    {% if article.image %}
+      "image": [
+        {{ article | image_url: width: article.image.width | prepend: "https:" | json }}
+      ],
+    {% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": {{ settings.share_image.height | json }},
+          "url": {{ settings.share_image | image_url: width: settings.share_image.width | prepend: "https:" | json }},
+          "width": {{ settings.share_image.width | json }}
+        },
+      {% endif %}
+      "name": {{ shop.name | json }}
+    }
+  }
+  </script>
+
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section main-article-wrapper",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#F2F2F2"
+    },
+    {
+      "type": "header",
+      "content": "Blog sidebar"
+    },
+    {
+      "type": "text",
+      "id": "title_sidebar",
+      "label": "Heading"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select blog"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+    
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_blog_title",
+          "default": true,
+          "label": "Show blog title"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "article-bottom",
+      "name": "Author share",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_share",
+          "default": false,
+          "label": "Show share"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,120 @@
+<link rel="stylesheet" href="{{ 'blog-banner.css' | asset_url }}" type="text/css">
+
+<div class="blog-banner">
+  <div class="page-width-desktop">
+    {%- if linklists[section.settings.navigation].links.size > 0 -%}
+      <div class="menu-blog-banner-mobile">
+        <div class="menu-blog-top">
+          <p>{{ 'blogs.menu' | t }}</p>
+          <span>{% render 'icon-down-blog' %}</span>
+        </div>
+        <div class="menu-blog-bottom">
+          {% render 'menulist', section: section %}
+        </div>
+      </div>
+      <div class="menu-blog">
+        {% render 'menulist', section: section %}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.title_blog != blank -%}
+      <div class="title-blog p-{{ section.settings.padding_title }} text-{{ section.settings.text_alignment }}">
+        <h2>{{ section.settings.title_blog }}</h2>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- style -%}
+  @media (min-width:1025px) {
+    .blog-banner {
+      background: {{ section.settings.background_blog_banner }};
+    }
+  }
+  .title-blog {
+    padding: {{ section.settings.padding_title }}px 0;
+  }
+  .title-blog h2 {
+    color: {{ section.settings.color_title }};
+  }
+  .menu-blog .site-nav li.level0 > a {
+    color: {{ section.settings.color_text_menu }};
+  }
+  .menu-blog .site-nav li.level0 span:after {
+    background: {{ section.settings.color_text_menu }};
+  }
+  
+{%- endstyle -%}
+{% schema %}
+  {
+    "name": "Blog banner",
+    "tag": "section",
+    "class": "blog-banner",
+    "settings": [
+      {
+        "type": "color",
+        "id": "background_blog_banner",
+        "label": "Background blog banner",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_text_menu",
+        "label": "Color text menu blog",
+        "default": "#fff"
+      },
+      {
+        "type": "link_list",
+        "id": "navigation",
+        "label": "Navigation",
+        "default": "main-menu"
+      },
+      {
+        "type": "text",
+        "id": "title_blog",
+        "default": "Blog",
+        "label": "Title blog banner"
+      }, 
+      {
+        "type": "color",
+        "id": "color_title",
+        "label": "Color title",
+        "default": "#fff"
+      }, 
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          }, 
+          {
+            "value": "center",
+            "label": "Center"
+          }, 
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center",
+        "label": "Alignment title blog banner"
+      }, 
+      {
+        "type": "range",
+        "id": "padding_title",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "px",
+        "label": "Padding top bottom title blog banner",
+        "default": 96
+      }
+    ],
+    "presets": [
+      {
+        "name": "Blog banner"
+      }
+    ]
+  }
+{% endschema %}
