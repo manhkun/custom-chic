@@ -3,7 +3,7 @@
 
 <div class="collection-banner-wrapper{% if section.settings.general_title_background_image != blank %} banner-has-image{% else %} banner-no-image{% endif %}">
   <div class="page-width-desktop">
-    <div class="banner {{ section.settings.breadcrumb_position }}">
+    <div class="banner {{ section.settings.breadcrumb_position }} banner--{{ template.name }}">
       {% if template contains 'product' %}
         {% elsif template == 'cart'  %}
           <h1 class="page-title">{{ 'cart.general.title' | t }}
@@ -25,16 +25,10 @@
           <h1 class="page-title">{{ page.title }}
           </h1>
         {% elsif template contains 'search' %}
-          {% if search.performed == false %}
-            <h1 class="page-title">{{ 'templates.search.title' | t }}
-            </h1>
-          {% else %}
-            <h1 class="page-title">
-              <span class="visually-hidden">{{ 'templates.search.title' | t: count: search.results_count }}
-                :</span>
-              {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-            </h1>
-          {% endif %}
+          <h1 class="page-title">{{ 'templates.search.title' | t }}</h1>
+          <h4 class="page-sub-title">
+            {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
+          </h4>
         {% else %}
           <h1 class="page-title">{{ page_title }}
           </h1>
@@ -127,6 +121,10 @@
   }
   .collection-banner-wrapper {
     margin-top: {{ section.settings.margin_top_mb }}px;
+  }
+
+  .banner--search .page-sub-title {
+    color: #fff;
   }
   @media(min-width:1025px) {
     .collection-banner-wrapper.banner-no-image .banner {

@@ -14,6 +14,9 @@
 {% if section.settings.enable_filtering %}
   <facet-filters-form class="collection-filter__wrapper active facets mobile-hide">
     <form class="facets__form" id="FacetFiltersForm">
+      {%- if template.name contains 'search' -%}
+        <input type="hidden" name="q" value="{{- search.terms -}}">
+      {%- endif -%}
       <div class="active-facetss">
         <h3 class="active-heading">{{ 'sections.collection_template.active_filter' | t }}</h3>
         <div class="active-facets active-facets-desktop">

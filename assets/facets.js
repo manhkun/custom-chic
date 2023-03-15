@@ -410,6 +410,7 @@ class FacetFiltersForm extends HTMLElement {
       formData.append("sort_by", document.querySelector('input[name="sort_by"]:checked').value)
     }
     const searchParams = new URLSearchParams(formData).toString();
+    console.log(searchParams)
     await FacetFiltersForm.renderPage(searchParams, event);
     
   }
@@ -418,6 +419,7 @@ class FacetFiltersForm extends HTMLElement {
     event.preventDefault();
     FacetFiltersForm.toggleActiveFacets();
     const url = event.currentTarget.href.indexOf('?') == -1 ? '' : event.currentTarget.href.slice(event.currentTarget.href.indexOf('?') + 1);
+    console.log('url', url)
     FacetFiltersForm.renderPage(url);
   }
 }

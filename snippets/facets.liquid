@@ -47,6 +47,9 @@
         <div class="sidebar-filter-mb">
           <facet-filters-form>
             <form id="FacetFiltersFormMobile" class="mobile-facets">
+              {%- if template.name contains 'search' -%}
+                <input type="hidden" name="q" value="{{- search.terms -}}">
+              {%- endif -%}
               <div class="mobile-facets__inner gradient">
                 <div class="mobile-facets__header">
                   <div class="mobile-facets__header-inner">
