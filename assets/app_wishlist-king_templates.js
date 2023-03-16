@@ -121,7 +121,7 @@ const templates = [
       {% if itemId %}
       {% assign scope = "item" %}
       {% assign targetId = itemId %}
-      {% assign icon_name = "remove-icon" %}
+      {% assign icon_name = "wishlist-icon" %}
       {% endif %}
 
       <button type="button" class="wk-button wk-button--{{ btn_action }} {{ addClass }}" title="{{ btn_title }}" data-wk-{{ btn_action }}-{{ scope }}="{{ targetId }}">
@@ -165,8 +165,12 @@ const templates = [
 
         {% if customer_accounts_enabled and customer == null and wishlist.read_only == false %}
           <div class="wk-note wk-note__login wishlist-suggest ">
-            <h2>{{ locale.pagetitle }}</h2>
-            <p>{{ locale.login_or_signup_note }}</p>
+            <h2 class="wk-title">{{ locale.pagetitle }}</h2>
+            <p class="wk-subtitle">Login or create an account to view to your wishlist. We’ll drop you back at your wishlist after you have entered your details</p>
+            <div class="wk-login__cta">
+              <a class="button wk-button" href='{{ login_url }}'>login</a>
+              <a class="button wk-button wk-button--secondary" href='{{ register_url }}'>Create an account</a>
+            </div>
           </div>
         {% endif %}
 
@@ -206,6 +210,7 @@ const templates = [
                       <a class="wk-product-title" href="{{ product | variant_url }}">
                         {{ product.title }}
                       </a>
+                      <span class="wk-product-vendor h5 product-vendor">{{ product.vendor }}</span>
                       <div class="wk-product-price">
                         <span class="wk-product-price--current">{{ variant.price | money }}</span>
                         <span class="wk-product-price--compare">{{ variant.compare_at_price | money }}</span>
@@ -223,26 +228,24 @@ const templates = [
         {% include "wishlist-button-bulk-add-to-cart" %}
         {% endcomment %}
 
-        {% comment %}
-        {% unless wishlist.read_only %}
-          {% include "wishlist-button-clear" %}
-        {% endunless %}
-        {% endcomment %}
+        {% include "wishlist-button-clear" %}
 
-        {% unless wishlist.read_only %}
-          <div class="wk-sharing">
-            <h4 class="wk-title">{{ locale.share_wishlist }}</h4>
-            <ul class="wk-sharing__list">
-              <li class="wk-sharing__list-item">{% include "wishlist-share-button-fb" %}</li>
-              <li class="wk-sharing__list-item">{% include "wishlist-share-button-twitter" %}</li>
-              <li class="wk-sharing__list-item">{% include "wishlist-share-button-email" %}</li>
-              <li class="wk-sharing__list-item">{% include "wishlist-share-button-link" %}</li>
-              <li class="wk-sharing__list-item">{% include "wishlist-share-button-whatsapp" %}</li>
-              {% comment %}<li class="wk-sharing__list-item">{% include "wishlist-share-button-contact" %}</li>{% endcomment %}
-            </ul>
-            <div class="wk-sharing__link wk-sharing__link--hidden"><span class="wk-sharing__link-text"></span><button class="wk-sharing__link__copy-button" data-clipboard-target=".wk-sharing__link-text">{{ locale.copy_share_link }}</button></div>
-          </div>
-        {% endunless %}
+        {% comment %}
+          {% unless wishlist.read_only %}
+            <div class="wk-sharing">
+              <h4 class="wk-title">{{ locale.share_wishlist }}</h4>
+              <ul class="wk-sharing__list">
+                <li class="wk-sharing__list-item">{% include "wishlist-share-button-fb" %}</li>
+                <li class="wk-sharing__list-item">{% include "wishlist-share-button-twitter" %}</li>
+                <li class="wk-sharing__list-item">{% include "wishlist-share-button-email" %}</li>
+                <li class="wk-sharing__list-item">{% include "wishlist-share-button-link" %}</li>
+                <li class="wk-sharing__list-item">{% include "wishlist-share-button-whatsapp" %}</li>
+                {% comment %}<li class="wk-sharing__list-item">{% include "wishlist-share-button-contact" %}</li>{% endcomment %}
+              </ul>
+              <div class="wk-sharing__link wk-sharing__link--hidden"><span class="wk-sharing__link-text"></span><button class="wk-sharing__link__copy-button" data-clipboard-target=".wk-sharing__link-text">{{ locale.copy_share_link }}</button></div>
+            </div>
+          {% endunless %}
+        {% endcomment %}
       {% endif %}
       </div>
     `,
@@ -346,6 +349,7 @@ const templates = [
       {% assign btn_title = locale.clear_wishlist %}
 
       <button type="button" class="wk-button-wishlist-clear" title="{{ btn_title }}" data-wk-clear-wishlist="{{ wishlist.permaId }}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="none"><path fill="#000" d="M20.375 3H16.25v-.75C16.25 1.01 15.24 0 14 0h-3C9.76 0 8.75 1.01 8.75 2.25V3H4.625A1.877 1.877 0 0 0 2.75 4.875V7.5c0 .414.336.75.75.75h.41l.648 13.607A2.247 2.247 0 0 0 6.805 24h11.39c1.203 0 2.19-.941 2.247-2.143L21.09 8.25h.41a.75.75 0 0 0 .75-.75V4.875A1.877 1.877 0 0 0 20.375 3ZM10.25 2.25A.75.75 0 0 1 11 1.5h3a.75.75 0 0 1 .75.75V3h-4.5v-.75Zm-6 2.625c0-.207.168-.375.375-.375h15.75c.207 0 .375.168.375.375V6.75H4.25V4.875Zm14.694 16.91a.75.75 0 0 1-.75.715H6.806a.749.749 0 0 1-.749-.714L5.412 8.25h14.176l-.644 13.536Z"/><path fill="#000" d="M12.5 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM16.25 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM8.75 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75Z"/></svg>
         <span class="wk-label">{{ btn_text }}</span>
       </button>
     `,

@@ -8,7 +8,9 @@
   href="{{ 'component-rte.css' | asset_url }}"
   media="print"
   onload="this.media='all'">
-
+{%- if template.suffix == 'wishlist' -%}
+  {{ 'custom-wishlist-page.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 <noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
@@ -31,7 +33,7 @@
 {%- endstyle -%}
 
 <div class="page-width-desktop section-{{ section.id }}-padding">
-  {%- if page.title != 'Wishlist' -%}
+  {%- if page.title != 'Your Wishlist' -%}
     <h1 class="main-page-title page-title h0">
       {{ page.title | escape }}
     </h1>
