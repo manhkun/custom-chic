@@ -259,11 +259,27 @@
     color: #808080;
     padding-bottom: 15px;
 }
+
+.content-item .date-post {
+    font-size: 12px;
+    line-height: 20px;
+    font-family: var(--font-body-family);
+    text-decoration: none;
+    font-weight: 300;
+    padding-bottom: 0;
+    margin-bottom: 16px;
+    text-transform: none;
+}
 .content-social-bot ul li a svg,
 .content-social-bot ul li a svg rect,
 .content-social-bot ul li.mailto-item a svg path,
 .content-social-bot ul li.twitter-item a svg path {
     fill: #fff;
+}
+
+#orders9Q.content-item p > span > a {
+    font-size: 16px;
+    line-height: 160%;
 }
 
 .content-social-bot ul li a svg path,
