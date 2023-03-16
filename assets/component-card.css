@@ -5,6 +5,15 @@
   text-decoration: none;
 }
 
+.card-wrapper__mask-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block !important;
+}
+
 .card {
   text-decoration: none;
   text-align: var(--text-alignment);

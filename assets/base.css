@@ -159,10 +159,6 @@ select,
   z-index: 2;
 }
 
-::selection {
-  background-color: rgba(var(--color-foreground), 0.2);
-}
-
 .text-body {
   font-size: 1.5rem;
   letter-spacing: 0.06rem;
@@ -850,6 +846,7 @@ summary::-webkit-details-marker {
   .recommendations.product-grid-slider.grid--4-col-desktop .grid__item  {
     width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
     max-width: calc(25% - var(--grid-desktop-horizontal-spacing) * 3 / 4);
+    transition: all .3s ease-out;
   }
   .product-grid-slider.grid--4-col-desktop .grid__item,
   #recently-viewed-products.product-grid-slider.grid--4-col-desktop .grid__item,

@@ -29,6 +29,7 @@ endif
 %}
 
 <div class="card-wrapper product-{{ view }}">
+  <a href="{{ product.url | within: collection }}" class="card-wrapper__mask-link"></a>
   <div class="card-media{% if product.featured_media == nil %} no-effect card--text-only card--soft{% endif %}{% if product.featured_media != nil and show_image_outline %} card--outline{% endif %}">
     <div class="card__inner" >
       {%- liquid

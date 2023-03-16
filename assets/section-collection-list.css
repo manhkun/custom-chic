@@ -22,9 +22,14 @@
   text-align: center;
   transition: all 0.3s;
 }
+
 .collection-list-wrapper .card__content:hover {
   background-color: #000000 !important;
   color: #ffffff;
+}
+
+.collection-list-wrapper .card__content:hover .card__information a {
+  color: #fff !important;
 }
 .collection-list-wrapper .card-wrapper {
   height: fit-content;

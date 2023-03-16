@@ -53,6 +53,7 @@
   letter-spacing: 0.5px;
   font-family: var(--font-body-family);
 }
+
 .search-modal__content .search__input {
   padding-left: 31px;
 }
