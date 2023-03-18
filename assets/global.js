@@ -443,10 +443,12 @@ customElements.define('header-drawer', HeaderDrawer);
 class ModalDialog extends HTMLElement {
   constructor() {
     super();
-    this.querySelector('[id^="ModalClose-"]').addEventListener(
-      'click',
-      this.hide.bind(this, false)
-    );
+    this.querySelectorAll('[id^="ModalClose-"]').forEach(item => {
+      item.addEventListener(
+        'click',
+        this.hide.bind(this, false)
+      );
+    })
     this.addEventListener('keyup', (event) => {
       if (event.code.toUpperCase() === 'ESCAPE') this.hide();
     });

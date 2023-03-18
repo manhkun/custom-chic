@@ -156,24 +156,29 @@ const templates = [
     },
     template: `
       <div class='wk-page {% if wishlist.read_only %}wk-page--shared{% endif %}'>
-      {% if wishlist.item_count == 0 %}
-          <div class="wk-note wk-note__list-empty">
-            <p>{{ locale.wishlist_empty_note }}</p>
-          </div>
-
-      {% else %}
-
         {% if customer_accounts_enabled and customer == null and wishlist.read_only == false %}
           <div class="wk-note wk-note__login wishlist-suggest ">
             <h2 class="wk-title">{{ locale.pagetitle }}</h2>
             <p class="wk-subtitle">Login or create an account to view to your wishlist. We’ll drop you back at your wishlist after you have entered your details</p>
             <div class="wk-login__cta">
-              <a class="button wk-button" href='{{ login_url }}'>login</a>
-              <a class="button wk-button wk-button--secondary" href='{{ register_url }}'>Create an account</a>
+              <a class="button wk-button" href="/account/login">login</a>
+              <a class="button wk-button wk-button--secondary" href="/account/register">Create an account</a>
             </div>
           </div>
         {% endif %}
-
+      {% if wishlist.item_count == 0 %}
+        <div class="wk-note wk-note__list-empty">
+          <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="none">
+            <path fill="#D9D9D9" d="M47.997 66.797 59.574 55.22a3.514 3.514 0 0 0 0-4.971L48.843 39.516l9.173-22.934a3.523 3.523 0 0 0-.405-3.35C51.674 4.947 42.055 0 31.875 0 13.287 0 0 14.523 0 35.317c0 25.929 21.628 39.077 51.492 64.961 1.625 1.409 2.704 2.633 4.838 1.977a3.514 3.514 0 0 0 2.352-2.503l3.972-15.885a3.51 3.51 0 0 0-.924-3.337L47.997 66.797Z"/><path fill="#D9D9D9" d="M88.125 0A31.537 31.537 0 0 0 70.87 5.115a3.523 3.523 0 0 0-1.346 1.642l-11.57 28.917a3.514 3.514 0 0 0 .779 3.79l13.27 13.27-11.578 11.577a3.514 3.514 0 0 0 0 4.971l10.499 10.5-3.557 14.24a3.515 3.515 0 0 0 1.573 3.85c1.955 1.196 3.403.295 4.92-1.02 10.196-8.82 18.25-15.787 25.37-22.598C109.86 64.08 120 52.322 120 35.317 120 14.523 106.713 0 88.125 0Z"/>
+          </svg>
+          <h3 class="wk-empty__title">{{ locale.wishlist_empty_note }}</h3>
+          <p class="wk-empty__subtitle">Any items that you save while browsing will be added here, to your wishlist</p>
+          <a href="/collections/all" class="wk-button wk-button--secondary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="none"><path fill="currentColor" stroke="currentColor" d="m13.212 5.411-5.236 5.235-.853.854H20v1H7.124l.852.853 5.227 5.237-.703.703L5.207 12l7.294-7.294.71.705Z"/></svg>
+            Continue Shopping
+          </a>
+        </div>
+      {% else %}
         <div>
           <div class="wk-grid">
             {% assign item_count = 0 %}
@@ -348,10 +353,34 @@ const templates = [
       {% assign btn_text = locale.clear_wishlist %}
       {% assign btn_title = locale.clear_wishlist %}
 
-      <button type="button" class="wk-button-wishlist-clear" title="{{ btn_title }}" data-wk-clear-wishlist="{{ wishlist.permaId }}">
-      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="none"><path fill="#000" d="M20.375 3H16.25v-.75C16.25 1.01 15.24 0 14 0h-3C9.76 0 8.75 1.01 8.75 2.25V3H4.625A1.877 1.877 0 0 0 2.75 4.875V7.5c0 .414.336.75.75.75h.41l.648 13.607A2.247 2.247 0 0 0 6.805 24h11.39c1.203 0 2.19-.941 2.247-2.143L21.09 8.25h.41a.75.75 0 0 0 .75-.75V4.875A1.877 1.877 0 0 0 20.375 3ZM10.25 2.25A.75.75 0 0 1 11 1.5h3a.75.75 0 0 1 .75.75V3h-4.5v-.75Zm-6 2.625c0-.207.168-.375.375-.375h15.75c.207 0 .375.168.375.375V6.75H4.25V4.875Zm14.694 16.91a.75.75 0 0 1-.75.715H6.806a.749.749 0 0 1-.749-.714L5.412 8.25h14.176l-.644 13.536Z"/><path fill="#000" d="M12.5 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM16.25 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM8.75 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75Z"/></svg>
-        <span class="wk-label">{{ btn_text }}</span>
-      </button>
+      <modal-opener
+        data-modal="#PopupModal-ClearWishlist"
+      >
+        <button
+          id="ProductPopup-{{ block.id }}"
+          class="wk-button-wishlist-clear"
+          type="button"
+          aria-haspopup="dialog"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" fill="none"><path fill="#000" d="M20.375 3H16.25v-.75C16.25 1.01 15.24 0 14 0h-3C9.76 0 8.75 1.01 8.75 2.25V3H4.625A1.877 1.877 0 0 0 2.75 4.875V7.5c0 .414.336.75.75.75h.41l.648 13.607A2.247 2.247 0 0 0 6.805 24h11.39c1.203 0 2.19-.941 2.247-2.143L21.09 8.25h.41a.75.75 0 0 0 .75-.75V4.875A1.877 1.877 0 0 0 20.375 3ZM10.25 2.25A.75.75 0 0 1 11 1.5h3a.75.75 0 0 1 .75.75V3h-4.5v-.75Zm-6 2.625c0-.207.168-.375.375-.375h15.75c.207 0 .375.168.375.375V6.75H4.25V4.875Zm14.694 16.91a.75.75 0 0 1-.75.715H6.806a.749.749 0 0 1-.749-.714L5.412 8.25h14.176l-.644 13.536Z"/><path fill="#000" d="M12.5 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM16.25 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75ZM8.75 21a.75.75 0 0 0 .75-.75V10.5a.75.75 0 0 0-1.5 0v9.75c0 .414.336.75.75.75Z"/></svg>
+          <span class="wk-label">Remove all items</span>
+        </button>
+      </modal-opener>
+      <modal-dialog id="PopupModal-ClearWishlist" class="clear-wishlist-popup-modal">
+        <div
+          role="dialog"
+          aria-modal="true"
+          class="clear-wishlist-popup-modal__content"
+          tabindex="-1"
+        >
+          <div class="clear-wishlist-popup-modal__content-info">
+            <h3 class="clear-wishlist__title">Remove all Item</h3>
+            <p class="clear-wishlist__subtitle">Are you sure you want to remove all items? This action cannot be undone.</p>
+            <button id="ModalClose-ClearWishlist-1" data-wk-clear-wishlist="{{ wishlist.permaId }}" class="wk-button wk-button--secondary">Remove</button>
+            <button id="ModalClose-ClearWishlist" class="wk-button">Cancel</button>
+          </div>
+        </div>
+      </modal-dialog>
     `,
   },
   {

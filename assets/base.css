@@ -2614,6 +2614,8 @@ li {
 .wk-button .wk-button__icon.wk-icon svg {
   width: 14px;
   height: 13px;
+  flex-shrink: 0;
+  margin: 0;
 }
 .wk-button--remove .wk-icon__svg
 .product-title {
