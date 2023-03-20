@@ -1740,7 +1740,7 @@ input[type='checkbox'] {
 }
 
 #shopify-section-header.animate {
-  transition: transform 0.15s ease-out;
+  transition: top 0.4s ease-in-out;
 }
 
 /* Main Header Layout */
@@ -1918,6 +1918,7 @@ input[type='checkbox'] {
   align-items: center;
   padding-top: 15px;
   padding-bottom: 15px;
+  width: 100%;
 }
 .header__icon--cart {
   position: relative;

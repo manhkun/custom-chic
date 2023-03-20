@@ -37,7 +37,7 @@
               {% assign pageUrls = pageUrl | remove: "customchic.co.uk/collections/" %}
                 {% assign count = paginate.pages %}
                 {% for part in (1..count) %}
-                      <li {% if paginate.current_page == part %}class="active"{% endif %}><a href=" {{ pageUrls }}{% if pageUrlss == collection.url  %}?{% else %}&{% endif %}page={{ forloop.index }}" data-item="{{ forloop.index }}">{{ forloop.index }}</a></li>
+                      <li {% if paginate.current_page == part %}class="active"{% endif %}><a href="{{ pageUrls }}{% if pageUrlss == collection.url %}?{% else %}&{% endif %}page={{ forloop.index }}" data-item="{{ forloop.index }}">{{ forloop.index }}</a></li>
                 {% endfor %}
               </ul>
             </div>

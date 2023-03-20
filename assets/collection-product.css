@@ -38,6 +38,10 @@ body.overflow-hidden-mobile {
     padding: 16px 0;
     margin: 0;
 }
+
+.filter-mobile {
+    position: sticky;
+}
 .filter-mobile .mobile-facets__heading {
     margin: 0;
 }
@@ -280,7 +284,7 @@ font-family: var(--font-heading-family);
 }
 ul#main-collection-product{margin-top: 0;margin-bottom: 16px;row-gap: 10px;}
 .filter-mobile.fixed {
-    position: fixed;
+    position: sticky;
     width: 100%;
     top: 53px;
     background: #fff;
@@ -525,6 +529,7 @@ ul#main-collection-product{margin-top: 0;margin-bottom: 16px;row-gap: 10px;}
         overflow: auto;
         position: sticky;
         top: 71px;
+        transition: top .3s ease-out;
     }
     .collection-filter__wrapper.style-top {
         top: 20px;
@@ -600,7 +605,7 @@ ul#main-collection-product{margin-top: 0;margin-bottom: 16px;row-gap: 10px;}
         display: flex;
         align-items: center;
         font-size: 14px;
-        line-height: 140%;
+        line-height: 20px;
         color: var(--color-heading);
         font-family: var(--font-body-family);
         cursor: pointer;
@@ -807,7 +812,7 @@ ul#main-collection-product{margin-top: 0;margin-bottom: 16px;row-gap: 10px;}
         border-radius: 100px;
         font-weight: 400;
         font-size: 14px;
-        line-height: 140%;
+        line-height: 20px;
         color: #000;
         display: flex;
         letter-spacing: 0;

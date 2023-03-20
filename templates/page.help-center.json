@@ -1,1 +1,62 @@
-{"sections":{"da748358-2913-4668-a538-48ffdb2282d9":{"type":"page-banner","settings":{"background_color_breadcrumb":"#000000","margin_top":0,"padding_tb":96,"color_title":"#ffffff","color_text_breadcrumb_link":"#fafafa","color_text_breadcrumb":"#ffffff","margin_top_mb":0,"padding_tb_mb":24,"hidden_breadcrumbs_dk":true}},"0d339efb-ef38-4d11-a0cc-677b59c8166a":{"type":"breadcrumbs","settings":{"padding_top":82,"padding_bottom":0,"text_alignment":"left","background_color_breadcrumb":"#ffffff","color_text_breadcrumb_link":"#808080","color_text_breadcrumb":"#000000","background_color_breadcrumb_mb":"#000000","color_text_breadcrumb__link_mb":"#fafafa","color_text_breadcrumb_mb":"#ffffff","hidden_breadcrumbs":true}},"tablist":{"type":"tablist-section","settings":{"menu":"menu-helpcenter","heading_search":"How can we help?","hidden_search":false}},"2c44c2e0-b4ff-4d3c-9f0f-cd2b993377be":{"type":"contact-section","settings":{"heading_contact":"Contact us","sub_heading_contact":"If you have any questions, we would love to hear from you, whether it's a complaint or a compliment. Contact us now!","text_alignment":"center","id_form":"OTkyNjA=","colors_background_section":"#fafafa","colors_title":"#000000","colors_subtitle":"#808080","pd_top":83,"pd_bottom":83,"pd_mb":48}}},"order":["da748358-2913-4668-a538-48ffdb2282d9","0d339efb-ef38-4d11-a0cc-677b59c8166a","tablist","2c44c2e0-b4ff-4d3c-9f0f-cd2b993377be"]}
+{
+  "sections": {
+    "da748358-2913-4668-a538-48ffdb2282d9": {
+      "type": "page-banner",
+      "settings": {
+        "background_color_breadcrumb": "#000000",
+        "margin_top": 0,
+        "padding_tb": 96,
+        "color_title": "#ffffff",
+        "color_text_breadcrumb_link": "#fafafa",
+        "color_text_breadcrumb": "#ffffff",
+        "margin_top_mb": 0,
+        "padding_tb_mb": 24,
+        "hidden_breadcrumbs_dk": true
+      }
+    },
+    "0d339efb-ef38-4d11-a0cc-677b59c8166a": {
+      "type": "breadcrumbs",
+      "settings": {
+        "padding_top": 82,
+        "padding_bottom": 0,
+        "text_alignment": "left",
+        "background_color_breadcrumb": "#ffffff",
+        "color_text_breadcrumb_link": "#808080",
+        "color_text_breadcrumb": "#000000",
+        "background_color_breadcrumb_mb": "#000000",
+        "color_text_breadcrumb__link_mb": "#fafafa",
+        "color_text_breadcrumb_mb": "#ffffff",
+        "hidden_breadcrumbs": true
+      }
+    },
+    "tablist": {
+      "type": "tablist-section",
+      "settings": {
+        "menu": "menu-helpcenter",
+        "heading_search": "How can we help?",
+        "hidden_search": false
+      }
+    },
+    "2c44c2e0-b4ff-4d3c-9f0f-cd2b993377be": {
+      "type": "contact-section",
+      "settings": {
+        "heading_contact": "Contact us",
+        "sub_heading_contact": "If you have any questions, we would love to hear from you, whether it's a complaint or a compliment. Contact us now!",
+        "text_alignment": "center",
+        "id_form": "OTkyNjA=",
+        "colors_background_section": "#fafafa",
+        "colors_title": "#000000",
+        "colors_subtitle": "#808080",
+        "pd_top": 83,
+        "pd_bottom": 83,
+        "pd_mb": 48
+      }
+    }
+  },
+  "order": [
+    "da748358-2913-4668-a538-48ffdb2282d9",
+    "0d339efb-ef38-4d11-a0cc-677b59c8166a",
+    "tablist",
+    "2c44c2e0-b4ff-4d3c-9f0f-cd2b993377be"
+  ]
+}
