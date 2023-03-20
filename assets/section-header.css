@@ -418,9 +418,6 @@
   opacity: 1;
   visibility: visible;
 }
-.template-collection .header-mobile-bttom.background {
-  height: 0;
-}
 #shopify-section-header .drawwer-mobile-animate {
   display: none;
 }
