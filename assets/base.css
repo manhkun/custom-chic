@@ -1113,7 +1113,7 @@ deferred-media {
 }
 
 .button.loading > .loading-overlay__spinner .path {
-  stroke: rgb(var(--color-button-text));
+  stroke: #000;
 }
 @-webkit-keyframes spin {
   0% { -webkit-transform: translate(-50%,-50%) rotate(0deg); }

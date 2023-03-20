@@ -239,3 +239,20 @@
 .clear-wishlist-popup-modal__content-info .wk-button:last-child {
   margin-top: 8px;
 }
+
+.wk-product-price--current {
+  font-size: 16px;
+  line-height: 140%;
+  font-weight: 700;
+  color: #000;
+}
+
+.wk-product-price--compare {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 22px;
+  text-decoration-line: line-through;
+  color: #B3B3B3;
+  display: inline-block;
+  margin-left: 8px;
+}

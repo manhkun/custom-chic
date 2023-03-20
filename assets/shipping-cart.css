@@ -542,8 +542,9 @@ button.quantity__button.no-js-hidden {
   .cart-item__image-container .cart-item__image,
   .cart-item__link,
   .cart-item__media {
-    max-width: 190px !important;
-    max-height: 190px !important;
+    width: 190px !important;
+    height: 190px !important;
+    object-fit: cover;
     width: 100%;
   }
   .info-item a {
