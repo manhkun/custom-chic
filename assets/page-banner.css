@@ -82,6 +82,10 @@
   .image-text-section .image-with-text__text-item{
     margin-bottom: 0;
   }
+
+  .page-banner-wrapper .breadcrumb {
+    display: none !important;
+  }
 }
 @media (min-width:1025px) {
   .page-banner-wrapper .desktop-hidden {

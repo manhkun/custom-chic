@@ -11,32 +11,6 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-     <!-- Global site tag (gtag.js) - Google Shopping CustomChic UK Google Ads: 10854647853 -->
-     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10854647853"></script>
-     <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
- 
-       gtag('config', 'AW-10854647853');
-     </script>
-
-     <!-- Global site tag (gtag.js) - Google Analytics -->
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K076E1LMMJ"></script>
-     <script>
-       window.dataLayer = window.dataLayer || [];
-       function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
- 
-       gtag('config', 'G-K076E1LMMJ');
-     </script>
-
-     {% render "omega_multi_pixel" %} 
-     {% render 'gsf-conversion-pixels' %}
-    
-   
-
-    
 
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>

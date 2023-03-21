@@ -83,7 +83,9 @@
       </li>
 
     {% elsif template contains 'search' %}
-
+      {%- if template.suffix == 'help-center' -%}
+        <li><a href="/pages/help-center">Help center</a>{% render 'icon-right' %}</li>
+      {%- endif -%}
       <li>
         <span>{{ 'general.search.title' | t }}
         </span>

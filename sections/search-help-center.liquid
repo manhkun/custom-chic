@@ -1,0 +1,80 @@
+{{ 'section-search-help-center.css' | asset_url | stylesheet_tag }}
+
+<div class="page-width-desktop">
+  <div class="search-help">
+    <div class="search-help__header">
+      <div class="search-help__header--left">
+        <h2 class="search-help__title">{{- 'templates.search.title' | t -}}</h2>
+        <p class="search-help__count">{{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}</p>
+      </div>
+      <div class="search-help__header--right">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+          <div class="field">
+            <input type="hidden" name="type" value="article">
+            <input type="hidden" name="view" value="help-center">
+            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
+            <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% paginate search.results by 10 %}
+      <div class="search-help__results">
+        {%- if search.results.size > 0 -%}
+            {%- for result in search.results -%}
+              <div class="search-help__result">
+                <h3 class="search-help__result-title">{{ result.title }}</h3>
+                <span class="search-help__result-date-post">
+                  {% render 'icon-clock' %}
+                  {% assign published_at = article.published_at | date: "%s" %}
+                  {% assign published_att =  "now" | date: "%s" | minus: published_at %}
+                  {% assign variablee =  published_att | date: "%d" %}
+                  {{ 'blogs.article.updated_article' | t: published_att: variablee }}
+                </span>
+                <div class="search-help__result-content">{{ result.excerpt_or_content }}</div>
+                <div class="search-help__result-extend">
+                  <a href="/pages/help-center">Help Center</a>
+                  <span>/</span>
+                  <a href="/pages/delivery">Order & Delivery</a>
+                </div>
+              </div>
+            {%- endfor -%}
+        {%- else -%}
+          <div class="search-help__notfound">
+            <div class="search-help__notfound-header">
+              <h3 class="search-help__notfound-title">Help hub</h3>
+              <p class="search-help__notfound-subtitle">Sorry,  we could not find any results for “{{ search.terms }}”, try searching our Help Hub</p>
+            </div>
+            <div class="search-help__notfound-main">
+              <h3 class="search-help__notfound-title">popular questions</h3>
+              <p class="search-help__notfound-subtitle">Got a question? Check out our articles below to find the answer you’re looking for. Unfortunately, we do not have the meaning of life, we’re not that far ahead just yet...</p>
+              {%- if section.settings.blog != blank -%}
+                <ul class="search-help__suggestion">
+                  {%- for article in section.settings.blog.articles -%}
+                    <li><a class="search-help__suggestion-item" href="{{ article.url }}">{{- article.title -}}</a></li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        {% render 'pagination', paginate: paginate, anchor: '', class: '', section: section %}
+      {%- endif -%}
+    {% endpaginate %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Search help center",
+  "settings": [
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Blog suggestion"
+    }
+  ]
+}
+{% endschema %}

@@ -18,6 +18,11 @@
     letter-spacing: 0;  
     font-weight: 300;
 }
+
+.breadcrumbs-section .breadcrumb li a {
+    color: #808080;
+}
+
 .breadcrumbs-section .breadcrumb li span{
     font-size: 14px;
     line-height: 140%;

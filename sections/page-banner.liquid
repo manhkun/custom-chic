@@ -33,20 +33,25 @@
           {% endif %}
 
         {% elsif template contains 'search' %}
-          {% if search.performed == false %}
-            <h1 class="page-title">{{ 'templates.search.title' | t }}
-            </h1>
-          {% else %}
-            <h1 class="page-title">
-              <span class="visually-hidden">{{ 'templates.search.title' | t: count: search.results_count }}
-                :</span>
-              {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
-            </h1>
-          {% endif %}
+          {%- if template.suffix == 'help-center' -%}
+            <h1 class="page-title">{{ 'templates.search.title' | t }}</h1>
+          {%- else -%}
+            {% if search.performed == false %}
+              <h1 class="page-title">{{ 'templates.search.title' | t }}
+              </h1>
+            {% else %}
+              <h1 class="page-title">
+                <span class="visually-hidden">{{ 'templates.search.title' | t: count: search.results_count }}
+                  :</span>
+                {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+              </h1>
+            {% endif %}
+          {%- endif -%}
         {% else %}
           <h1 class="page-title">{{ page_title }}
           </h1>
       {% endif %}
+      {%- render 'breadcrumb' -%}
     </div>
   </div>
 </div>
