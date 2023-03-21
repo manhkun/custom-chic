@@ -75,7 +75,7 @@
 }
 @media (max-width:767px) {
     .recipient .page-width-desktop {
-      padding: 0 ;
+      margin-right: -16px;
     }
     .recipient-title-wrapper .pagination-custom {
       display: none;
