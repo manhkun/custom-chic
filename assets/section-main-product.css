@@ -13,6 +13,7 @@
 
 .product__media-wrapper {
   padding-left: 0;
+  z-index: 3 !important;
 }
 .product__media-wrapper .slider-horizontal {
   position: sticky;

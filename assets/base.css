@@ -1902,17 +1902,18 @@ input[type='checkbox'] {
 
 .header__icon .icon,
 .drawwer-mobile svg {
-  height: 19px;
-  width: 17px;
+  height: 24px;
+  width: 24px;
   fill: none;
   vertical-align: middle;
+}
+.drawwer-mobile {
+  margin-right: 16px;
 }
 .drawwer-mobile .search-icons{
   width: 100%;
 }
-.drawwer-mobile {
-  margin-right: 19px;
-}
+
 .header-mobile-bttom {
   display: flex;
   align-items: center;
@@ -2963,9 +2964,6 @@ button[disabled]:hover {
   .wk-link__count {
     top: -4px;
     left: 12px;
-  }
-  .drawwer-mobile svg {
-    margin-left: 4px;
   }
   .search__input {
     padding-left: 54px;

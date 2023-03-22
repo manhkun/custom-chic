@@ -139,7 +139,7 @@
   text-decoration-line: underline;
   text-transform: capitalize;
   color: #000000;
-  text-underline-offset: 0;
+  text-underline-offset: auto;
   font-family: var(--font-heading-family);
 }
 

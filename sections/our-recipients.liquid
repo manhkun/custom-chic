@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ 'our-recipients.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'our-recipients.css' | asset_url }}">
 
 
 {%- style -%}
@@ -74,8 +74,6 @@
 (function () {
   var $frame = $('.recipient-slider-{{ section.id }}');
   var $wrap  = $frame.parent();
-  setInterval(function () {
-  // Call Sly on frame
   $frame.sly({
     horizontal: 1,
     itemNav: 'basic',
@@ -104,7 +102,6 @@
   });
 
   var ab = $('.recipients-wrapper').width();
-  }, 500);
 
   $wrap.find('.next-{{ section.id }}').on('click', function () {
     
@@ -117,15 +114,11 @@
     $frame.sly('slideBy', -1);
     
   });
-
-  setInterval(function () {
-
-      var myElement = document.querySelector('#list-item-{{ section.id }}');
+  var myElement = document.querySelector('#list-item-{{ section.id }}');
       var style = window.getComputedStyle(myElement);
       var matrix = new WebKitCSSMatrix(style.transform);
-      var widthSlide = parseFloat(document.getElementById('list-item-{{ section.id }}').style.width);
-      var maxWidth = parseFloat($("#list-item-{{ section.id }}").width());
-
+      var widthSlide = parseFloat(document.querySelector('list-item-{{ section.id }}').style.width);
+      var maxWidth = parseFloat($(".recipient-slider-{{ section.id }}").width());
       if(widthSlide <= maxWidth){
         $('.pagination-custom-our').css({"display": 'none'});
         $('.scrollbar-product-slider-our').css({"display": 'none'});
@@ -142,7 +135,6 @@
       }else{
       document.getElementById("prev-control-{{ section.id }}").removeAttribute("disabled");
     }
-  }, 100);
 }());
 </script>
 

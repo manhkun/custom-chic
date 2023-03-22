@@ -288,6 +288,7 @@
     line-height: 120%;
     color: #808080;
     width: 33%;
+    border: none;
 }
 .answer-wrapper p{
   text-transform: uppercase;

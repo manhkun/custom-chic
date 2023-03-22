@@ -23,19 +23,21 @@
         {%- if search.results.size > 0 -%}
             {%- for result in search.results -%}
               <div class="search-help__result">
-                <h3 class="search-help__result-title">{{ result.title }}</h3>
-                <span class="search-help__result-date-post">
-                  {% render 'icon-clock' %}
-                  {% assign published_at = article.published_at | date: "%s" %}
-                  {% assign published_att =  "now" | date: "%s" | minus: published_at %}
-                  {% assign variablee =  published_att | date: "%d" %}
-                  {{ 'blogs.article.updated_article' | t: published_att: variablee }}
-                </span>
-                <div class="search-help__result-content">{{ result.excerpt_or_content }}</div>
+                <a href="{{ result.url }}">
+                  <h3 class="search-help__result-title">{{ result.title }}</h3>
+                  <span class="search-help__result-date-post">
+                    {% render 'icon-clock' %}
+                    {% assign published_at = article.published_at | date: "%s" %}
+                    {% assign published_att =  "now" | date: "%s" | minus: published_at %}
+                    {% assign variablee =  published_att | date: "%d" %}
+                    {{ 'blogs.article.updated_article' | t: published_att: variablee }}
+                  </span>
+                  <div class="search-help__result-content">{{ result.excerpt_or_content }}</div>
+                </a>
                 <div class="search-help__result-extend">
                   <a href="/pages/help-center">Help Center</a>
                   <span>/</span>
-                  <a href="/pages/delivery">Order & Delivery</a>
+                  <a href="/pages/shipping-delivery">Order & Delivery</a>
                 </div>
               </div>
             {%- endfor -%}

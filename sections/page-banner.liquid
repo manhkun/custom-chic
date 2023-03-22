@@ -35,6 +35,7 @@
         {% elsif template contains 'search' %}
           {%- if template.suffix == 'help-center' -%}
             <h1 class="page-title">{{ 'templates.search.title' | t }}</h1>
+            {%- render 'breadcrumb' -%}
           {%- else -%}
             {% if search.performed == false %}
               <h1 class="page-title">{{ 'templates.search.title' | t }}
@@ -51,7 +52,6 @@
           <h1 class="page-title">{{ page_title }}
           </h1>
       {% endif %}
-      {%- render 'breadcrumb' -%}
     </div>
   </div>
 </div>
