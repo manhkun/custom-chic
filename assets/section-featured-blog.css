@@ -5,9 +5,6 @@
 .blog ul li {
   list-style: none;
 }
-.blog-wrapper-item {
-  padding: 0 5px;
-}
 @media screen and (min-width: 768px) {
   .blog-placeholder {
     text-align: center;

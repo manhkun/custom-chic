@@ -22,7 +22,7 @@ class CartItems extends HTMLElement {
     
     this.debouncedOnChange = debounce((event) => {
       this.onChange(event);
-    }, 300);
+    }, 500);
     this.preview = this.querySelectorAll('.preview_img')
     this.preview.forEach(a => a.addEventListener('click', this.previewDesign.bind(this)));
 

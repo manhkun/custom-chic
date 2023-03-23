@@ -75,13 +75,16 @@
     {%- endunless -%}
   <div class="page-width-desktop blog-list-wrapper isolate{% if posts_displayed < 3 %} page-width-tablet{% endif %}">
     {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
-      <ul id="Slider-{{ section.id }}" class="blog-wrapper blog-wrapper-{{ section.id }}" role="list">
-        {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
-          <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="blog-wrapper-item main-blog-wrapper-item" >
-            {% render 'article-card', blog: section.settings.blog, article: article, media_aspect_ratio: 1.625, show_image: true, show_blog_title:section.settings.show_blog_title ,show_date: section.settings.show_date, show_author: section.settings.show_author, show_excerpt: true %}
-          </li>
-        {%- endfor -%}
-      </ul>
+      <div class="swiper blog-wrapper-{{ section.id }} blog-wrapper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
+            <li id="Slide-{{ section.id }}-{{ forloop.index }}" class="swiper-slide blog-wrapper-item main-blog-wrapper-item" >
+              {% render 'article-card', blog: section.settings.blog, article: article, media_aspect_ratio: 1.625, show_image: true, show_blog_title:section.settings.show_blog_title ,show_date: section.settings.show_date, show_author: section.settings.show_author, show_excerpt: true %}
+            </li>
+          {%- endfor -%}
+        </div>
+      </div>
     {%- else -%}
       <div class="blog-placeholder">
         <div class="placeholder media media--landscape">
@@ -101,32 +104,22 @@
 </div>
 <script>
   $(document).ready(function() {
-    $('.blog-wrapper-{{ section.id }}').slick({
-      slidesToShow: {{ section.settings.columns_desktop }},
-      dots: false,
-      arrow: false,
-      infinite: false,
-      swipeToSlide: true,
-      autoplaySpeed: 3000,
-      prevArrow: $('.prev-{{ section.id }}'),
-      nextArrow: $('.next-{{ section.id }}'),
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: {{ section.settings.columns_tablet }},
-            slidesToScroll: 1
-          }
+    const swiperrr = new Swiper('.blog-wrapper-{{ section.id }}', {
+      slidesPerView: 1.38,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.next-{{ section.id }}',
+        prevEl: '.prev-{{ section.id }}'
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2
         },
-        {
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
+        1024: {
+          slidesPerView: 3
         }
-      ]
-    });
+      }
+    })
   });
 </script>
 

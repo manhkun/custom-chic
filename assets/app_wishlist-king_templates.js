@@ -263,55 +263,12 @@ const templates = [
       "render .wk-product-form": (form) => {
         const container = form.closest("[data-wk-item]");
         const itemId = container.getAttribute("data-wk-item");
-        WishlistKing.toolkit.getItem(itemId).then((product) => {
-          WishlistKing.toolkit.initProductForm(form, product, {
-            // NOTE: Uncomment to override default option change
-            // onOptionChange: (event) => {
-            //   console.log(event.dataset);
-            // },
-            // NOTE: Uncomment to override default form submit
-            // onFormSubmit: (event) => {
-            //   event.preventDefault();
-            //   event.stopPropagation();
-            // },
-          });
-        });
       },
     },
     template: `
-      <form class="wk-product-form" action="/cart/add" method="post">
-        {% assign current_variant = product.selected_or_first_available_variant %}
-        {% comment %}
-        <div class="wk-product-form__options">
-          <input name="id" value="{{ current_variant.id }}" type="hidden">
-          {% unless product.has_only_default_variant %}
-            {% for option in product.options_with_values %}
-              <div class="wk-product-form__option">
-                <label class="wk-product-form__option__label" for="Option{{ option.position }}">
-                  {{ option.name }}
-                </label>
-                <select class="wk-product-form__option__select" name="options[{{ option.name | escape }}]">
-                  {% for value in option.values %}
-                    <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %} {% if option.soldout_values contains value %}disabled{% endif %}>
-                      {{ value }}
-                    </option>
-                  {% endfor %}
-                </select>
-              </div>
-            {% endfor %}
-          {% endunless %}
-          
-          <div class="wk-product-form__quantity">
-            <label class="wk-product-form__quantity__label" for="Quantity">{{ locale.quantity }}</label>
-            <input class="wk-product-form__quantity__input" type="number" name="quantity" value="1" min="1">
-          </div>
-         
-        </div>
-        {% endcomment %}
-        <button type="submit" class=" title-shop-now btn-secondary wk-product-form__submit" data-wk-add-to-cart="{{ product.wishlist_item_id }}" {% unless current_variant.available %}disabled{% endunless %}>
-          {% if current_variant.available %}{{ locale.add_to_cart }}{% else %}{{ locale.sold_out }}{% endif %}
-        </button>
-      </form>
+      <div class="title-shop-now btn-secondary">
+        <a href="{{ product.url }}">Shop now</a>
+      </div>
     `,
   },
   {

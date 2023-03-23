@@ -23,6 +23,27 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .scrollbar-product-slider--{{ section.id }} {
+    margin-top: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    height: 2px;
+    background: #E6E6E6;
+    border-radius: 2px;
+  }
+  .scrollbar-product-slider--{{ section.id }} .swiper-scrollbar-drag {
+    display: block !important;
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .scrollbar-product-slider--{{ section.id }} {
+      margin-top: 48px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
 {%- endstyle -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="gp-product-slider" class="gp-section-wrapper gp-product-slider-wrapper pt-{{ section.settings.padding_top }}-{{ section.settings.padding_top_mb }} pb-{{ section.settings.padding_bottom }}-{{ section.settings.padding_bottom_mb }}">
@@ -36,70 +57,66 @@
             assign product_limit = section.settings.limit
             assign collection = collections[section.settings.collection]
         -%}
-        <slider-component>
-          <div class="title-wrapper">
-            <p class="heading-title h2">{{ section.settings.collection.title | escape }}</p>
-            <div class="pagination-wrapper">
-              {%- if section.settings.collection != blank -%}
-                <a href="{{ section.settings.collection.url }}" class=" shop-products desktop-only link">
-                  {{ 'sections.product-slider.shop' | t }}
-                </a>
-              {%- endif -%}
-              <div class="pagination-custom">
-                {%- liquid
-                  assign products_to_display = collection.all_products_count
+        <div class="title-wrapper">
+          <p class="heading-title h2">{{ section.settings.collection.title | escape }}</p>
+          <div class="pagination-wrapper">
+            {%- if section.settings.collection != blank -%}
+              <a href="{{ section.settings.collection.url }}" class=" shop-products desktop-only link">
+                {{ 'sections.product-slider.shop' | t }}
+              </a>
+            {%- endif -%}
+            <div class="pagination-custom">
+              {%- liquid
+                assign products_to_display = collection.all_products_count
 
-                  if collection.all_products_count > product_per_row
-                    assign products_to_display = product_per_row 
-                  endif
-                -%}
-                <div class="slider-counter caption hidden">
-                  <span class="slider-counter--current">1</span>
-                  <span aria-hidden="true"> / </span>
-                  <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
-                  <span class="slider-counter--total">{{ products_to_display }}</span>
-                </div>
-                <button id="prev-control-{{ section.id }}" type="button" class=" prev-{{ section.id }} pagination__item pagination__item--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}"> {%- render 'icon-prev' -%}</button>
-                <button id="next-control-{{ section.id }}" type="button" class=" next-{{ section.id }} pagination__item pagination__item--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-next' -%}</button>
+                if collection.all_products_count > product_per_row
+                  assign products_to_display = product_per_row 
+                endif
+              -%}
+              <div class="slider-counter caption hidden">
+                <span class="slider-counter--current">1</span>
+                <span aria-hidden="true"> / </span>
+                <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
+                <span class="slider-counter--total">{{ products_to_display }}</span>
               </div>
+              <button id="prev-control-{{ section.id }}" type="button" class=" prev-{{ section.id }} pagination__item pagination__item--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}"> {%- render 'icon-prev' -%}</button>
+              <button id="next-control-{{ section.id }}" type="button" class=" next-{{ section.id }} pagination__item pagination__item--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-next' -%}</button>
             </div>
-            <a href="{{ section.settings.collection.url }}" class=" view-all link">
-              {{ 'sections.featured_blog.view_all' | t }}
-            </a>
           </div>
-          <div class="sly-slider-{{ section.id }}">
-            <ul id="list-item-{{ section.id }}" class="product-grid-slider grid--{{ product_per_row }}-col-desktop grid--{{ product_per_row_tablet }}-col-tablet grid--{{ product_per_row_mobile }}-col" >
-              {% if section.settings.collection != blank %}
-                {% for product in collection.products limit: product_limit %}
-                  <li class="slider-li grid__item slider__slide grid-product">
-                    {% render 'product-card',
-                      product: product,
-                      media_size: settings.image_ratio,
-                      add_image_padding: section.settings.add_image_padding,
-                      show_secondary_image: settings.show_secondary_image,
-                      collection: section.settings.collection,
-                    %}
-                  </li>
-                {% endfor %}
-              {% else %}
-                {% for i in (1..product_limit) %}
-                  <li class="slider-li grid__item slider__slide grid-product">
-                    {% render 'product-card-placeholder', 
-                    product: product ,
+          <a href="{{ section.settings.collection.url }}" class=" view-all link">
+            {{ 'sections.featured_blog.view_all' | t }}
+          </a>
+        </div>
+        <div class="sly-slider-{{ section.id }} swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper" id="list-item-{{ section.id }}">
+            {% if section.settings.collection != blank %}
+              {% for product in collection.products limit: product_limit %}
+                <li class="swiper-slide slider-li grid__item slider__slide grid-product">
+                  {% render 'product-card',
+                    product: product,
                     media_size: settings.image_ratio,
+                    add_image_padding: section.settings.add_image_padding,
                     show_secondary_image: settings.show_secondary_image,
-                    add_image_padding: section.settings.add_image_padding %}
-                  </li>
-                {% endfor %}
-              {% endif %}
-            </ul>
+                    collection: section.settings.collection,
+                  %}
+                </li>
+              {% endfor %}
+            {% else %}
+              {% for i in (1..product_limit) %}
+                <li class="slider-li grid__item slider__slide grid-product">
+                  {% render 'product-card-placeholder', 
+                  product: product ,
+                  media_size: settings.image_ratio,
+                  show_secondary_image: settings.show_secondary_image,
+                  add_image_padding: section.settings.add_image_padding %}
+                </li>
+              {% endfor %}
+            {% endif %}
           </div>
-          <div class="scrollbar-product-slider">
-            <div class="handle">
-              <div class="mousearea"></div>
-            </div>
-          </div>
-        </slider-component>
+        </div>
+        <div class="scrollbar-product-slider--{{ section.id }}">
+        </div>
       </div>
     </div>
   </div>
@@ -107,69 +124,26 @@
 <script>
 // ====== sly slider init !!!
 (function () {
-		var $frame = $('.sly-slider-{{ section.id }}');
-		var $wrap  = $frame.parent();
-
-		// Call Sly on frame
-		$frame.sly({
-			horizontal: 1,
-			itemNav: 'basic',
-			smart: 1,
-			activateOn: 'click',
-			mouseDragging: 1,
-			touchDragging: 1,
-			releaseSwing: 1,
-			startAt: 0,
-			scrollBar: $wrap.find('.scrollbar-product-slider'),
-			scrollBy: 1,
-			speed: 1000,
-			elasticBounds: 1,
-      startPaused: false,
-			easing: 'easeOutExpo',
-			dragHandle: 1,
-			dynamicHandle: 1,
-			clickBar: 1,
-
-			// Cycling
-			cycleBy: false,
-
-			// Buttons
-			//prev: $wrap.find('.prev'),
-			//next: $wrap.find('.next')
-		});
-
-    $wrap.find('.next-{{ section.id }}').on('click', function () {
-      
-      $frame.sly('slideBy', 1);
-      
-    }); 
-    
-    $wrap.find('.prev-{{ section.id }}').on('click', function () {
-      //document.getElementById("next-control").removeAttribute("disabled");
-      $frame.sly('slideBy', -1);
-      
-    });
-	
-
-    setInterval(function () {
-        var myElement = document.querySelector('#list-item-{{ section.id }}');
-        var style = window.getComputedStyle(myElement);
-        var matrix = new WebKitCSSMatrix(style.transform);
-        var widthSlide = parseFloat(document.getElementById('list-item-{{ section.id }}').style.width);
-        var maxWidth = parseFloat($("#list-item-{{ section.id }}").width());
-        
-        if(widthSlide - maxWidth + matrix.m41 <= 5){
-          document.getElementById("next-control-{{ section.id }}").disabled = "disabled";
-        }else{
-          document.getElementById("next-control-{{ section.id }}").removeAttribute("disabled");
-        }
-
-        if(matrix.m41>-1){
-          document.getElementById("prev-control-{{ section.id }}").disabled = "disabled";
-        }else{
-        document.getElementById("prev-control-{{ section.id }}").removeAttribute("disabled");
+  const swiperrr = new Swiper('.sly-slider-{{ section.id }}', {
+    slidesPerView: 2,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.next-{{ section.id }}',
+      prevEl: '.prev-{{ section.id }}'
+    },
+    scrollbar: {
+      el: '.scrollbar-product-slider--{{ section.id }}',
+      draggable: true
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 3
+      },
+      1024: {
+        slidesPerView: 4
       }
-    }, 100);
+    }
+  })
 }());
 </script>
 {% schema %}

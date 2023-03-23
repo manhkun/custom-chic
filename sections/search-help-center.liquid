@@ -12,7 +12,7 @@
           <div class="field">
             <input type="hidden" name="type" value="article">
             <input type="hidden" name="view" value="help-center">
-            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
+            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ search.terms }}" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
             <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
           </div>
         </form>

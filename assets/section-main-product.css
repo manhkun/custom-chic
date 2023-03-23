@@ -390,6 +390,11 @@ a.product__text {
   word-break: break-word;
   margin-bottom: 15px;
 }
+
+.recomatic-ratings {
+  display: none !important;
+}
+
 .main-product-wrapper .product__title h1,
 .main-product-wrapper .product__title a h2 {
   font-size: 22px;
@@ -1750,6 +1755,10 @@ variant-radios > fieldset:last-child{
   }
   .product__title {
     margin-bottom: 12px;
+  }
+
+  .recomatic-ratings {
+    display: none !important;
   }
   .product__info-container .product__title {
     margin-bottom: 7px;
