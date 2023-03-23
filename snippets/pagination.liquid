@@ -22,6 +22,7 @@
             </div>
             <div class='pa-select-box pagination__list' id="pagination">
               <ul class='pa-select-list' id="collection-pagination">
+
               {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
 
               {% comment %} Use string splitting to pull the value from content_for_header and apply some string clean up {% endcomment %}
@@ -32,13 +33,11 @@
                  replace:'\u0026','&' | 
                  replace: sectionID, ''
               -%}
-
-              {% assign pageUrlss = pageUrl | remove: "customchic.co.uk" %}
-              {% assign pageUrls = pageUrl | remove: "customchic.co.uk/collections/" %}
-              {% assign pageUrls = pageUrl | remove: "customchic.co.uk/search" %}
+                {% assign pageUrlss = pageUrl | remove: "customchic.co.uk" %}
+                {% assign pageUrls = pageUrl | remove: "customchic.co.uk/collections/" | remove: "customchic.co.uk/search" %}
                 {% assign count = paginate.pages %}
                 {% for part in (1..count) %}
-                      <li {% if paginate.current_page == part %}class="active"{% endif %}><a href="{{ pageUrls }}{% if pageUrlss == collection.url %}?{% else %}&{% endif %}page={{ forloop.index }}" data-item="{{ forloop.index }}">{{ forloop.index }}</a></li>
+                  <li {% if paginate.current_page == part %}class="active"{% endif %}><a href="{{ pageUrls }}{% if pageUrlss == collection.url %}?{% else %}&{% endif %}page={{ forloop.index }}" data-item="{{ forloop.index }}">{{ forloop.index }}</a></li>
                 {% endfor %}
               </ul>
             </div>

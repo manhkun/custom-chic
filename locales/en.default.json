@@ -266,6 +266,10 @@
         "one": "{{ count }} result found for “{{ terms }}”",
         "other": "{{ count }} results found for “{{ terms }}”"
       },
+      "results_with_count_and_term_html": {
+        "one": "{{ count }} result found for <strong>“{{ terms }}”</strong>",
+        "other": "{{ count }} results found for <strong>“{{ terms }}”</strong>"
+      },
       "title": "Search results",
       "search_for": "Search for “{{ terms }}”"
     },

@@ -1732,15 +1732,15 @@ input[type='checkbox'] {
 }
 
 .shopify-section-header-hidden {
-  top: -100%;
+  top: -100px;
 }
 
 .shopify-section-header-hidden.menu-open {
   transform: translateY(0);
 }
 
-#shopify-section-header.animate {
-  transition: top 0.4s ease-in-out;
+#shopify-section-header {
+  transition: top 0.3s ease-in-out;
 }
 
 /* Main Header Layout */

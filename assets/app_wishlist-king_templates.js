@@ -24,6 +24,8 @@ const templates = [
       "click button[data-wk-add-product]": (event) => {
         event.preventDefault();
         event.stopPropagation();
+
+        event.target.style.color = '#000'
         // fly to cart
         if( window.innerWidth > 1177 ){
           var cart = $('.header-top-wrapper header .wk-link');
@@ -215,7 +217,7 @@ const templates = [
                       <a class="wk-product-title" href="{{ product | variant_url }}">
                         {{ product.title }}
                       </a>
-                      <span class="wk-product-vendor h5 product-vendor">{{ product.vendor }}</span>
+                      <span class="wk-product-vendor h5 product-vendor">{{ product.type }}</span>
                       <div class="wk-product-price">
                         <span class="wk-product-price--current">{{ variant.price | money }}</span>
                         <span class="wk-product-price--compare">{{ variant.compare_at_price | money }}</span>
@@ -386,7 +388,7 @@ const templates = [
   {
     id: "wishlist-icon",
     template: `
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="currentColor">
     <path d="M4.33332 0C2.30859 0 0.666656 1.57396 0.666656 3.51585C0.666656 5.08342 1.30832 8.80383 7.62452 12.5647C7.73766 12.6314 7.86755 12.6667 7.99999 12.6667C8.13243 12.6667 8.26232 12.6314 8.37546 12.5647C14.6917 8.80383 15.3333 5.08342 15.3333 3.51585C15.3333 1.57396 13.6914 0 11.6667 0C9.64192 0 7.99999 2.13082 7.99999 2.13082C7.99999 2.13082 6.35806 0 4.33332 0Z" stroke="black"/>
     </svg>
     `,
@@ -394,7 +396,7 @@ const templates = [
   {
     id: "remove-icon",
     template: `
-      <svg class="wk-icon__svg" width="100%" height="100%" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <svg class="wk-icon__svg" fill="#000" width="100%" height="100%" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <path vector-effect="non-scaling-stroke" d="M0.309,0.309a0.9,0.9,0,0,1,1.268,0L63.691,62.423a0.9,0.9,0,0,1-1.268,1.268L0.309,1.577A0.9,0.9,0,0,1,.309.309Z"/>
         <path vector-effect="non-scaling-stroke" d="M63.691,0.309a0.9,0.9,0,0,1,0,1.268L1.577,63.691A0.9,0.9,0,0,1,.309,62.423L62.423,0.309A0.9,0.9,0,0,1,63.691.309Z"/>
       </svg>

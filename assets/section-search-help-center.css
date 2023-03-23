@@ -122,6 +122,12 @@
   color: #333333;
   font-size: 16px;
   line-height: 26px;
+  max-height: 26px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* if you change this, make sure to change the fallback line-height and height */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-help__result-content p {
