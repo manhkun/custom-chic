@@ -1561,9 +1561,6 @@ slider-component .media-wrapper .slider-buttons button {
   top: calc(50% - 6px);
   width: 19px;
 }
-.shipping_information .accordion__content {
-  margin-top: -7px;
-}
 .product .cl-img-controls-margin {
   margin-bottom: 90px !important;
 }

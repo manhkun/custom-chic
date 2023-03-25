@@ -314,9 +314,6 @@
       }
 
       body {
-        display: grid;
-        grid-template-rows: auto auto 1fr auto;
-        grid-template-columns: 100%;
         min-height: 100%;
         margin: 0;
         letter-spacing: 0.06rem;
@@ -412,13 +409,11 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    {% if template contains 'product' %}
-      {{ 'jquery.products.min.js' | asset_url | script_tag }}
+    {% if template contains 'product' or template contains 'collection' %}
       <script>
         Shopify.Products.recordRecentlyViewed();
       </script>
     {% endif %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
       <!-- FreshChat START -->
       <script>
         function initFreshChat() {

@@ -433,6 +433,7 @@
 }
 .right-content .header__icon.header__icon--search {
   margin-top: 3px;
+  padding: 0;
 }
 .search_mb_poup {
   margin-right: 4px;

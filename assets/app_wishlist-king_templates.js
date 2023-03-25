@@ -208,7 +208,9 @@ const templates = [
                     {% endunless %}
                     <div class="card-media">
                     <div class="card__inner">
-                    <a href="{{ product | variant_url }}" class="wk-product-image" title="{{ locale.view_product }}" style="background-image: url({{ product | variant_img_url: '1000x' }})"></a>
+                    <a href="{{ product | variant_url }}" class="wk-product-image" title="{{ locale.view_product }}" style="background-image: url({{ product | variant_img_url: '300x' }})">
+                      <img src="{{ product | variant_img_url: '10x' }}" />
+                    </a>
                     {% include "wishlist-shopnow" %}
                     </div>
                     </div>

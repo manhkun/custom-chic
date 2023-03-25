@@ -5,6 +5,11 @@
   float: left;
   text-align: center;
 }
+
+.facets-container {
+  position: sticky;
+  background: #fff;
+}
 .range-slider input[type="range"] {
   pointer-events: none;
   position: absolute;
