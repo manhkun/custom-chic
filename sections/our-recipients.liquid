@@ -7,6 +7,25 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+  .scrollbar-product-slider--{{ section.id }} {
+    margin-top: 16px;
+    margin-right: 16px;
+    height: 2px;
+    background: #E6E6E6;
+    border-radius: 2px;
+  }
+  .scrollbar-product-slider--{{ section.id }} .swiper-scrollbar-drag {
+    display: block !important;
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .scrollbar-product-slider--{{ section.id }} {
+      margin-top: 48px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
 {%- endstyle -%}
 
 <div class=" recipient bg-{{ section.settings.background_color}} p-{{ section.settings.padding_top}}-{{ section.settings.padding_bottom}}">
@@ -40,10 +59,10 @@
       {%- endif -%}
     </div>
     {% if section.blocks.size > 0 %}
-    <div class="recipient-slider-{{ section.id }} recipients-list-wrapper">
-      <div id="list-item-{{ section.id }}" class=" recipients-wrapper {% if section.blocks.size > 5 %}recipients-slide-{{ section.id }} {% endif%}">
+    <div class="recipient-slider-{{ section.id }} recipients-list-wrapper swiper">
+      <div id="list-item-{{ section.id }}" class="swiper-wrapper recipients-wrapper {% if section.blocks.size > 5 %}recipients-slide-{{ section.id }} {% endif%}">
         {% for block in section.blocks %}
-          <div class=" recipients-wrapper-item {{ block.settings.align_item}}">
+          <div class=" recipients-wrapper-item {{ block.settings.align_item}} swiper-slide">
             <a href="{{ block.settings.url_item }}">
               {% if  block.settings.icon_image != blank %}
                 <img src="{{ block.settings.icon_image | image_url: width: 533 }}" srcset="{%- if block.settings.icon_image.width >= 375 -%}{{ block.settings.icon_image | image_url: width: 375 }} 375w,{%- endif -%}{%- if block.settings.icon_image.width >= 750 -%}{{ block.settings.icon_image | image_url: width: 750 }} 750w,{%- endif -%}{%- if block.settings.icon_image.width >= 1100 -%}{{ block.settings.icon_image | image_url: width: 1100 }} 1100w,{%- endif -%}{%- if block.settings.icon_image.width >= 1500 -%}{{ block.settings.icon_image | image_url: width: 1500 }} 1500w,{%- endif -%}{%- if block.settings.icon_image.width >= 1780 -%}{{ block.settings.icon_image | image_url: width: 1780 }} 1780w,{%- endif -%}{%- if block.settings.icon_image.width >= 2000 -%}{{ block.settings.icon_image | image_url: width: 2000 }} 2000w,{%- endif -%}{%- if block.settings.icon_image.width >= 2800 -%}{{ block.settings.icon_image | image_url: width: 2800 }} 2800w{%- endif -%}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="{{ block.settings.icon_image.alt | escape }}" loading="lazy" width="{{ block.settings.icon_image.width }}" height="{{ block.settings.icon_image.height }}" class="motion-reduce"/>
@@ -61,10 +80,7 @@
         {%- endfor -%}
       </div>
     </div>
-    <div class="scrollbar-product-slider scrollbar-product-slider-our">
-      <div class="handle">
-        <div class="mousearea"></div>
-      </div>
+    <div class="scrollbar-product-slider scrollbar-product-slider--{{ section.id }} scrollbar-product-slider-our">
     </div>
     {% endif %}
   </div>
@@ -72,69 +88,47 @@
 <script>
   // ====== sly slider init !!!
 (function () {
-  var $frame = $('.recipient-slider-{{ section.id }}');
-  var $wrap  = $frame.parent();
-  $frame.sly({
-    horizontal: 1,
-    itemNav: 'basic',
-    smart: 1,
-    activateOn: 'click',
-    mouseDragging: 1,
-    touchDragging: 1,
-    releaseSwing: 1,
-    startAt: 0,
-    scrollBar: $wrap.find('.scrollbar-product-slider'),
-    scrollBy: 1,
-    speed: 1000,
-    elasticBounds: 1,
-    startPaused: false,
-    easing: 'easeOutExpo',
-    dragHandle: 1,
-    dynamicHandle: 1,
-    clickBar: 1,
-
-    // Cycling
-    cycleBy: false,
-
-    // Buttons
-    //prev: $wrap.find('.prev'),
-    //next: $wrap.find('.next')
-  });
-
-  var ab = $('.recipients-wrapper').width();
-
-  $wrap.find('.next-{{ section.id }}').on('click', function () {
-    
-    $frame.sly('slideBy', 1);
-    
-  }); 
-  
-  $wrap.find('.prev-{{ section.id }}').on('click', function () {
-    //document.getElementById("next-control").removeAttribute("disabled");
-    $frame.sly('slideBy', -1);
-    
-  });
-  var myElement = document.querySelector('#list-item-{{ section.id }}');
-      var style = window.getComputedStyle(myElement);
-      var matrix = new WebKitCSSMatrix(style.transform);
-      var widthSlide = parseFloat(document.querySelector('list-item-{{ section.id }}').style.width);
-      var maxWidth = parseFloat($(".recipient-slider-{{ section.id }}").width());
-      if(widthSlide <= maxWidth){
-        $('.pagination-custom-our').css({"display": 'none'});
-        $('.scrollbar-product-slider-our').css({"display": 'none'});
+  const swiperContainer = document.querySelector('.recipient-slider-{{ section.id }}');
+  const swiperrr = new Swiper(swiperContainer, {
+    slidesPerView: 2.4,
+    spaceBetween: 16,
+    navigation: {
+      nextEl: '.next-{{ section.id }}',
+      prevEl: '.prev-{{ section.id }}'
+    },
+    threshold: 0,
+    scrollbar: {
+      el: '.scrollbar-product-slider--{{ section.id }}',
+      draggable: true
+    },
+    preventClicks: true,
+    speed: 200,
+    breakpoints: {
+      768: {
+        slidesPerView: 4
+      },
+      1240: {
+        slidesPerView: 5,
+        spaceBetween: 57.5
       }
-      
-      if(widthSlide - maxWidth + matrix.m41 <= 5){
-        document.getElementById("next-control-{{ section.id }}").disabled = "disabled";
-      }else{
-        document.getElementById("next-control-{{ section.id }}").removeAttribute("disabled");
-      }
-
-      if(matrix.m41>-1){
-        document.getElementById("prev-control-{{ section.id }}").disabled = "disabled";
-      }else{
-      document.getElementById("prev-control-{{ section.id }}").removeAttribute("disabled");
     }
+  })
+
+let touchStartY = 0;
+
+  swiperContainer.addEventListener('touchstart', function (event) {
+    touchStartY = event.touches[0].clientY;
+  });
+
+  swiperContainer.addEventListener('touchmove', function (event) {
+    const touchEndY = event.touches[0].clientY;
+    const touchDiffY = touchEndY - touchStartY;
+
+    // If the user is swiping up or down
+    if (Math.abs(touchDiffY) > 10) {
+      event.preventDefault(); // Prevent default window scroll behavior
+    }
+  });
 }());
 </script>
 

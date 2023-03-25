@@ -21,6 +21,10 @@ html.no-js .no-js-hidden {
 }
 
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .page-width-desktop {
   padding: 0 16px;
   margin: 0 auto;

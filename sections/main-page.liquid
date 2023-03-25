@@ -32,7 +32,7 @@
   }
 {%- endstyle -%}
 
-<div class="page-width-desktop section-{{ section.id }}-padding">
+<div class="page-width-desktop section-{{ section.id }}-padding {{ template | handleize }}">
   {%- if page.title != 'Your Wishlist' -%}
     <h1 class="main-page-title page-title h0">
       {{ page.title | escape }}

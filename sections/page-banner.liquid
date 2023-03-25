@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ 'page-banner.css' | asset_url }}" type="text/css">
 
 
-<div class="page-banner-wrapper{% if section.settings.general_title_background_image != blank %} banner-has-image{% else %} banner-no-image{% endif %}">
+<div class="page-banner-wrapper page-banner--{{ template | handleize }} {% if section.settings.general_title_background_image != blank %} banner-has-image{% else %} banner-no-image{% endif %}">
   <div class="banner-page-main {{ section.settings.breadcrumb_position }}">
     <div class="page-width-desktop">
       {% if template contains 'product' %}

@@ -111,5 +111,9 @@
   }
 }
 
-
-
+.banner--wishlist .page-sub-title {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 160%;
+  color: #E6E6E6;
+}

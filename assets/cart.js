@@ -62,16 +62,6 @@ class CartItems extends HTMLElement {
         section: 'cart-icon-bubble',
         selector: '.shopify-section'
       },
-      {
-        id: 'cart-live-region-text',
-        section: 'cart-live-region-text',
-        selector: '.shopify-section'
-      },
-      {
-        id: 'main-cart-footer',
-        section: document.getElementById('main-cart-footer').dataset.id,
-        selector: '.js-contents',
-      }
     ];
   }
 

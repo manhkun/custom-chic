@@ -209,7 +209,7 @@ const templates = [
                     <div class="card-media">
                     <div class="card__inner">
                     <a href="{{ product | variant_url }}" class="wk-product-image" title="{{ locale.view_product }}" style="background-image: url({{ product | variant_img_url: '1000x' }})"></a>
-                    {% include "wishlist-product-form" %}
+                    {% include "wishlist-shopnow" %}
                     </div>
                     </div>
                     <div class="card-details">
@@ -258,16 +258,10 @@ const templates = [
     `,
   },
   {
-    id: "wishlist-product-form",
-    events: {
-      "render .wk-product-form": (form) => {
-        const container = form.closest("[data-wk-item]");
-        const itemId = container.getAttribute("data-wk-item");
-      },
-    },
+    id: "wishlist-shopnow",
     template: `
       <div class="title-shop-now btn-secondary">
-        <a href="{{ product.url }}">Shop now</a>
+        <a href="{{ product | variant_url }}">Shop now</a>
       </div>
     `,
   },

@@ -3,7 +3,7 @@
 
 <div class="collection-banner-wrapper{% if section.settings.general_title_background_image != blank %} banner-has-image{% else %} banner-no-image{% endif %}">
   <div class="page-width-desktop">
-    <div class="banner {{ section.settings.breadcrumb_position }} banner--{{ template.name }}">
+    <div class="banner {{ section.settings.breadcrumb_position }} banner--{{ template.name }} banner--{{ template.suffix }}">
       {% if template contains 'product' %}
         {% elsif template == 'cart'  %}
           <h1 class="page-title">{{ 'cart.general.title' | t }}
@@ -24,6 +24,12 @@
         {% elsif template contains 'page' %}
           <h1 class="page-title">{{ page.title }}
           </h1>
+          <div class="bre-show-hide hidden-desktop">
+            {% render 'breadcrumb' %}
+          </div>
+          {%- if template.suffix == 'wishlist' -%}
+            <p class="page-sub-title js-wishlist-count"></p>
+          {%- endif -%}
         {% elsif template contains 'search' %}
           <h1 class="page-title">{{ 'templates.search.title' | t }}</h1>
           <h4 class="page-sub-title">
@@ -76,6 +82,31 @@
       $(this).prev().toggle();
       return false;
     });
+
+    {%- if template.suffix == 'wishlist' -%}
+      const wkPage = document.querySelector('.page-wishlist');
+      const wkCount = document.querySelector('.js-wishlist-count')
+      const config = { attributes: true, childList: true, subtree: true };
+
+      function setWishlistCount () {
+        const wkGrid = document.querySelector('.wk-grid');
+        const count = wkGrid.childElementCount
+        wkCount.innerHTML = count == 1 ? count + ' product' : count + ' products'
+      }
+
+      setWishlistCount()
+
+      // Callback function to execute when mutations are observed
+      const callback = (mutationList, observer) => {
+        for (const mutation of mutationList) {
+          if (mutation.type === "childList") {
+            setWishlistCount()
+          }
+        }
+      };
+      const observer = new MutationObserver(callback);
+      observer.observe(wkPage, config);
+    {%- endif -%}
   });
 </script>
 

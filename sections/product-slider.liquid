@@ -124,17 +124,21 @@
 <script>
 // ====== sly slider init !!!
 (function () {
-  const swiperrr = new Swiper('.sly-slider-{{ section.id }}', {
+  const swiperContainer = document.querySelector('.sly-slider-{{ section.id }}');
+  const swiperrr = new Swiper(swiperContainer, {
     slidesPerView: 2,
     spaceBetween: 10,
     navigation: {
       nextEl: '.next-{{ section.id }}',
       prevEl: '.prev-{{ section.id }}'
     },
+    threshold: false,
     scrollbar: {
       el: '.scrollbar-product-slider--{{ section.id }}',
       draggable: true
     },
+    preventClicks: true,
+    speed: 500,
     breakpoints: {
       768: {
         slidesPerView: 3
@@ -144,6 +148,23 @@
       }
     }
   })
+
+let touchStartY = 0;
+
+  swiperContainer.addEventListener('touchstart', function (event) {
+    touchStartY = event.touches[0].clientY;
+  });
+
+  swiperContainer.addEventListener('touchmove', function (event) {
+    const touchEndY = event.touches[0].clientY;
+    const touchDiffY = touchEndY - touchStartY;
+
+    // If the user is swiping up or down
+    if (Math.abs(touchDiffY) > 10) {
+      event.preventDefault(); // Prevent default window scroll behavior
+    }
+  });
+
 }());
 </script>
 {% schema %}
