@@ -13,8 +13,17 @@
 
 .product__media-wrapper {
   padding-left: 0;
-  z-index: 3 !important;
 }
+
+@media screen and (max-width: 768px) {
+  .product__media-wrapper {
+    z-index: 9999999 !important;
+    margin: 0 -16px;
+    max-width: calc(100% + 32px) !important;
+    width: calc(100% + 32px) !important;
+  }
+}
+
 .product__media-wrapper .slider-horizontal {
   position: sticky;
   top: 50px;
@@ -582,10 +591,6 @@ a.product__text {
 }
 
 @media screen and (max-width: 767px) {
-  .image-product-wrapper {
-    margin: 0 -16px;
-  }
-
   .slider.product__media-list::-webkit-scrollbar {
     height: 0.2rem;
     width: 0.2rem;
@@ -1189,6 +1194,7 @@ a.product__text {
 
   .product__modal-opener {
     width: 100%;
+    height: unset !important;
   }
 
   .thumbnail-slider {
@@ -1392,6 +1398,7 @@ variant-radios .option-item.selected span {
 }
 .cl-canvas-container {
   height: auto !important;
+  transition: top .3s ease;
 }
 .option-size-label {
   min-width: 51px;
@@ -1448,6 +1455,8 @@ variant-radios .option-item.selected span {
   background: transparent;
   border: none;
   display: grid;
+  border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .horizontal-thumbnail .slider-dot img {
@@ -1468,6 +1477,7 @@ variant-radios .option-item.selected span {
 .slider-horizontal .media-mini-dot .slider {
   column-gap: 8px;
   margin-top: 8px;
+  margin-left: 8px;
 }
 .horizontal-thumbnail .slider-dots .grid__item.dot-mb {
   margin: 0;
@@ -1519,11 +1529,11 @@ slider-component .media-wrapper .slider-buttons button {
   stroke: #ccc;
 }
 .media-wrapper .slider-buttons button.slider-button--prev{
-  left: -9px;
+  left: 7px;
   position: absolute;
 }
 .media-wrapper .slider-buttons button.slider-button--next{
-  right: -9px;
+  right: 7px;
   position: absolute;
 }
 @media screen and (min-width: 768px) {
@@ -1543,9 +1553,7 @@ slider-component .media-wrapper .slider-buttons button {
   width: 0;
   height: 0;
 }
-.media-mini-dot {
-  margin: 0 -8px;
-}
+
 .accordion__content-text::after {
   content: "";
   position: absolute;
@@ -1560,6 +1568,7 @@ slider-component .media-wrapper .slider-buttons button {
   right: 6px;
   top: calc(50% - 6px);
   width: 19px;
+  transition: all .2s ease;
 }
 .product .cl-img-controls-margin {
   margin-bottom: 90px !important;
@@ -1662,7 +1671,7 @@ variant-radios > fieldset:last-child{
   background-size: cover;
   width: 16px;
   height: 16px;
-  z-index: 999;
+  z-index: 2;
 }
 #cl_optionsapp .swatch-container .swatch {
   max-height: 82px;

@@ -25,6 +25,32 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .scrollbar-product-slider--{{ section.id }} {
+    margin-top: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    height: 2px;
+    background: #E6E6E6;
+    border-radius: 2px;
+  }
+
+  .scrollbar-product-slider--{{ section.id }} .swiper-scrollbar-drag {
+    display: block !important;
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .scrollbar-product-slider--{{ section.id }} {
+      margin-top: 48px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  #recently-viewed-products {
+    padding-left: 0;
+  }
 {%- endstyle -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="gp-product-slider" class="gp-section-wrapper gp-product-slider-wrapper pt-{{ section.settings.padding_top }}-{{ section.settings.padding_top_mb }} pb-{{ section.settings.padding_bottom }}-{{ section.settings.padding_bottom_mb }} gp-recently-viewed-products">
@@ -43,41 +69,52 @@
 </div>
 <script>
   (function () {
-		var $frame = $('#recently-viewed-wrapper');
-		var $wrap  = $frame.parent();
-    $wrap.find('.next-{{ section.id }}').on('click', function () {
-      
-      $frame.sly('slideBy', 1);
-      
-    }); 
-    
-    $wrap.find('.prev-{{ section.id }}').on('click', function () {
-      //document.getElementById("next-control").removeAttribute("disabled");
-      $frame.sly('slideBy', -1);
-      
-    });
-	
-
-    setInterval(function () {
-        var myElement = document.querySelector('#recently-viewed-products');
-        var style = window.getComputedStyle(myElement);
-        var matrix = new WebKitCSSMatrix(style.transform);
-        var widthSlide = parseFloat(document.getElementById('recently-viewed-products').style.width);
-        var maxWidth = parseFloat($("#recently-viewed-products").width());
-        
-        if(widthSlide - maxWidth + matrix.m41 <= 5){
-          document.getElementById("next-control-{{ section.id }}").disabled = "disabled";
-        }else{
-          document.getElementById("next-control-{{ section.id }}").removeAttribute("disabled");
+    const swiperContainer = document.querySelector('#recently-viewed-wrapper');
+    const swiperrr = new Swiper(swiperContainer, {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.next-{{ section.id }}',
+        prevEl: '.prev-{{ section.id }}'
+      },
+      scrollbar: {
+        el: '.scrollbar-product-slider--{{ section.id }}',
+        draggable: true
+      },
+      preventClicks: true,
+      breakpoints: {
+        768: {
+          slidesPerView: 3
+        },
+        1024: {
+          slidesPerView: 4
         }
+      },
+      longSwipes: false,
+      shortSwipes: false,
+      freeMode: {
+        enable: true,
+        momentumBounce: false
+      },
+      followFinger: true
+    })
 
-        if(matrix.m41>-1){
-          document.getElementById("prev-control-{{ section.id }}").disabled = "disabled";
-        }else{
-        document.getElementById("prev-control-{{ section.id }}").removeAttribute("disabled");
+    let touchStartY = 0;
+
+    swiperContainer.addEventListener('touchstart', function (event) {
+      touchStartY = event.touches[0].clientY;
+    });
+
+    swiperContainer.addEventListener('touchmove', function (event) {
+      const touchEndY = event.touches[0].clientY;
+      const touchDiffY = touchEndY - touchStartY;
+
+      // If the user is swiping up or down
+      if (Math.abs(touchDiffY) > 10) {
+        event.preventDefault(); // Prevent default window scroll behavior
       }
-    }, 100);
-}());
+    });
+  }());
 </script>
 {% schema %}
   {

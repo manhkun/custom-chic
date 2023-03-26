@@ -633,14 +633,11 @@ class SliderComponent extends HTMLElement {
         this.dotActive = this.querySelector('button[name="dot"].active');
       
         this.dotButton = this.querySelectorAll('button[name="dot"]');
-        this.dotButton.forEach((dot) => {
-          dot.addEventListener('click', this.onDotClick.bind(this));
-        })
       }
     }
-    this.querySelectorAll('button[name="dot"]')?.forEach((dot) => {
+    this.dotButton?.forEach((dot) => {
       let dotPosition = dot.getAttribute("data-position");
-      dot.classList.remove("active");
+      this.dotButton.forEach(dot => dot.classList.remove('active'))
       if(dotPosition == this.currentPage) {
         dot.classList.add("active");
       }
@@ -690,15 +687,6 @@ class SliderComponent extends HTMLElement {
 
     } else {
       this.currentPage = this.currentPage - 1;
-    }
-    if(this.dotActive) {
-      this.dotActive.classList.remove("active");
-      
-      this.dotButton.forEach((dot) => {
-        if(dot.getAttribute("data-position") == this.currentPage) {
-          this.dotActive = dot;
-        }
-      })
     }
   }
   onDotClick(event) {
@@ -1163,12 +1151,10 @@ class Accordion {
   constructor(el) {
     // Store the <details> element
     this.el = el;
-    console.log(el)
     // Store the <summary> element
     this.summary = el.querySelector('summary');
     // Store the <div class="content"> element
     this.content = el.querySelector(':scope>div');
-    console.log(this.content);
 
     // Store the animation object (so we can cancel it if needed)
     this.animation = null;

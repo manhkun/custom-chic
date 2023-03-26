@@ -72,6 +72,7 @@ $(document).ready(function(){
           }else {
               $('.section-header').removeClass('ohio');
               $('.section-header').removeClass('shopify-section-header-hidden');
+              document.body.classList.remove('header-hidden')
               
           }
           if ($(window).scrollTop() >= 54) {

@@ -214,12 +214,14 @@
                     </div>
                     {% render 'icon-caret' %}
                   </summary>
-                  <div class="accordion__content accordion__content-text" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                    {{ product.description }}
+                  <div>
+                    <div class="accordion__content accordion__content-text" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                      {{ product.description }}
+                    </div>
+                    <p class="button-see">
+                      <span>{{ 'products.description.see_more' | t }}</span>
+                    </p>
                   </div>
-                  <p class="button-see">
-                    <span>{{ 'products.description.see_more' | t }}</span>
-                  </p>
                 </details>
               </div>
               {%- when 'collapsible_row' -%}
@@ -238,13 +240,15 @@
                       </div>
                       {% render 'icon-caret' %}
                     </summary>
-                    <div class="accordion__content accordion__content-text" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      {{ block.settings.content }}
-                      {{ block.settings.page.content }}
+                    <div>
+                      <div class="accordion__content accordion__content-text" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+                        {{ block.settings.content }}
+                        {{ block.settings.page.content }}
+                      </div>
+                      <p class="button-see">
+                        <span>{{ 'products.description.see_more' | t }}</span>
+                      </p>
                     </div>
-                    <p class="button-see">
-                      <span>{{ 'products.description.see_more' | t }}</span>
-                    </p>
                   </details>
                 </div>
               {% endif %}
@@ -276,12 +280,11 @@
               {% endif %}
               {%- when 'review' -%}
               <div class="product__accordion product-tab-review accordion quick-add-hidden" {{ block.shopify_attributes }}>
-                <details >
                   <summary>
                     <div class="summary__title">
-                      <h2 class="h4 accordion__title">
+                      <div class="h4 accordion__title">
                         Review
-                      </h2>
+                      </div>
                     </div>
                     <a href="#judgeme_product_reviews" class="review-text">Go to reviews</a>
                   </summary>

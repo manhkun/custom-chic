@@ -111,10 +111,17 @@
         slidesPerView: 5,
         spaceBetween: 57.5
       }
-    }
+    },
+    longSwipes: false,
+    shortSwipes: false,
+    freeMode: {
+      enable: true,
+      momentumBounce: false
+    },
+    followFinger: true
   })
 
-let touchStartY = 0;
+  let touchStartY = 0;
 
   swiperContainer.addEventListener('touchstart', function (event) {
     touchStartY = event.touches[0].clientY;

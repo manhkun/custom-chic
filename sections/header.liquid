@@ -631,6 +631,7 @@
 
     hide() {
       this.header.classList.add('shopify-section-header-hidden', 'shopify-section-header-sticky');
+      document.body.classList.add('header-hidden')
       if (document.querySelector('.collection-filter__wrapper')) {
         document.querySelector('.collection-filter__wrapper').classList.add('style-top');
       }
@@ -641,6 +642,7 @@
     reveal() {
       this.header.classList.add('shopify-section-header-sticky', 'animate');
       this.header.classList.remove('shopify-section-header-hidden');
+      document.body.classList.remove('header-hidden')
       if (document.querySelector('.collection-filter__wrapper')) {
         document.querySelector('.collection-filter__wrapper').classList.remove('style-top');
       }
@@ -711,6 +713,7 @@
     $(document).ready(function(){
       $(".icon-menu-drawer-close").click(function(){
         $("#Details-menu-drawer-container").removeClass('menu-opening');
+        document.querySelector('sticky-header').classList.removeClass('menu-opened')
         $("#Details-menu-drawer-container").removeAttr('open', '');
         $("body").removeClass('overflow-hidden-tablet');
         $("summary.header__icon--menu").attr('aria-expanded', 'false');
@@ -718,6 +721,7 @@
 
       $(".drawwer-mobile").click(function(){
         $("#Details-menu-drawer-container").addClass('menu-opening');
+        document.querySelector('sticky-header').classList.add('menu-opened')
         $("body").addClass('overflow-hidden-tablet');
         $("#Details-menu-drawer-container").attr('open', '');
         $("summary.header__icon--menu").attr('aria-expanded', 'true');

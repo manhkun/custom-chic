@@ -3,43 +3,34 @@
 <div class="clearfix"></div>
 
 <div class="product-template__container head-room recently-viewed-products-wrapper">
-  <aside>
-    <div>
-      <div>
-        <div class="title-wrapper">
-          <p class="heading-title h2">{{ section.settings.heading | escape }}</p>
-          <div class="pagination-wrapper pagination-wrapper-rcently">
-              <div class="pagination-custom">
-                <div class="slider-counter caption hidden">
-                  <span class="slider-counter--current">1</span>
-                  <span aria-hidden="true"> / </span>
-                  <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
-                  <span class="slider-counter--total slider-counter--total-sub"></span>
-                </div>
-                <button id="prev-control-{{ section.id }}" type="button" class=" prev-{{ section.id }} pagination__item pagination__item--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}"> {%- render 'icon-prev' -%}</button>
-                <button id="next-control-{{ section.id }}" type="button" class=" next-{{ section.id }} pagination__item pagination__item--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-next' -%}</button>
-              </div>
+  <div class="title-wrapper">
+    <p class="heading-title h2">{{ section.settings.heading | escape }}</p>
+    <div class="pagination-wrapper pagination-wrapper-rcently">
+        <div class="pagination-custom">
+          <div class="slider-counter caption hidden">
+            <span class="slider-counter--current">1</span>
+            <span aria-hidden="true"> / </span>
+            <span class="visually-hidden">{{ 'accessibility.of' | t }}</span>
+            <span class="slider-counter--total slider-counter--total-sub"></span>
           </div>
+          <button id="prev-control-{{ section.id }}" type="button" class=" prev-{{ section.id }} pagination__item pagination__item--prev" name="previous" aria-label="{{ 'accessibility.previous_slide' | t }}"> {%- render 'icon-prev' -%}</button>
+          <button id="next-control-{{ section.id }}" type="button" class=" next-{{ section.id }} pagination__item pagination__item--next" name="next" aria-label="{{ 'accessibility.next_slide' | t }}">{%- render 'icon-next' -%}</button>
         </div>
-        <div id="recently-viewed-wrapper">
-          <ul id="recently-viewed-products" data-number-desktop="{{ product_per_row }}" data-number-mobile="{{ product_per_row_mobile }}" class="viewed-products-slider clearfix  product-grid-slider grid--{{ product_per_row }}-col-desktop grid--{{ product_per_row_tablet }}-col-tablet grid--{{ product_per_row_mobile }}-col">
-          </ul>
-        </div>
-        <div class="scrollbar-product-slider scrollbar-product-slider-recently">
-          <div class="handle">
-            <div class="mousearea"></div>
-          </div>
-        </div>
-      </div>
     </div>
-  </aside>  
+  </div>
+  <div id="recently-viewed-wrapper" class="swiper">
+    <ul id="recently-viewed-products" class="swiper-wrapper" data-number-desktop="{{ product_per_row }}" data-number-mobile="{{ product_per_row_mobile }}" class="viewed-products-slider clearfix  product-grid-slider grid--{{ product_per_row }}-col-desktop grid--{{ product_per_row_tablet }}-col-tablet grid--{{ product_per_row_mobile }}-col">
+    </ul>
+  </div>
+  <div class="scrollbar-product-slider--{{ section.id }}">
+  </div>
 </div>
 
 {% assign grid_item_width = 'small--one-half medium-up--one-quarter' %}
   <div class="grid grid--uniform grid--view-items leg-room">
       
       <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
-       <li class="slider-li grid__item slider__slide grid-product">
+       <li class="slider-li swiper-slide grid__item slider__slide grid-product">
         <div class=""  itemscope itemtype="http://schema.org/Product" >
           <div id="product-${handle}" class="products recently-viewed-product-wrapper card-wrapper product-grid"}>
             <div class="card-media">
