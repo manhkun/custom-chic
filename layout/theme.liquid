@@ -405,10 +405,12 @@
         pauseSlideshow: `{{ 'sections.slideshow.pause_slideshow' | t }}`,
         playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`
       }
+      window.Shopify = { ...Shopify, currency_format: "{{ cart.currency.symbol }}{% raw %}{{ amount }}{% endraw %}" }
     </script>
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script src="{{ 'shopify-money.js' | asset_url }}" defer="defer"></script>
     {% if template contains 'product' or template contains 'collection' %}
       <script>
         Shopify.Products.recordRecentlyViewed();

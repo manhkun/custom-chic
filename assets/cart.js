@@ -70,9 +70,7 @@ class CartItems extends HTMLElement {
 
     const body = JSON.stringify({
       line,
-      quantity,
-      sections: this.getSectionsToRender().map((section) => section.section),
-      sections_url: window.location.pathname
+      quantity
     });
 
     fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
@@ -88,15 +86,14 @@ class CartItems extends HTMLElement {
         if (cartFooter) cartFooter.classList.toggle('is-empty', parsedState.item_count === 0);
         if (cartDrawerWrapper) cartDrawerWrapper.classList.toggle('is-empty', parsedState.item_count === 0);
 
-        this.getSectionsToRender().forEach((section => {
-          const elementToReplace =
-            document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-          elementToReplace.innerHTML =
-            this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
-        }));
-
+        parsedState.items.forEach(this.updateLineItem.bind(this))
+        this.updateTotalPrice(parsedState.total_price)
         this.updateLiveRegions(line, parsedState.item_count);
+        this.updateCartCount(parsedState.item_count)
         const lineItem = document.getElementById(`CartItem-${line}`) || document.getElementById(`CartDrawer-Item-${line}`);
+        if (quantity === 0) {
+          lineItem.remove()
+        }
         if (lineItem && lineItem.querySelector(`[name="${name}"]`)) {
           cartDrawerWrapper ? trapFocus(cartDrawerWrapper, lineItem.querySelector(`[name="${name}"]`)) : lineItem.querySelector(`[name="${name}"]`).focus();
         } else if (parsedState.item_count === 0 && cartDrawerWrapper) {
@@ -112,8 +109,32 @@ class CartItems extends HTMLElement {
         this.querySelectorAll('.loading-overlay').forEach((overlay) => overlay.classList.add('hidden'));
         this.disableLoading();
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
-        errors.textContent = window.cartStrings.error;
+        if(errors) {
+          errors.textContent = window.cartStrings.error;
+        }
       });
+  }
+
+  updateCartCount (count) {
+    const countEls = document.querySelectorAll('.cart-count-bubble span')
+
+    if (countEls.length > 0) {
+      countEls.forEach(countEl => countEl.innerHTML = count)
+    }
+  }
+
+  updateTotalPrice(total) {
+    const totalEl = document.querySelector('.totals__subtotal-value')
+
+    totalEl.innerHTML = Shopify.formatMoney(total, Shopify.currency_format)
+  }
+
+  updateLineItem(item, index) {
+    const itemEl = this.querySelector(`#CartItem-${index + 1}`)
+    if (itemEl) {
+      const itemPrices = itemEl.querySelectorAll('.price')
+      itemPrices.forEach(itemPrice => itemPrice.innerHTML = Shopify.formatMoney(item.final_line_price, Shopify.currency_format))
+    }
   }
 
   updateLiveRegions(line, itemCount) {
@@ -148,10 +169,8 @@ class CartItems extends HTMLElement {
   enableLoading(line) {
     const mainCartItems = document.getElementById('main-cart-items') || document.getElementById('CartDrawer-CartItems');
     mainCartItems.classList.add('cart__items--disabled');
-    console.log('line', line)
     const cartItemElements = this.querySelectorAll(`#CartItem-${line} .loading-overlay`);
     const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .loading-overlay`);
-    console.log('cartItemElements', cartItemElements);
     [...cartItemElements, ...cartDrawerItemElements].forEach((overlay) => overlay.classList.remove('hidden'));
 
     document.activeElement.blur();
