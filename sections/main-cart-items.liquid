@@ -52,36 +52,7 @@
 
   </div>
 <div class="shopping-cart-main">
-  {%- if settings.minimum_freeshipping != 0 -%}
-    <div class="page-width-desktop shipping_bar-wrapper">
-      <div class="shipping_bar" id="cart-shipping-bar">
-        {%- assign total = cart.total_price | money_without_currency -%}
-        {%- assign total = total | plus: 0.0 -%}
-        <div class="cumstom-icon-wrapper">
-          <div class="freeshipping-wrapper">
-            {% assign oject = cart.total_price | money_without_currency | divided_by: settings.minimum_freeshipping | times: 100  %}
-            <div class="pie cumstom-icon " style="--p:{{ cart.total_price | money_without_currency | divided_by: settings.minimum_freeshipping | times: 100 }}; {% if oject > 99 %} --c: #12B76A{% endif %}">
-                {% render 'icon-checks'%}
-            <div class="back-border" style="{% if oject > 99 %} z-index:1{% endif %}"></div>
-            </div>
-              <div>
-                {%- if settings.minimum_freeshipping > total -%}
-                  {%- assign lack = settings.minimum_freeshipping | minus: total -%}
-                  <h5 class="heading-title mess">{{ 'sections.cart.not_freeship' | t: lack: lack }}</h5>
-                {%- else -%}
-                  <h5 class="heading-title mess">{{ 'sections.cart.freeship' | t }}</h5>
-                {%- endif -%}
-              </div>
-          </div>
-          <div class="continue_shopping-add">
-            <a href="{{ routes.all_products_collection_url }}" class="button btn-secondary">
-              {% render 'icon-plus' %} {{ 'general.add' | t }}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-    {%- endif -%}
+  {%- render 'free-shipping' -%}
   <div class="page-width-desktop">
     <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
       <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">

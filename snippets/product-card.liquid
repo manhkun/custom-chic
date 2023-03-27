@@ -81,7 +81,9 @@ endif
       {% assign title = product.title | split: " -" %}
       {{ title[0] }}
       </a></div>
-    {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+      {%- comment -%}
+        {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
+      {%- endcomment -%}
     {%- liquid 
       unless settings.hide_vendor
         echo product.vendor | prepend: '<span class="product-vendor h5">' | append: '</span>'

@@ -71,49 +71,8 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 @media screen and (max-width: 1177px) {
-  .menu-drawer summary.menu-drawer__menu-item_lv0,
-  .menu-drawer li .menu-drawer__menu-item_lv0,
-  .menu-drawer .menu-drawer__menu>div,
-  .menu-drawer .menu-drawer__menu>h2 {
-    transform: translateX(0);
-    transition: transform 0.25s;
-  }
-  .menu-drawer .submenu-open summary.menu-drawer__menu-item_lv0,
-  .menu-drawer .submenu-open li .menu-drawer__menu-item_lv0,
-  .menu-drawer .submenu-open:not(.menu-drawer__inner-submenu)>div,
-  .menu-drawer .submenu-open>h2 {
-    transform: translateX(-100%);
-    transition: transform 0.25s;
-  }
-  details.drawer-menu-item-lv1>.menu-drawer__submenu_lv1  {
-    transition: all .25s ease;
-    opacity: 0;
-  }
-  details[open].menu-opening.drawer-menu-item-lv1>.menu-drawer__submenu_lv1  {
-    transform: translateX(0);
-    transition: all .25s ease;
-    opacity: 1;
-  }
-  .menu-drawer .submenu-open summary.menu-drawer__menu-item_lv0.active, 
-  .menu-drawer .submenu-open li .menu-drawer__menu-item_lv0.active, 
-  .menu-drawer .submenu-open>div.active,
-  .menu-drawer .submenu-open>h2.active {
-    transform: translateX(0);
-    transition: transform 0.25s;
-  }
-  details.drawer-menu-item-lv2>.menu-drawer__submenu-lv2  {
-    transform: translateX(100%);
-    transition: transform 0.25s;
-  }
-  details[open].menu-opening.drawer-menu-item-lv2>.menu-drawer__submenu-lv2  {
-    transform: translateX(100%);
-    transition: transform 0.25s;
-  }
   .menu-drawer__inner-submenu {
     background-color: #fff;
-  }
-  details[open].menu-opening>.menu-drawer__submenu.menu-drawer__submenu-lv2 {
-    transform: translate(100%);
   }
   .js .menu-drawer__submenu.overflow-y {
     overflow-y: hidden !important;

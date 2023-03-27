@@ -48,20 +48,10 @@ class CartItems extends HTMLElement {
   getSectionsToRender() {
     return [
       {
-        id: 'main-cart-items',
-        section: document.getElementById('main-cart-items').dataset.id,
-        selector: '.js-contents',
-      },
-      {
         id: 'cart-shipping-bar',
-        section: document.getElementById('main-cart-items').dataset.id,
-        selector: '.shipping_bar',
-      },
-      {
-        id: 'cart-icon-bubble',
-        section: 'cart-icon-bubble',
-        selector: '.shopify-section'
-      },
+        section: 'free-shipping',
+        selector: '.js-shipping-bar',
+      }
     ];
   }
 
@@ -70,6 +60,8 @@ class CartItems extends HTMLElement {
 
     const body = JSON.stringify({
       line,
+      sections: this.getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname,
       quantity
     });
 
@@ -85,6 +77,13 @@ class CartItems extends HTMLElement {
 
         if (cartFooter) cartFooter.classList.toggle('is-empty', parsedState.item_count === 0);
         if (cartDrawerWrapper) cartDrawerWrapper.classList.toggle('is-empty', parsedState.item_count === 0);
+
+        this.getSectionsToRender().forEach((section => {
+          const elementToReplace =
+            document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+          elementToReplace.innerHTML =
+            this.getSectionInnerHTML(parsedState.sections[section.section], section.selector);
+        }));
 
         parsedState.items.forEach(this.updateLineItem.bind(this))
         this.updateTotalPrice(parsedState.total_price)
