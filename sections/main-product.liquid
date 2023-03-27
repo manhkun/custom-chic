@@ -601,13 +601,7 @@
               {% if  block.settings.image-1 != blank or block.settings.text-1 != blank %}
                 <div class="text-image">
                   {% if  block.settings.image-1 != blank %}
-                    <img src="{{ block.settings.image-1 | image_url: width: 533 }}" srcset="{%- if block.settings.image-1.width >= 375 -%}{{ block.settings.image-1 | image_url: width: 375 }} 375w,{%- endif -%}
-                      {%- if block.settings.image-1.width >= 750 -%}{{ block.settings.image-1 | image_url: width: 750 }} 750w,{%- endif -%}
-                      {%- if block.settings.image-1.width >= 1100 -%}{{ block.settings.image-1 | image_url: width: 1100 }} 1100w,{%- endif -%}
-                      {%- if block.settings.image-1.width >= 1500 -%}{{ block.settings.image-1 | image_url: width: 1500 }} 1500w,{%- endif -%}
-                      {%- if block.settings.image-1.width >= 1780 -%}{{ block.settings.image-1 | image_url: width: 1780 }} 1780w,{%- endif -%}
-                      {%- if block.settings.image-1.width >= 2000 -%}{{ block.settings.image-1 | image_url: width: 2000 }} 2000w,{%- endif -%}
-                      {%- if block.settings.image-1.width >= 2800 -%}{{ block.settings.image-1 | image_url: width: 2800 }} 2800w{%- endif -%}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="{{ block.settings.image-1.alt | escape }}" loading="lazy" width="{{ block.settings.image-1.width }}" height="{{ block.settings.image-1.height }}" class="motion-reduce"/>
+                    <img src="{{ block.settings.image-1 | image_url: width: 50 }}" alt="{{ block.settings.text-1 }}" loading="lazy" width="{{ block.settings.image-1.width }}" height="{{ block.settings.image-1.height }}" class="motion-reduce"/>
                   {% endif %}
                 {%- if block.settings.text-1 != blank -%}
                   <span>{{ block.settings.text-1 }}</span>
@@ -617,13 +611,7 @@
               {% if  block.settings.image-2 != blank or block.settings.text-2 != blank %}
                 <div class="text-image">
                   {% if  block.settings.image-2 != blank %}
-                    <img src="{{ block.settings.image-2 | image_url: width: 533 }}" srcset="{%- if block.settings.image-2.width >= 375 -%}{{ block.settings.image-2 | image_url: width: 375 }} 375w,{%- endif -%}
-                      {%- if block.settings.image-2.width >= 750 -%}{{ block.settings.image-2 | image_url: width: 750 }} 750w,{%- endif -%}
-                      {%- if block.settings.image-2.width >= 1100 -%}{{ block.settings.image-2 | image_url: width: 1100 }} 1100w,{%- endif -%}
-                      {%- if block.settings.image-2.width >= 1500 -%}{{ block.settings.image-2 | image_url: width: 1500 }} 1500w,{%- endif -%}
-                      {%- if block.settings.image-2.width >= 1780 -%}{{ block.settings.image-2 | image_url: width: 1780 }} 1780w,{%- endif -%}
-                      {%- if block.settings.image-2.width >= 2000 -%}{{ block.settings.image-2 | image_url: width: 2000 }} 2000w,{%- endif -%}
-                      {%- if block.settings.image-2.width >= 2800 -%}{{ block.settings.image-2 | image_url: width: 2800 }} 2800w{%- endif -%}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="{{ block.settings.image-2.alt | escape }}" loading="lazy" width="{{ block.settings.image-2.width }}" height="{{ block.settings.image-2.height }}" class="motion-reduce"/>
+                    <img src="{{ block.settings.image-2 | image_url: width: 50 }}" alt="{{ block.settings.text-2 | escape }}" loading="lazy" width="{{ block.settings.image-2.width }}" height="{{ block.settings.image-2.height }}" class="motion-reduce"/>
                   {% endif %}
                   {%- if block.settings.text-2 != blank -%}
                     <span>{{ block.settings.text-2 }}</span>
@@ -633,13 +621,7 @@
               {%- if  block.settings.image-3 != blank or block.settings.text-3 != blank -%}
                 <div class="text-image">
                   {% if  block.settings.image-3 != blank %}
-                    <img src="{{ block.settings.image-3 | image_url: width: 533 }}" srcset="{%- if block.settings.image-3.width >= 375 -%}{{ block.settings.image-3 | image_url: width: 375 }} 375w,{%- endif -%}
-                      {%- if block.settings.image-3.width >= 750 -%}{{ block.settings.image-3 | image_url: width: 750 }} 750w,{%- endif -%}
-                      {%- if block.settings.image-3.width >= 1100 -%}{{ block.settings.image-3 | image_url: width: 1100 }} 1100w,{%- endif -%}
-                      {%- if block.settings.image-3.width >= 1500 -%}{{ block.settings.image-3 | image_url: width: 1500 }} 1500w,{%- endif -%}
-                      {%- if block.settings.image-3.width >= 1780 -%}{{ block.settings.image-3 | image_url: width: 1780 }} 1780w,{%- endif -%}
-                      {%- if block.settings.image-3.width >= 2000 -%}{{ block.settings.image-3 | image_url: width: 2000 }} 2000w,{%- endif -%}
-                      {%- if block.settings.image-3.width >= 2800 -%}{{ block.settings.image-3 | image_url: width: 2800 }} 2800w{%- endif -%}" sizes="(min-width: 1100px) 535px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)" alt="{{ block.settings.image-3.alt | escape }}" loading="lazy" width="{{ block.settings.image-3.width }}" height="{{ block.settings.image-3.height }}" class="motion-reduce"/>
+                    <img src="{{ block.settings.image-3 | image_url: width: 50 }}" alt="{{ block.settings.text-3 | escape }}" loading="lazy" width="{{ block.settings.image-3.width }}" height="{{ block.settings.image-3.height }}" class="motion-reduce"/>
                   {% endif %}
                   {%- if block.settings.text-3 != blank -%}
                     <span>{{ block.settings.text-3 }}</span>
