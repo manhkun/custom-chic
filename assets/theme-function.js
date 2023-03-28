@@ -328,32 +328,32 @@ const closestIndex = (num, arr) => {
       }
       
       if(chest >= 64 && waist >= 35 ){
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XXXL</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>5XL</p>";
         $(".size-data").removeClass('selected')
         document.getElementById("size-15").classList.add('selected');
         document.getElementById("size-16").classList.add('selected');
       }else if (chest >= 60 && waist >= 34 ){
         $(".size-data").removeClass('selected')
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XS</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>4XL</p>";
         document.getElementById("size-13").classList.add('selected');
         document.getElementById("size-14").classList.add('selected');
       }else if ( chest >= 56 && waist >= 33 ){
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XXL</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>3XL</p>";
         $(".size-data").removeClass('selected')
         document.getElementById("size-11").classList.add('selected');
         document.getElementById("size-12").classList.add('selected');
       }else if (  chest >= 52 && waist >= 32 ){
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XL</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>2XL</p>";
         $(".size-data").removeClass('selected')
         document.getElementById("size-9").classList.add('selected');
         document.getElementById("size-10").classList.add('selected');
       }else if ( chest >= 48 && waist >= 31 ){
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>L</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XL</p>";
         $(".size-data").removeClass('selected')
         document.getElementById("size-7").classList.add('selected');
         document.getElementById("size-8").classList.add('selected');
       }else if (  chest >= 44 && waist >= 30 ){
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>M</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>L</p>";
         $(".size-data").removeClass('selected')
         document.getElementById("size-5").classList.add('selected');
         document.getElementById("size-6").classList.add('selected');
@@ -361,10 +361,10 @@ const closestIndex = (num, arr) => {
         $(".size-data").removeClass('selected')
         document.getElementById("size-3").classList.add('selected');
         document.getElementById("size-4").classList.add('selected');
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>S</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>M</p>";
       }else if ( chest >= 36 && waist >= 28 ){
         $(".size-data").removeClass('selected')
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XS</p>";
+        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>S</p>";
         document.getElementById("size-1").classList.add('selected');
         document.getElementById("size-2").classList.add('selected');
       }

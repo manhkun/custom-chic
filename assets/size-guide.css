@@ -5,7 +5,7 @@
     overflow-y: auto;
     width: 100vw;
     inset: 0px;
-    z-index: 9999999;
+    z-index: 1001;
 }
 .size-guide-section::before{
     display: block;
@@ -274,11 +274,10 @@
 }
 .size-chart-table tbody tr th{
     padding: 10px 0;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 14px;
     line-height: 120%;
     font-family: var(--font-heading-family);
-    color: #808080;
     text-transform: uppercase;
     width: 33%;
 }

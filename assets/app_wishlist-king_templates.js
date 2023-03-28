@@ -161,7 +161,7 @@ const templates = [
         {% if customer_accounts_enabled and customer == null and wishlist.read_only == false %}
           <div class="wk-note wk-note__login wishlist-suggest ">
             <h2 class="wk-title">{{ locale.pagetitle }}</h2>
-            <p class="wk-subtitle">Login or create an account to view to your wishlist. We’ll drop you back at your wishlist after you have entered your details</p>
+            <p class="wk-subtitle">Don't miss out on exclusive deals and offers for your desired product! Log in now to keep track of your wishlist.</p>
             <div class="wk-login__cta">
               <a class="button wk-button" href="/account/login">login</a>
               <a class="button wk-button wk-button--secondary" href="/account/register">Create an account</a>
