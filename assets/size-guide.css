@@ -5,7 +5,7 @@
     overflow-y: auto;
     width: 100vw;
     inset: 0px;
-    z-index: 1001;
+    z-index: 9999999999;
 }
 .size-guide-section::before{
     display: block;
