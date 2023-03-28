@@ -712,8 +712,9 @@
    var c = false
     $(document).ready(function(){
       $(".icon-menu-drawer-close").click(function(){
+        console.log('click');
         $("#Details-menu-drawer-container").removeClass('menu-opening');
-        document.querySelector('sticky-header').classList.removeClass('menu-opened')
+        $(document).removeClass('menu-opened')
         $("#Details-menu-drawer-container").removeAttr('open', '');
         $("body").removeClass('overflow-hidden-tablet');
         $("summary.header__icon--menu").attr('aria-expanded', 'false');
@@ -721,7 +722,7 @@
 
       $(".drawwer-mobile").click(function(){
         $("#Details-menu-drawer-container").addClass('menu-opening');
-        document.querySelector('sticky-header').classList.add('menu-opened')
+        $(document).addClass('menu-opened')
         $("body").addClass('overflow-hidden-tablet');
         $("#Details-menu-drawer-container").attr('open', '');
         $("summary.header__icon--menu").attr('aria-expanded', 'true');

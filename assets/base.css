@@ -1957,7 +1957,7 @@ input[type='checkbox'] {
   }
 }
 
-.header__icon--menu[aria-expanded="true"]::before {
+.menu-opening .header__icon--menu::before {
   content: "";
   top: 0;
   left: -50%;
