@@ -27,7 +27,12 @@
         echo '</span>'
       echo '</span>'
       elsif title_check == true
-        echo 'products.product.new' | t | prepend: '<span class="badge new">' | append: '</span>'
+        echo '<span class="badge new">'
+          render 'icon-new'
+          echo'<span class="badge new">'
+          echo 'products.product.new' | t
+          echo'</span>'
+        echo '</span>'
       elsif product.compare_at_price > product.price and product.available and percent >= 30 and page.template_suffix != 'product'
         echo '<span class="badge sale">'
           render 'icon-sale'

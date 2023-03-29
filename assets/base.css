@@ -2496,7 +2496,6 @@ li {
 .badge.best_seller svg {
   width: 11px;
   height: auto;
-  margin-right: 4px;
 }
 .main-product-wrapper .badge.best_seller svg
 .badge.sale {
@@ -2590,6 +2589,7 @@ li {
   border-radius: 100px;
   display: none;
 }
+
 .card-wrapper:hover .title-shop-now{
   bottom: 10px;
   border: none;
@@ -2636,7 +2636,7 @@ li {
 }
 .wk-button .wk-button__icon.wk-icon svg {
   width: 14px;
-  height: 13px;
+  height: 14px;
   flex-shrink: 0;
   margin: 0;
 }
@@ -2650,21 +2650,11 @@ li {
   justify-content: center;
 }
 .card__badge .badge.new {
-  padding-left: 4px;
   color: var(--new-label-bg);
   border: none;
   margin: 0;
-  line-height: 13px;
 }
-.card__badge .badge.new::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  height: 100%;
-  border-left: 2px solid;
-  top: 50%;
-  transform: translateY(-50%);
-}
+
 .main-product-wrapper .card__badge .badge.new::before {
   content: "";
   position: absolute;
@@ -2676,12 +2666,6 @@ li {
 }
 .card__badge {
   position: relative;
-}
-@media screen and (min-width: 768px) { 
-  .card__badge .badge.new {
-    padding-left: 5px;
-    line-height: 12.19px;
-  }
 }
 @media screen and (max-width: 767px) { 
   .card-details {

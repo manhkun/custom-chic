@@ -79,6 +79,10 @@ endif
     <div class="wishlist-wrapper wishlist-link" data-product-id="{{ product.id }}">
     </div>
     </div>
+    {% render 'product-badges',
+    product: product,
+    collection: collections
+     %}
   </div>
   <div class="card-details">
     <div class="price-badges bagdges-top">
@@ -106,10 +110,6 @@ endif
     -%}
     <div class="price-badges  bagdges-bottom">
       {% render 'price', product: product, price_class: '' %}
-      {% render 'product-badges',
-      product: product,
-      collection: collections
-       %}
     </div>
   </div>
 </div>

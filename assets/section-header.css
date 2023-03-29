@@ -321,7 +321,7 @@
   left: 0px;
   transform: scaleX(0);
   transition: transform 0.15s ease-in 0s;
-  z-index: 110;
+  z-index: 0;
 }
 
 .site-nav .dropdown-menu li a:hover span:not(.label-menu):after {

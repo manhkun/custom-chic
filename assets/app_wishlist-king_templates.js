@@ -341,15 +341,15 @@ const templates = [
   {
     id: "wishlist-icon",
     template: `
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="13" viewBox="0 0 16 13" fill="currentColor">
-    <path d="M4.33332 0C2.30859 0 0.666656 1.57396 0.666656 3.51585C0.666656 5.08342 1.30832 8.80383 7.62452 12.5647C7.73766 12.6314 7.86755 12.6667 7.99999 12.6667C8.13243 12.6667 8.26232 12.6314 8.37546 12.5647C14.6917 8.80383 15.3333 5.08342 15.3333 3.51585C15.3333 1.57396 13.6914 0 11.6667 0C9.64192 0 7.99999 2.13082 7.99999 2.13082C7.99999 2.13082 6.35806 0 4.33332 0Z" stroke="black"/>
-    </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.501 5.501 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78v0Z"/>
+      </svg>
     `,
   },
   {
     id: "remove-icon",
     template: `
-      <svg class="wk-icon__svg" fill="#000" width="100%" height="100%" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <svg class="wk-icon__svg" fill="#000" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <path vector-effect="non-scaling-stroke" d="M0.309,0.309a0.9,0.9,0,0,1,1.268,0L63.691,62.423a0.9,0.9,0,0,1-1.268,1.268L0.309,1.577A0.9,0.9,0,0,1,.309.309Z"/>
         <path vector-effect="non-scaling-stroke" d="M63.691,0.309a0.9,0.9,0,0,1,0,1.268L1.577,63.691A0.9,0.9,0,0,1,.309,62.423L62.423,0.309A0.9,0.9,0,0,1,63.691.309Z"/>
       </svg>
@@ -359,11 +359,9 @@ const templates = [
     id: "wishlist-share-button-fb",
     data: "wishlist",
     template: `
-      <a href="#" class="wk-share-button" title="{{ locale.share_on_facebook }}" data-wk-share-service="facebook" data-wk-share="{{ wishlist.permaId }}">
-        <svg version="1.1" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 24 24">
-          <path fill="currentColor" d="M18.768,7.465H14.5V5.56c0-0.896,0.594-1.105,1.012-1.105s2.988,0,2.988,0V0.513L14.171,0.5C10.244,0.5,9.5,3.438,9.5,5.32 v2.145h-3v4h3c0,5.212,0,12,0,12h5c0,0,0-6.85,0-12h3.851L18.768,7.465z"/>
-        </svg>
-      </a>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+        <path fill="#000" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.501 5.501 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/>
+      </svg>
     `,
   },
   {

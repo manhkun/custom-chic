@@ -403,3 +403,42 @@
     font-size: 12px;
   }
 }
+
+.product-grid .card-media {
+  position: relative;
+}
+
+.product-grid .card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: #fff;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.product-grid .card__badge > .badge {
+  font-size: 10px;
+  padding: 2.5px 8px 1.5px;
+  line-height: 12px;
+  display: flex;
+  gap: 2px;
+  text-transform: uppercase;
+}
+
+.product-grid .card__badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-grid .card__badge svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  .product-grid .card__badge > .badge {
+    font-size: 8px;
+    line-height: 9px;
+  }
+}
