@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-article-card.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'section-featured-blog.css' | asset_url }}" media="print" onload="this.media='all'">
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
@@ -138,10 +137,10 @@
 <script>
   var products_on_page = $('.blog-wrapper');
 
-  var load_more_btn = $('.load-more_btn ');
-  var load_more_spinner = $('.load-more_spinner');
-
   function loadMoreProducts(e) {
+    let load_more_spinner = $('.load-more_spinner');
+    let load_more_btn = $('.load-more_btn ');
+
     $.ajax({
       url: window.location.pathname + '?page=' + $(e.target).attr('data-page'),
       type: 'GET',
