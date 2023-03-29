@@ -2,7 +2,6 @@ $(document).ready(function(){
     //open sidebar filter
     var filterBtn = $('.mobile-facets__open');
     var filtermb= $('.filter-mobile')
-    var closefiltermb= $('.sidebar-filter-mb .btn-close')
     var submitmb = $('.sidebar-filter-mb .facet-submit')
     var faceFilterForm = $('facet-filters-form')
 
@@ -15,9 +14,6 @@ $(document).ready(function(){
       $('body').addClass('overflow-hidden-filter-mobile');
       document.querySelector('.filter-mobile .mobile-facets__disclosure').setAttribute('open', true);
     });
-    closefiltermb.on('click', function(e) {
-      $('body').removeClass('overflow-hidden-filter-mobile');
-    });
     submitmb.on('click', function(e) {
       $('body').removeClass('overflow-hidden-filter-mobile');
     });
@@ -28,6 +24,7 @@ $(document).ready(function(){
         document.querySelector('.filter-mobile .mobile-facets__disclosure').classList.remove('menu-opening'); 
         document.querySelector('.filter-mobile .mobile-facets__disclosure').removeAttribute('open');
         document.querySelector('body').classList.remove('overflow-hidden-tablet');
+        $('body').removeClass('overflow-hidden-filter-mobile');
     });
 
     var btnCloses = $('.facet-submit');

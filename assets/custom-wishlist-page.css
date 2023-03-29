@@ -127,12 +127,18 @@
 }
 
 .wk-page:not(.wk-page--shared) .wk-button.wk-button--floating {
-  top: 24px !important;
-  right: 24px !important;
   width: 32px;
   height: 32px;
   background-color: #fff;
   border-radius: 9999px;
+  position: static;
+}
+
+@media screen and (max-width: 768px) {
+  .wk-page:not(.wk-page--shared) .wk-button.wk-button--floating {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .wk-button-wishlist-clear {

@@ -46,7 +46,8 @@ const templates = [
                       'height': '21px',
                       'width': '21px',
                       'fill': '#000',
-                      'z-index': '100'
+                      'z-index': '999999999999',
+                      'pointer-events': 'none'
                 })
                     .appendTo($('body'))
                     .animate({
@@ -201,17 +202,20 @@ const templates = [
                 {% endif %}
                 <div>
                   <div class="wk-grid__item card-wrapper product-grid {% if onsale %}wk-product--sale{% endif %}" data-wk-item="{{ product.wishlist_item_id }}">
-                    {% unless wishlist.read_only %}
-                      {% include "wishlist-button-floating" itemId: product.wishlist_item_id %}
-                    {% else %}
-                      {% include "wishlist-button-floating" product: product %}
-                    {% endunless %}
                     <div class="card-media">
                     <div class="card__inner">
                     <a href="{{ product | variant_url }}" class="wk-product-image" title="{{ locale.view_product }}" style="background-image: url({{ product | variant_img_url: '300x' }})">
                       <img src="{{ product | variant_img_url: '10x' }}" />
                     </a>
-                    {% include "wishlist-shopnow" %}
+                    {% include 'wishlist-badge', product: product %}
+                    <div class="product-card-action">
+                      {% include "wishlist-shopnow" %}
+                      {% unless wishlist.read_only %}
+                        {% include "wishlist-button-floating" itemId: product.wishlist_item_id %}
+                      {% else %}
+                        {% include "wishlist-button-floating" product: product %}
+                      {% endunless %}
+                    </div>
                     </div>
                     </div>
                     <div class="card-details">
@@ -262,9 +266,7 @@ const templates = [
   {
     id: "wishlist-shopnow",
     template: `
-      <div class="title-shop-now btn-secondary">
-        <a href="{{ product | variant_url }}">Shop now</a>
-      </div>
+      <a href="{{ product | variant_url }}" class="title-shop-now">Shop now</a>
     `,
   },
   {
@@ -274,6 +276,20 @@ const templates = [
       {% assign wishlist = shared_wishlist %}
       {% include "wishlist-page" with wishlist %}
     `,
+  },
+  {
+    id: "wishlist-badge",
+    data: "product",
+    template: `
+      {% assign percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | floor %}
+      {% if product.compare_at_price > product.price and product.available and percent >= 30 %}
+        <span class="badge sale">
+          <span class="badge sale">
+            {{ percent }}
+          </span>
+        </span
+      {% endif %}
+    `
   },
   {
     id: "wishlist-button-bulk-add-to-cart",

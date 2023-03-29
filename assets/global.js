@@ -421,7 +421,6 @@ class HeaderDrawer extends MenuDrawer {
     this.header = this.header || document.getElementById('shopify-section-header');
     this.borderOffset = this.borderOffset || this.closest('.header-wrapper').classList.contains('header-wrapper--border-bottom') ? 1 : 0;
     document.documentElement.style.setProperty('--header-bottom-position', `${parseInt(this.header.getBoundingClientRect().bottom - this.borderOffset)}px`);
-    this.header.classList.add('menu-open');
 
     setTimeout(() => {
       this.mainDetailsToggle.classList.add('menu-opening');
@@ -434,7 +433,6 @@ class HeaderDrawer extends MenuDrawer {
 
   closeMenuDrawer(event, elementToFocus) {
     super.closeMenuDrawer(event, elementToFocus);
-    this.header.classList.remove('menu-open');
   }
 }
 

@@ -73,10 +73,10 @@ endif
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
       </a>
       {%- endif -%}
-    <div class="title-shop-now btn-secondary">
-      <a href="{{ product.url | within: collection }}">shop now</a>
-    </div>
-    <div class="wishlist-wrapper wishlist-link" data-product-id="{{ product.id }}">
+    <div class="product-card-action">
+      <a class="title-shop-now" href="{{ product.url | within: collection }}">shop now</a>
+      <div class="wishlist-wrapper wishlist-link" data-product-id="{{ product.id }}">
+      </div>
     </div>
     </div>
     {% render 'product-badges',
@@ -85,12 +85,6 @@ endif
      %}
   </div>
   <div class="card-details">
-    <div class="price-badges bagdges-top">
-      {% render 'product-badges',
-      product: product,
-      collection: collections
-       %}
-    </div>
     <div class="product-title"><a href="{{ product.url | within: collection }}">
       {% assign title = product.title | split: " -" %}
       {{ title[0] }}

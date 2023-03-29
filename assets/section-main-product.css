@@ -292,6 +292,7 @@ label.option-item {
 
 #cl_optionsapp .swatch-container label img {
   background-color: #fff;
+  border: 0.5px solid #d9d9d9;
 }
 @media screen and (min-width: 768px) {
   fieldset.product-form__input.selector-wrapper .form__label {
@@ -1405,6 +1406,7 @@ variant-radios .option-item.selected span {
 
 .cl-canvas-container .canvas-wrapper {
   margin: 0 !important;
+  width: 100%;
 }
 .cl-canvas-container {
   height: auto !important;
@@ -2099,6 +2101,7 @@ variant-radios > fieldset:last-child{
 }
 .main-product-wrapper .product .wishlist-wrapper {
   z-index: 3;
+  position: absolute;
 }
 @media (min-width:768px) {
   .option-values {

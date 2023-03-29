@@ -505,7 +505,7 @@ content-item:not(.replacement-refund) p a {
         display: none;
     }
     .head-search .search-modal__form{
-        max-width: 590px;
+        max-width: 890px;
         margin: 0 auto;
     }
     .tab-main{
