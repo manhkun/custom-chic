@@ -6,7 +6,7 @@
   margin-top: 32px;
   padding-bottom: 64px;
 }
-.search-help .search-modal__form input{
+.search-help .search-modal__form input {
   font-weight: 300;
   font-size: 16px;
   line-height: 160%;
@@ -14,11 +14,12 @@
   padding: 16px;
   font-family: var(--font-body-family);
   background: transparent;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 2px;
   max-height: 58px;
 }
-.search-help .search-modal__form input::-webkit-input-placeholder { /* Edge */
+.search-help .search-modal__form input::-webkit-input-placeholder {
+  /* Edge */
   font-weight: 300;
   font-size: 16px;
   line-height: 160%;
@@ -26,7 +27,8 @@
   letter-spacing: -0.1px;
 }
 
-.search-help .search-modal__form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.search-help .search-modal__form input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
   font-weight: 400;
   font-size: 16px;
   line-height: 160%;
@@ -39,7 +41,7 @@
   line-height: 160%;
   font-family: var(--font-body-family);
 }
-.search-help .search-modal__form .icon-search-wrapper{
+.search-help .search-modal__form .icon-search-wrapper {
   right: 16px;
   top: 50%;
   transform: translateY(-50%);
@@ -47,7 +49,7 @@
   width: 24px;
   height: 24px;
 }
-.search-help .search-modal__form .icon-search-wrapper svg path{
+.search-help .search-modal__form .icon-search-wrapper svg path {
   fill: #0000008a;
 }
 
@@ -88,7 +90,7 @@
   align-items: flex-start;
   padding: 32px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -117,18 +119,66 @@
   margin-top: 8px;
 }
 
-.search-help__result-content {
+.search-help__result-date-post svg {
+  width: 20px;
+  height: 20px;
+}
+
+.search-help__result-accordion {
+  width: 100%;
+}
+
+.search-help__result-header {
+  width: 100%;
+  display: block;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search-help__result-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.search-help__result-header-inner button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.search-help__result-header-inner svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+
+.search-help__result-accordion:not([open="true"]) button svg:first-child {
+  opacity: 0;
+}
+
+.search-help__result-accordion[open="true"] button svg:last-child {
+  opacity: 0;
+}
+
+.accordion-content {
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
   margin-top: 16px;
+}
+
+.search-help__result-content {
   color: #333333;
   font-size: 16px;
   line-height: 26px;
-  max-height: 26px;
   font-weight: 300;
-  display: -webkit-box;
-  -webkit-line-clamp: 1; /* if you change this, make sure to change the fallback line-height and height */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   max-width: 100%;
 }
 
@@ -151,11 +201,6 @@
   font-family: var(--font-heading-family);
 }
 
-.search-help__notfound {
-  max-width: 790px;
-  margin: 0 auto;
-}
-
 .search-help__notfound-title {
   font-weight: 600;
   font-size: 24px;
@@ -164,6 +209,11 @@
   color: #000000;
   text-align: center;
   margin: 0;
+}
+
+.search-help__notfound-main-header {
+  max-width: 790px;
+  margin: 0 auto;
 }
 
 .search-help__notfound-subtitle {
@@ -181,9 +231,8 @@
 }
 
 .search-help__suggestion {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   padding: 0;
   margin-top: 48px;
@@ -202,7 +251,7 @@
   font-size: 16px;
   line-height: 160%;
   color: #808080;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 
 .search-help__suggestion-item:hover {
@@ -245,10 +294,126 @@
   }
 
   .search-help__suggestion {
-    grid-template-columns: 1fr;
+    margin-top: 32px;
   }
 
   .search-help {
     padding-bottom: 48px;
+  }
+}
+
+.content-social-bot ul li a svg,
+.content-social-bot ul li a svg rect,
+.content-social-bot ul li.mailto-item a svg path,
+.content-social-bot ul li.twitter-item a svg path {
+  fill: #fff;
+}
+
+.content-social-bot ul li a svg path,
+.content-social-bot ul li.twitter-item a svg rect,
+.content-social-bot ul li.mailto-item a svg rect {
+  fill: #000;
+}
+.list-social {
+  padding: 0;
+  margin-top: 1px;
+}
+.content-social-bot ul {
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.content-social-bot ul li a {
+  padding: 0;
+}
+.content-social-bot ul li:hover a svg {
+  fill: #6e6e6e;
+}
+.content-social-bot .social-title {
+  font-family: var(--font-heading-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  margin: 0 0 8px;
+  color: #333333;
+  padding: 0;
+  text-transform: inherit;
+  border: none;
+}
+.content-social-bot ul li {
+  position: relative;
+  cursor: pointer;
+}
+.content-social-bot ul li svg {
+  width: 24px;
+  height: 24px;
+}
+.content-social-bot ul li span {
+  display: none;
+}
+.content-social-bot ul li span.move {
+  display: block;
+  color: green;
+  font-weight: 600;
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+}
+
+.search-help__another-link a {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: capitalize;
+  color: #808080;
+  margin: 0;
+}
+
+.search-help__another-link a:first-child::after {
+  content: "/";
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.search-help__more-question {
+  margin-top: 46px;
+}
+
+.search-help__more-question p {
+  margin: 0;
+  font-family: var(--font-heading-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  color: #333333;
+  margin-bottom: 8px;
+}
+
+.search-help__more-question a {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-decoration-line: underline;
+  color: #333333;
+  font-family: var(--font-heading-family);
+  text-underline-offset: auto;
+}
+
+.search-help__share {
+  margin-top: 46px;
+}
+
+@media screen and (max-width: 768px) {
+  .search-help__result {
+    padding: 16px;
+  }
+
+  .search-help__result-header-inner button {
+    width: 24px;
+    height: 24px;
   }
 }

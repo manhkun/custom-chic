@@ -383,45 +383,45 @@ const closestIndex = (num, arr) => {
         document.getElementById("size-2").classList.add('selected');
       }
       
-      if(chest >= 64 && waist >= 35 ){
+      if(chest >= 64 || waist >= 35 ){
         selected5XL()
-      }else if (chest >= 60 && waist >= 34 ){
+      }else if (chest >= 60 || waist >= 34 ){
         if (chest == 60 && waist == 34) {
           selected4XL()
         } else {
           selected5XL()
         }
-      }else if ( chest >= 56 && waist >= 33 ){
+      }else if ( chest >= 56 || waist >= 33 ){
         if (chest == 56 && waist == 33) {
           selected3XL()
         } else {
           selected4XL()
         }
-      }else if (  chest >= 52 && waist >= 32 ){
+      }else if (  chest >= 52 || waist >= 32 ){
         if (chest == 52 && waist == 32) {
           selected2XL()
         } else {
           selected3XL()
         }
-      }else if ( chest >= 48 && waist >= 31 ){
+      }else if ( chest >= 48 || waist >= 31 ){
         if (chest == 48 && waist == 31) {
           selectedXL()
         } else {
           selected2XL()
         }
-      }else if (  chest >= 44 && waist >= 30 ){
+      }else if (  chest >= 44 || waist >= 30 ){
         if (chest == 44 && waist == 30) {
           selectedL()
         } else {
           selectedXL()
         }
-      }else if ( chest >= 40 && waist >= 29 ){
+      }else if ( chest >= 40 || waist >= 29 ){
         if (chest == 40 && waist == 29) {
           selectedM()
         } else {
           selectedL
         }
-      }else if ( chest >= 36 && waist >= 28 ){
+      }else if ( chest >= 36 || waist >= 28 ){
         if (chest == 36 && waist == 28) {
           selectedS()
         } else {

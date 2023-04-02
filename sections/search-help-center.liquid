@@ -1,72 +1,280 @@
 {{ 'section-search-help-center.css' | asset_url | stylesheet_tag }}
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+{%- assign page_url = contentForQuerystring
+  | split: '"pageurl":"'
+  | last
+  | split: '"'
+  | first
+  | split: '.myshopify.com'
+  | last
+  | replace: '\/', '/'
+  | replace: '%20', ' '
+  | replace: '\u0026', '&'
+-%}
+{%- assign page_url = page_url | remove: '?_fd=0&pb=0' | remove: '&_fd=0&pb=0' -%}
+{%- assign params = page_url | split: '?' | last | split: '&' -%}
+{%- for param in params -%}
+  {%- assign key = param | split: '=' | first -%}
+  {%- if key == 'q' -%}
+    {%- assign terms = param | split: '=' | last -%}
+  {%- endif -%}
+{%- endfor -%}
+{% liquid
+  assign blog_results = section.settings.blog_results
+  assign blog_suggestion = section.settings.blog_suggestion
+  assign results = 0
+%}
+{% for article in blog_results.articles %}
+  {%- if article.title contains terms -%}
+    {%- assign results = results | plus: 1 -%}
+  {%- endif -%}
+{% endfor %}
 
 <div class="page-width-desktop">
   <div class="search-help">
     <div class="search-help__header">
       <div class="search-help__header--left">
         <h2 class="search-help__title">{{- 'templates.search.title' | t -}}</h2>
-        <p class="search-help__count">{{ 'templates.search.results_with_count_and_term_html' | t: terms: search.terms, count: search.results_count }}</p>
+        <p class="search-help__count">{{ 'templates.search.results_with_count_and_term_html' | t: terms: terms, count: results }}</p>
       </div>
       <div class="search-help__header--right">
-        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+        <form action="/pages/search-help-center" method="get" role="search" class="search search-modal__form">
           <div class="field">
-            <input type="hidden" name="type" value="article">
-            <input type="hidden" name="view" value="help-center">
-            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ search.terms }}" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
+            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ terms }}" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
             <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
           </div>
         </form>
       </div>
     </div>
-    {% paginate search.results by 10 %}
-      <div class="search-help__results">
-        {%- if search.results.size > 0 -%}
-            {%- for result in search.results -%}
+    <div class="search-help__results">
+      {%- if results > 0 and terms != blank -%}
+          {%- for article in blog_results.articles -%}
+            {%- if article.title contains terms -%}
               <div class="search-help__result">
-                <a href="{{ result.url }}">
-                  <h3 class="search-help__result-title">{{ result.title }}</h3>
-                  <span class="search-help__result-date-post">
-                    {% render 'icon-clock' %}
-                    {% assign published_at = article.published_at | date: "%s" %}
-                    {% assign published_att =  "now" | date: "%s" | minus: published_at %}
-                    {% assign variablee =  published_att | date: "%d" %}
-                    {{ 'blogs.article.updated_article' | t: published_att: variablee }}
-                  </span>
-                  <div class="search-help__result-content">{{ result.excerpt_or_content }}</div>
-                </a>
-                <div class="search-help__result-extend">
-                  <a href="/pages/help-center">Help Center</a>
-                  <span>/</span>
-                  <a href="/pages/shipping-delivery">Order & Delivery</a>
-                </div>
+                <accordion-item class="search-help__result-accordion">
+                  <div class="accordion-header search-help__result-header">
+                    <div class="search-help__result-header-inner">
+                      <div class="search-help__another-link">
+                        <a href="/pages/help-center">Help center</a>
+                        <a href="/pages/help-center?section=delivery-shipping">Order & Delivery</a>
+                      </div>
+                      <button type="button">
+                        {%- render 'icon-minus-2' -%}
+                        {%- render 'icon-plus-2' -%}
+                      </button>
+                    </div>
+                    <h3 class="search-help__result-title">{{ article.title }}</h3>
+                    <span class="search-help__result-date-post">
+                      {% render 'icon-clock' %}
+                      {% assign published_at = article.published_at | date: "%s" %}
+                      {% assign published_att =  "now" | date: "%s" | minus: published_at %}
+                      {% assign variablee =  published_att | date: "%d" %}
+                      {{ 'blogs.article.updated_article' | t: published_att: variablee }}
+                    </span>
+                  </div>
+                  <div class="accordion-content">
+                    <div class="search-help__result-content">
+                      {{ article.content }}
+                    </div>
+                    <div class="search-help__more-question">
+                      <p>More question?</p>
+                      <a href="#">Please contact our support team here.</a>
+                    </div>
+                    <div class="search-help__share">
+                      <div class="content-social-bot">
+                        <h3 class="social-title">{{ 'general.social.alt_text.share_this_article' | t }}</h3>
+                        <ul class="list-unstyled list-social" role="list">
+                          <li class="list-social__item">
+                            <a class="list-social__link link no-effect" href="//www.facebook.com/sharer.php?u={{ article.url | append: share_permalink }}" target="_blank">
+                              {% render 'icon-share-facebook' %}
+                              <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+                              <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                            </a>
+                            <span>{{ 'general.social.links.facebook' | t }}</span>
+                          </li>
+                          <li class="list-social__item twitter-item">
+                            <a class="list-social__link link no-effect" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                              {% render 'icon-share-twitter' %}
+                              <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+                              <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                            </a>
+                            <span>{{ 'general.social.links.twitter' | t }}</span>
+                          </li>
+                          <li class="list-social__item">
+                            <a class="list-social__link link no-effect" href="//instagram.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                            {%- render 'icon-instagram-2' -%}
+                            </a>
+                          </li>
+                          <li class="list-social__item">
+                            <a class="list-social__link link no-effect" href="//pinterest.com/pin/create/button/?url={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                              {% render 'icon-share-pinterest' %}
+                              <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+                              <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                            </a>
+                            <span>{{ 'general.social.links.pinterest' | t }}</span>
+                          </li>
+                          <li class="list-social__item mailto-item">
+                            <a class="list-social__link link no-effect" href="mailto:?body={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                              {% render 'icon-share-mail' %}
+                              <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+                              <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                            </a>
+                            <span>{{ 'general.social.links.mail' | t }}</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </accordion-item>
               </div>
-            {%- endfor -%}
-        {%- else -%}
-          <div class="search-help__notfound">
-            <div class="search-help__notfound-header">
-              <h3 class="search-help__notfound-title">Help hub</h3>
-              <p class="search-help__notfound-subtitle">Sorry,  we could not find any results for “{{ search.terms }}”, try searching our Help Hub</p>
-            </div>
-            <div class="search-help__notfound-main">
+            {%- endif -%}
+          {%- endfor -%}
+      {%- else -%}
+        <div class="search-help__notfound">
+          <div class="search-help__notfound-header">
+            <h3 class="search-help__notfound-title">Help hub</h3>
+            <p class="search-help__notfound-subtitle">Sorry,  we could not find any results for “{{ terms }}”, try searching our Help Hub</p>
+          </div>
+          <div class="search-help__notfound-main">
+            <div class="search-help__notfound-main-header">
               <h3 class="search-help__notfound-title">popular questions</h3>
               <p class="search-help__notfound-subtitle">Got a question? Check out our articles below to find the answer you’re looking for. Unfortunately, we do not have the meaning of life, we’re not that far ahead just yet...</p>
-              {%- if section.settings.blog != blank -%}
-                <ul class="search-help__suggestion">
-                  {%- for article in section.settings.blog.articles -%}
-                    <li><a class="search-help__suggestion-item" href="{{ article.url }}">{{- article.title -}}</a></li>
-                  {%- endfor -%}
-                </ul>
-              {%- endif -%}
             </div>
+            {%- if blog_suggestion.articles.size > 0 -%}
+              <ul class="search-help__suggestion">
+                {%- for article in blog_suggestion.articles limit: 5 -%}
+                  <div class="search-help__result">
+                    <accordion-item class="search-help__result-accordion">
+                      <div class="accordion-header search-help__result-header">
+                        <div class="search-help__result-header-inner">
+                          <div class="search-help__another-link">
+                            <a href="/pages/help-center">Help center</a>
+                            <a href="/pages/help-center?section=delivery-shipping">Order & Delivery</a>
+                          </div>
+                          <button type="button">
+                            {%- render 'icon-minus-2' -%}
+                            {%- render 'icon-plus-2' -%}
+                          </button>
+                        </div>
+                        <h3 class="search-help__result-title">{{ article.title }}</h3>
+                        <span class="search-help__result-date-post">
+                          {% render 'icon-clock' %}
+                          {% assign published_at = article.published_at | date: "%s" %}
+                          {% assign published_att =  "now" | date: "%s" | minus: published_at %}
+                          {% assign variablee =  published_att | date: "%d" %}
+                          {{ 'blogs.article.updated_article' | t: published_att: variablee }}
+                        </span>
+                      </div>
+                      <div class="accordion-content">
+                        <div class="search-help__result-content">
+                          {{ article.content }}
+                        </div>
+                        <div class="search-help__more-question">
+                          <p>More question?</p>
+                          <a href="#">Please contact our support team here.</a>
+                        </div>
+                        <div class="search-help__share">
+                          <div class="content-social-bot">
+                            <h3 class="social-title">{{ 'general.social.alt_text.share_this_article' | t }}</h3>
+                            <ul class="list-unstyled list-social" role="list">
+                              <li class="list-social__item">
+                                <a class="list-social__link link no-effect" href="//www.facebook.com/sharer.php?u={{ article.url | append: share_permalink }}" target="_blank">
+                                  {% render 'icon-share-facebook' %}
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                                </a>
+                                <span>{{ 'general.social.links.facebook' | t }}</span>
+                              </li>
+                              <li class="list-social__item twitter-item">
+                                <a class="list-social__link link no-effect" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                                  {% render 'icon-share-twitter' %}
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                                </a>
+                                <span>{{ 'general.social.links.twitter' | t }}</span>
+                              </li>
+                              <li class="list-social__item">
+                                <a class="list-social__link link no-effect" href="//instagram.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                                {%- render 'icon-instagram-2' -%}
+                                </a>
+                              </li>
+                              <li class="list-social__item">
+                                <a class="list-social__link link no-effect" href="//pinterest.com/pin/create/button/?url={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                                  {% render 'icon-share-pinterest' %}
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                                </a>
+                                <span>{{ 'general.social.links.pinterest' | t }}</span>
+                              </li>
+                              <li class="list-social__item mailto-item">
+                                <a class="list-social__link link no-effect" href="mailto:?body={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                                  {% render 'icon-share-mail' %}
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
+                                  <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
+                                </a>
+                                <span>{{ 'general.social.links.mail' | t }}</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </accordion-item>
+                  </div>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
           </div>
-        {%- endif -%}
-      </div>
-      {%- if paginate.pages > 1 -%}
-        {% render 'pagination', paginate: paginate, anchor: '', class: '', section: section %}
+        </div>
       {%- endif -%}
-    {% endpaginate %}
+    </div>
   </div>
 </div>
+
+<script>
+  class AccordionItem extends HTMLElement {
+    constructor () {
+      super()
+
+      this.state = {
+        open: false
+      }
+
+      this.header = this.querySelector('.accordion-header')
+      this.content = this.querySelector('.accordion-content')
+      this.accordions = document.querySelectorAll('accordion-item')
+
+      this.contentHeight = this.content.offsetHeight
+
+      this.close()
+      this.header.addEventListener('click', () => {
+        if (this.state.open) {
+          this.close()
+        } else {
+          this.open()
+        }
+      })
+    }
+
+    open () {
+      this.accordions.forEach(accordion => accordion.close())
+
+      this.state.open = true
+      this.setAttribute('open', true)
+      this.content.style.maxHeight = `${this.contentHeight}px`
+    }
+
+    close () {
+      this.state.open = false
+
+      this.removeAttribute('open')
+      this.content.style.maxHeight = '22px'
+    }
+  }
+
+  if (!customElements.get('accordion-item')) {
+    customElements.define('accordion-item', AccordionItem)
+  }
+</script>
 
 {% schema %}
 {
@@ -74,8 +282,13 @@
   "settings": [
     {
       "type": "blog",
-      "id": "blog",
+      "id": "blog_suggestion",
       "label": "Blog suggestion"
+    },
+    {
+      "type": "blog",
+      "id": "blog_results",
+      "label": "Blog results"
     }
   ]
 }

@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="{{ 'page-banner.css' | asset_url }}" type="text/css">
 
-
 <div class="page-banner-wrapper page-banner--{{ template | handleize }} {% if section.settings.general_title_background_image != blank %} banner-has-image{% else %} banner-no-image{% endif %}">
   <div class="banner-page-main {{ section.settings.breadcrumb_position }}">
     <div class="page-width-desktop">
@@ -22,15 +21,20 @@
           </h1>
         {% elsif template contains 'article' %}
         {% elsif template contains 'page' %}
-          <h1 class="page-title">{{ page.title }}
-          </h1>
-          {% if section.settings.hidden_breadcrumbs_dk %}
-            <div class="desktop-hidden">
+          {%- if template.suffix == 'search-help-center' -%}
+            <h1 class="page-title">{{ 'templates.search.title' | t }}</h1>
+            {%- render 'breadcrumb' -%}
+          {%- else -%}
+            <h1 class="page-title">{{ page.title }}
+            </h1>
+            {% if section.settings.hidden_breadcrumbs_dk %}
+              <div class="desktop-hidden">
+                {% render 'breadcrumb' %}
+              </div>
+            {% else %}
               {% render 'breadcrumb' %}
-            </div>
-          {% else %}
-            {% render 'breadcrumb' %}
-          {% endif %}
+            {% endif %}
+          {%- endif -%}
 
         {% elsif template contains 'search' %}
           {%- if template.suffix == 'help-center' -%}

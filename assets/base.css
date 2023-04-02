@@ -2564,7 +2564,6 @@ li {
 .badge {
   border-left: 2px solid;
   font-weight: 600;
-  font-family: var(--font-heading-family);
 }
 
 .badge.sale {
@@ -2756,7 +2755,6 @@ li {
   background-color: var(--color-dot-inactive);
 }
 .card__badge .badge {
-  font-family: var(--font-heading-family);
   font-size: 9.5px;
   color: var(--hot-label-bg);
 }

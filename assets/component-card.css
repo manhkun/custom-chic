@@ -416,6 +416,7 @@
   border-radius: 50px;
   display: inline-block;
   margin-bottom: 0;
+  font-family: var(--font-body-family);
 }
 
 .product-grid .card__badge > .badge {
