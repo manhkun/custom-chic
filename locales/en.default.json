@@ -172,7 +172,7 @@
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
       "on_sale": "Sale off",
-      "best_seller": "best seller",
+      "best_seller": "hot",
       "new": "New",
       "new_arrival": "New Arrival",
       "hot": "Hot",

@@ -16,11 +16,9 @@
         {% render 'menulist', section: section %}
       </div>
     {%- endif -%}
-    {%- if section.settings.title_blog != blank -%}
-      <div class="title-blog p-{{ section.settings.padding_title }} text-{{ section.settings.text_alignment }}">
-        <h2>{{ section.settings.title_blog }}</h2>
-      </div>
-    {%- endif -%}
+    <div class="title-blog p-{{ section.settings.padding_title }} text-{{ section.settings.text_alignment }}">
+      <h2>{{ blog.title }}</h2>
+    </div>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 {{ 'contact-section.css' | asset_url | stylesheet_tag }}
 
-<div class="contact-section pd-{{ section.settings.pd }}-{{ section.settings.pd_mb }}">
+<div id="contact-section" class="contact-section pd-{{ section.settings.pd }}-{{ section.settings.pd_mb }}">
   <div class="page-width-desktop">
     <div class="contact-header {{ section.settings.text_alignment }}">
       {%- if section.settings.heading_contact != blank -%}
