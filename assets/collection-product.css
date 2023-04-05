@@ -434,6 +434,7 @@ ul#main-collection-product{margin-top: 0;margin-bottom: 16px;row-gap: 10px;}
 }
 .filter-desktop .facets__wrapper .facets__disclosure .filter-label-title {
     color: var(--color-heading);
+    margin: 0;
 }
 @media (max-width:1024px) {
   .list-menu__item.disabled {
