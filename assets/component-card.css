@@ -461,6 +461,7 @@
   align-items: center;
   gap: 8px;
   transition: bottom .3s ease-out;
+  display: none;
 }
 
 .title-shop-now {
@@ -501,10 +502,12 @@
     width: fit-content;
     height: fit-content;
     padding: 0;
+    display: block;
   }
 
   .product-card-action .wishlist-wrapper {
     width: 24px;
     height: 24px;
+    display: block;
   }
 }

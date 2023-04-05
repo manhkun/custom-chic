@@ -42,8 +42,8 @@
 <div data-section-id="{{ section.id }}" class="blog featured-blog gradient{% if section.settings.heading == blank %} no-heading{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.heading == blank -%}
       <div class=" page-width-desktop title-wrapper-with-link title-wrapper--no-top-margin">
-        <p id="SectionHeading-{{ section.id }}" class="
-         heading-title {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</p>
+        <h2 id="SectionHeading-{{ section.id }}" class="
+         heading-title {{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
         {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
           <div class="text-left pagination-wrapper">
             {%- if section.settings.blog != blank  -%}

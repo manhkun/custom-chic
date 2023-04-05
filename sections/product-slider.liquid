@@ -56,7 +56,7 @@
             assign collection = collections[section.settings.collection]
         -%}
         <div class="title-wrapper">
-          <p class="heading-title h2">{{ section.settings.collection.title | escape }}</p>
+          <h2 class="heading-title h2">{{ section.settings.collection.title | escape }}</h2>
           <div class="pagination-wrapper">
             {%- if section.settings.collection != blank -%}
               <a href="{{ section.settings.collection.url }}" class=" shop-products desktop-only link">
