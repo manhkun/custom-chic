@@ -211,6 +211,7 @@ fieldset.product-form__input .form__label {
   text-transform: uppercase;
   font-weight: 600;
   color: #333333;
+  display: inline;
 }
 fieldset.product-form__input .form__label span {
   font-weight: 400;

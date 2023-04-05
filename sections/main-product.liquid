@@ -249,9 +249,9 @@
               <div class="product__accordion product-tab-review accordion quick-add-hidden" {{ block.shopify_attributes }}>
                   <summary>
                     <div class="summary__title">
-                      <div class="h4 accordion__title">
+                      <h2 class="h4 accordion__title">
                         Review
-                      </div>
+                      </h2>
                     </div>
                     <a href="#judgeme_product_reviews" class="review-text">Go to reviews</a>
                   </summary>
@@ -424,7 +424,7 @@
                     {% if option.name == 'Product' %}
                       <fieldset class="js product-form__input selector-wrapper data-layer-{{ o_index }}" data-name="Product">
                         <div class="">
-                          <legend class="form__label">{{ 'products.product.product_type' | t }}:<span class="selected-value">{{ option.selected_value }}</span></legend>
+                          <legend class="form__label"><h2 class="form__label">{{ 'products.product.product_type' | t }}:</h2><span class="selected-value">{{ option.selected_value }}</span></legend>
                           <div class="option-values">
                             {%- for value in option.values -%}
                             <input
@@ -448,7 +448,7 @@
                       </fieldset>
                     {% elsif option.name == 'Color' %}
                       <fieldset class="js product-form__input option-color-wrapper data-layer-{{ o_index }}" data-name="Color">
-                         <legend class="form__label">{{ option.name }}:<span class="selected-value">{{ option.selected_value }}</span></legend>
+                         <legend class="form__label"><h2 class="form__label">{{ option.name }}:</h2><span class="selected-value">{{ option.selected_value }}</span></legend>
                           <div class="option-color">
                              {% assign values = '' %}
                             {%- for value in option.values -%}
@@ -479,7 +479,7 @@
                         </fieldset>
                     {% elsif option.name == 'Size' %}
                       <fieldset class="js product-form__input option-size-wrapper data-layer-{{ o_index }}" data-name="Size">
-                        <div class="title-option-size"><legend class="form__label">{{ 'products.product.size' | t }}:<span class="selected-value">{{ option.selected_value }}</span></legend><span class="size-popup">{% render 'icon-ruler' %}size guide</span></div>
+                        <div class="title-option-size"><legend class="form__label"><h2 class="form__label">{{ 'products.product.size' | t }}:</h2><span class="selected-value">{{ option.selected_value }}</span></legend><span class="size-popup">{% render 'icon-ruler' %}size guide</span></div>
                         <div class="title-option-size-bt">
                           {%- for value in option.values -%}
                             <input
