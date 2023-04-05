@@ -481,8 +481,12 @@ const closestIndex = (num, arr) => {
     });
   
   });
-});
+  const t = $('.jdgm-rev-widg').attr('data-number-of-reviews')
+  if(t <= 0 ){
+    $('.jdgm-rev-widg__sort-wrapper').addClass('hidden');
+  }
 
+});
 
 // media product
 $( ".slider-dots .grid__item" ).click(function(e) {
@@ -513,7 +517,3 @@ $( ".slider-dots .grid__item" ).click(function(e) {
     }
   });
   }
-var t =   $('.jdgm-rev-widg').attr('data-number-of-reviews')
-if(t <= 0 ){
-  $('.jdgm-rev-widg__sort-wrapper').addClass('hidden');
-}
