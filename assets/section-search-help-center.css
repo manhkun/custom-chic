@@ -373,12 +373,6 @@
   margin: 0;
 }
 
-.search-help__another-link a:first-child::after {
-  content: "/";
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
 .search-help__more-question {
   margin-top: 46px;
 }

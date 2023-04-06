@@ -21,14 +21,17 @@
 {%- endfor -%}
 {% liquid
   assign blog_results = section.settings.blog_results
+  assign blocks = section.blocks
   assign blog_suggestion = section.settings.blog_suggestion
   assign results = 0
 %}
-{% for article in blog_results.articles %}
-  {%- if article.title contains terms -%}
-    {%- assign results = results | plus: 1 -%}
-  {%- endif -%}
-{% endfor %}
+{%- for block in blocks -%}
+  {% for article in block.settings.blog.articles %}
+    {%- if article.title contains terms -%}
+      {%- assign results = results | plus: 1 -%}
+    {%- endif -%}
+  {% endfor %}
+{%- endfor -%}
 
 <div class="page-width-desktop">
   <div class="search-help">
@@ -48,15 +51,15 @@
     </div>
     <div class="search-help__results">
       {%- if results > 0 and terms != blank -%}
-          {%- for article in blog_results.articles -%}
+        {%- for block in blocks -%}
+          {%- for article in block.settings.blog.articles -%}
             {%- if article.title contains terms -%}
               <div class="search-help__result">
                 <accordion-item class="search-help__result-accordion">
                   <div class="accordion-header search-help__result-header">
                     <div class="search-help__result-header-inner">
                       <div class="search-help__another-link">
-                        <a href="/pages/help-center">Help center</a>
-                        <a href="/pages/help-center?section=delivery-shipping">Order & Delivery</a>
+                        <a href="{{ block.settings.url_refer }}">{{ block.settings.blog.title }}</a>
                       </div>
                       <button type="button">
                         {%- render 'icon-minus-2' -%}
@@ -129,6 +132,7 @@
               </div>
             {%- endif -%}
           {%- endfor -%}
+        {%- endfor -%}
       {%- else -%}
         <div class="search-help__notfound">
           <div class="search-help__notfound-header">
@@ -284,11 +288,24 @@
       "type": "blog",
       "id": "blog_suggestion",
       "label": "Blog suggestion"
-    },
+    }
+  ],
+  "blocks": [
     {
       "type": "blog",
-      "id": "blog_results",
-      "label": "Blog results"
+      "name": "Blog",
+      "settings": [
+        {
+          "type": "blog",
+          "id": "blog",
+          "label": "Blog"
+        },
+        {
+          "type": "url",
+          "id": "url_refer",
+          "label": "URL refer"
+        }
+      ]
     }
   ]
 }

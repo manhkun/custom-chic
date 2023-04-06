@@ -31,7 +31,53 @@
     },
     "main": {
       "type": "search-help-center",
-      "settings": {}
+      "blocks": {
+        "766a70f2-e07b-4786-9788-acab6d57718e": {
+          "type": "blog",
+          "settings": {
+            "blog": "orders",
+            "url_refer": "\/pages\/help-center?section=orders"
+          }
+        },
+        "e332a93d-7d5f-4f11-b03e-4b71849a6df8": {
+          "type": "blog",
+          "settings": {
+            "blog": "delivery-shipping",
+            "url_refer": "\/pages\/help-center?section=delivery-shipping"
+          }
+        },
+        "084cd056-af4a-42de-92bd-2e56168e20eb": {
+          "type": "blog",
+          "settings": {
+            "blog": "replacement-refund",
+            "url_refer": "\/pages\/help-center?section=replacement-refund"
+          }
+        },
+        "8af7a7fc-1a1b-4033-aab2-992ab5fffa08": {
+          "type": "blog",
+          "settings": {
+            "blog": "payment",
+            "url_refer": "\/pages\/help-center?section=payment"
+          }
+        },
+        "6459ab17-06be-4469-ad3e-73c919b730f6": {
+          "type": "blog",
+          "settings": {
+            "blog": "about-the-products",
+            "url_refer": "\/pages\/help-center?section=about-the-products"
+          }
+        }
+      },
+      "block_order": [
+        "766a70f2-e07b-4786-9788-acab6d57718e",
+        "e332a93d-7d5f-4f11-b03e-4b71849a6df8",
+        "084cd056-af4a-42de-92bd-2e56168e20eb",
+        "8af7a7fc-1a1b-4033-aab2-992ab5fffa08",
+        "6459ab17-06be-4469-ad3e-73c919b730f6"
+      ],
+      "settings": {
+        "blog_suggestion": ""
+      }
     },
     "contact-section": {
       "type": "contact-section",
