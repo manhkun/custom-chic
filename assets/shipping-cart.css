@@ -19,7 +19,7 @@
   align-items: center;
 }
 .cart__items table td{
-  padding: 15px!important;
+  padding: 16px!important;
 }
 .info-item a{
   font-weight: 400;
@@ -420,7 +420,8 @@ button.quantity__button.no-js-hidden {
     height: auto;
   }
   .prop_item {
-    margin-top: 10px;
+    margin-top: 8px;
+    margin-bottom: 0;
   }
   .cart__footer .free-shipping {
     margin-top: 27px;
