@@ -270,6 +270,11 @@
     margin-bottom: 16px;
     text-transform: none;
 }
+
+.content-item .date-post svg {
+    width: 24px;
+    height: 24px;
+}
 .content-social-bot ul li a svg,
 .content-social-bot ul li a svg rect,
 .content-social-bot ul li.mailto-item a svg path,
