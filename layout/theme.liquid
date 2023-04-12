@@ -452,5 +452,17 @@
       -%}
       <!-- FreshChat END -->
   {{ '//cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23' | script_tag }}
+  <script>
+    document.addEventListener('jdgm.doneSetup', (event) => {
+      setTimeout(() => {
+        document.querySelector('.jdgm-carousel-wrapper') && document.querySelector('.jdgm-carousel-wrapper').setAttribute('style', 'display: block !important;');
+      },2000)
+    })
+  </script>
+  <style>
+    .jdgm-carousel-wrapper {
+      display: none !important;
+    }
+  </style>
 </body>
 </html>

@@ -92,7 +92,18 @@
     </div>
   </div>
 </div>
-<script></script>
+<script>
+  const button = document.querySelector('.contact-item-around a')
+
+  if (button) {
+    button.addEventListener('click', (e) => {
+      e.preventDefault()
+      if (window.fcWidget) {
+        window.fcWidget.open()
+      }
+    })
+  }
+</script>
 
 {%- style -%}
 

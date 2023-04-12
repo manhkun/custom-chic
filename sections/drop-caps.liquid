@@ -104,6 +104,9 @@
     if (text.hasClass("active")) {
       newHeight = defaultHeight;
       text.removeClass("active");
+      $('html, body').animate({
+        scrollTop: text.offset().top - 200
+      }, 200)
     } else {
       newHeight = textHeight + 20;
       text.addClass("active");

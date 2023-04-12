@@ -144,7 +144,8 @@
   display: none;
 }
 .footer-block .heading-block.active .icon-minus{
-  display: block;
+  display: flex;
+  align-items: center;
 }
 .footer-block .heading-block.active .icon-minus svg {
   fill: #fff;
