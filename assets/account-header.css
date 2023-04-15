@@ -1,0 +1,44 @@
+.account-header {
+  display: none;
+  background-color: #FAFAFA;
+  padding: 20px 0;
+}
+
+.account-header__title {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: #000000;
+}
+
+.account-header__subtitle{
+  margin-top: 8px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 160%;
+  color: #000000;
+}
+
+@media (min-width:768px) {
+  .account-header {
+    display: block;
+    padding: 60px 0;
+  }
+
+  .account-header__title {
+    font-family: 'Montserrat';
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 120%;
+    color: #000000;
+  }
+
+  .account-header__subtitle{
+    margin-top: 8px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+    color: #000000;
+  }
+}

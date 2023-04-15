@@ -1,0 +1,12 @@
+{{ 'account-header.css' | asset_url | stylesheet_tag }}
+
+<div class="account-header">
+  <div class="page-width-desktop">
+    <div class="account-header__title">
+      {{- 'customer.account.greeting' | t: name: customer.name -}}
+    </div>
+    <div class="account-header__subtitle">
+      {{- 'customer.account.sub_greeting' | t -}}
+    </div>
+  </div>
+</div>
