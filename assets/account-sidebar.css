@@ -1,0 +1,120 @@
+.account-sidebar {
+  position: static;
+}
+
+.account-sidebar__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-sidebar__item {
+  display: flex !important;
+  align-items: center;
+  padding: 13px 16px;
+  color: #808080 !important;
+}
+
+.account-sidebar__item svg {
+  width: 20px !important;
+  height: 20px !important;
+  color: #808080;
+  margin-right: 16px !important;
+}
+
+.account-sidebar__item.active {
+  background-color: #FAFAFA;
+  color: #000000 !important;
+}
+
+.account-sidebar__item.active svg {
+  color: #000000;
+}
+
+.account-sidebar__select {
+  display: none;
+}
+
+.account-sidebar__dropdown {
+  display: block;
+}
+
+.account-sidebar__close-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .account-sidebar__select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 54px;
+    padding: 0 16px;
+    background: #ffffff;
+    color: #000000;
+    cursor: pointer;
+  }
+
+  .account-sidebar__select.close {
+    display: none;
+  }
+
+  .account-sidebar__title-icon {
+    color: #000000;
+  }
+
+  .account-sidebar__dropdown {
+    display: none;
+    background: #FAFAFA;
+  }
+
+  .account-sidebar__dropdown.active {
+    display: block;
+    padding-top: 16px;
+  }
+
+  .account-sidebar__item {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: #000000 !important;
+  }
+
+  .account-sidebar__item.active {
+    background: #000000;
+    color: #ffffff !important;
+  }
+
+  .account-sidebar__item.active svg {
+    color: #ffffff;
+  }
+
+  .account-sidebar__close-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 0 52px;
+    height: 54px;
+    background: #ffffff;
+    color: #000000;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+  }
+
+  .account-sidebar__close-mobile svg {
+    transform: rotate(180deg);
+  }
+
+  .account-sidebar__title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+  }
+
+  .account-sidebar__item svg {
+    color: #000000;
+  }
+}

@@ -1,0 +1,18 @@
+.account-infor__title {
+  display: block;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: #000000;
+  margin: 0;
+  text-transform: uppercase;
+  padding-bottom: 40px;
+}
+
+@media screen and (max-width: 768px) {
+  /* .account-infor__title {
+    display: none;
+  } */
+}
