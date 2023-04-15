@@ -441,6 +441,8 @@ customElements.define('header-drawer', HeaderDrawer);
 class ModalDialog extends HTMLElement {
   constructor() {
     super();
+
+    this.contentModalEl = this.querySelector('.js-content-modal')
     this.querySelectorAll('[id^="ModalClose-"]').forEach(item => {
       item.addEventListener(
         'click',
@@ -475,6 +477,7 @@ class ModalDialog extends HTMLElement {
     if (popup) popup.loadContent();
     trapFocus(this, this.querySelector('[role="dialog"]'));
     window.pauseAllMedia();
+    this.contentModalEl && window.bodyScrollLock.disableBodyScroll(this.contentModalEl)
   }
 
   hide() {
@@ -483,6 +486,7 @@ class ModalDialog extends HTMLElement {
     this.removeAttribute('open');
     removeTrapFocus(this.openedBy);
     window.pauseAllMedia();
+    window.bodyScrollLock.clearAllBodyScrollLocks()
   }
 }
 customElements.define('modal-dialog', ModalDialog);
@@ -1261,3 +1265,23 @@ class Accordion {
 document.querySelectorAll('details').forEach((el) => {
   new Accordion(el);
 });
+
+class AccountAddressForm extends HTMLElement {
+  constructor() {
+    super()
+
+    this.countrySelectEl = this.querySelector('[name="address[country]"]')
+    this.initAddress()
+  }
+
+  initAddress() {
+    const value = this.countrySelectEl.getAttribute('value')
+
+    if (value) {
+      this.countrySelectEl.value = value
+    }
+  }
+
+}
+
+customElements.define('account-address-form', AccountAddressForm);

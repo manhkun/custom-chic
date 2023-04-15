@@ -1,0 +1,173 @@
+{{ 'account-address-form.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'account-address-form.js' | asset_url }}" defer="defer"></script>
+
+{% style %}
+  :root {
+    --color-foreground: 0, 0, 0;
+    --text-black: #000000;
+    --color-grey: #808080;
+  }
+{% endstyle %}
+
+{%- liquid 
+  assign heading = heading | default: nil
+  assign class = class | default: nil
+  assign default_address = default_address | default: false
+  assign address_id = address.id
+
+  assign email_id = 'address_email_' | append: address_id
+  assign phone_id = 'address_phone_' | append: address_id
+  assign country_id = 'address_country_' | append: address_id
+  assign first_name_id = 'address_first_name_' | append: address_id
+  assign last_name_id = 'address_last_name_' | append: address_id
+  assign address_id = 'address_address_' | append: address.id
+  assign partment_id = 'address_partment_' | append: address_id
+  assign city_id = 'address_city_' | append: address_id
+  assign zip_id = 'address_zip_' | append: address_id
+  assign set_default_id = 'address_default_address_' | append: address_id
+
+  assign phone_label = 'customer.addresses.phone' | t
+  assign country_label = 'customer.addresses.country' | t
+  assign name_label = 'customer.addresses.name' | t
+  assign address_label = 'customer.addresses.address' | t
+  assign placehoder_phone = 'customer.addresses.placehoder_phone' | t
+  assign placehoder_first_name = 'customer.addresses.placehoder_first_name' | t
+  assign placehoder_last_name = 'customer.addresses.placehoder_last_name' | t
+  assign placehoder_address = 'customer.addresses.placehoder_address' | t
+  assign placehoder_city = 'customer.addresses.placehoder_city' | t
+  assign placehoder_postcode = 'customer.addresses.placehoder_postcode' | t
+  assign text_set_address_default = 'customer.addresses.set_address_default' | t
+
+  assign btn_text_add = 'customer.addresses.add' | t
+  assign btn_cancel = 'customer.addresses.cancel' | t
+  assign btn_delete = 'customer.addresses.delete' | t
+
+-%}
+
+<modal-dialog id="address-{{- address.id | default: 'new' -}}" class="account-address-form-modal">
+    <div 
+      role="dialog"
+      aria-modal="true"
+      tabindex="-1"
+      class="account-address-form-modal__content js-content-modal" 
+    >
+      <account-address-form>
+        <div class="account-address-form-modal__content-header">
+          <h2 class="account-address-form__heading">{{- heading-}}</h2>
+          <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-close" >
+            {%- render 'icon-close-3'-%}
+          </button>
+        </div>
+        {% form 'customer_address', address %}
+          <div class="account-address-form__field">
+            <label
+              class="account-address-form__label"
+              for="{{ phone_id }}">{{ phone_label }}:</label>
+            <input 
+              type="tel" 
+              name="address[phone]" 
+              id="{{ phone_id }}" 
+              value="{{ address.phone }}" 
+              class="account-address-form__input"
+              placeholder="{{ placehoder_phone }}"
+            >
+          </div>
+          <div class="account-address-form__field">
+            <label
+              class="account-address-form__label"
+              for="{{ country_id }}">{{ country_label }}:</label>
+            <select name="address[country]" 
+              id="{{ country_id }}" 
+              value="{{ address.country }}" 
+              class="account-address-form__select" 
+              data-country-selector 
+              data-id="{{ form.id }}">
+              {{ all_country_option_tags }}
+            </select>
+          </div>
+          <label class="account-address-form__label">{{ name_label }}:</label>
+          <div class="account-address-form__name">
+            <div class="account-address-form__field">
+              <input 
+                type="text" 
+                name="address[first_name]" 
+                id="{{ first_name_id }}" 
+                value="{{ address.first_name }}" 
+                class="account-address-form__input account-address-form__input-first-name"
+                placeholder="{{ placehoder_first_name }}"
+              >
+            </div>
+            <div class="account-address-form__field">
+              <input 
+                type="text" 
+                name="address[last_name]" 
+                id="{{ last_name_id }}" 
+                value="{{ address.last_name }}" 
+                class="account-address-form__input account-address-form__input-last-name"
+                placeholder="{{ placehoder_last_name }}"
+              >
+            </div>
+          </div>
+          <div class="account-address-form__field">
+            <label
+              class="account-address-form__label"
+              for="{{ address_id }}">{{ address_label }}:</label>
+            <input 
+              type="text" 
+              name="address[address1]" 
+              id="{{ address_id }}" 
+              value="{{ address.address1 }}" 
+              class="account-address-form__input"
+              placeholder="{{ placehoder_address }}"
+            >
+          </div>
+          <div class="account-address-form__field">
+            <input 
+              type="text" 
+              name="address[city]" 
+              id="{{ city_id }}" 
+              value="{{ address.city }}" 
+              class="account-address-form__input"
+              placeholder="{{ placehoder_city }}"
+            >
+          </div>
+          <div class="account-address-form__field">
+            <input
+              type="text"
+              name="address[zip]"
+              id="{{ zip_id }}"
+              value="{{ address.zip }}" 
+              class="account-address-form__input"
+              placeholder="{{ placehoder_postcode }}"
+            >
+          </div>
+          <div class="account-address-form__address-default">
+            <input
+              type="checkbox"
+              id="{{ set_default_id }}"
+              class="account-address-form__checkbox"
+              name="address[default]"
+              {% if default_address %}checked{% endif %}
+            >
+            <label
+              class="account-address-form__address-default_label"
+              for="{{ set_default_id }}">{{ text_set_address_default }}</label>
+          </div>
+          <div class="account-address-form__content-bottom">
+            {%- if type == 'new' -%}
+              <button class="account-address-form__btn-add" type="submit">{{ btn_text_add }}</button>
+              <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-cancel" type="reset">{{- btn_cancel -}}</button>
+            {%- else -%}
+              <button class="account-address-form__btn-add" type="submit">{{ btn_text_add }}</button>
+            {%- endif -%}
+          </div>
+        {% endform %}
+        {%- unless type == 'new' -%}
+          <form class="inline" method="post" action="/account/addresses/{{- address.id -}}">
+            <input type="hidden" name="_method" value="delete">
+            <button class="account-address-form__btn-delete" type="submit">{{ btn_delete }}</button>
+          </form>
+        {%- endunless -%}
+    </account-address-form>
+    </div>
+</modal-dialog>
