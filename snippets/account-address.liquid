@@ -1,0 +1,85 @@
+{%- liquid
+  assign title = 'customer.addresses.title' | t
+  assign add_new_label = 'customer.addresses.add' | t
+  assign edit_address = 'customer.addresses.edit' | t
+  assign edit_address_title = 'customer.addresses.edit_address' | t
+  assign postcode_label = 'customer.addresses.placehoder_postcode' | t
+-%}
+
+{{ 'account-address.css' | asset_url | stylesheet_tag }}
+
+<div class="account-address">
+  <h2 class="account-address__heading">{{'customer.addresses.address_list' | t}}</h2>
+  <div class="account-address__content">
+    {%- if customer.addresses.size > 0 -%}
+      {%- for address in customer.addresses -%}
+        <div class="account-address__item" {%- if address.id == customer.default_address.id -%} style="order: 1;" {%- endif -%}>
+          <div class="account-address__item-header">
+            <p class="account-address__name">{{ address.first_name }} {{ address.last_name }}</p>
+            <modal-opener data-modal="#address-{{ address.id }}">
+              <button class="account-address__btn-edit">{{ 'customer.addresses.edit' | t }}</button>
+            </modal-opener>
+          </div>
+          <div class="account-address__info">
+            <div class="account-address__address">
+              {%- if address.address1 != blank -%}
+                <span>{{ address.address1 }}</span>
+              {%- endif -%}
+              {%- if address.city != blank -%}
+                {%- if address.address1 != blank -%}
+                  <span>, </span>
+                {%- endif -%}
+                <span>{{ address.city }}</span>
+              {%- endif -%}
+              {%- if address.country != blank -%}
+                {%- if address.city != blank -%}
+                  <span>, </span>
+                {%- endif -%}
+                <span>{{ address.country }}</span>
+              {%- endif -%}
+            </div>
+            <div class="account-address__postcode">
+              {%- if address.zip != blank -%}
+                <span>{{ postcode_label }}: {{ address.zip }} </span>
+              {%- endif -%}
+            </div>
+          </div>
+          <p class="account-address__phone">{{ address.phone }}</p>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="account-address-no-address">
+        <div class="account-address-no-address__icon">
+          {%- render 'icon-location' -%}
+        </div>
+        <h2 class="account-address-no-address__title">{{ 'customer.addresses.title_no_have_address' | t }}</h2>
+        <div class="account-address-no-address__description">
+          {{ 'customer.addresses.description_no_have_address' | t }}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+  <modal-opener class="account-address__bottom" data-modal="#address-new">
+    <button class="account-address__button-add">{{ add_new_label }}</button>
+  </modal-opener>
+</div>
+
+
+{%- render 'account-address-form',
+  address: customer.new_address,
+  type: "new",
+  heading: add_new_label,
+-%}
+
+{%- for address in customer.addresses -%}
+  {%- assign is_default_address = false -%}
+  {%- if address.id == customer.default_address.id -%}
+    {%- assign is_default_address = true -%}
+  {%- endif -%}
+  {%- render 'account-address-form',
+    address: address,
+    default_address: is_default_address,
+    heading: edit_address_title,
+  -%}
+{%- endfor -%}
+
