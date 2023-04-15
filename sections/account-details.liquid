@@ -22,15 +22,12 @@
         {%- render 'account-sidebar', account_sidebar: section.settings.account_sidebar, page_url: page_url -%}
       </div>
       <div class="account-detail__content">
-        <!-- {%- case page_url -%}
+        {%- case page_url -%}
           {%- when '/account' -%}
             {%- render 'account-information' -%}
           {%- when '/account/addresses' -%}
-            {%- render 'account-addresses' -%} -->
-        {%- endcase -%} -->
-        {%- if page_url contains '/account' -%}
-          {%- render 'account-information' -%}
-        {%- endif -%}
+            {%- render 'account-address' -%}
+        {%- endcase -%}
       </div>
     </div>
   </div>
