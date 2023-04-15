@@ -1,0 +1,46 @@
+{{ 'account-sidebar.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'account-sidebar.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign page_url = page_url | default: '/account'
+  assign account_sidebar = account_sidebar | default: 'account-sidebar'
+  assign sidebar_menu = linklists[account_sidebar]
+-%}
+
+{%- if sidebar_menu.links.size > 0 -%}
+  <account-sidebar class="account-sidebar">
+    <div class="account-sidebar__select js-sidebar-current">
+      <span class="account-sidebar__title js-sidebar-current-text"></span>
+      <svg class="account-sidebar__title-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
+        <path fill="currentColor" d="M13.825 6.912 10 10.728 6.175 6.912 5 8.087l5 5 5-5-1.175-1.175Z"/>
+      </svg>
+    </div>
+    <nav class="js-sidebar-nav account-sidebar__dropdown">
+      <div class="account-sidebar__wrapper">
+        {%- for item in sidebar_menu.links -%}
+          {%- liquid
+            assign mod_title = item.title | split: ']' | last | strip
+            assign mod_icon = item.title | split: ']' | first | remove: '[' | strip
+            assign mod_class = ''
+            if page_url contains item.url
+              assign mod_class = 'active'
+            endif
+          -%}
+          <a
+            href="{{ item.url }}"
+            class="account-sidebar__item js-sidebar-item {{ mod_class }}"
+          >
+            {%- render 'icon' with mod_icon -%}
+            {{- mod_title -}}
+          </a>
+        {%- endfor -%}
+      </div>
+      <div class="account-sidebar__close-mobile">
+        {{ 'customer.account.close' | t }}
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none">
+          <path fill="currentColor" d="M13.825 6.912 10 10.728 6.175 6.912 5 8.087l5 5 5-5-1.175-1.175Z"/>
+        </svg>
+      </div>
+    </nav>
+  </account-sidebar>
+{%- endif -%}

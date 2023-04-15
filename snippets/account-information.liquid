@@ -1,0 +1,51 @@
+{{ 'account-information.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign name = 'customer.information.name' | t
+  assign email = 'customer.information.email' | t
+  assign date_of_birth = 'customer.information.date_of_birth' | t
+  assign phone = 'customer.information.phone' | t
+-%}
+
+<div class="account-infor">
+  <h3 class="account-infor__title">{{- 'customer.information.title' | t -}}</h3>
+  <div class="account-info__wrapper">
+    <form id="customer_update" action="">
+      <div class="">
+        {%- render 'text-input',
+          id: 'customer_first_name',
+          name: 'customer[name]',
+          value: customer.name,
+          label: name,
+          placeholder: name,
+          required: true
+        -%}
+        {%- render 'text-input',
+          id: 'customer_email',
+          name: 'customer[email]',
+          value: customer.email,
+          label: email,
+          placeholder: email,
+          required: true,
+        -%}
+        {%- render 'text-input',
+          id: 'customer[birthday]',
+          type: 'date'
+          name: 'customer[birthday]',
+          value: customer.name,
+          label: date_of_birth,
+          placeholder: date_of_birth,
+          required: true
+        -%}
+        {%- render 'text-input',
+          id: 'customer[birthday]',
+          name: 'customer[name]',
+          value: customer.name,
+          label: first_name_label,
+          placeholder: first_name_label,
+          required: true
+        -%}
+      </div>
+    </form>
+  </div>
+</div>

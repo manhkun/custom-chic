@@ -1,0 +1,31 @@
+{{ 'text-input.css' | asset_url | stylesheet_tag }}
+
+<div class="text-input">
+  {%- if type == 'text' or type == 'email' or type == 'password' or type == 'tel' or type == 'date' -%}
+    <label class="input-label" for="{{ id }}">
+      {{ label }}
+    </label>
+  {%- endif -%}
+  <input 
+    class="input" 
+    id="{{ id }}"
+    type="{{ type }}"
+    name="{{ name }}"
+    aria-label="{{ label }}"
+    {%- if value != blank -%}
+      value="{{ value }}"
+    {%- endif -%}
+    {% if show_placeholder %}placeholder="{{ placeholder }}"{% endif %}
+    autocomplete="{{ autocomplete }}"
+    {% if required %}required{% endif %}
+    {% if disabled %}
+    disabled
+    {% endif %}
+    {%- if data_comfirm != blank -%}
+      data-confirm="{{ data_comfirm }}"
+    {%- endif -%}
+    {%- if data_comfirm_message != blank -%}
+      data-confirm-message="{{ data_comfirm_message }}"
+    {%- endif -%}
+  />
+</div>

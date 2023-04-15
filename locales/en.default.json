@@ -400,7 +400,17 @@
       "title": "Account",
       "details": "Account details",
       "view_addresses": "View addresses",
-      "return": "Return to Account details"
+      "return": "Return to Account details",
+      "greeting": "Hi, {{ name }}",
+      "sub_greeting": "Have a good day ^^",
+      "close": "Close"
+    },
+    "information": {
+      "title": "Personal Information",
+      "name": "Name",
+      "email": "Email",
+      "date_of_birth": "Date of birth",
+      "phone": "Phone number"
     },
     "account_fallback": "Account",
     "activate_account": {
