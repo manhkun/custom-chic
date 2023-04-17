@@ -28,6 +28,15 @@
           {%- when '/account/addresses' -%}
             {%- render 'account-address' -%}
         {%- endcase -%}
+        {%- if page_url contains 'view=orders' -%}
+          {%- render 'account-orders'
+            limit: section.settings.order_limit,
+            link: section.settings.order_support_url
+          -%}
+        {%- endif -%}
+        {%- if page_url contains 'view=favourites' -%}
+          {%- render 'app_wishlist-king' -%}
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -41,6 +50,24 @@
       "type": "link_list",
       "id": "account_sidebar",
       "label": "t:sections.account-details.account_sidebar"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.account-details.account_sidebar"
+    },
+    {
+      "type": "range",
+      "id": "order_limit",
+      "label": "t:sections.account-details.order_limit",
+      "min": 2,
+      "max": 30,
+      "step": 2,
+      "default": 10
+    },
+    {
+      "type": "url",
+      "id": "order_support_url",
+      "label": "t:sections.account-details.order_support_url"
     }
   ]
 }

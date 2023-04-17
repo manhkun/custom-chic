@@ -1355,7 +1355,9 @@
     },
     "account-details": {
       "name": "Account Details",
-      "account_sidebar": "Account Sidebar"
+      "account_sidebar": "Account Sidebar",
+      "order_limit": "Order Item Per Page",
+      "order_support_url": "Link Support Orders"
     },
     "main-activate-account": {
       "name": "Account activation"
