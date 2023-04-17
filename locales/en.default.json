@@ -407,10 +407,15 @@
     },
     "information": {
       "title": "Personal Information",
-      "name": "Name",
-      "email": "Email",
-      "date_of_birth": "Date of birth",
-      "phone": "Phone number"
+      "name": "Name:",
+      "pl_name": "Name:",
+      "email": "Email:",
+      "pl_email": "Email:",
+      "date_of_birth": "Date of birth:",
+      "phone": "Phone number:",
+      "placeholder_phone": "Phone number",
+      "reset_password": "Reset password",
+      "button_save_change": "Save Changes" 
     },
     "account_fallback": "Account",
     "activate_account": {
@@ -543,6 +548,12 @@
       "page_title": "Terms and Conditions"
     },
     "reset_password": {
+      "heading": "Account password",
+      "current_password": "Current password:",
+      "sub_current_password": "Enter current password",
+      "new_password": "New password:",
+      "confirm_password": "Confirm new password:",
+      "sub_confirm_password": "Confirm your new password",
       "title": "Reset account password",
       "subtext": "Enter a new password",
       "password": "Password",
