@@ -22,7 +22,11 @@
             assign mod_title = item.title | split: ']' | last | strip
             assign mod_icon = item.title | split: ']' | first | remove: '[' | strip
             assign mod_class = ''
-            if page_url contains item.url
+            if page_url == item.url
+              assign mod_class = 'active'
+            endif
+
+            if page_url == '/addresses' and item.url == '/account/addresses'
               assign mod_class = 'active'
             endif
           -%}
