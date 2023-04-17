@@ -1,6 +1,7 @@
 {{ 'text-input.css' | asset_url | stylesheet_tag }}
 
-<div class="text-input">
+{%- assign show_placeholder = show_placeholder | default: true -%}
+<div class="text-input {{ class }}">
   {%- if type == 'text' or type == 'email' or type == 'password' or type == 'tel' or type == 'date' -%}
     <label class="input-label" for="{{ id }}">
       {{ label }}
