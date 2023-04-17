@@ -13,9 +13,18 @@
   <div class="account-address__content">
     {%- if customer.addresses.size > 0 -%}
       {%- for address in customer.addresses -%}
-        <div class="account-address__item" {%- if address.id == customer.default_address.id -%} style="order: 1;" {%- endif -%}>
+        {%- assign is_default = false -%}
+        {%- if address.id == customer.default_address.id -%}
+          {%- assign is_default = true -%}
+        {%- endif -%}
+        <div class="account-address__item" {%- if is_default -%} style="order: 0;" {%- endif -%}>
           <div class="account-address__item-header">
-            <p class="account-address__name">{{ address.first_name }} {{ address.last_name }}</p>
+            <div>
+              <span class="account-address__name">{{ address.first_name }} {{ address.last_name }}</span>
+              {%- if is_default -%}
+                <span class="account-address__label-default">{{'customer.addresses.default_address_label' | t}}</span>
+              {%- endif -%}
+            </div>
             <modal-opener data-modal="#address-{{ address.id }}">
               <button class="account-address__btn-edit">{{ 'customer.addresses.edit' | t }}</button>
             </modal-opener>
@@ -25,8 +34,14 @@
               {%- if address.address1 != blank -%}
                 <span>{{ address.address1 }}</span>
               {%- endif -%}
-              {%- if address.city != blank -%}
+              {%- if address.province != blank -%}
                 {%- if address.address1 != blank -%}
+                  <span>, </span>
+                {%- endif -%}
+                <span>{{ address.city }}</span>
+              {%- endif -%}
+              {%- if address.city != blank -%}
+                {%- if address.province != blank -%}
                   <span>, </span>
                 {%- endif -%}
                 <span>{{ address.city }}</span>

@@ -72,6 +72,7 @@
   border-radius: 100px;
   border: none;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
 .account-address__bottom {
@@ -142,6 +143,16 @@
   font-weight: 300;
   color: #808080;
   margin: 0;
+}
+
+.account-address__label-default {
+  margin-left: 8px;
+  font-size: 12px;
+  line-height: 14.06px;
+  padding: 4px;
+  background-color: #F2F2F2;
+  border-radius: 2px;
+  font-weight: 300;
 }
 
 @media screen and (min-width: 1023px) {
