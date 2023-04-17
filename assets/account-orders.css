@@ -1,0 +1,314 @@
+.account-orders__list-label {
+  display: none;
+}
+
+.account-order__title {
+  display: none;
+}
+
+.account-order__label {
+  padding: 16px 0;
+  font-size: 12px;
+  line-height: 14.4px;
+  letter-spacing: 0;
+  color: #000000;
+  font-family: var(--font-heading-family);
+  font-weight: 500;
+
+}
+
+.account-order__label-order {
+  width: calc(90 / 910 * 100%);
+}
+
+.account-order__label-date {
+  width: calc(120 / 910 * 100%);
+}
+
+.account-order__label-payment {
+  width: calc(120 / 910 * 100%);
+}
+
+.account-order__label-fullfillment {
+  width: calc(120 / 910 * 100%);
+}
+
+.account-order__label-tracking {
+  width: calc(160 / 910 * 100%);
+}
+
+.account-order__label-total {
+  width: calc(120 / 910 * 100%);
+}
+
+.account-orders__title {
+  display: none;
+}
+
+.account-order__item {
+  padding: 0 16px 12px;
+  background-color: #FFFFFF;
+  margin-bottom: 20px;
+}
+
+.account-order__number {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #D9D9D9;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0;
+  font-weight: 700;
+  color: #000000;
+  font-family: var(--font-heading-family);
+}
+
+.account-order__number-link {
+  text-decoration: underline;
+}
+
+.account-order__field {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 120%;
+  letter-spacing: 0;
+  font-weight: 500;
+  color: #000000;
+  font-family: var(--font-heading-family);
+}
+
+.account-order__info {
+  font-weight: 300;
+}
+
+.account-order__tracking-text {
+  text-decoration: underline;
+  text-transform: uppercase;
+}
+
+.account-order__bottom {
+  padding-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.account-order__show-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  width: 100%;
+  background-color: #000000;
+  border: none;
+  font-size: 12px;
+  line-height: 14.63px;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-family: var(--font-heading-family);
+  cursor: pointer;
+  color: #FFFFFF;
+  border-radius: 100px;
+}
+
+.account-order__support {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0;
+  font-family: var(--font-heading-family);
+  color: #808080;
+}
+
+.account-order__support-link {
+  margin-left: 4px;
+  text-decoration: underline;
+  color: #808080;
+}
+
+.account-order-empty {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.account-order-empty__icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.account-order__title-empty {
+  font-size: 16px;
+  line-height: 120%;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: var(--font-heading-family);
+  letter-spacing: 0;
+}
+
+.account-order__description-empty {
+  font-size: 14px;
+  line-height: 120%;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.account-order__continue-shopping {
+  font-size: 16px;
+  line-height: 19.5px;
+  letter-spacing: 0;
+  padding: 12px 22px;
+  font-family: var(--font-heading-family);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #000000;
+  color: #FFFFFF;
+  border-radius: 100px;
+  width: fit-content;
+  margin: 20px auto 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .account-orders__list-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #FAFAFA;
+    color: #000000;
+    padding: 0 16px;
+    gap: 36px;
+  }
+
+  .account-orders__header-label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background-color: #D9D9D9;
+    color: #808080;
+  }
+
+  .account-order__title {
+    display: block;
+  }
+
+  .account-order__item {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 0 16px;
+    border-bottom: 1px solid #D9D9D9;
+  }
+
+  .account-order__item:last-child {
+    border-bottom: none;
+  }
+
+  .account-order-label {
+    display: none;
+  }
+
+  .account-order__number {
+    width: calc(90 / 910 * 100%);
+    border: none;
+    padding: 16px;
+    font-weight: 500;
+    margin-bottom: 0;
+  }
+
+  .account-order__date {
+    width: calc(120 / 910 * 100%);
+  }
+
+  .account-order__payment {
+    width: calc(120 / 910 * 100%);
+  }
+
+  .account-order__fullfill {
+    width: calc(120 / 910 * 100%);
+  }
+
+  .account-order__tracking {
+    width: calc(160 / 910 * 100%);
+  }
+
+  .account-order__total {
+    width: calc(120 / 910 * 100%);
+    text-align: right;
+  }
+
+  .account-order__total-info {
+    text-align: right;
+    width: 100%;
+  }
+
+  .account-order__label-total {
+    text-align: right;
+  }
+
+  .account-order__field {
+    margin-bottom: 0;
+    padding: 16px;
+  }
+
+  .account-order__bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .account-order__show-more {
+    width: fit-content;
+    padding: 12px 24px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .account-order__label {
+    padding: 16px;
+  }
+
+  .account-order__label-order {
+    padding-left: 0;
+  }
+
+  .account-order__number {
+    padding-left: 0;
+  }
+
+  .account-order__label-total {
+    padding-right: 0;
+  }
+
+  .account-order__title-empty {
+    font-size: 24px;
+    line-height: 29.26px;
+    font-weight: 600;
+    margin: 16px 0;
+  }
+
+  .account-order__description-empty {
+    font-size: 16px;
+    line-height: 160%;
+
+  }
+
+  .account-order__continue-shopping {
+    margin-top: 40px;
+    padding: 16px 24px;
+  }
+}

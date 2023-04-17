@@ -1,5 +1,4 @@
 {{ 'account-address-form.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'account-address-form.js' | asset_url }}" defer="defer"></script>
 
 {% style %}
   :root {
@@ -21,7 +20,7 @@
   assign first_name_id = 'address_first_name_' | append: address_id
   assign last_name_id = 'address_last_name_' | append: address_id
   assign address_id = 'address_address_' | append: address.id
-  assign partment_id = 'address_partment_' | append: address_id
+  assign province_id = 'address_province_' | append: address_id
   assign city_id = 'address_city_' | append: address_id
   assign zip_id = 'address_zip_' | append: address_id
   assign set_default_id = 'address_default_address_' | append: address_id
@@ -35,6 +34,7 @@
   assign placehoder_last_name = 'customer.addresses.placehoder_last_name' | t
   assign placehoder_address = 'customer.addresses.placehoder_address' | t
   assign placehoder_city = 'customer.addresses.placehoder_city' | t
+  assign placehoder_province = 'customer.addresses.placehoder_province' | t
   assign placehoder_postcode = 'customer.addresses.placehoder_postcode' | t
   assign text_set_address_default = 'customer.addresses.set_address_default' | t
 
@@ -51,7 +51,7 @@
       tabindex="-1"
       class="account-address-form-modal__content js-content-modal" 
     >
-      <account-address-form>
+      <account-address-form class="account-address-form">
         <div class="account-address-form-modal__content-header">
           <h2 class="account-address-form__heading">{{- heading-}}</h2>
           <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-close" >
@@ -70,6 +70,7 @@
               value="{{ address.phone }}" 
               class="account-address-form__input"
               placeholder="{{ placehoder_phone }}"
+              required
             >
           </div>
           <div class="account-address-form__field">
@@ -108,10 +109,8 @@
               >
             </div>
           </div>
+          <label class="account-address-form__label">{{ address_label }}:</label>
           <div class="account-address-form__field">
-            <label
-              class="account-address-form__label"
-              for="{{ address_id }}">{{ address_label }}:</label>
             <input 
               type="text" 
               name="address[address1]" 
@@ -119,6 +118,16 @@
               value="{{ address.address1 }}" 
               class="account-address-form__input"
               placeholder="{{ placehoder_address }}"
+            >
+          </div>
+          <div class="account-address-form__field">
+            <input 
+              type="text" 
+              name="address[province]" 
+              id="{{ province_id }}" 
+              value="{{ address.province }}" 
+              class="account-address-form__input"
+              placeholder="{{ placehoder_province }}"
             >
           </div>
           <div class="account-address-form__field">
@@ -153,7 +162,7 @@
               class="account-address-form__address-default_label"
               for="{{ set_default_id }}">{{ text_set_address_default }}</label>
           </div>
-          <div class="account-address-form__content-bottom">
+          <div class="account-address-form__content-bottom {% if type == 'new' %}account-address-form__content-bottom--revert {% endif %} ">
             {%- if type == 'new' -%}
               <button class="account-address-form__btn-add" type="submit">{{ btn_text_add }}</button>
               <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-cancel" type="reset">{{- btn_cancel -}}</button>

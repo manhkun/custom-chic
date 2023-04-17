@@ -451,10 +451,12 @@
       "placehoder_last_name": "Last Name",
       "placehoder_address": "Address",
       "placehoder_city": "City",
+      "placehoder_province": "Apartment, suite, etc. (optional)",
       "placehoder_postcode": "Postcode",
       "set_address_default": "Set as Default Delivery Address",
       "title_no_have_address": "NO Address YET",
-      "description_no_have_address": "You currently don't have any saved delivery addresses. Add one right here for quicker checkout."
+      "description_no_have_address": "You currently don't have any saved delivery addresses. Add one right here for quicker checkout.",
+      "default_address_label": "Default"
 
     },
     "log_in": "Log in",
@@ -479,13 +481,14 @@
     },
     "order": {
       "title": "Order {{ name }}",
+      "title_order_list": "Order list",
       "date_html": "Placed on {{ date }}",
       "cancelled_html": "Order Cancelled on {{ date }}",
       "cancelled_reason": "Reason: {{ reason }}",
       "billing_address": "Billing Address",
-      "payment_status": "Payment Status",
+      "payment_status": "Payment",
       "shipping_address": "Shipping Address",
-      "fulfillment_status": "Fulfillment Status",
+      "fulfillment_status": "Fullfillment",
       "discount": "Discount",
       "shipping": "Shipping",
       "tax": "Tax",
@@ -498,9 +501,20 @@
       "track_shipment": "Track shipment",
       "tracking_url": "Tracking link",
       "tracking_company": "Carrier",
-      "tracking_number": "Tracking number",
+      "tracking_number": "Tracking",
       "subtotal": "Subtotal",
-      "total_duties": "Duties"
+      "total_duties": "Duties",
+      "title_order_empty": "No Orders Yet",
+      "description_order_empty": "When you do, their status will appear there.",
+      "continue_shopping": "Continue Shopping",
+      "order_number": "Order No",
+      "date": "Date",
+      "show_more": "Show more",
+      "text_support": "If you have any question, please go to",
+      "help_center":"Help center",
+      "order": "Order"
+
+
     },
     "orders": {
       "title": "Order history",
