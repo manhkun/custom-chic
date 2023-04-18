@@ -30,6 +30,7 @@
     z-index: 30;
     width: 100%;
     transition: top 0.3s ease-in-out;
+    margin-top: 20px;
   }
 
   .account-detail__sidebar.sidebar-sticky-hidden {
@@ -47,5 +48,14 @@
 
   .account-detail__wrapper {
     gap: 20px;
+  }
+
+  .overlay-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #000000;
+    opacity: 0.5;
   }
 }

@@ -68,6 +68,10 @@
   }
 
   .account-sidebar__dropdown.active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: block;
     padding-top: 16px;
   }
@@ -99,6 +103,7 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 140%;
+    cursor: pointer;
   }
 
   .account-sidebar__close-mobile svg {
