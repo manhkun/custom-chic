@@ -23,84 +23,86 @@
     <h3 class="account-infor__title">{{- 'customer.information.title' | t -}}</h3>
     <div class="account-info__wrapper">
       <form id="customer_update" action="">
-        <div class="account-info__inner">
-          {%- render 'text-input',
-            type: 'text'
-            id: 'customer_name',
-            name: 'customer[name]',
-            value: customer.name,
-            label: name,
-            placeholder: name,
-            required: true,
-            class: 'account-info__haft'
-          -%}
-          {%- render 'text-input',
-            type: 'email'
-            id: 'customer_email',
-            name: 'customer[email]',
-            value: customer.email,
-            label: email,
-            placeholder: email,
-            required: true,
-            disabled: true,
-            class: 'account-info__haft text-input--disabled'
-          -%}
-        </div>
-        <div class="account-info__inner mt-10">
-          {%- assign _now = "now" | date: "%Y-%m-%d" -%}
-          {%- render 'text-input',
-            id: 'customer_birthday',
-            type: 'date'
-            name: 'customer[note][birthday]',
-            value: _now,
-            label: date_of_birth,
-            placeholder: date_of_birth,
-            required: true,
-            class: 'account-info__haft'
-          -%}
-          {%- render 'text-input',
-            id: 'customer_phone',
-            name: 'customer[note][phone]',
-            type: 'tel',
-            value: customer.phone,
-            label: phone,
-            placeholder: placeholder_phone,
-            required: true,
-            class: 'account-info__haft'
-          -%}
-        </div>
-        <div class="mt-10 account-info__check_pass">
-          <input type="checkbox" id="reset_password_checkbox" name="{{- 'customer.information.reset_password' | t -}}" value="Bike">
-          <label for="reset_password_checkbox">{{- 'customer.information.reset_password' | t -}}</label>
-        </div>
-        <div class="reset_password_form">
-          <h3 class="account-infor__title mt-10">{{- heading_account_password -}}</h3>
-          {%- render 'text-input',
-            id: 'customer_password',
-            type: 'password'
-            name: 'customer[password]',
-            label: label_current_password,
-            placeholder: placehordel_current_password,
-            required: true,
-          -%}
-          {%- render 'text-input',
-            id: 'customer_password',
-            type: 'password'
-            name: 'customer[password]',
-            label: label_new_password,
-            placeholder: placehordel_new_password,
-            required: true,
-            class: 'mt-10',
-          -%}
-          {%- render 'text-input',
-            class: 'mt-10',
-            name: 'customer[password_confirmation]',
-            id: 'customer_password_confirmation',
-            type: 'password',
-            label: label_confirm_password,
-            placeholder: placehordel_confirm_password,
-            required: true
-          -%}
+        <div class="form_inner">
+          <div class="account-info__inner">
+            {%- render 'text-input',
+              type: 'text'
+              id: 'customer_name',
+              name: 'customer[name]',
+              value: customer.name,
+              label: name,
+              placeholder: name,
+              required: true,
+              class: 'account-info__haft'
+            -%}
+            {%- render 'text-input',
+              type: 'email'
+              id: 'customer_email',
+              name: 'customer[email]',
+              value: customer.email,
+              label: email,
+              placeholder: email,
+              required: true,
+              disabled: true,
+              class: 'account-info__haft text-input--disabled'
+            -%}
+          </div>
+          <div class="account-info__inner mt-10">
+            {%- assign _now = "now" | date: "%Y-%m-%d" -%}
+            {%- render 'text-input',
+              id: 'customer_birthday',
+              type: 'date'
+              name: 'customer[note][birthday]',
+              value: _now,
+              label: date_of_birth,
+              placeholder: date_of_birth,
+              required: true,
+              class: 'account-info__haft'
+            -%}
+            {%- render 'text-input',
+              id: 'customer_phone',
+              name: 'customer[note][phone]',
+              type: 'tel',
+              value: customer.phone,
+              label: phone,
+              placeholder: placeholder_phone,
+              required: true,
+              class: 'account-info__haft'
+            -%}
+          </div>
+          <div class="mt-10 account-info__check_pass mb-5">
+            <input type="checkbox" id="reset_password_checkbox" name="{{- 'customer.information.reset_password' | t -}}" value="Bike">
+            <label for="reset_password_checkbox">{{- 'customer.information.reset_password' | t -}}</label>
+          </div>
+          <div class="reset_password_form">
+            <h3 class="account-infor__title mt-10">{{- heading_account_password -}}</h3>
+            {%- render 'text-input',
+              id: 'customer_password',
+              type: 'password'
+              name: 'customer[password]',
+              label: label_current_password,
+              placeholder: placehordel_current_password,
+              required: true,
+            -%}
+            {%- render 'text-input',
+              id: 'customer_password',
+              type: 'password'
+              name: 'customer[password]',
+              label: label_new_password,
+              placeholder: placehordel_new_password,
+              required: true,
+              class: 'mt-10',
+            -%}
+            {%- render 'text-input',
+              class: 'mt-10',
+              name: 'customer[password_confirmation]',
+              id: 'customer_password_confirmation',
+              type: 'password',
+              label: label_confirm_password,
+              placeholder: placehordel_confirm_password,
+              required: true
+            -%}
+          </div>
         </div>
         <button type="submit" disabled class="mt-10 account-info__submit">{{- 'customer.information.button_save_change' | t -}}</button>
       </form>
