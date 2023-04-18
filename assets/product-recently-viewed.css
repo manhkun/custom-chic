@@ -15,6 +15,27 @@
 #recently-viewed-wrapper{
   margin: 0 -1px;
 }
+
+.recently-viewed-account-item .swiper-wrapper {
+  padding: 0;
+}
+
+.recently-viewed-account .page-width-desktop {
+  padding: 0 !important;
+  max-width: 910px;
+}
+
+.recently-viewed-account .pagination-wrapper {
+  display: none;
+}
+
+.recently-viewed-account .title-wrapper {
+  padding-top: 20px;
+  font-weight: 600;
+  line-height: 21.6;
+  font-size: 16px;
+}
+
 @media screen and (min-width: 768px){
   #recently-viewed-products .slider-li  {
     padding: 0 5px;
@@ -22,4 +43,13 @@
   #recently-viewed-wrapper{
     margin: 0 -5px;
   }
+
+  .recently-viewed-account .pagination-wrapper {
+    display: flex;
+  }
+
+  .recently-viewed-account .title-wrapper {
+    font-size: 24;
+    line-height: 28.8px;
+  } 
 }

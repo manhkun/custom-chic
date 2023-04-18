@@ -6,6 +6,7 @@
   assign postcode_label = 'customer.addresses.placehoder_postcode' | t
 -%}
 
+
 {{ 'account-address.css' | asset_url | stylesheet_tag }}
 
 <div class="account-address">
@@ -17,7 +18,7 @@
         {%- if address.id == customer.default_address.id -%}
           {%- assign is_default = true -%}
         {%- endif -%}
-        <div class="account-address__item" {%- if is_default -%} style="order: 0;" {%- endif -%}>
+        <div class="account-address__item">
           <div class="account-address__item-header">
             <div>
               <span class="account-address__name">{{ address.first_name }} {{ address.last_name }}</span>
@@ -38,7 +39,7 @@
                 {%- if address.address1 != blank -%}
                   <span>, </span>
                 {%- endif -%}
-                <span>{{ address.city }}</span>
+                <span>{{ address.province }}</span>
               {%- endif -%}
               {%- if address.city != blank -%}
                 {%- if address.province != blank -%}

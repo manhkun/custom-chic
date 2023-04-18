@@ -1357,7 +1357,8 @@
       "name": "Account Details",
       "account_sidebar": "Account Sidebar",
       "order_limit": "Order Item Per Page",
-      "order_support_url": "Link Support Orders"
+      "order_support_url": "Link Support Orders",
+      "product_recently_viewed": "Product Recently Viewd"
     },
     "main-activate-account": {
       "name": "Account activation"

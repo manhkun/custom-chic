@@ -1,10 +1,12 @@
 {{ 'jquery.products.min.js' | asset_url | script_tag }}
 
+{%- assign heading = heading | default: section.settings.heading | escape -%}
+
 <div class="clearfix"></div>
 
-<div class="product-template__container head-room recently-viewed-products-wrapper">
+<div class="product-template__container head-room recently-viewed-products-wrapper {% if class %} {{ class }}{% endif %}">
   <div class="title-wrapper">
-    <h2 class="heading-title h2">{{ section.settings.heading | escape }}</h2>
+    <h2 class="heading-title h2">{{- heading -}}</h2>
     <div class="pagination-wrapper pagination-wrapper-rcently">
         <div class="pagination-custom">
           <div class="slider-counter caption hidden">
