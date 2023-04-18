@@ -1,7 +1,7 @@
 {{ 'account-orders.css' | asset_url | stylesheet_tag }}
 
 <div class="account-orders">
-  {%- if customer.orders.size == 0 -%}
+  {%- if customer.orders.size > 0 -%}
     <div class="account-order__header">
       <h2 class="account-order__title">{{ 'customer.order.title_order_list' | t }}</h2>
     </div>

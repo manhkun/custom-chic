@@ -55,7 +55,8 @@
         <div class="account-address-form-modal__content-header">
           <h2 class="account-address-form__heading">{{- heading-}}</h2>
           <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-close" >
-            {%- render 'icon-close-3'-%}
+            {%- render 'icon-close-3' -%}
+            {%- render 'icon-close-4' -%}
           </button>
         </div>
         {% form 'customer_address', address %}

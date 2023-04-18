@@ -1,4 +1,38 @@
 {{ 'account-details.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'section-product-slider.css' | asset_url }}" type="text/css" media="all">
+<link rel="stylesheet" href="{{ 'component-slider.css' | asset_url }}" type="text/css" media="all">
+<link rel="stylesheet" href="{{ 'product-recently-viewed.css' | asset_url }}" type="text/css" media="all">
+<noscript>{{ 'section-product-slider.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-slider.css' | asset_url | stylesheet_tag }}</noscript>
+
+{%- style -%}
+  .scrollbar-product-slider--{{ section.id }} {
+    margin-top: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    height: 4px;
+    background: #E6E6E6;
+    border-radius: 2px;
+  }
+
+  .scrollbar-product-slider--{{ section.id }} .swiper-scrollbar-drag {
+    display: block !important;
+    cursor: pointer;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .scrollbar-product-slider--{{ section.id }} {
+      margin-top: 48px;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  #recently-viewed-products {
+    padding-left: 0;
+  }
+{%- endstyle -%}
+
 
 {%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
 {%- assign page_url = contentForQuerystring
@@ -32,6 +66,22 @@
             limit: section.settings.order_limit,
             link: section.settings.order_support_url
           -%}
+          <div data-section-id="{{ section.id }}" data-section-type="gp-product-slider" class="gp-section-wrapper gp-product-slider-wrapper gp-recently-viewed-products recently-viewed-account">
+            <div class="gp-product-slider page-width-desktop gp-section-inner">
+              <div class="row">
+                <div class="col-12">
+                  {% render 'recently-viewed',
+                    class: 'recently-viewed-account-item',
+                    heading: section.settings.heading
+                    product_per_row : 4,
+                    product_per_row_tablet: 3,
+                    product_per_row_mobile: 2,
+                    product_limit: 10
+                  %}
+                </div>
+              </div>
+            </div>
+          </div>
         {%- endif -%}
         {%- if page_url contains 'view=favourites' -%}
           {%- render 'app_wishlist-king' -%}
@@ -40,6 +90,62 @@
     </div>
   </div>
 </div>
+
+<script>
+  (function () {
+    const swiperContainer = document.querySelector('#recently-viewed-wrapper');
+    const swiperrr = new Swiper(swiperContainer, {
+      slidesPerView: 2,
+      spaceBetween: 2,
+      navigation: {
+        nextEl: '.next-{{ section.id }}',
+        prevEl: '.prev-{{ section.id }}'
+      },
+      scrollbar: {
+        el: '.scrollbar-product-slider--{{ section.id }}',
+        draggable: true
+      },
+      preventClicks: true,
+      breakpoints: {
+        768: {
+          slidesPerView: 3
+        },
+        1024: {
+          slidesPerView: 4
+        }
+      },
+      longSwipes: false,
+      shortSwipes: false,
+      freeMode: {
+        enable: true,
+        momentumBounce: false
+      },
+      followFinger: true
+    })
+
+    let touchStartY = 0;
+
+    swiperContainer.addEventListener('touchstart', function (event) {
+      touchStartY = event.touches[0].clientY;
+    });
+
+    swiperContainer.addEventListener('touchmove', function (event) {
+      const touchEndY = event.touches[0].clientY;
+      const touchDiffY = touchEndY - touchStartY;
+
+      // If the user is swiping up or down
+      if (Math.abs(touchDiffY) > 10) {
+        event.preventDefault(); // Prevent default window scroll behavior
+      }
+    });
+  }());
+</script>
+
+{%- if page_url contains '/account/orders/' -%}
+  {%- render 'account-order-detail' -%}
+{%- else -%}
+  
+{%- endif -%}
 
 {% schema %}
 {
@@ -55,6 +161,12 @@
       "content": "t:sections.account-details.account_sidebar"
     },
     {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently viewed products",
+      "label": "Heading"
+    },
+    {
       "type": "range",
       "id": "order_limit",
       "label": "t:sections.account-details.order_limit",
@@ -67,6 +179,37 @@
       "type": "url",
       "id": "order_support_url",
       "label": "t:sections.account-details.order_support_url"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.account-details.product_recently_viewed"
+    },
+    {
+      "type": "range",
+      "id": "product_per_row",
+      "label": "Products per row",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "product_per_row_tablet",
+      "label": "Products per row tablet",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Limit",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 12
     }
   ]
 }
