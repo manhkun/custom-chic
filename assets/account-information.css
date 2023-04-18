@@ -38,8 +38,9 @@
   background: #000000;
   border-radius: 100px;
   border: none;
-  padding: 16px 0;
+  padding: 15px 0;
   margin: 40px auto 0;
+  border: 1px solid #000000;
   text-align: center;
 }
 
@@ -74,6 +75,11 @@ input[type=checkbox]:checked:before {
   color: #808080;
 }
 
+.account-info__submit:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
 .account-info__submit:disabled {
   border: 1px solid #D9D9D9;
   background: transparent;
@@ -100,14 +106,25 @@ input[type=checkbox]:checked:before {
     margin-top: 20px;
   }
 
+  .mb-5 {
+    margin-bottom: 20px;
+  }
+
   .account-info__submit {
     width: 100%;
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
     text-transform: capitalize;
-    padding: 12px 0;
+    padding: 11px 0;
     margin: 20px auto 0;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .form_inner {
+    padding: 16px;
+    background-color: #ffffff;
   }
 }
