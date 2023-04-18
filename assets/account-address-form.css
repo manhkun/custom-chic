@@ -145,7 +145,16 @@
   outline: none;
   border: none;
   cursor: pointer;
+  border: 1px solid transparent;
+  font-family: var(--font-heading-family);
 }
+
+.account-address-form__btn-add:hover {
+  color: #000000;
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+}
+
 
 .account-address-form__btn-cancel {
   width: 100%;
@@ -159,6 +168,7 @@
   outline: none;
   border: 1px solid #000000;
   cursor: pointer;
+  font-family: var(--font-heading-family);
 }
 
 .account-address-form__checkbox {
@@ -180,6 +190,11 @@
   outline: none;
   border: 1px solid #000000;
   cursor: pointer;
+  font-family: var(--font-heading-family);
+}
+
+.account-address-form__btn-close .icon-large {
+  display: none;
 }
 
 @media screen and (min-width: 767px) {
@@ -204,7 +219,7 @@
     width: fit-content;
     padding: 16px 72.5px;
     bottom: 0;
-    right: 190px;
+    right: 210px;
   }
 
   .account-address-form__content-bottom--revert {
@@ -215,7 +230,26 @@
     width: fit-content;
     padding: 16px 71.5px;
     margin-top: 0;
+  }
 
+  .account-address-form__input {
+    padding: 8px 0;
+  }
+
+  .account-address-form__select {
+    padding: 8px 0;
+  }
+
+  .test {
+    order: 1;
+  }
+
+  .account-address-form__btn-close .icon-small {
+    display: none;
+  }
+
+  .account-address-form__btn-close .icon-large {
+    display: block;
   }
 }
 
@@ -232,8 +266,8 @@
 
   .account-address-form__btn-close {
     position: absolute;
-    right: 24px;
-    top: 24px;
+    right: -87px;
+    top: -47px;
   }
 
   .account-address-form__address-default {

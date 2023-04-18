@@ -6,6 +6,10 @@
   display: none;
 }
 
+.account-orders {
+  margin-bottom: 20px;
+}
+
 .account-order__label {
   padding: 16px 0;
   font-size: 12px;
@@ -116,6 +120,13 @@
   cursor: pointer;
   color: #FFFFFF;
   border-radius: 100px;
+  border: 1px solid transparent;
+}
+
+.account-order__show-more:hover {
+  color: #000000;
+  background-color: #FAFAFA;
+  border: 1px solid #000000;
 }
 
 .account-order__support {
@@ -246,6 +257,7 @@
   .account-order__total {
     width: calc(120 / 910 * 100%);
     text-align: right;
+    padding-right: 0 !important;
   }
 
   .account-order__total-info {
@@ -310,5 +322,9 @@
   .account-order__continue-shopping {
     margin-top: 40px;
     padding: 16px 24px;
+  }
+
+  .account-orders {
+    margin-bottom: 60px;
   }
 }
