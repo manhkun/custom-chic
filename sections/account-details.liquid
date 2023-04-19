@@ -46,50 +46,54 @@
   | replace: '%20', ' '
   | replace: '\u0026', '&'
 -%}
-{%- assign page_url = page_url | remove: '?_fd=0&pb=0' | remove: '&_fd=0&pb=0' | split: '/' | last | prepend: '/' -%}
-{%- render 'account-header' -%}
-<div class="account-detail">
-  <div class="page-width-desktop">
-    <div class="account-detail__wrapper">
-      <div class="account-detail__sidebar js-sidebar-sticky sidebar-sticky-hidden">
-        {%- render 'account-sidebar', account_sidebar: section.settings.account_sidebar, page_url: page_url -%}
-      </div>
-      <div class="account-detail__content">
-        {%- case page_url -%}
-          {%- when '/account' -%}
-            {%- render 'account-information' -%}
-          {%- when '/addresses' -%}
-            {%- render 'account-address' -%}
-        {%- endcase -%}
-        {%- if page_url contains 'view=orders' -%}
-          {%- render 'account-orders'
-            limit: section.settings.order_limit,
-            link: section.settings.order_support_url
-          -%}
-          <div data-section-id="{{ section.id }}" data-section-type="gp-product-slider" class="gp-section-wrapper gp-product-slider-wrapper gp-recently-viewed-products recently-viewed-account">
-            <div class="gp-product-slider page-width-desktop gp-section-inner">
-              <div class="row">
-                <div class="col-12">
-                  {% render 'recently-viewed',
-                    class: 'recently-viewed-account-item',
-                    heading: section.settings.heading
-                    product_per_row : 4,
-                    product_per_row_tablet: 3,
-                    product_per_row_mobile: 2,
-                    product_limit: 10
-                  %}
+{%- assign page_url = page_url | remove: '?_fd=0&pb=0' | remove: '&_fd=0&pb=0' -%}
+{%- if page_url contains '/account/orders/' -%}
+  {%- render 'account-order-detail' -%}
+{%- else -%}
+  {%- render 'account-header' -%}
+  <div class="account-detail">
+    <div class="page-width-desktop">
+      <div class="account-detail__wrapper">
+        <div class="account-detail__sidebar js-sidebar-sticky sidebar-sticky-hidden">
+          {%- render 'account-sidebar', account_sidebar: section.settings.account_sidebar, page_url: page_url -%}
+        </div>
+        <div class="account-detail__content">
+          {%- case page_url -%}
+            {%- when '/account' -%}
+              {%- render 'account-information' -%}
+            {%- when '/addresses' -%}
+              {%- render 'account-address' -%}
+          {%- endcase -%}
+          {%- if page_url contains 'view=orders' -%}
+            {%- render 'account-orders'
+              limit: section.settings.order_limit,
+              link: section.settings.order_support_url
+            -%}
+            <div data-section-id="{{ section.id }}" data-section-type="gp-product-slider" class="gp-section-wrapper gp-product-slider-wrapper gp-recently-viewed-products recently-viewed-account">
+              <div class="gp-product-slider page-width-desktop gp-section-inner">
+                <div class="row">
+                  <div class="col-12">
+                    {% render 'recently-viewed',
+                      class: 'recently-viewed-account-item',
+                      heading: section.settings.heading
+                      product_per_row : 4,
+                      product_per_row_tablet: 3,
+                      product_per_row_mobile: 2,
+                      product_limit: 10
+                    %}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        {%- endif -%}
-        {%- if page_url contains 'view=favourites' -%}
-          {%- render 'app_wishlist-king' -%}
-        {%- endif -%}
+          {%- endif -%}
+          {%- if page_url contains 'view=favourites' -%}
+            {%- render 'app_wishlist-king' -%}
+          {%- endif -%}
+        </div>
       </div>
     </div>
   </div>
-</div>
+{%- endif -%}
 
 <script>
   (function () {
@@ -140,12 +144,6 @@
     });
   }());
 </script>
-
-{%- if page_url contains '/account/orders/' -%}
-  {%- render 'account-order-detail' -%}
-{%- else -%}
-  
-{%- endif -%}
 
 {% schema %}
 {

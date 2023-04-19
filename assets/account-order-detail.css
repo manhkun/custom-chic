@@ -1,0 +1,517 @@
+.account-order-detail-item {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: 16px;
+  padding: 16px;
+}
+
+.account-order-detail-item-content {
+  flex: 1;
+}
+
+.account-order-detail-item-wrapper {
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.account-order-detail-shipping {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border: 1px solid #D9D9D9;
+
+}
+
+.account-order-detail__header {
+  padding: 16px;
+  color: #FFFFFF;
+  background-color: #000000;
+}
+
+.account-order-detail-item-wrapper:last-child {
+  border-bottom: none;
+}
+
+.account-order-detail-label {
+  color: #FFFFFF;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+  margin: 0;
+}
+
+.account-order-title {
+  margin: 0;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  text-transform: uppercase;
+}
+
+.account-order-placed {
+  margin-top: 4px;
+  margin-bottom: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.account-order-detail {
+  padding-top: 20px;
+}
+
+.account-order-detail-list {
+  margin-top: 20px;
+  border: 1px solid #D9D9D9;
+}
+
+.order-detail__title {
+  margin: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 140%;
+}
+
+.order-detail__below-title {
+  margin-top: 12px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-detail__tracking {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+  font-weight: 500;
+  color: #000000;
+  text-decoration: underline;
+}
+
+.account-detail-sku {
+  margin-top: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+  color: #000000;
+}
+
+.account-order-detail-a {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.order-detail-property {
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.order-detail-property-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.order-detail-property-item:first {
+  padding-top: 8px;
+}
+
+.order-detail-property-item:last {
+  padding-bottom: 8px;
+}
+
+.order-detail-bottom {
+  padding-top: 12px;
+}
+
+.order-detail-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.order-detail-quanity {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.order-detail-subtotal {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.shiping-address-label {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.shipping-address-name {
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.shipping-address-info {
+  margin-top: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.shipping-address-zip {
+  margin-top: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.shipping-address-phone {
+  margin-top: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.account-order-total {
+  padding: 12px 16px;
+  border: 1px solid #D9D9D9;
+  margin-top: 20px;
+}
+
+.total-title {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 160%;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.total-subtotal, .total-discount, .total-shiping, .total-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.total-detail {
+  padding-top: 12px;
+  margin-top: 12px;
+  border-top: 1px solid #D9D9D9;
+}
+
+.account-order-cumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+}
+
+.account-order-cumb-item {
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 160%;
+  color: #FFFFFF;
+}
+
+.account-order-cumb-item svg {
+  display: flex;
+  margin-left: 4px;
+}
+
+.btn-go-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 12px 0;
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: capitalize;
+  border-radius: 100px;
+  border: 1px solid transparent;
+}
+
+.btn-go-back:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.account-order-detail-menu {
+  display: none;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.tracking-info, .sku-info, .price-info,  .total-info, .quantity-info {
+  display: none;
+}
+
+@media screen and (min-width: 1023px) {
+  .account-order-bottom-wrapper {
+    display: flex;
+    gap: 40px;
+  }
+
+  .account-order-total {
+    width: calc(50% - 20px);
+  }
+
+  .account-order-detail-shipping {
+    width: calc(50% - 20px);
+  }
+
+  .btn-go-back {
+    margin: 40px auto 64px;
+    width: fit-content;
+    padding: 16px 66px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .btn-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .total-subtotal {
+    margin-top: 20px;
+  }
+
+  .shipping-address-name {
+    margin-top: 20px;
+  }
+
+  .account-order-detail-list {
+    margin-top: 40px;
+  }
+
+  .account-order-detail-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid #D9D9D9;
+  }
+
+  .account-order-detail-menu-product {
+    width: calc(450 / 1190 * 100%);
+    padding: 16px;
+  }
+
+  .account-order-detail-menu-tracking {
+    width: calc(160 / 1190 * 100%);
+    padding: 16px;
+  }
+
+  .account-order-detail-menu-sku {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+  .account-order-detail-menu-price {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+  .account-order-detail-menu-quantity {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+  .account-order-detail-menu-total {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+  .order-detail-bottom {
+    display: none;
+  }
+
+  .account-order-detail-item{
+    width: calc(450 / 1190 * 100%);
+  }
+
+  .account-order-detail-a {
+    border-bottom: none;
+  }
+
+  .account-order-detail-item-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .tracking-info, .quantity-info, .sku-info, .price-info,  .total-info {
+    display: block;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 120%;
+  }
+
+  .tracking-info {
+    width: calc(160 / 1190 * 100%);
+    padding: 16px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 120%;
+    text-align: right;
+    text-decoration-line: underline;
+  }
+
+  .sku-info {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+  .price-info {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+  .quantity-info {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+  .total-info {
+    width: calc(120 / 1190 * 100%);
+    padding: 16px;
+    text-align: right;
+  }
+
+
+  .order-detail__title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  .account-order-detail {
+    padding-top: 64px;
+  }
+
+  .account-order-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    text-transform: uppercase;
+  }
+
+  .account-order-placed {
+    margin-top: 8px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 160%;
+  }
+
+  .account-order-cumb {
+    display: none;
+  }
+
+  .account-order-detail-label {
+    text-align: center;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 120%;
+    text-transform: uppercase;
+    padding: 96px 0;
+  }
+}
