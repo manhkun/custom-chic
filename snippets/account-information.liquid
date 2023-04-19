@@ -17,7 +17,7 @@
   assign label_confirm_password = 'customer.reset_password.confirm_password' | t
   assign placehordel_confirm_password = 'customer.reset_password.sub_confirm_password' | t
 -%}
-
+manh
 <account-information>
   <div class="account-infor">
     <h3 class="account-infor__title">{{- 'customer.information.title' | t -}}</h3>
@@ -43,7 +43,6 @@
               label: email,
               placeholder: email,
               required: true,
-              disabled: true,
               class: 'account-info__haft text-input--disabled'
             -%}
           </div>
@@ -71,7 +70,7 @@
             -%}
           </div>
           <div class="mt-10 account-info__check_pass mb-5">
-            <input type="checkbox" id="reset_password_checkbox" name="{{- 'customer.information.reset_password' | t -}}" value="Bike">
+            <input type="checkbox" id="reset_password_checkbox" name="{{- 'customer.information.reset_password' | t -}}">
             <label for="reset_password_checkbox">{{- 'customer.information.reset_password' | t -}}</label>
           </div>
           <div class="reset_password_form">
@@ -87,7 +86,7 @@
             {%- render 'text-input',
               id: 'customer_password',
               type: 'password'
-              name: 'customer[password]',
+              name: 'customer[new_password]',
               label: label_new_password,
               placeholder: placehordel_new_password,
               required: true,

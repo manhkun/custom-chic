@@ -1,3 +1,48 @@
+/* global GM_STATE */
+
+/**
+ * @returns { {
+ *    'Content-Type': 'application/json',
+ *    Accept: 'application/json',
+ *    'X-Shopify-Storefront-Access-Token': string
+ * } }
+ */
+function getGraphQlHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    'X-Shopify-Storefront-Access-Token': globalVar.apis.storefrontAccessToken
+  }
+}
+
+/**
+ * Returns graphql request with no callback
+ * @param { {
+ *  query: string
+ *  variables?: unknown
+ * } } param0
+ * @returns { fetch }
+ */
+function executeGraphQlQuery({ query, variables }) {
+  const url = globalVar.apis.graphQlEndpoint
+
+  // remove line breaks and double space for legibility
+  const cleanQuery = query.replace(/\n/g, ' ').replace(/ {2}/g, '')
+
+  const config = {
+    method: 'post',
+    headers: getGraphQlHeaders(),
+    body: JSON.stringify({
+      query: cleanQuery,
+      // only add variables if they actually exist
+      ...(variables ? { variables } : {})
+    })
+  }
+
+  return fetch(url, config)
+}
+
+
 class AccountInformation extends HTMLElement {
   constructor() {
     super()
@@ -7,6 +52,7 @@ class AccountInformation extends HTMLElement {
     this.form = this.querySelector('form')
     this.inputAll = this.form.querySelectorAll('.input')
     this.buttonSubmit = this.form.querySelector('button')
+    // this.handleAccessToken()
 
     this.showResetPass.addEventListener('click', () => {
       if (this.showResetPass.checked) {
@@ -28,15 +74,16 @@ class AccountInformation extends HTMLElement {
       })
     })
 
-    on('click', this.onFormSubmit.bind(this), this.buttonSubmit)
+    this.form.addEventListener('submit', this.onFormSubmit.bind(this))
   }
 
   changeAccountInfo (customerAccessToken, customerData) {
+    console.log(customerData)
     const variables = {
       customerAccessToken,
       customer: {
         ...customerData.customer,
-        acceptsMarketing: this.markettingCheckbox.checked
+        password: customerData.new_password
       }
     }
 
@@ -45,17 +92,7 @@ class AccountInformation extends HTMLElement {
     executeGraphQlQuery({ query, variables })
       .then(res => res.json())
       .then(data => {
-        if (data.errors) {
-          globalEvents.emit(eventProps.notice.global, {
-            type: 'error',
-            content: noticeContent.error
-          })
-        } else {
-          globalEvents.emit(eventProps.notice.global, {
-            type: 'success',
-            content: noticeContent.success
-          })
-        }
+        console.log(data)
       })
   }
 
@@ -82,7 +119,50 @@ class AccountInformation extends HTMLElement {
     e.preventDefault()
     const formObject = this.formToObject(this.form)
     // const accessToken = getCookie('customerAccessToken')
+    const accessToken = await this.handleAccessToken()
     this.changeAccountInfo(accessToken, formObject)
+  }
+
+  async handleAccessToken () {
+    const formObject = this.formToObject(this.form)
+    const data = {
+      email: formObject.customer.email,
+      password: formObject.customer.password
+    }
+    console.log(data)
+    const customer = await this.getCustomerAccessToken(data)
+    const { customerAccessToken } = customer.data.customerAccessTokenCreate
+    return customerAccessToken
+  }
+
+  async getCustomerAccessToken ({ email, password }) {
+    const variables = {
+      input: {
+        email,
+        password
+      }
+    }
+    const query = this.getQueryCustomerAccessToken()
+
+    const res = await executeGraphQlQuery({ query, variables })
+    const data = await res.json()
+    return data
+  }
+
+  getQueryCustomerAccessToken () {
+    return `mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+      customerAccessTokenCreate(input: $input) {
+        customerAccessToken {
+          accessToken
+          expiresAt
+        }
+        customerUserErrors {
+          code
+          field
+          message
+        }
+      }
+    }`
   }
 
   formToObject(form)  {
