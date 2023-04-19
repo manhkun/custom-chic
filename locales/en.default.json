@@ -575,5 +575,24 @@
       "copy_code_success": "Code copied successfully",
       "print_gift_card": "Print"
     }
+  },
+  "account_order_detail": {
+    "label": "Order detail",
+    "placed_on": "Placed on ",
+    "tracking": "Tracking",
+    "sku": "SKU",
+    "price": "Price",
+    "quantity": "Quantity",
+    "subtotal": "Subtotal",
+    "shiping_address": "Shipping Address",
+    "postcode": "Postcode",
+    "total": "Total",
+    "discount": "Discount",
+    "shipping": "Shipping",
+    "account": "Account",
+    "home": "Home",
+    "order_list": "Order list",
+    "go_back": "Go Back",
+    "product": "Product"
   }
 }

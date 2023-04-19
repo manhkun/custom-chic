@@ -1,0 +1,195 @@
+{{ 'account-order-detail.css' | asset_url | stylesheet_tag }}
+<div class="account-order-detail__header">
+  <div class="page-width-desktop account-order-dd">
+    <h2 class="account-order-detail-label">{{ 'account_order_detail.label' | t }}</h2>
+    <ul class="account-order-cumb">
+      <li>
+        <a class="account-order-cumb-item" href="{{ routes.root_url }}">
+          <span>{{ 'account_order_detail.home' | t }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none"><path stroke="#FAFAFA" stroke-linecap="square" d="m5 12.5 4.308-4L5 4.5"/></svg>
+        </a>
+      </li>
+      <li>
+        <a class="account-order-cumb-item" href="{{ routes.account_url }}">
+          <span>{{ 'account_order_detail.account' | t }}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none"><path stroke="#FAFAFA" stroke-linecap="square" d="m5 12.5 4.308-4L5 4.5"/></svg>
+        </a>
+      </li>
+      <li><span class="account-order-cumb-item">{{ 'account_order_detail.order_list' | t }}</span></li>
+    </ul>
+  </div>
+</div>
+<div class="page-width-desktop">
+  <div class="account-order-detail">
+    <div class="account-order-detail__content">
+      <div class="account-order-info">
+        <h2 class="account-order-title">{{ order.name }}</h2>
+        <p class="account-order-placed"><span>{{ 'account_order_detail.placed_on' | t }}</span>{{- order.created_at -}}</p>
+        <div class="account-order-detail-list">
+          <div class="account-order-detail-menu">
+            <div class="account-order-detail-menu-product">
+              <span>{{ 'account_order_detail.product' | t }}</span>
+            </div>
+            <div class="account-order-detail-menu-tracking">
+              <span>{{ 'account_order_detail.tracking' | t }}</span>
+            </div>
+            <div class="account-order-detail-menu-sku">
+              <span>{{ 'account_order_detail.sku' | t }}</span>
+            </div>
+            <div class="account-order-detail-menu-price">
+              <span>{{ 'account_order_detail.price' | t }}</span>
+            </div>
+            <div class="account-order-detail-menu-quantity">
+              <span>{{ 'account_order_detail.quantity' | t }}</span>
+            </div>
+            <div class="account-order-detail-menu-total">
+              <span>{{ 'account_order_detail.total' | t }}</span>
+            </div>
+          </div>
+
+          {%- for item in order.line_items -%}
+            <div class="account-order-detail-item-wrapper">
+              <div class="account-order-detail-item">
+                <div class="account-order-detail-image">
+                    <img
+                    src="{{ item.image | image_url: width: 140 }}"
+                    alt="{{ item.image.alt | escape }}"
+                    width="80"
+                    height="{{ 80 | divided_by: item.image.aspect_ratio | ceil }}"
+                    loading="lazy"
+                  >
+                </div>
+                <div class="account-order-detail-item-content">
+                  <div class="account-order-detail-a">
+                    <h3 class="order-detail__title">{{- item.product.title -}}</h3>
+                    <div class="order-detail__below-title">
+                      {%- if item.fulfillment -%}
+                        <span>{{ 'account_order_detail.tracking' | t }}</span>
+                        {%- if item.fulfillment.tracking_url != blank -%}
+                          <a class="order-detail__tracking" href="{{ item.fulfillment.tracking_url }}">{{- item.fulfillment.tracking_number -}}</a>
+                        {%- else -%}
+                          <span>{{ item.fulfillment.tracking_number }}</span>
+                        {%- endif -%}
+                    {%- endif -%}
+                    {%- if item.sku != blank -%}
+                      <div class="account-detail-sku">
+                        <span>{{ 'account_order_detail.sku' | t }}</span>
+                        <span>{{- item.sku -}}</span>
+                      </div>
+                    {%- endif -%}
+                    </div>
+                  </div>
+                  {%- if item.properties.size > 0 -%}
+                    <div class="order-detail-property">
+                      {%- for option in item.properties -%}
+                        <div class="order-detail-property-item">
+                          {%- assign key = option | first -%}
+                          {%- assign value = option | last -%}
+                          <span class="order-detail-property-key">{{- key -}}:</span>
+                          <span class="order-detail-property-value">{{ value }}</span>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    {%- endif -%}
+                  <div class="order-detail-bottom">
+                    <div class="order-detail-price">
+                      <span>{{ 'account_order_detail.price' | t }}</span>
+                      {{- item.price | money -}}
+                    </div>
+                    <div class="order-detail-quanity">
+                      <span>{{ 'account_order_detail.quantity' | t }}</span>
+                      <span>{{- item.quantity -}}</span>
+                    </div>
+                    <div class="order-detail-subtotal">
+                      <span>{{ 'account_order_detail.subtotal' | t }}</span>
+                      {{- item.final_price | money -}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tracking-info">
+
+              </div>
+              <div class="sku-info">
+                <span>{{- item.sku -}}</span>
+              </div>
+              <div class="price-info">
+                {{- item.price | money -}}
+              </div>
+              <div class="quantity-info">
+                <span>{{- item.quantity -}}</span>
+              </div>
+              <div class="total-info">
+                {{- item.final_price | money -}}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="account-order-bottom-wrapper">
+    <div class="account-order-total">
+      <h2 class="total-title">{{ 'account_order_detail.total' | t }}</h2>
+      <div class="total-subtotal">
+        <span>{{ 'account_order_detail.subtotal' | t }}: </span>
+        <span>{{- order.subtotal_price | plus: order.total_discounts | money -}}</span>
+      </div>
+      <div class="total-discount">
+        <span>{{ 'account_order_detail.discount' | t }}: </span>
+        <span>{{- order.total_discounts | money | prepend: '-' -}}</span>
+      </div>
+      <div class="total-shiping">
+        <span>{{ 'account_order_detail.shipping' | t }}: </span>
+        <span>{{- order.shipping_price | money -}}</span>
+      </div>
+      <div class="total-detail">
+        <span>{{ 'account_order_detail.total' | t }}: </span>
+        <span>{{- order.total_price | money -}}</span>
+      </div>
+    </div>
+    {%- if order.shipping_address.name != blank -%}
+      <div class="account-order-detail-shipping">
+        <h2 class="shiping-address-label">{{ 'account_order_detail.shiping_address' | t }}</h2>
+        <p class="shipping-address-name">{{- order.shipping_address.name -}}</p>
+        <div class="shipping-address-info">
+          {%- if order.shipping_address.address1 != blank -%}
+            <span>{{ order.shipping_address.address1 }}</span>
+          {%- endif -%}
+          {%- if order.shipping_address.province_code != blank -%}
+            {%- if order.shipping_address.address1 != blank -%}
+              <span>, </span>
+            {%- endif -%}
+            <span>{{ order.shipping_address.province_code }}</span>
+          {%- endif -%}
+          {%- if order.shipping_address.city != blank -%}
+            {%- if order.shipping_address.province_code != blank -%}
+              <span>, </span>
+            {%- endif -%}
+            <span>{{ order.shipping_address.city}}</span>
+          {%- endif -%}
+          {%- if order.shipping_address.country != blank -%}
+            {%- if order.shipping_address.city != blank -%}
+              <span>, </span>
+            {%- endif -%}
+            <span>{{ order.shipping_address.country }}</span>
+          {%- endif -%}
+        </div>
+        {%- if order.shipping_address.zip != blank -%}
+            <div class="shipping-address-zip">
+              <span>{{ 'account_order_detail.postcode' | t }}: </span>
+              <span>{{- order.shipping_address.zip -}}</span>
+            </div>
+        {%- endif -%}
+        {%- if order.shipping_address.phone != blank -%}
+            <div class="shipping-address-phone">
+              <span>{{- order.shipping_address.phone -}}</span>
+            </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="btn-footer">
+    <a class="btn-go-back" href="javascript:history.back()">{{ 'account_order_detail.go_back' | t }}</a>
+  </div>
+</div>
