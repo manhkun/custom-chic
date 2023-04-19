@@ -6,7 +6,6 @@
   assign account_sidebar = account_sidebar | default: 'account-sidebar'
   assign sidebar_menu = linklists[account_sidebar]
 -%}
-
 {%- if sidebar_menu.links.size > 0 -%}
   <account-sidebar class="account-sidebar">
     <div class="account-sidebar__select js-sidebar-current">
