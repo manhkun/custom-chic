@@ -47,6 +47,7 @@
   | replace: '\u0026', '&'
 -%}
 {%- assign page_url = page_url | remove: '?_fd=0&pb=0' | remove: '&_fd=0&pb=0' | split: '.uk' | last -%}
+
 {%- if page_url contains '/account/orders/' -%}
   {%- render 'account-order-detail' -%}
 {%- else -%}
@@ -61,7 +62,7 @@
           {%- case page_url -%}
             {%- when '/account' -%}
               {%- render 'account-information' -%}
-            {%- when '/addresses' -%}
+            {%- when '/account/addresses' -%}
               {%- render 'account-address' -%}
           {%- endcase -%}
           {%- if page_url contains 'view=orders' -%}

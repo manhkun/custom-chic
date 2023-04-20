@@ -177,6 +177,10 @@ input[type=checkbox]:checked:before {
   font-weight: 300;
 }
 
+.postcode-desktop {
+  display: none;
+}
+
 @media screen and (min-width: 1023px) {
   .account-address {
     padding: 0;
@@ -233,5 +237,19 @@ input[type=checkbox]:checked:before {
   .account-address__content {
     margin-bottom: 40px;
     padding: 0;
+  }
+
+  .account-address__postcode {
+    display: none;
+  }
+
+  .postcode-desktop {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  .spacing-postcode {
+    display: inline-block;
+    margin-right: 8px;
   }
 }
