@@ -22,7 +22,7 @@
         {% elsif template contains 'article' %}
         {% elsif template contains 'page' %}
           {%- if template.suffix == 'search-help-center' -%}
-            <h1 class="page-title">{{ 'templates.search.title' | t }}</h1>
+            <h1 class="page-title" style="text-transform: uppercase;">{{ 'templates.search.title' | t }}</h1>
             {%- render 'breadcrumb' -%}
           {%- else -%}
             <h1 class="page-title">{{ page.title }}

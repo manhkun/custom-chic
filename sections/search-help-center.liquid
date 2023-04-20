@@ -16,7 +16,7 @@
 {%- for param in params -%}
   {%- assign key = param | split: '=' | first -%}
   {%- if key == 'q' -%}
-    {%- assign terms = param | split: '=' | last | url_decode -%}
+    {%- assign terms = param | split: '=' | last | url_decode | strip -%}
   {%- endif -%}
 {%- endfor -%}
 {% liquid
@@ -25,9 +25,10 @@
   assign blog_suggestion = section.settings.blog_suggestion
   assign results = 0
 %}
+{%- assign terms_search = terms | downcase -%}
 {%- for block in blocks -%}
   {% for article in block.settings.blog.articles %}
-    {%- if article.title contains terms -%}
+    {%- if article.title contains terms_search -%}
       {%- assign results = results | plus: 1 -%}
     {%- endif -%}
   {% endfor %}
@@ -43,7 +44,7 @@
       <div class="search-help__header--right">
         <form action="/pages/search-help-center" method="get" role="search" class="search search-modal__form">
           <div class="field">
-            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ terms }}" pattern="^(?=.*\S).+$" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
+            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ terms }}" pattern="^(?=.*\S).+$" placeholder="{{ 'general.search.placeholder' | t }}" required><input type="hidden" name="options[prefix]" value="last">
             <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
           </div>
         </form>
@@ -53,7 +54,7 @@
       {%- if results > 0 and terms != blank -%}
         {%- for block in blocks -%}
           {%- for article in block.settings.blog.articles -%}
-            {%- if article.title contains terms -%}
+            {%- if article.title contains terms_search -%}
               <div class="search-help__result">
                 <accordion-item class="search-help__result-accordion">
                   <div class="accordion-header search-help__result-header">
