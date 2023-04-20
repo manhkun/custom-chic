@@ -24,7 +24,7 @@
     <div class="account-order-detail__content">
       <div class="account-order-info">
         <h2 class="account-order-title">{{ order.name }}</h2>
-        <p class="account-order-placed"><span>{{ 'account_order_detail.placed_on' | t }}</span>{{- order.created_at -}}</p>
+        <p class="account-order-placed"><span>{{ 'account_order_detail.placed_on' | t }}</span>{{- order.created_at | date: "%Y-%m-%d %H:%M" -}}</p>
         <div class="account-order-detail-list">
           <div class="account-order-detail-menu">
             <div class="account-order-detail-menu-product">
@@ -108,7 +108,7 @@
                 </div>
               </div>
               <div class="tracking-info">
-
+                <span>{{- item.tracking -}}</span>
               </div>
               <div class="sku-info">
                 <span>{{- item.sku -}}</span>

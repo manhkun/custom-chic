@@ -53,6 +53,12 @@
                 {%- endif -%}
                 <span>{{ address.country }}</span>
               {%- endif -%}
+              {%- if address.zip != blank -%}
+                <div class="postcode-desktop">
+                  <span class="spacing-postcode">- </span>
+                  <span>{{ postcode_label }}: {{ address.zip }} </span>
+                </div>
+              {%- endif -%}
             </div>
             <div class="account-address__postcode">
               {%- if address.zip != blank -%}

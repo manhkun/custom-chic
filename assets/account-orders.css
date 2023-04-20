@@ -4,6 +4,14 @@
 
 .account-order__title {
   display: none;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 40px;
 }
 
 .account-orders {
@@ -209,6 +217,7 @@
   }
 
   .account-order__title {
+    text-transform: uppercase;
     display: block;
   }
 
@@ -326,5 +335,30 @@
 
   .account-orders {
     margin-bottom: 60px;
+  }
+
+  .account-order__field {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 120%;
+    text-align: right;
+  }
+
+  .account-order__number {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 120%;
+  }
+
+  .account-order__tracking {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 120%;
   }
 }

@@ -32,7 +32,7 @@
               <a href="{{- order.customer_url -}}" class="account-order__number-link">#{{- order.order_number -}}</a>
             </div>
             <div class="account-order__field account-order__date">
-              <span class="account-order-label">{{- 'customer.order.date' | t -}}:</span>
+              <span class="account-order-label">{{- 'customer.order.date' | t -}}</span>
               <span class="account-order__info">{{- order.created_at | date: '%b %d, %Y' -}}</span>
             </div>
             <div class="account-order__field account-order__payment">
@@ -40,7 +40,7 @@
               <span class="account-order__info">{{- order.financial_status_label -}}</span>
             </div>
             <div class="account-order__field account-order__fullfill">
-              <span class="account-order-label">{{- 'customer.order.fulfillment_status' | t -}}:</span>
+              <span class="account-order-label">{{- 'customer.order.fulfillment_status' | t -}}</span>
               <span class="account-order__info">{{- order.fulfillment_status_label -}}</span>
             </div>
             <div class="account-order__field account-order__tracking">
@@ -56,7 +56,7 @@
               {%- endif -%}
             </div>
             <div class="account-order__field account-order__total">
-              <span class="account-order-label">{{- 'customer.order.total' | t -}}:</span>
+              <span class="account-order-label">{{- 'customer.order.total' | t -}}</span>
               <span class="account-order__info account-order__total-info">{{- order.total_price | money -}}</span>
             </div>
           </div>

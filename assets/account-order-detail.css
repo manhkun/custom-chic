@@ -10,6 +10,10 @@
   flex: 1;
 }
 
+.account-order-dd {
+  padding: 0;
+}
+
 .account-order-detail-item-wrapper {
   border-bottom: 1px solid #D9D9D9;
 }
@@ -319,6 +323,12 @@
   display: none;
 }
 
+@media screen and (min-width: 768px) {
+  .account-order-detail__header {
+    padding: 16px 30px;
+  }
+}
+
 @media screen and (min-width: 1023px) {
   .account-order-bottom-wrapper {
     display: flex;
@@ -369,6 +379,7 @@
     justify-content: space-between;
     gap: 20px;
     border-bottom: 1px solid #D9D9D9;
+    background-color: #FAFAFA;
   }
 
   .account-order-detail-menu-product {
