@@ -461,7 +461,12 @@
   align-items: center;
   gap: 8px;
   transition: bottom .3s ease-out;
-  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .product-card-action {
+    display: none;
+  }
 }
 
 .title-shop-now {

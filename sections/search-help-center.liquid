@@ -16,7 +16,7 @@
 {%- for param in params -%}
   {%- assign key = param | split: '=' | first -%}
   {%- if key == 'q' -%}
-    {%- assign terms = param | split: '=' | last -%}
+    {%- assign terms = param | split: '=' | last | url_decode -%}
   {%- endif -%}
 {%- endfor -%}
 {% liquid
@@ -43,7 +43,7 @@
       <div class="search-help__header--right">
         <form action="/pages/search-help-center" method="get" role="search" class="search search-modal__form">
           <div class="field">
-            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ terms }}" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
+            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ terms }}" pattern="^(?=.*\S).+$" placeholder="{{ 'general.search.placeholder' | t }}"><input type="hidden" name="options[prefix]" value="last">
             <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
           </div>
         </form>
