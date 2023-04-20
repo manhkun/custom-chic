@@ -12,6 +12,11 @@
   align-items: center;
   padding: 13px 16px;
   color: #808080 !important;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
 }
 
 .account-sidebar__item svg {
@@ -53,6 +58,19 @@
     color: #000000;
     cursor: pointer;
   }
+  
+  .account-sidebar__select:after {
+    content: '';
+    position: absolute;
+    background: #FAFAFA;
+    z-index: -1;
+    left: -16px;
+    width: calc(100% + 32px);
+    height: calc(100% + 20px);
+    background: #FAFAFA;
+    z-index: -1;
+    pointer-events: none;
+  }
 
   .account-sidebar__select.close {
     display: none;
@@ -67,13 +85,25 @@
     background: #FAFAFA;
   }
 
+  .account-sidebar__dropdown:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -16px;
+    width: calc(100% + 32px);
+    height: 100%;
+    background: #FAFAFA;
+    z-index: -1;
+    pointer-events: none;
+  }
+
   .account-sidebar__dropdown.active {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     display: block;
-    padding-top: 16px;
+    padding-top: 20px;
   }
 
   .account-sidebar__item {
@@ -81,6 +111,7 @@
     font-size: 16px;
     line-height: 140%;
     color: #000000 !important;
+    height: 54px;
   }
 
   .account-sidebar__item.active {
@@ -104,6 +135,7 @@
     font-size: 16px;
     line-height: 140%;
     cursor: pointer;
+    margin-bottom: 20px;
   }
 
   .account-sidebar__close-mobile svg {

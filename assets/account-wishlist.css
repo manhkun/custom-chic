@@ -106,6 +106,22 @@
   padding-bottom: 0;
 }
 
+.account-wishlist .wk-note.wk-note__list-empty {
+  background: #ffffff;
+  margin-top: 0;
+  padding: 0;
+}
+
+.account-wishlist__title {
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  text-transform: uppercase;
+  color: #000000;
+  margin: 0;
+}
+
 @media screen and (max-width: 768px) {
   .account-wishlist .wk-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -131,5 +147,13 @@
 
   .account-wishlist .wk-page {
     padding-bottom: 0;
+  }
+
+  .account-wishlist .wk-note.wk-note__list-empty {
+    padding: 20px 0;
+  }
+
+  .account-wishlist__title {
+    display: none !important;
   }
 }

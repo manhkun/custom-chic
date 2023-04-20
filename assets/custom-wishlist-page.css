@@ -1,3 +1,7 @@
+.template-page-wishlist .account-wishlist__title {
+  display: none;
+}
+
 .wk-page {
   padding-bottom: 96px;
 }
