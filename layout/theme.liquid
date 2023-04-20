@@ -351,7 +351,7 @@
     </script>
   </head>
 
-  <body class="gradient template-{{ template }}">
+  <body class="gradient template-{{ template | handleize }}">
     <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" type="text/css" media="all">
     <noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">

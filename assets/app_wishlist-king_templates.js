@@ -183,6 +183,7 @@ const templates = [
         </div>
       {% else %}
         <div>
+          <h3 class="account-wishlist__title">Wishlist</h3>
           <div class="wk-grid">
             {% assign item_count = 0 %}
             {% assign products = wishlist.products | reverse %}
