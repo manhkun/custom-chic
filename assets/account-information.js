@@ -1,20 +1,53 @@
+/**
+ * @returns { {
+   *    'Content-Type': 'application/json',
+   *    Accept: 'application/json',
+   *    'X-Shopify-Storefront-Access-Token': string
+   * } }
+   */
+  function getGraphQlHeaders() {
+    return {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'X-Shopify-Access-Token': globalVar.apis.storefrontAccessToken
+    }
+  }
+  
+  /**
+   * Returns graphql request with no callback
+   * @param { {
+   *  query: string
+   *  variables?: unknown
+   * } } param0
+   * @returns { fetch }
+   */
+  function executeGraphQlQuery({ query, variables }) {
+    const url = globalVar.apis.graphQlEndpoint
+  
+    // remove line breaks and double space for legibility
+    const cleanQuery = query.replace(/\n/g, ' ').replace(/ {2}/g, '')
+  
+    const config = {
+      method: 'post',
+      headers: getGraphQlHeaders(),
+      body: JSON.stringify({
+        query: cleanQuery,
+        // only add variables if they actually exist
+        ...(variables ? { variables } : {})
+      })
+    }
+  
+    return fetch(url, config)
+  }
+  
+/* global globalEvents */
 class AccountInformation extends HTMLElement {
   constructor() {
     super()
 
-    this.showResetPass = this.querySelector('#reset_password_checkbox')
-    this.resetPasswordForm = this.querySelector('.reset_password_form')
     this.form = this.querySelector('form')
     this.inputAll = this.form.querySelectorAll('.input')
     this.buttonSubmit = this.form.querySelector('button')
-
-    this.showResetPass.addEventListener('click', () => {
-      if (this.showResetPass.checked) {
-        this.resetPasswordForm.style.display = 'block';
-      } else {
-        this.resetPasswordForm.style.display = 'none';
-      }
-    })
 
     this.inputAll.forEach(item => {
       item.addEventListener('input', () => {
@@ -28,43 +61,42 @@ class AccountInformation extends HTMLElement {
       })
     })
 
-    on('click', this.onFormSubmit.bind(this), this.buttonSubmit)
+    this.buttonSubmit && this.buttonSubmit.addEventListener('click', this.onFormSubmit.bind(this))
+   }
+
+  getCookie = (name) => {
+    const pair = document.cookie.match(new RegExp(name + '=([^;]+)'))
+    return pair ? pair[1] : null
   }
 
   changeAccountInfo (customerAccessToken, customerData) {
     const variables = {
       customerAccessToken,
       customer: {
-        ...customerData.customer,
-        acceptsMarketing: this.markettingCheckbox.checked
+        ...customerData.customer
       }
     }
-
     const query = this.getQueryCustomerUpdate()
 
     executeGraphQlQuery({ query, variables })
       .then(res => res.json())
       .then(data => {
-        if (data.errors) {
-          globalEvents.emit(eventProps.notice.global, {
-            type: 'error',
-            content: noticeContent.error
-          })
+        if (data.errors || data.data.customerUpdate.userErrors.length > 0) {
+          const msg = data.data.customerUpdate.userErrors.map(error => error.message)
+          alert(msg.join(" and "))
         } else {
-          globalEvents.emit(eventProps.notice.global, {
-            type: 'success',
-            content: noticeContent.success
-          })
+          location.reload();
         }
       })
   }
 
   getQueryCustomerUpdate () {
-    return `mutation customerUpdate($customerAccessToken: String!, $customer: CustomerUpdateInput!) {
+    return `mutation customerUpdate($customerAccessToken: String!, $input: CustomerUpdateInput!) {
       customerUpdate(customerAccessToken: $customerAccessToken, customer: $customer) {
         customer {
-          email
-          name
+          firstName
+          lastName
+          phone
         }
         customerAccessToken {
           accessToken
@@ -81,7 +113,17 @@ class AccountInformation extends HTMLElement {
   async onFormSubmit(e) {
     e.preventDefault()
     const formObject = this.formToObject(this.form)
-    // const accessToken = getCookie('customerAccessToken')
+    const nameData = formObject?.customer['name']?.split(" ")
+    let firstName = ''
+    let lastName = ''
+    if (nameData.length > 0) {
+      firstName = nameData[0]
+      lastName = nameData.slice(1).join(" ")
+    }
+    Object.assign(formObject?.customer, { 'firstName': firstName }, { 'lastName': lastName });
+    delete formObject?.customer.name
+    // formObject.customer?.note = `birthday: ${ formObject.customer.note?.birthday }`
+    const accessToken = this.getCookie('customerAccessToken')
     this.changeAccountInfo(accessToken, formObject)
   }
 
