@@ -128,7 +128,7 @@
                       type="search"
                       name="q"
                       value=""
-                      pattern="^(?=.*\S).+$"
+                      pattern="^(?=.*\S)+$"
                       placeholder="{{ 'general.search.search' | t }}"
                       {%- if settings.predictive_search_enabled -%}
                         role="combobox"
@@ -238,7 +238,7 @@
             type="search"
             name="q"
             value=""
-            pattern="^(?=.*\S).+$"
+            pattern="^(?=.*\S)+$"
             placeholder="{{ 'general.search.search' | t }}"
             {%- if settings.predictive_search_enabled -%}
               role="combobox"
@@ -300,7 +300,7 @@
                         type="search"
                         name="q"
                         value=""
-                        pattern="^(?=.*\S).+$"
+                        pattern="^(?=.*\S)+$"
                         placeholder="{{ 'general.search.search' | t }}"
                         {%- if settings.predictive_search_enabled -%}
                           role="combobox"

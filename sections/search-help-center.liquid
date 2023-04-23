@@ -42,9 +42,12 @@
         <p class="search-help__count">{{ 'templates.search.results_with_count_and_term_html' | t: terms: terms, count: results }}</p>
       </div>
       <div class="search-help__header--right">
-        <form action="/pages/search-help-center" method="get" role="search" class="search search-modal__form">
+        <form action="/pages/search-help-center" method="get" role="search" class="search search-modal__form" autocomplete="off" autocapitalize="off">
           <div class="field">
-            <input class="search__input field__input" id="Search-In-Modal-1" type="search" name="q" value="{{ terms }}" pattern="^(?=.*\S).+$" placeholder="{{ 'general.search.placeholder' | t }}" required><input type="hidden" name="options[prefix]" value="last">
+            <input class="search__input field__input" id="Search-In-Modal-1" type="text" autocorrect="off"
+            autocomplete="off"
+            autocapitalize="off"
+            spellcheck="false" name="q" value="{{ terms }}" pattern="^(?=.*\S)+$" placeholder="{{ 'general.search.placeholder' | t }}" required><input type="hidden" name="options[prefix]" value="last">
             <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
           </div>
         </form>
@@ -134,7 +137,7 @@
         <div class="search-help__notfound">
           <div class="search-help__notfound-header">
             <h3 class="search-help__notfound-title">Help hub</h3>
-            <p class="search-help__notfound-subtitle">Sorry,  we could not find any results for “{{ terms }}”, try searching our Help Hub</p>
+            <p class="search-help__notfound-subtitle">Sorry,  we could not find any results for <strong>“{{ terms }}”</strong>, try searching our <a href="/pages/help-center">Help Hub</a></p>
           </div>
           <div class="search-help__notfound-main">
             <div class="search-help__notfound-main-header">
@@ -149,8 +152,7 @@
                       <div class="accordion-header search-help__result-header">
                         <div class="search-help__result-header-inner">
                           <div class="search-help__another-link">
-                            <a href="/pages/help-center">Help center</a>
-                            <a href="/pages/help-center?section=delivery-shipping">Order & Delivery</a>
+                            <a href="/pages/help-center?section={{ blog_suggestion.title | handleize }}">{{- blog_suggestion.title -}}</a>
                           </div>
                           <button type="button">
                             {%- render 'icon-minus-2' -%}
