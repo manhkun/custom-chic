@@ -52,7 +52,9 @@ class AccountSidebar extends HTMLElement {
   }
 
   setCurrentItem() {
-    this.currentTextEl.innerHTML = this.itemActiveEl.innerHTML
+    if (this.currentTextEl) {
+      this.currentTextEl.innerHTML = this.itemActiveEl.innerHTML
+    }
   }
 }
 
