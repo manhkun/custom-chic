@@ -444,10 +444,11 @@
       "zip": "Postal/ZIP code",
       "phone": "Phone number",
       "set_default": "Set as default address",
-      "add": "Add address",
+      "add": "Add Address",
       "update": "Update address",
       "cancel": "Cancel",
       "edit": "Edit",
+      "new_add": "New address",
       "delete": "Delete",
       "address_list": "Address list",
       "delete_confirm": "Are you sure you wish to delete this address?",
@@ -593,6 +594,7 @@
     "home": "Home",
     "order_list": "Order list",
     "go_back": "Go Back",
-    "product": "Product"
+    "product": "Product",
+    "view_all": "View All"
   }
 }

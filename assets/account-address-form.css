@@ -146,7 +146,11 @@
   border: none;
   cursor: pointer;
   border: 1px solid transparent;
-  font-family: var(--font-heading-family);
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 .account-address-form__btn-add:hover {
@@ -168,7 +172,12 @@
   outline: none;
   border: 1px solid #d9d9d9;
   cursor: pointer;
-  font-family: var(--font-heading-family);
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: 0;
 }
 
 .account-address-form__btn-cancel:hover {
@@ -195,7 +204,12 @@
   outline: none;
   border: 1px solid #d9d9d9;
   cursor: pointer;
-  font-family: var(--font-heading-family);
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: capitalize;
 }
 
 .account-address-form__btn-delete:hover {
@@ -207,6 +221,20 @@
 }
 
 @media screen and (min-width: 767px) {
+  .account-address-form__heading {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    text-transform: uppercase;
+    color: #000000;
+  }
+
+  .account-address-form-modal__content-header {
+    padding: 0 0 40px 0;
+  }
+
   .account-address-form__content-bottom {
     display: flex;
     width: 100%;
@@ -230,6 +258,14 @@
     padding: 16px 72.5px;
     bottom: 0;
     right: 210px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+
+    text-transform: capitalize;
   }
 
   .account-address-form__content-bottom--revert {
@@ -238,7 +274,7 @@
 
   .account-address-form__btn-cancel {
     width: fit-content;
-    padding: 16px 71.5px;
+    padding: 15px 71px;
     margin-top: 0;
     font-weight: 600;
     font-size: 16px;

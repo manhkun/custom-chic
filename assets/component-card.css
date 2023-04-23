@@ -317,6 +317,11 @@
   overflow: hidden;
   word-break: break-all;
 }
+
+.recently-viewed-account .product-title  a {
+  font-weight: 400;
+}
+
 .product-vendor {
   color: var(--color-sub-text);
   font-size: 10px;
