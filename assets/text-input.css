@@ -38,4 +38,10 @@
   font-size: 16px;
   line-height: 160%;
   color: #D9D9D9;
+  -webkit-text-fill-color: #D9D9D9;
+  opacity: 1; /* required on iOS */
+}
+
+input[type="date"] {
+  background: transparent;
 }

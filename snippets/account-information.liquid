@@ -49,7 +49,7 @@
           </div>
           <div class="account-info__inner mt-10">
             {%- assign _now = "now" | date: "%Y-%m-%d" -%}
-            <!-- {%- render 'text-input',
+            {%- render 'text-input',
               id: 'customer_birthday',
               type: 'date'
               name: 'customer[note][birthday]',
@@ -58,7 +58,7 @@
               placeholder: date_of_birth,
               required: true,
               class: 'account-info__haft'
-            -%} -->
+            -%}
             {%- render 'text-input',
               id: 'customer_phone',
               name: 'customer[phone]',
