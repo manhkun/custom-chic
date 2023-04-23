@@ -100,9 +100,11 @@
                     </li>
                   {%- endfor -%}
             </ul>
-            {%- if paginate.pages > 1 -%}
-              {% render 'pagination', paginate: paginate, anchor: '', class: '', section: section %}
-            {%- endif -%}
+            <div class="load-more-wrapper">
+              <collection-loadmore>
+                <button class="btn load-more_btn">Load more</button>
+              </collection-loadmore>
+            </div>
           {% endif %}
         </div>
       </div>

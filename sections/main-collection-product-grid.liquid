@@ -20,10 +20,12 @@
 }
 
 {%- endstyle -%}
+{%- assign products_per_page = section.settings.products_per_page | times: 1.0 -%}
+{%- assign page_count = collection.products_count | divided_by: products_per_page | ceil -%}
 <div class="filter-mobile">
   {% render 'facets', results: collection, view_mode: view_mode, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, title_category_tree: section.settings.title_category_tree, navigation_filter: section.settings.navigation_filter, product_count: section.settings.collection_page_display_product_count, filter_position: section.settings.position_filter %}
 </div>
-<div class="page-width-desktop collection-product-grid-wrapper" id="ProductGridContainer">
+<div class="page-width-desktop collection-product-grid-wrapper" id="ProductGridContainer" data-page-count="{{ page_count }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
     <div class="collection active{% if collection.products.size == 0 %} collection--empty{% endif %}" id="product-grid" data-id="{{ section.id }}">
       <div class="collection-wrapper {% if section.settings.enable_showsidebar %}show {% endif %}">
@@ -31,6 +33,7 @@
           {% render 'facet-sidebar', results: collection, view_mode: view_mode, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, title_category_tree: section.settings.title_category_tree, navigation_filter: section.settings.navigation_filter, product_count: section.settings.collection_page_display_product_count, filter_position: section.settings.position_filter %}
         </div>
         <div class="main-collection-product-grid">
+          <span data-total-pages={{ page_count }} style="display: none;"></span>
           <div class="loading-overlay"></div>
           <div class="top-filter">
               <div class="button-filter-sidebar {% if section.settings.enable_filtering %}show{% endif %}">
@@ -102,10 +105,12 @@
                     </li>
                   {%- endfor -%}
             </ul>
-            {%- if paginate.pages > 1 -%}
-              {% render 'pagination', paginate: paginate, anchor: '', class: '', section: section %}
-            {%- endif -%}
           {% endif %}
+          <div class="load-more-wrapper">
+            <collection-loadmore>
+              <button class="btn load-more_btn">Load more</button>
+            </collection-loadmore>
+          </div>
         </div>
       </div>
     </div>

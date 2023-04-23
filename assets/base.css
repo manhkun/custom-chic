@@ -345,7 +345,6 @@ table:not([class]) th {
 .light {
   opacity: 0.7;
 }
-
 a:empty,
 ul:empty,
 dl:empty,
@@ -2983,4 +2982,20 @@ button[disabled]:hover {
 .gp-product-slider .card-details .jdgm-widget.jdgm-preview-badge,
 .grid__item .card-details .jdgm-widget.jdgm-widget{
   display: none !important;
+}
+
+.load-more_btn {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: var(--font-heading-family);
+  padding: 15px 22.5px;
+  text-transform: capitalize;
+  border-radius: 100px;
+  cursor: pointer !important;
+}
+
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
 }

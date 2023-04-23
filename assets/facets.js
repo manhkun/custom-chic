@@ -171,7 +171,7 @@ class FacetFiltersForm extends HTMLElement {
     }
   }
 
-  static renderPage(searchParams, event, updateURLHash = true) {
+  static renderPage(searchParams, event, updateURLHash = true, appendGrid = false) {
     FacetFiltersForm.searchParamsPrev = searchParams;
     const sections = FacetFiltersForm.getSections();
     document.getElementById('ProductGridContainer').querySelector('.collection')?.classList.add('loading');
@@ -180,20 +180,20 @@ class FacetFiltersForm extends HTMLElement {
       const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
       const filterDataUrl = element => element.url === url;
 
-      FacetFiltersForm.filterData.some(filterDataUrl) ? FacetFiltersForm.renderSectionFromCache(filterDataUrl, event) : FacetFiltersForm.renderSectionFromFetch(url, event);
+      FacetFiltersForm.filterData.some(filterDataUrl) ? FacetFiltersForm.renderSectionFromCache(filterDataUrl, event) : FacetFiltersForm.renderSectionFromFetch(url, event, appendGrid);
     });
 
     if (updateURLHash) FacetFiltersForm.updateURLHash(searchParams);
   }
 
-  static renderSectionFromFetch(url, event) {
+  static renderSectionFromFetch(url, event, appendGrid) {
     fetch(url)
       .then(response => response.text())
       .then((responseText) => {
         const html = responseText;
         FacetFiltersForm.filterData = [...FacetFiltersForm.filterData, { html, url }];
         FacetFiltersForm.renderFilters(html, event);
-        FacetFiltersForm.renderProductGridContainer(html);
+        FacetFiltersForm.renderProductGridContainer(html, appendGrid);
       })
       .finally(() => {
         FacetFiltersForm.checkDisabled();
@@ -321,8 +321,12 @@ class FacetFiltersForm extends HTMLElement {
   });
   }
 
-  static renderProductGridContainer(html) {
-    document.getElementById('ProductGridContainer').innerHTML = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductGridContainer').innerHTML;
+  static renderProductGridContainer(html, append) {
+    if (!append) {
+      document.getElementById('ProductGridContainer').innerHTML = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductGridContainer').innerHTML;
+    } else {
+      document.getElementById('main-collection-product').innerHTML += new DOMParser().parseFromString(html, 'text/html').getElementById('main-collection-product').innerHTML;
+    }
     document.querySelector('.collection').classList.remove('loading');
   }
 
@@ -490,3 +494,72 @@ class FacetRemove extends HTMLElement {
 
 customElements.define('facet-remove', FacetRemove);
 
+
+class Loadmore extends HTMLElement {
+  constructor() {
+    super();
+    this.attachEvents()
+    this.currentPage = 1
+    this.maxPages = this.getMaxPages()
+    this.collectionGrid = document.querySelector('#main-collection-product')
+  }
+
+  attachEvents() {
+    this.addEventListener('click', this.handleLoadmore.bind(this))
+  }
+
+  handleLoadmore(e) {
+    e.preventDefault()
+    const allParamsUrl = this.getAllUrlParams()
+    if (allParamsUrl['page']) {
+      this.currentPage = allParamsUrl['page']
+    }
+    this.currentPage++
+    allParamsUrl['page'] = this.currentPage
+
+    const urlParams = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(allParamsUrl)) {
+      if (Array.isArray(value)) {
+        for (const v of value) {
+          urlParams.append(key, v);
+        }
+      } else {
+        urlParams.append(key, value);
+      }
+    }
+
+    const queryString = urlParams.toString();
+
+    FacetFiltersForm.renderPage(queryString, null, false, true)
+    this.maxPages = this.getMaxPages()
+
+    if (this.currentPage >= this.maxPages) {
+      this.style.display = 'none'
+    } else {
+      this.style.display = 'flex'
+    }
+  }
+
+  getMaxPages() {
+    return +document.querySelector('[data-total-pages]').getAttribute('data-total-pages')
+  }
+
+  getAllUrlParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const params = {};
+
+    for (const [key, value] of urlParams) {
+      if (!params[key]) {
+        params[key] = [value];
+      } else {
+        params[key].push(value);
+      }
+    }
+    return params
+  }
+  
+
+}
+
+customElements.define('collection-loadmore', Loadmore);

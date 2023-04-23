@@ -309,126 +309,128 @@ const closestIndex = (num, arr) => {
             $(this).html($(this).attr('data-in'));    
       });
     });
-    document.querySelector("#cal-submit-1").addEventListener("click", function () {
-      var t = $(this).closest('#tab1Q').attr('data-id');
-      console.log(t);
-      
-    var chest = document.getElementById('chest').value;
-    var waist = document.getElementById('waist').value;
-      switch($('.size-guide-section').attr('data-measure')) {
-          case 'in':
-            break;
-          case 'cm':
-            chest = parseFloat(chest)/2.54
-            waist = parseFloat(waist)/2.54
-          }
-      if (chest >= 66 ||  chest < 36 || waist >= 38 | waist < 28) {
-        document.getElementById("answer").innerHTML = "<p>Sorry, we don't stock products that match your size right now. We've made a note of this though, and we're working hard to create more sizes. Watch this space.</p>";
-        return
-      }
-
-      function selected5XL () {
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>5XL</p>";
-        $(".size-data").removeClass('selected')
-        document.getElementById("size-15").classList.add('selected');
-        document.getElementById("size-16").classList.add('selected');
-      }
-
-      function selected4XL () {
-        $(".size-data").removeClass('selected')
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>4XL</p>";
-        document.getElementById("size-13").classList.add('selected');
-        document.getElementById("size-14").classList.add('selected');
-      }
-
-      function selected3XL () {
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>3XL</p>";
-        $(".size-data").removeClass('selected')
-        document.getElementById("size-11").classList.add('selected');
-        document.getElementById("size-12").classList.add('selected');
-      }
-
-      function selected2XL () {
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>2XL</p>";
-        $(".size-data").removeClass('selected')
-        document.getElementById("size-9").classList.add('selected');
-        document.getElementById("size-10").classList.add('selected');
-      }
-
-      function selectedXL () {
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XL</p>";
-        $(".size-data").removeClass('selected')
-        document.getElementById("size-7").classList.add('selected');
-        document.getElementById("size-8").classList.add('selected');
-      }
-
-      function selectedL () {
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>L</p>";
-        $(".size-data").removeClass('selected')
-        document.getElementById("size-5").classList.add('selected');
-        document.getElementById("size-6").classList.add('selected');
-      }
-
-      function selectedM () {
-        $(".size-data").removeClass('selected')
-        document.getElementById("size-3").classList.add('selected');
-        document.getElementById("size-4").classList.add('selected');
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>M</p>";
-      }
-
-      function selectedS () {
-        $(".size-data").removeClass('selected')
-        document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>S</p>";
-        document.getElementById("size-1").classList.add('selected');
-        document.getElementById("size-2").classList.add('selected');
-      }
-      
-      if(chest >= 64 || waist >= 35 ){
-        selected5XL()
-      }else if (chest >= 60 || waist >= 34 ){
-        if (chest == 60 && waist == 34) {
-          selected4XL()
-        } else {
+    if (document.querySelector("#cal-submit-1")) {
+      document.querySelector("#cal-submit-1").addEventListener("click", function () {
+        var t = $(this).closest('#tab1Q').attr('data-id');
+        console.log(t);
+        
+      var chest = document.getElementById('chest').value;
+      var waist = document.getElementById('waist').value;
+        switch($('.size-guide-section').attr('data-measure')) {
+            case 'in':
+              break;
+            case 'cm':
+              chest = parseFloat(chest)/2.54
+              waist = parseFloat(waist)/2.54
+            }
+        if (chest >= 66 ||  chest < 36 || waist >= 38 | waist < 28) {
+          document.getElementById("answer").innerHTML = "<p>Sorry, we don't stock products that match your size right now. We've made a note of this though, and we're working hard to create more sizes. Watch this space.</p>";
+          return
+        }
+  
+        function selected5XL () {
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>5XL</p>";
+          $(".size-data").removeClass('selected')
+          document.getElementById("size-15").classList.add('selected');
+          document.getElementById("size-16").classList.add('selected');
+        }
+  
+        function selected4XL () {
+          $(".size-data").removeClass('selected')
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>4XL</p>";
+          document.getElementById("size-13").classList.add('selected');
+          document.getElementById("size-14").classList.add('selected');
+        }
+  
+        function selected3XL () {
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>3XL</p>";
+          $(".size-data").removeClass('selected')
+          document.getElementById("size-11").classList.add('selected');
+          document.getElementById("size-12").classList.add('selected');
+        }
+  
+        function selected2XL () {
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>2XL</p>";
+          $(".size-data").removeClass('selected')
+          document.getElementById("size-9").classList.add('selected');
+          document.getElementById("size-10").classList.add('selected');
+        }
+  
+        function selectedXL () {
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>XL</p>";
+          $(".size-data").removeClass('selected')
+          document.getElementById("size-7").classList.add('selected');
+          document.getElementById("size-8").classList.add('selected');
+        }
+  
+        function selectedL () {
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>L</p>";
+          $(".size-data").removeClass('selected')
+          document.getElementById("size-5").classList.add('selected');
+          document.getElementById("size-6").classList.add('selected');
+        }
+  
+        function selectedM () {
+          $(".size-data").removeClass('selected')
+          document.getElementById("size-3").classList.add('selected');
+          document.getElementById("size-4").classList.add('selected');
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>M</p>";
+        }
+  
+        function selectedS () {
+          $(".size-data").removeClass('selected')
+          document.getElementById("answer").innerHTML = "<p>WE THINK YOU'RE AN</p> <p>S</p>";
+          document.getElementById("size-1").classList.add('selected');
+          document.getElementById("size-2").classList.add('selected');
+        }
+        
+        if(chest >= 64 || waist >= 35 ){
           selected5XL()
+        }else if (chest >= 60 || waist >= 34 ){
+          if (chest == 60 && waist == 34) {
+            selected4XL()
+          } else {
+            selected5XL()
+          }
+        }else if ( chest >= 56 || waist >= 33 ){
+          if (chest == 56 && waist == 33) {
+            selected3XL()
+          } else {
+            selected4XL()
+          }
+        }else if (  chest >= 52 || waist >= 32 ){
+          if (chest == 52 && waist == 32) {
+            selected2XL()
+          } else {
+            selected3XL()
+          }
+        }else if ( chest >= 48 || waist >= 31 ){
+          if (chest == 48 && waist == 31) {
+            selectedXL()
+          } else {
+            selected2XL()
+          }
+        }else if (  chest >= 44 || waist >= 30 ){
+          if (chest == 44 && waist == 30) {
+            selectedL()
+          } else {
+            selectedXL()
+          }
+        }else if ( chest >= 40 || waist >= 29 ){
+          if (chest == 40 && waist == 29) {
+            selectedM()
+          } else {
+            selectedL
+          }
+        }else if ( chest >= 36 || waist >= 28 ){
+          if (chest == 36 && waist == 28) {
+            selectedS()
+          } else {
+            selectedM()
+          }
         }
-      }else if ( chest >= 56 || waist >= 33 ){
-        if (chest == 56 && waist == 33) {
-          selected3XL()
-        } else {
-          selected4XL()
-        }
-      }else if (  chest >= 52 || waist >= 32 ){
-        if (chest == 52 && waist == 32) {
-          selected2XL()
-        } else {
-          selected3XL()
-        }
-      }else if ( chest >= 48 || waist >= 31 ){
-        if (chest == 48 && waist == 31) {
-          selectedXL()
-        } else {
-          selected2XL()
-        }
-      }else if (  chest >= 44 || waist >= 30 ){
-        if (chest == 44 && waist == 30) {
-          selectedL()
-        } else {
-          selectedXL()
-        }
-      }else if ( chest >= 40 || waist >= 29 ){
-        if (chest == 40 && waist == 29) {
-          selectedM()
-        } else {
-          selectedL
-        }
-      }else if ( chest >= 36 || waist >= 28 ){
-        if (chest == 36 && waist == 28) {
-          selectedS()
-        } else {
-          selectedM()
-        }
-      }
-  });
+    });
+    }
 
 
 
