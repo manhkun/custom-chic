@@ -76,7 +76,8 @@
                   <div class="col-12">
                     {% render 'recently-viewed',
                       class: 'recently-viewed-account-item',
-                      heading: section.settings.heading
+                      heading: section.settings.heading,
+                      link: section.settings.link,
                       product_per_row : 4,
                       product_per_row_tablet: 3,
                       product_per_row_mobile: 2,
@@ -102,6 +103,7 @@
     const swiperrr = new Swiper(swiperContainer, {
       slidesPerView: 2,
       spaceBetween: 2,
+      watchOverflow: true,
       navigation: {
         nextEl: '.next-{{ section.id }}',
         prevEl: '.prev-{{ section.id }}'
@@ -116,7 +118,7 @@
           slidesPerView: 3
         },
         1024: {
-          slidesPerView: 4
+          slidesPerView: 3.2
         }
       },
       longSwipes: false,
@@ -164,6 +166,11 @@
       "id": "heading",
       "default": "Recently viewed products",
       "label": "Heading"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Product Related URL"
     },
     {
       "type": "range",

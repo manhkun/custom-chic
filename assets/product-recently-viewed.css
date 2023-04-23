@@ -16,6 +16,10 @@
   margin: 0 -1px;
 }
 
+.recently-viewed-account {
+  margin: 0 -16px;
+}
+
 .recently-viewed-account-item .swiper-wrapper {
   padding: 0;
 }
@@ -36,7 +40,23 @@
   font-size: 16px;
 }
 
+.recently-viewed-account .recently-viewed-products-wrapper {
+  overflow: visible;
+}
+
+.recently-viewed-account .grid__item {
+  max-width: none;
+}
+
+.recently-viewed-account .product-title {
+  font-weight: 400;
+}
+
 @media screen and (min-width: 768px){
+  .recently-viewed-account {
+    margin: 0 auto;
+  }
+  
   #recently-viewed-products .slider-li  {
     padding: 0 5px;
   }
