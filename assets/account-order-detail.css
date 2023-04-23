@@ -329,7 +329,7 @@
   }
 }
 
-@media screen and (min-width: 1023px) {
+@media screen and (min-width: 1024px) {
   .account-order-bottom-wrapper {
     display: flex;
     gap: 40px;

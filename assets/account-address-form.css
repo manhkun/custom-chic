@@ -108,7 +108,8 @@
 .account-address-form__btn-close {
   background-color: transparent;
   outline: none;
-  border:none;
+  border: none;
+  cursor: pointer;
 }
 
 .account-address-form-modal__content-header {
@@ -220,7 +221,7 @@
   display: none;
 }
 
-@media screen and (min-width: 767px) {
+@media screen and (min-width: 768px) {
   .account-address-form__heading {
     font-family: 'Montserrat';
     font-style: normal;
@@ -245,7 +246,7 @@
 
   .account-address-form__btn-add {
     width: fit-content;
-    padding: 16px 47px;
+    padding: 15px 46px;
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
@@ -289,10 +290,6 @@
     padding: 8px 0;
   }
 
-  .test {
-    order: 1;
-  }
-
   .account-address-form__btn-close .icon-small {
     display: none;
   }
@@ -300,9 +297,14 @@
   .account-address-form__btn-close .icon-large {
     display: block;
   }
+
+  .account-address-form-modal__content {
+    padding: 32px 50px;
+    margin: 0;
+  }
 }
 
-@media screen and (min-width: 1023px) {
+@media screen and (min-width: 1024px) {
   .account-address-form-modal__content {
     padding: 64px 100px;
     margin: 0;

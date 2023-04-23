@@ -122,7 +122,7 @@ input[type=checkbox]:checked:before {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   .form_inner {
     padding: 16px;
     background-color: #ffffff;
