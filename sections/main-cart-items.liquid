@@ -99,7 +99,7 @@
                             {% for p in item.properties %}                      
                               {% if p.first contains '_customily-preview' %}
                                 <a class="meta preview_img-wrapper" onclick="openPreview('{{ p.last }}')"> 
-                                  {% render 'iconsearch' %} <span class="icon-search-bold" style="color: #000000"></span> Preview Your Design
+                                  {% render 'iconsearch' %} <span class="icon-search-bold" style="color: #000000"></span> {{ 'sections.cart.preview_your_design' | t }}
                                 </a>
                                 <div  class="popup-image-cart-wrapper">
                                   <div class="popup-image-cart">
