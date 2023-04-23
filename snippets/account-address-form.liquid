@@ -1,5 +1,13 @@
 {{ 'account-address-form.css' | asset_url | stylesheet_tag }}
 
+{%- capture all_data_country -%}
+  {{ all_country_option_tags }}
+{%- endcapture -%}
+{%- assign all_data_country = all_data_country | split: '<option value="---" data-provinces="[]">---</option>' -%}
+{%- assign all_data_country = all_data_country[1] -%}
+{%- assign all_data_country = all_data_country | split: '<option value="Aland Islands" data-provinces="[]">Åland Islands</option>' -%}
+{%- assign all_data_country = all_data_country[1] -%}
+
 {% style %}
   :root {
     --color-foreground: 0, 0, 0;
@@ -84,7 +92,7 @@
               class="account-address-form__select" 
               data-country-selector 
               data-id="{{ form.id }}">
-              {{ all_country_option_tags }}
+              {{ all_data_country }}
             </select>
           </div>
           <label class="account-address-form__label">{{ name_label }}:</label>
