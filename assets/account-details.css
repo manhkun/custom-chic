@@ -37,8 +37,7 @@
     top: -100%;
   }
 
-  .account-detail__wrapper {
-    display: flex;
+.account-detail__wrapper {
     flex-direction: column;
   }
 
@@ -53,11 +52,16 @@
 
   .overlay-sidebar {
     position: fixed;
-    top: 0;
+    top: auto;
     left: 0;
     z-index: 1;
     background-color: #000000;
     opacity: 0.5;
-    
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay-sidebar.active {
+    display: block;
   }
 }

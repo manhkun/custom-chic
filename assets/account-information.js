@@ -40,7 +40,6 @@
     return fetch(url, config)
   }
   
-/* global globalEvents */
 class AccountInformation extends HTMLElement {
   constructor() {
     super()
@@ -91,7 +90,7 @@ class AccountInformation extends HTMLElement {
   }
 
   getQueryCustomerUpdate () {
-    return `mutation customerUpdate($customerAccessToken: String!, $input: CustomerUpdateInput!) {
+    return `mutation customerUpdate($customerAccessToken: String!, $customer: CustomerUpdateInput!) {
       customerUpdate(customerAccessToken: $customerAccessToken, customer: $customer) {
         customer {
           firstName

@@ -412,6 +412,7 @@
       "email": "Email:",
       "pl_email": "Email:",
       "date_of_birth": "Date of birth:",
+      "placcohld_date_of_birth": "Date of birth",
       "phone": "Phone number:",
       "placeholder_phone": "Phone number",
       "reset_password": "Reset password",
