@@ -11,6 +11,8 @@
   color: #000000;
   padding: 24px 0 8px 0;
   width: 100%;
+  background-color: #fff;
+  display: block;
 }
 
 .text-input .input-label {
