@@ -28,7 +28,8 @@
 {%- assign terms_search = terms | downcase -%}
 {%- for block in blocks -%}
   {% for article in block.settings.blog.articles %}
-    {%- if article.title contains terms_search -%}
+    {%- assign article_title = article.title | downcase -%}
+    {%- if article_title contains terms_search -%}
       {%- assign results = results | plus: 1 -%}
     {%- endif -%}
   {% endfor %}
@@ -57,7 +58,8 @@
       {%- if results > 0 and terms != blank -%}
         {%- for block in blocks -%}
           {%- for article in block.settings.blog.articles -%}
-            {%- if article.title contains terms_search -%}
+            {%- assign article_title = article.title | downcase -%}
+            {%- if article_title contains terms_search -%}
               <div class="search-help__result">
                 <accordion-item class="search-help__result-accordion">
                   <div class="accordion-header search-help__result-header">
