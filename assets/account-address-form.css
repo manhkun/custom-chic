@@ -324,5 +324,10 @@
   .account-address-form__address-default {
     margin-bottom: 41.5px;
   }
+
+  .account-address-form__ae {
+    display: flex;
+    gap: 20px;
+  }
 }
 

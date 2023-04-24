@@ -141,27 +141,29 @@
               placeholder="{{ placehoder_province }}"
             >
           </div>
-          <div class="account-address-form__field">
-            <input 
-              type="text" 
-              name="address[city]" 
-              id="{{ city_id }}" 
-              value="{{ address.city }}" 
-              class="account-address-form__input"
-              placeholder="{{ placehoder_city }}"
-              required
-            >
-          </div>
-          <div class="account-address-form__field">
-            <input
-              type="text"
-              name="address[zip]"
-              id="{{ zip_id }}"
-              value="{{ address.zip }}" 
-              class="account-address-form__input"
-              placeholder="{{ placehoder_postcode }}"
-              required
-            >
+          <div class="account-address-form__ae">
+            <div class="account-address-form__field">
+              <input 
+                type="text" 
+                name="address[city]" 
+                id="{{ city_id }}" 
+                value="{{ address.city }}" 
+                class="account-address-form__input account-address-form__input-city"
+                placeholder="{{ placehoder_city }}"
+                required
+              >
+            </div>
+            <div class="account-address-form__field">
+              <input
+                type="text"
+                name="address[zip]"
+                id="{{ zip_id }}"
+                value="{{ address.zip }}" 
+                class="account-address-form__input account-address-form__input-zip"
+                placeholder="{{ placehoder_postcode }}"
+                required
+              >
+            </div>
           </div>
           <div class="account-address-form__address-default">
             <input
