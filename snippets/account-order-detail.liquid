@@ -48,6 +48,7 @@
           </div>
 
           {%- for item in order.line_items -%}
+            <script>console.log({{ item.properties | json }})</script>
             <div class="account-order-detail-item-wrapper">
               <div class="account-order-detail-item">
                 <div class="account-order-detail-image">
@@ -79,14 +80,16 @@
                     {%- endif -%}
                     </div>
                   </div>
-                  {%- if item.properties.size > 0 -%}
+                  {%- if item.properties != blank -%}
                     <div class="order-detail-property">
                       {%- for option in item.properties -%}
                         <div class="order-detail-property-item">
-                          {%- assign key = option | first -%}
-                          {%- assign value = option | last -%}
-                          <span class="order-detail-property-key">{{- key -}}:</span>
-                          <span class="order-detail-property-value">{{ value }}</span>
+                          {%- assign key = option[0] -%}
+                          {%- assign value = option[1] -%}
+                          {%- unless key != blank and key contains '_customily' -%}
+                            <span class="order-detail-property-key">{{- key -}}:</span>
+                            <span class="order-detail-property-value">{{ value }}</span>
+                          {%- endunless -%}
                         </div>
                       {% endfor %}
                     </div>
