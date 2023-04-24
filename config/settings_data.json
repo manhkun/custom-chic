@@ -19,6 +19,7 @@
     "block_text_mb_trustpilot": "<div class=\"trustpilot-widget\" data-locale=\"en-GB\" data-template-id=\"5419b6a8b0d04a076446a9ad\" data-businessunit-id=\"62bb411d135708e364d33220\" data-style-height=\"24px\" data-style-width=\"100%\" data-theme=\"light\" data-style-alignment=\"center\">\n  <a href=\"https:\/\/uk.trustpilot.com\/review\/www.customchic.co.uk\" target=\"_blank\" rel=\"noopener\">Trustpilot<\/a>\n<\/div>",
     "currency_code_enabled": false,
     "minimum_freeshipping": 70,
+    "storefront_access_token": "6c1019bb503d1e08e53e738abb448b8d",
     "checkout_logo_image": "shopify:\/\/shop_images\/Logo_black_1.png",
     "checkout_accent_color": "#000000",
     "checkout_button_color": "#000000",
