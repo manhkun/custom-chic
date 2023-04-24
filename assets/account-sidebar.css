@@ -104,6 +104,7 @@
     width: 100%;
     display: block;
     padding-top: 20px;
+    z-index: 2;
   }
 
   .account-sidebar__item {

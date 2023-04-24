@@ -28,5 +28,8 @@
     {%- if data_comfirm_message != blank -%}
       data-confirm-message="{{ data_comfirm_message }}"
     {%- endif -%}
+    {% if atr != blank %}
+      {{ atr }}
+    {% endif %}
   />
 </div>

@@ -5,7 +5,8 @@ const selectors = {
   sidebarItemClass: '.js-sidebar-item',
   sidebarItemActiveClass: '.js-sidebar-item.active',
   closeNav: '.account-sidebar__close-mobile',
-  stickySidebar: '.js-sidebar-sticky'
+  stickySidebar: '.js-sidebar-sticky',
+  overlay: '.overlay-sidebar'
 }
 
 class AccountSidebar extends HTMLElement {
@@ -19,6 +20,7 @@ class AccountSidebar extends HTMLElement {
     this.itemActiveEl = this.querySelector(selectors.sidebarItemActiveClass)
     this.closeNav = this.querySelector(selectors.closeNav)
     this.stickySidebar = document.querySelector(selectors.stickySidebar)
+    this.overlayEl = this.querySelector(selectors.overlay)
 
     if (this.currentEl && this.navEl) {
       this.setEvents()
@@ -28,6 +30,7 @@ class AccountSidebar extends HTMLElement {
     this.closeNav.addEventListener('click', () => {
         this.navEl.classList.remove('active')
         this.currentEl.classList.remove('hidden')
+        this.overlayEl.classList.remove('active')
     })
 
     this.lastScroll = 0
@@ -47,6 +50,7 @@ class AccountSidebar extends HTMLElement {
       () => {
         this.navEl.classList.add('active')
         this.currentEl.classList.add('hidden')
+        this.overlayEl.classList.add('active')
       },
     )
   }
