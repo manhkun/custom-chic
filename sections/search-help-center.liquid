@@ -48,7 +48,7 @@
             <input class="search__input field__input" id="Search-In-Modal-1" type="text" autocorrect="off"
             autocomplete="off"
             autocapitalize="off"
-            spellcheck="false" name="q" value="{{ terms }}" pattern="^(?=.*\S)+$" placeholder="{{ 'general.search.placeholder' | t }}" required><input type="hidden" name="options[prefix]" value="last">
+            spellcheck="false" name="q" value="{{ terms }}" pattern="^(?=.*\S).+$" placeholder="{{ 'general.search.placeholder' | t }}" required><input type="hidden" name="options[prefix]" value="last">
             <span class="icon-search-wrapper"><button type="submit">{% render 'icon-search-help' %}</button></span>
           </div>
         </form>
@@ -243,7 +243,6 @@
       this.header = this.querySelector('.accordion-header')
       this.content = this.querySelector('.accordion-content')
       this.accordions = document.querySelectorAll('accordion-item')
-
       this.contentHeight = this.content.offsetHeight
 
       this.close()
@@ -262,6 +261,7 @@
       this.state.open = true
       this.setAttribute('open', true)
       this.content.style.maxHeight = `${this.contentHeight}px`
+      this.classList.add('open')
     }
 
     close () {
@@ -269,6 +269,7 @@
 
       this.removeAttribute('open')
       this.content.style.maxHeight = '22px'
+      this.classList.remove('open')
     }
   }
 
