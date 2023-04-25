@@ -90,6 +90,9 @@
   font-weight: 300;
   font-size: 12px;
   line-height: 120%;
+}
+
+.order-detail__below-title > div {
   display: flex;
   justify-content: space-between;
   align-items: center;

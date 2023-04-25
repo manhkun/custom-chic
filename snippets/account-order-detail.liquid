@@ -24,7 +24,7 @@
     <div class="account-order-detail__content">
       <div class="account-order-info">
         <h2 class="account-order-title">{{ 'account_order_detail.order_label' | t }} {{ order.name }}</h2>
-        <p class="account-order-placed"><span>{{ 'account_order_detail.placed_on' | t }}</span>{{- order.created_at | date: "%b %d,%Y at %H:%M%P" -}}</p>
+        <p class="account-order-placed"><span>{{ 'account_order_detail.placed_on' | t }}</span>{{- order.created_at | date: "%b %d, %Y at %H:%M%P" -}}</p>
         <div class="account-order-detail-list">
           <div class="account-order-detail-menu">
             <div class="account-order-detail-menu-product">
@@ -63,20 +63,18 @@
                   <div class="account-order-detail-a">
                     <h3 class="order-detail__title">{{- item.product.title -}}</h3>
                     <div class="order-detail__below-title">
-                      {%- if item.fulfillment -%}
-                        <span>{{ 'account_order_detail.tracking' | t }}</span>
+                      <div>
+                        <span>{{ 'account_order_detail.tracking' | t | append: ':' }}</span>
                         {%- if item.fulfillment.tracking_url != blank -%}
-                          <a class="order-detail__tracking" href="{{ item.fulfillment.tracking_url }}">{{- item.fulfillment.tracking_number -}}</a>
+                          <a class="order-detail__tracking" href="{{ item.fulfillment.tracking_url }}">{{- item.fulfillment.tracking_number | default: '--' -}}</a>
                         {%- else -%}
-                          <span>{{ item.fulfillment.tracking_number }}</span>
+                          <span>{{ item.fulfillment.tracking_number | default: '--' }}</span>
                         {%- endif -%}
-                      {%- endif -%}
-                    {%- if item.sku != blank -%}
-                      <div class="account-detail-sku">
-                        <span>{{ 'account_order_detail.sku' | t }}</span>
-                        <span>{{- item.sku -}}</span>
                       </div>
-                    {%- endif -%}
+                      <div class="account-detail-sku">
+                        <span>{{ 'account_order_detail.sku' | t | append: ':' }}</span>
+                        <span>{{- item.sku | default: '--' -}}</span>
+                      </div>
                     </div>
                   </div>
                   {%- if item.properties != blank -%}
