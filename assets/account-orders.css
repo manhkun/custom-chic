@@ -129,6 +129,7 @@
 .account-order__tracking-text {
   text-decoration: underline;
   text-transform: uppercase;
+  text-underline-offset: 1px;
 }
 
 .account-order__bottom {

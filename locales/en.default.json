@@ -596,6 +596,7 @@
     "order_list": "Order list",
     "go_back": "Go Back",
     "product": "Product",
-    "view_all": "View All"
+    "view_all": "View All",
+    "order_label": "Order"
   }
 }
