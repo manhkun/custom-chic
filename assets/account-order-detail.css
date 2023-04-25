@@ -26,7 +26,7 @@
 }
 
 .account-order-detail__header {
-  padding: 16px;
+  padding: 24px 16px;
   color: #FFFFFF;
   background-color: #000000;
 }
@@ -104,6 +104,7 @@
   font-weight: 500;
   color: #000000;
   text-decoration: underline;
+  text-underline-offset: 1px;
 }
 
 .account-detail-sku {
@@ -284,11 +285,30 @@
   border-top: 1px solid #D9D9D9;
 }
 
+.total-detail-label {
+  font-family: 'Montserrat';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0px;
+  text-align: left;
+}
+
+.total-detail-price {
+  font-family: 'Montserrat';
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0px;
+  text-align: left;
+
+}
+
 .account-order-cumb {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin: 0;
+  margin: 8px 0 0 0;
   padding: 0;
 }
 
@@ -300,7 +320,7 @@
   font-weight: 300;
   font-size: 12px;
   line-height: 160%;
-  color: #FFFFFF;
+  color: #FAFAFA;
 }
 
 .account-order-cumb-item svg {
@@ -343,6 +363,15 @@
   line-height: 120%;
 }
 
+.tracking-info-empty {
+  text-decoration-line: none !important;
+}
+
+.tracking-info .info-empty {
+  text-decoration-line: none !important;
+  text-decoration: none !important;
+}
+
 .tracking-info, .sku-info, .price-info,  .total-info, .quantity-info {
   display: none;
 }
@@ -357,20 +386,23 @@
   .account-order-bottom-wrapper {
     display: flex;
     gap: 40px;
+    flex-direction: row-reverse;
   }
 
   .account-order-total {
     width: calc(50% - 20px);
+    margin-top: 40px;
   }
 
   .account-order-detail-shipping {
     width: calc(50% - 20px);
+    margin-top: 40px;
   }
 
   .btn-go-back {
     margin: 40px auto 64px;
     width: fit-content;
-    padding: 16px 66px;
+    padding: 15px 64px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
@@ -476,7 +508,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 120%;
-    text-align: right;
+    text-align: left;
     text-decoration-line: underline;
   }
 
@@ -558,5 +590,58 @@
     padding-top: 8px;
     padding-bottom: 0;
     border-bottom: none;
+  }
+
+  .shiping-address-label {
+    font-family: 'Montserrat';
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .total-title {
+    font-family: 'Montserrat';
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .total-detail-label {
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .total-detail-price {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
+
+  .order-detail__below-title {
+    display: none;
+  }
+
+  .tracking-info-detail {
+    font-family: 'Montserrat';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 0px;
+    text-align: right;
+    text-align: right;
+    text-decoration-line: underline;
+    text-underline-offset: 1px;
+
   }
 }
