@@ -25,13 +25,21 @@
   assign blog_suggestion = section.settings.blog_suggestion
   assign results = 0
 %}
-{%- assign terms_search = terms | downcase -%}
+{%- assign terms_search = terms | downcase | split: ' ' -%}
 {%- for block in blocks -%}
   {% for article in block.settings.blog.articles %}
+    {%- assign contains_result = false -%}
     {%- assign article_title = article.title | downcase -%}
-    {%- if article_title contains terms_search -%}
+    {%- for term in terms_search -%}
+      {%- if article_title contains term -%}
+        {%- assign contains_result = true -%}
+        {%- continue -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if contains_result -%}
       {%- assign results = results | plus: 1 -%}
     {%- endif -%}
+    {%- assign contains_result = false -%}
   {% endfor %}
 {%- endfor -%}
 
@@ -58,8 +66,15 @@
       {%- if results > 0 and terms != blank -%}
         {%- for block in blocks -%}
           {%- for article in block.settings.blog.articles -%}
+            {%- assign contains_result = false -%}
             {%- assign article_title = article.title | downcase -%}
-            {%- if article_title contains terms_search -%}
+            {%- for term in terms_search -%}
+              {%- if article_title contains term -%}
+                {%- assign contains_result = true -%}
+                {%- continue -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if contains_result -%}
               <div class="search-help__result">
                 <accordion-item class="search-help__result-accordion">
                   <div class="accordion-header search-help__result-header">
@@ -133,6 +148,7 @@
                 </accordion-item>
               </div>
             {%- endif -%}
+            {%- assign contains_result = false -%}
           {%- endfor -%}
         {%- endfor -%}
       {%- else -%}
@@ -243,7 +259,7 @@
       this.header = this.querySelector('.accordion-header')
       this.content = this.querySelector('.accordion-content')
       this.accordions = document.querySelectorAll('accordion-item')
-      this.contentHeight = this.content.offsetHeight
+      this.contentHeight = this.content.scrollHeight
 
       this.close()
       this.header.addEventListener('click', () => {
@@ -253,6 +269,19 @@
           this.open()
         }
       })
+
+      const observer = new MutationObserver((mutationsList, observer) => {
+        // Iterate through the list of mutations
+        for (let mutation of mutationsList) {
+          // If the content of the node has changed
+          if (mutation.type === 'childList') {
+            this.contentHeight = this.content.scrollHeight
+          }
+        }
+      });
+      const config = { childList: true, subtree: true };
+      
+      observer.observe(this.content, config);
     }
 
     open () {
