@@ -2995,7 +2995,23 @@ button[disabled]:hover {
   cursor: pointer !important;
 }
 
+@media screen and (max-width: 767px) {
+  .load-more_btn {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 12px 16px;
+  }
+}
+
 .load-more-wrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+}
+
+.viewing-currently-product {
+  margin-top: 12px;
+  color: var(--color-sub-text);
 }

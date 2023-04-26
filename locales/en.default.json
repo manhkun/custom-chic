@@ -361,6 +361,7 @@
       "filter_by_label": "Filter",
       "use_fewer_filters_html": "<a class=\"form-message form-message--error\" href=\"{{ link }}\"><li>No products were found matching your selection.</li></a>",
       "filter_button": "Filter",
+      "current_view_html": "Viewing 1 - <span class=\"js-current-products\">{{ products_count }}</span> of {{ all_products_count }}",
       "filters_selected": {
         "one": "{{ count }} selected",
         "other": "{{ count }} selected"

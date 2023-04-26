@@ -326,6 +326,7 @@ class FacetFiltersForm extends HTMLElement {
       document.getElementById('ProductGridContainer').innerHTML = new DOMParser().parseFromString(html, 'text/html').getElementById('ProductGridContainer').innerHTML;
     } else {
       document.getElementById('main-collection-product').innerHTML += new DOMParser().parseFromString(html, 'text/html').getElementById('main-collection-product').innerHTML;
+      document.querySelector('.js-current-products').innerHTML = document.getElementById('main-collection-product').childElementCount
     }
     document.querySelector('.collection').classList.remove('loading');
   }
@@ -558,8 +559,6 @@ class Loadmore extends HTMLElement {
     }
     return params
   }
-  
-
 }
 
 customElements.define('collection-loadmore', Loadmore);
