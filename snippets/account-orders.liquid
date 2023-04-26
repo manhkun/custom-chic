@@ -15,62 +15,70 @@
         <div class="account-order__label account-order__label-tracking">{{- 'customer.order.tracking_number' | t -}}</div>
         <div class="account-order__label account-order__label-total">{{- 'customer.order.total' | t -}}</div>
       </div>
-      <div>
-        {%- for order in customer.orders -%}
-          {%- assign tracking_number = '' -%}
-          {%- assign tracking_url = '' -%}
-          {%- for _line_item in order.line_items limit: limit -%}
-            {%- if _line_item.fulfillment -%}
-              {%- assign tracking_number = _line_item.fulfillment.tracking_number -%}
-              {%- assign tracking_url = _line_item.fulfillment.tracking_url -%}
-              {%- break -%}
-            {%- endif -%}
-          {%- endfor -%}
-          <div class="account-order__item">
-            <div class="account-order__number">
-              <span class="account-order-label">{{ 'customer.order.order_number' | t }}:</span>
-              <a href="{{- order.customer_url -}}" class="account-order__number-link">#{{- order.order_number -}}</a>
-            </div>
-            <div class="account-order__field account-order__date">
-              <span class="account-order-label">{{- 'customer.order.date' | t -}}</span>
-              <span class="account-order__info">{{- order.created_at | date: '%b %d, %Y' -}}</span>
-            </div>
-            <div class="account-order__field account-order__payment">
-              <span class="account-order-label">{{- 'customer.order.payment_status' | t -}}</span>
-              <span class="account-order__info">{{- order.financial_status_label -}}</span>
-            </div>
-            <div class="account-order__field account-order__fullfill">
-              <span class="account-order-label">{{- 'customer.order.fulfillment_status' | t -}}</span>
-              <span class="account-order__info">{{- order.fulfillment_status_label -}}</span>
-            </div>
-            <div class="account-order__field account-order__tracking">
-              <span class="account-order-label">{{- 'customer.order.tracking_number' | t -}}:</span>
-              {%- if tracking_url != '' -%}
-                <a class="account-order__tracking" href="{{ tracking_url }}" target="_blank">
-              {%- endif -%}
-                {%- if tracking_number != '' -%}
-                  <span class="account-order__tracking-text">{{ tracking_number }}</span>
+      {%- assign total_pages = customer.orders.size | divided_by: 10.0 | ceil -%}
+      <order-list data-total-pages="{{ total_pages }}">
+        {% paginate customer.orders by 10 %}
+          <div class="account-order__items js-order-items">
+            {%- for order in customer.orders -%}
+              {%- assign tracking_number = '' -%}
+              {%- assign tracking_url = '' -%}
+              {%- for _line_item in order.line_items -%}
+                {%- if _line_item.fulfillment -%}
+                  {%- assign tracking_number = _line_item.fulfillment.tracking_number -%}
+                  {%- assign tracking_url = _line_item.fulfillment.tracking_url -%}
+                  {%- break -%}
                 {%- endif -%}
-              {%- if tracking_url != '' -%}
-                </a>
-              {%- endif -%}
-            </div>
-            <div class="account-order__field account-order__total">
-              <span class="account-order-label">{{- 'customer.order.total' | t -}}</span>
-              <span class="account-order__info account-order__total-info">{{- order.total_price | money -}}</span>
-            </div>
-          </div>
-        {%- endfor -%}
-        <!-- <div class="account-order__bottom">
-          <button class="account-order__show-more">{{- 'customer.order.show_more' | t -}}</button>
-          {%- if link != blank -%}
-            <div class="account-order__support">
-                <span>{{- 'customer.order.text_support' | t -}}</span>
-                <a class="account-order__support-link" href="{{ link }}">{{- 'customer.order.help_center' | t -}}</a>
+              {%- endfor -%}
+              <div class="account-order__item">
+                <div class="account-order__number">
+                  <span class="account-order-label">{{ 'customer.order.order_number' | t }}:</span>
+                  <a href="{{- order.customer_url -}}" class="account-order__number-link">#{{- order.order_number -}}</a>
+                </div>
+                <div class="account-order__field account-order__date">
+                  <span class="account-order-label">{{- 'customer.order.date' | t -}}</span>
+                  <span class="account-order__info">{{- order.created_at | date: '%b %d, %Y' -}}</span>
+                </div>
+                <div class="account-order__field account-order__payment">
+                  <span class="account-order-label">{{- 'customer.order.payment_status' | t -}}</span>
+                  <span class="account-order__info">{{- order.financial_status_label -}}</span>
+                </div>
+                <div class="account-order__field account-order__fullfill">
+                  <span class="account-order-label">{{- 'customer.order.fulfillment_status' | t -}}</span>
+                  <span class="account-order__info">{{- order.fulfillment_status_label -}}</span>
+                </div>
+                <div class="account-order__field account-order__tracking">
+                  <span class="account-order-label">{{- 'customer.order.tracking_number' | t -}}:</span>
+                  {%- if tracking_url != '' -%}
+                    <a class="account-order__tracking" href="{{ tracking_url }}" target="_blank">
+                  {%- endif -%}
+                    {%- if tracking_number != '' -%}
+                      <span class="account-order__tracking-text">{{ tracking_number }}</span>
+                    {%- endif -%}
+                  {%- if tracking_url != '' -%}
+                    </a>
+                  {%- endif -%}
+                </div>
+                <div class="account-order__field account-order__total">
+                  <span class="account-order-label">{{- 'customer.order.total' | t -}}</span>
+                  <span class="account-order__info account-order__total-info">{{- order.total_price | money -}}</span>
+                </div>
               </div>
+            {%- endfor -%}
+          </div>
+          {%- if paginate.pages > 1 -%}
+            <div class="account-order__bottom">
+              <button class="account-order__show-more js-button-loadmore">
+                {{- 'customer.order.show_more' | t -}}
+                <div class="load-more_spinner"></div>
+              </button>
+              <div class="account-order__support">
+                <span>{{- 'customer.order.text_support' | t -}}</span>
+                <a class="account-order__support-link" href="/pages/help-center">{{- 'customer.order.help_center' | t -}}</a>
+              </div>
+            </div>
           {%- endif -%}
-        </div> -->
-      </div>
+        {% endpaginate %}
+      </order-list>
     </div>
   {%- else -%}
     <div class="account-order-empty">
@@ -83,3 +91,5 @@
     </div>
   {%- endif -%}
 </div>
+
+<script src="{{ 'order-list.js' | asset_url }}" defer></script>

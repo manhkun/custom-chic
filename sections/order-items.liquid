@@ -1,0 +1,47 @@
+{% paginate customer.orders by 10 %}
+  {%- for order in customer.orders -%}
+    {%- assign tracking_number = '' -%}
+    {%- assign tracking_url = '' -%}
+    {%- for _line_item in order.line_items limit: limit -%}
+      {%- if _line_item.fulfillment -%}
+        {%- assign tracking_number = _line_item.fulfillment.tracking_number -%}
+        {%- assign tracking_url = _line_item.fulfillment.tracking_url -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <div class="account-order__item">
+      <div class="account-order__number">
+        <span class="account-order-label">{{ 'customer.order.order_number' | t }}:</span>
+        <a href="{{- order.customer_url -}}" class="account-order__number-link">#{{- order.order_number -}}</a>
+      </div>
+      <div class="account-order__field account-order__date">
+        <span class="account-order-label">{{- 'customer.order.date' | t -}}</span>
+        <span class="account-order__info">{{- order.created_at | date: '%b %d, %Y' -}}</span>
+      </div>
+      <div class="account-order__field account-order__payment">
+        <span class="account-order-label">{{- 'customer.order.payment_status' | t -}}</span>
+        <span class="account-order__info">{{- order.financial_status_label -}}</span>
+      </div>
+      <div class="account-order__field account-order__fullfill">
+        <span class="account-order-label">{{- 'customer.order.fulfillment_status' | t -}}</span>
+        <span class="account-order__info">{{- order.fulfillment_status_label -}}</span>
+      </div>
+      <div class="account-order__field account-order__tracking">
+        <span class="account-order-label">{{- 'customer.order.tracking_number' | t -}}:</span>
+        {%- if tracking_url != '' -%}
+          <a class="account-order__tracking" href="{{ tracking_url }}" target="_blank">
+        {%- endif -%}
+          {%- if tracking_number != '' -%}
+            <span class="account-order__tracking-text">{{ tracking_number }}</span>
+          {%- endif -%}
+        {%- if tracking_url != '' -%}
+          </a>
+        {%- endif -%}
+      </div>
+      <div class="account-order__field account-order__total">
+        <span class="account-order-label">{{- 'customer.order.total' | t -}}</span>
+        <span class="account-order__info account-order__total-info">{{- order.total_price | money -}}</span>
+      </div>
+    </div>
+  {%- endfor -%}
+{% endpaginate %}

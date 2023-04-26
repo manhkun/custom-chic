@@ -69,7 +69,6 @@
           {%- endcase -%}
           {%- if page_url contains 'view=orders' -%}
             {%- render 'account-orders'
-              limit: section.settings.order_limit,
               link: section.settings.order_support_url
             -%}
             <div data-section-id="{{ section.id }}" data-section-type="gp-product-slider" class="gp-section-wrapper gp-product-slider-wrapper gp-recently-viewed-products recently-viewed-account">
@@ -174,15 +173,6 @@
       "type": "url",
       "id": "link",
       "label": "Product Related URL"
-    },
-    {
-      "type": "range",
-      "id": "order_limit",
-      "label": "t:sections.account-details.order_limit",
-      "min": 2,
-      "max": 30,
-      "step": 2,
-      "default": 10
     },
     {
       "type": "url",
