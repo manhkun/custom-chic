@@ -44,6 +44,8 @@
   opacity: 1; /* required on iOS */
 }
 
+
+
 input[type="date"] {
   background: transparent;
 }

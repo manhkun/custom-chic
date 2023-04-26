@@ -9,7 +9,7 @@
     return {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'X-Shopify-Access-Token': globalVar.apis.storefrontAccessToken
+      'X-Shopify-Storefront-Access-Token': globalVar.apis.storefrontAccessToken
     }
   }
   
@@ -112,16 +112,6 @@ class AccountInformation extends HTMLElement {
   async onFormSubmit(e) {
     e.preventDefault()
     const formObject = this.formToObject(this.form)
-    const nameData = formObject?.customer['name']?.split(" ")
-    let firstName = ''
-    let lastName = ''
-    if (nameData.length > 0) {
-      firstName = nameData[0]
-      lastName = nameData.slice(1).join(" ")
-    }
-    Object.assign(formObject?.customer, { 'firstName': firstName }, { 'lastName': lastName });
-    delete formObject?.customer.name
-    // formObject.customer?.note = `birthday: ${ formObject.customer.note?.birthday }`
     const accessToken = this.getCookie('customerAccessToken')
     this.changeAccountInfo(accessToken, formObject)
   }
