@@ -6,17 +6,12 @@
   assign placeholder_phone = 'customer.information.pl_name' | t
   assign email = 'customer.information.email' | t
   assign placeholder_phone = 'customer.information.pl_email' | t
-  assign date_of_birth = 'customer.information.date_of_birth' | t
-  assign pl_date_of_birth = 'customer.information.placcohld_date_of_birth' | t
   assign phone = 'customer.information.phone' | t
   assign placeholder_phone = 'customer.information.placeholder_phone' | t
-  assign heading_account_password = 'customer.reset_password.heading' | t
-  assign label_current_password = 'customer.reset_password.current_password' | t
-  assign placehordel_current_password = 'customer.reset_password.sub_current_password' | t
-  assign label_new_password = 'customer.reset_password.new_password' | t
-  assign placehordel_new_password = 'customer.reset_password.subtext' | t
-  assign label_confirm_password = 'customer.reset_password.confirm_password' | t
-  assign placehordel_confirm_password = 'customer.reset_password.sub_confirm_password' | t
+  assign first_name = 'customer.information.first_name' | t
+  assign placeholder_first_name = 'customer.information.pl_first_name' | t
+  assign last_name = 'customer.information.last_name' | t
+  assign placeholder_last_name = 'customer.information.pl_last_name' | t
 -%}
 
 <account-information>
@@ -28,14 +23,26 @@
           <div class="account-info__inner">
             {%- render 'text-input',
               type: 'text'
-              id: 'customer_name',
-              name: 'customer[name]',
-              value: customer.name,
-              label: name,
-              placeholder: name,
+              id: 'customer_first_name',
+              name: 'customer[firstName]',
+              value: customer.first_name,
+              label: first_name,
+              placeholder: placeholder_first_name,
               required: true,
               class: 'account-info__haft'
             -%}
+            {%- render 'text-input',
+              type: 'text'
+              id: 'customer_last_name',
+              name: 'customer[lastName]',
+              value: customer.last_name,
+              label: last_name,
+              placeholder: placeholder_last_name,
+              required: true,
+              class: 'account-info__haft'
+            -%}
+          </div>
+          <div class="account-info__inner mt-10">
             {%- render 'text-input',
               type: 'email'
               id: 'customer_email',
@@ -46,18 +53,6 @@
               required: true,
               disabled: true,
               class: 'account-info__haft text-input--disabled'
-            -%}
-          </div>
-          <div class="account-info__inner mt-10">
-            {%- render 'text-input',
-              type: 'text'
-              id: 'customer_birthday',
-              name: 'customer[note][birthday]',
-              label: date_of_birth,
-              placeholder: pl_date_of_birth,
-              required: true,
-              class: 'account-info__haft'
-              atr: 'data-input'
             -%}
             {%- render 'text-input',
               id: 'customer_phone',
@@ -76,10 +71,3 @@
     </div>
   </div>
 </account-information>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.js"></script>
-<script>
-  $("#customer_birthday").flatpickr({
-    dateFormat: "d/m/Y",
-    disableMobile: true
-  });
-</script>
