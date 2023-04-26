@@ -53,7 +53,7 @@
 {%- if page_url contains '/account/orders/' -%}
   {%- render 'account-order-detail' -%}
 {%- else -%}
-  {%- render 'account-header' -%}
+  {%- render 'account-header', sub_greeting: section.settings.sub_greeting -%}
   <div class="account-detail">
     <div class="page-width-desktop">
       <div class="account-detail__wrapper">
@@ -163,6 +163,12 @@
       "id": "heading",
       "default": "Recently viewed products",
       "label": "Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "sub_greeting",
+      "label": "Greeting subtitle",
+      "default": "Have a good day ^^"
     },
     {
       "type": "url",

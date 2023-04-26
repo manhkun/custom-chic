@@ -5,8 +5,10 @@
     <div class="account-header__title">
       {{- 'customer.account.greeting' | t: name: customer.name -}}
     </div>
-    <div class="account-header__subtitle">
-      {{- 'customer.account.sub_greeting' | t -}}
-    </div>
+    {%- if sub_greeting != blank -%}
+      <div class="account-header__subtitle">
+        {{- sub_greeting -}}
+      </div>
+    {%- endif -%}
   </div>
 </div>
