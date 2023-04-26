@@ -77,6 +77,7 @@ class AccountInformation extends HTMLElement {
     }
     const query = this.getQueryCustomerUpdate()
 
+    this.buttonSubmit.classList.add('is-loading')
     executeGraphQlQuery({ query, variables })
       .then(res => res.json())
       .then(data => {
@@ -86,6 +87,7 @@ class AccountInformation extends HTMLElement {
         } else {
           location.reload();
         }
+        this.buttonSubmit.classList.remove('is-loading')
       })
   }
 
