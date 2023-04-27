@@ -47,6 +47,7 @@
   assign text_set_address_default = 'customer.addresses.set_address_default' | t
 
   assign btn_text_add = 'customer.addresses.add' | t
+  assign btn_text_save = 'customer.addresses.save' | t
   assign btn_cancel = 'customer.addresses.cancel' | t
   assign btn_delete = 'customer.addresses.delete' | t
 
@@ -79,6 +80,7 @@
               value="{{ address.phone }}" 
               class="account-address-form__input"
               placeholder="{{ placehoder_phone }}"
+              pattern="[0-9.]+"
               required
             >
           </div>
@@ -182,7 +184,7 @@
               <button class="account-address-form__btn-add" type="submit">{{ btn_text_add }}</button>
               <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-cancel" type="reset">{{- btn_cancel -}}</button>
             {%- else -%}
-              <button class="account-address-form__btn-add" type="submit">{{ btn_text_add }}</button>
+              <button class="account-address-form__btn-add" type="submit">{{ btn_text_save }}</button>
             {%- endif -%}
           </div>
         {% endform %}
