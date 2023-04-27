@@ -61,7 +61,7 @@
   
     <script src="{{ 'app_wishlist-king_templates.js' | asset_url }}" defer></script>
     <script src="{{ 'theme-function.js' | asset_url }}" defer></script>
-    <script src="{{ 'slick.min.js' | asset_url }}" async></script>
+    <script src="{{ 'slick.min.js' | asset_url }}" defer></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
@@ -420,27 +420,23 @@
     {% endif %}
       <!-- FreshChat START -->
       <script>
-        let loaded = false
-        setTimeout(() => {
-          function initFreshChat() {
-            window.fcWidget.init({
-                token: "c7d96e33-ad7b-4128-aede-6dc79a8270ed",
-          host: "https://wchat.freshchat.com",
-              config: {
-                headerProperty : {
-                      fontName: 'Roboto'
-                },
-              }
-            });
-          }
-          function initialize(i,t){var e;i.getElementById(t)?
-          initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,
-          e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}
-          function initiateCall(){initialize(document,"Freshchat-js-sdk")}
-          window.addEventListener?window.addEventListener("load",initiateCall,!1):
-          window.attachEvent("load",initiateCall,!1);
-        }, 1000)
-
+        function initFreshChat() {
+          window.fcWidget.init({
+            token: "c7d96e33-ad7b-4128-aede-6dc79a8270ed",
+            host: "https://wchat.freshchat.com",
+            config: {
+              headerProperty : {
+                fontName: 'Roboto'
+              },
+            }
+          });
+        }
+        function initialize(i,t){var e;i.getElementById(t)?
+        initFreshChat():((e=i.createElement("script")).id=t,e.async=!0,
+        e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,i.head.appendChild(e))}
+        function initiateCall(){initialize(document,"Freshchat-js-sdk")}
+        window.addEventListener?window.addEventListener("load",initiateCall,!1):
+        window.attachEvent("load",initiateCall,!1);
       </script>
 
       {%- render 'delay-load',

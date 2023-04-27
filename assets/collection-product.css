@@ -75,7 +75,7 @@ body.overflow-hidden-mobile {
     align-items: center;
 }
 .filter-mobile .mobile-facets__submenu .mobile-facets__item.list-menu__item label{
-    font-family: var(--font--body-family);
+    font-family: var(--font-body-family);
     font-weight: 400;
     font-size: 14px;
     color: #000000;

@@ -26,6 +26,7 @@ const templates = [
         event.stopPropagation();
 
         event.target.style.color = '#000'
+        event.target.style.pointerEvents = 'none'
         // fly to cart
         if( window.innerWidth > 1177 ){
           var cart = $('.header-top-wrapper header .wk-link');
@@ -77,6 +78,7 @@ const templates = [
                     target,
                     variantId
                   );
+                  event.target.style.pointerEvents = 'all'
                 }, 1500);
             } else {
                   const variantInput = document.querySelector("form *[name='id']");

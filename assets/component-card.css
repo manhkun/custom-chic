@@ -308,14 +308,15 @@
 }
 .product-title a {
   font-size: 14px;
-  font-weight: 500;
-  line-height: 19px;
+  font-weight: 400;
+  line-height: 160%;
   letter-spacing: 0px;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
   word-break: break-all;
+  font-family: var(--font-body-family);
 }
 
 .recently-viewed-account .product-title  a {

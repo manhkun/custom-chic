@@ -125,7 +125,7 @@
     const touchDiffY = touchEndY - touchStartY;
 
     // If the user is swiping up or down
-    if (Math.abs(touchDiffY) > 10) {
+    if (Math.abs(touchDiffY) < 10) {
       event.preventDefault(); // Prevent default window scroll behavior
     }
   });

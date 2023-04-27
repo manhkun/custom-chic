@@ -11,8 +11,8 @@ slider-component {
 }
 
 .slider__slide {
-  scroll-snap-align: start;
   flex-shrink: 0;
+  max-width: unset;
 }
 .slider:not(.slider--mobile):not(.slider--mobile--gallery-list){
    position: relative;

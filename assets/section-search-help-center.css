@@ -162,6 +162,7 @@
   top: 0;
   left: 0;
   opacity: 1;
+  cursor: pointer;
 }
 
 .search-help__result-accordion:not([open="true"]) button svg:first-child {

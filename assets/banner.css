@@ -109,3 +109,14 @@ font-family: var(--font-heading-family);
         width: 100%;
     }
 }
+
+.banner-mobile .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #E6E6E6;
+    opacity: 1;
+}
+
+.banner-mobile .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    background-color: #000000;
+}

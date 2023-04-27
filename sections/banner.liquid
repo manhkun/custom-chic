@@ -42,7 +42,7 @@
 <div class=" banner-section">
   <div class="banner-desktop page-width-desktop {% if section.blocks.size > 1 %} w-grid {% else %} w-100 {% endif %} ">
     {%- for block in section.blocks -%}
-      <div data-block-id="{{ block.id }}" class=" banner-item {% if block.settings.hidden_item_desktop %} hidden {% endif %}">
+      <div data-block-id="{{ block.id }}" class="banner-item {% if block.settings.hidden_item_desktop %} hidden {% endif %}">
         <div class="banner-item-img">
           {% if block.settings.image == blank %}
             {{ 'collection-1' | placeholder_svg_tag }}
@@ -70,51 +70,60 @@
   </div>
 
 
-  <div class="banner-mobile {{ section.blocks.size }}">
-    {%- for block in section.blocks -%}
-      {% if block.settings.hidden_item_mb == false %}
-        <div data-block-id="{{ block.id }}" class="banner-item {% if block.settings.hidden_item_mb == true %} hidden {% endif %}">
-          <div class="banner-item-img">
-            {% if block.settings.image_mobile == blank %}
-              {{ 'collection-1' | placeholder_svg_tag }}
-            {% else %}
-              <a {% if block.settings.link %}href="{{ block.settings.link_mb }}" {% else %} role="link"aria-disabled="true"{% endif %}>
-                <img srcset="{%- if block.settings.image_mobile.width >= 180 -%}{{ block.settings.image_mobile | image_url: width: 180 }} 180w,{%- endif -%}
-                {%- if block.settings.image_mobile.width >= 360 -%}{{ block.settings.image_mobile | image_url: width: 360 }} 360w,{%- endif -%}
-                {%- if block.settings.image_mobile.width >= 540 -%}{{ block.settings.image_mobile | image_url: width: 540 }} 540w,{%- endif -%}
-                {%- if block.settings.image_mobile.width >= 720 -%}{{ block.settings.image_mobile | image_url: width: 720 }} 720w,{%- endif -%}
-                {%- if block.settings.image_mobile.width >= 900 -%}{{ block.settings.image_mobile | image_url: width: 900 }} 900w,{%- endif -%}
-                {%- if block.settings.image_mobile.width >= 1080 -%}{{ block.settings.image_mobile | image_url: width: 1080 }} 1080w{%- endif -%}" src="{{ block.settings.image_mobile | image_url: width: 737 }}" sizes="calc(100vw - 30px)" alt="{{ block.settings.image_mobile.alt | escape }}" loading="lazy" class="motion-reduce{% if block.settings.image_mobile != blank %} mobile-only{% endif %}" width="{{ block.settings.image_mobile.width }}" height="{{ block.settings.image_mobile.height }}"/></a>
-            {% endif %}
+  <div class="banner-mobile swiper {{ section.blocks.size }}">
+    <div class="swiper-wrapper">
+      {%- for block in section.blocks -%}
+        {% if block.settings.hidden_item_mb == false %}
+          <div data-block-id="{{ block.id }}" class="banner-item swiper-slide {% if block.settings.hidden_item_mb == true %} hidden {% endif %}">
+            <div class="banner-item-img">
+              {% if block.settings.image_mobile == blank %}
+                {{ 'collection-1' | placeholder_svg_tag }}
+              {% else %}
+                <a {% if block.settings.link %}href="{{ block.settings.link_mb }}" {% else %} role="link"aria-disabled="true"{% endif %}>
+                  <img srcset="{%- if block.settings.image_mobile.width >= 180 -%}{{ block.settings.image_mobile | image_url: width: 180 }} 180w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 360 -%}{{ block.settings.image_mobile | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 540 -%}{{ block.settings.image_mobile | image_url: width: 540 }} 540w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 720 -%}{{ block.settings.image_mobile | image_url: width: 720 }} 720w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 900 -%}{{ block.settings.image_mobile | image_url: width: 900 }} 900w,{%- endif -%}
+                  {%- if block.settings.image_mobile.width >= 1080 -%}{{ block.settings.image_mobile | image_url: width: 1080 }} 1080w{%- endif -%}" src="{{ block.settings.image_mobile | image_url: width: 737 }}" sizes="calc(100vw - 30px)" alt="{{ block.settings.image_mobile.alt | escape }}" loading="lazy" class="motion-reduce{% if block.settings.image_mobile != blank %} mobile-only{% endif %}" width="{{ block.settings.image_mobile.width }}" height="{{ block.settings.image_mobile.height }}"/></a>
+              {% endif %}
+            </div>
+            <div class="banner-item-content position-{{ block.settings.mb_top_y }}-{{ block.settings.mb_left_x }} {% if block.settings.hidden_button_mb %} hidden {% endif %}">
+              {%- if block.settings.button_label_mb != blank -%}
+                <div class="banner__buttons">
+                  <a {% if block.settings.link_mb %}href="{{ block.settings.link_mb }}" {% else %} role="link"aria-disabled="true"{% endif %} class="button">{{ block.settings.button_label_mb | escape }}
+                  </a>
+                </div>
+              {%- endif -%}
+            </div>
           </div>
-          <div class="banner-item-content position-{{ block.settings.mb_top_y }}-{{ block.settings.mb_left_x }} {% if block.settings.hidden_button_mb %} hidden {% endif %}">
-            {%- if block.settings.button_label_mb != blank -%}
-              <div class="banner__buttons">
-                <a {% if block.settings.link_mb %}href="{{ block.settings.link_mb }}" {% else %} role="link"aria-disabled="true"{% endif %} class="button">{{ block.settings.button_label_mb | escape }}
-                </a>
-              </div>
-            {%- endif -%}
-          </div>
-        </div>
-      {% endif %}
-    {%- endfor -%}
+        {% endif %}
+      {%- endfor -%}
+    </div>
+    <div class="swiper-pagination"></div>
   </div>
 
 
 </div>
 <script>
-  $(document).ready(function() {
-    $('.banner-mobile').slick({
-      slidesToShow: 1,
-      autoplay: true,
-      dots: true,
-      infinity: false,
-      arrow: false,
-      autoplaySpeed: 10000
-    });
-    $(".hidden").remove();
-    $('.banner-mobile').slick('refresh');
-  });
+  // ====== sly slider init !!!
+(function () {
+  const swiperContainerMobile = document.querySelector('.banner-mobile');
+  if (swiperContainerMobile) {
+    const swiperrr = new Swiper(swiperContainerMobile, {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      forceToAxis: true,
+      autoplay: {
+        delay: 3000
+      },
+      speed: 500,
+      pagination: {
+        el: '.swiper-pagination'
+      }
+    })
+  }
+}());
 </script>
 
 {% schema %}

@@ -90,7 +90,7 @@
           <div class="swiper-wrapper" id="list-item-{{ section.id }}">
             {% if section.settings.collection != blank %}
               {% for product in collection.products limit: product_limit %}
-                <li class="swiper-slide slider-li grid__item slider__slide grid-product">
+                <li class="swiper-slide">
                   {% render 'product-card',
                     product: product,
                     media_size: settings.image_ratio,
@@ -125,6 +125,7 @@
   const swiperContainer = document.querySelector('.sly-slider-{{ section.id }}');
   const swiperrr = new Swiper(swiperContainer, {
     slidesPerView: 2,
+    slidesPerGroup: 2,
     spaceBetween: 2,
     navigation: {
       nextEl: '.next-{{ section.id }}',
@@ -134,15 +135,18 @@
       el: '.scrollbar-product-slider--{{ section.id }}',
       draggable: true
     },
-    preventClicks: true,
     breakpoints: {
       768: {
-        slidesPerView: 3
+        slidesPerView: 3,
+        slidesPerGroup: 1
       },
       1024: {
-        slidesPerView: 4
+        slidesPerView: 4,
+        slidesPerGroup: 1,
+        spaceBetween: 10
       }
-    }
+    },
+    speed: 400
   })
 
   let touchStartY = 0;
@@ -156,11 +160,10 @@
     const touchDiffY = touchEndY - touchStartY;
 
     // If the user is swiping up or down
-    if (Math.abs(touchDiffY) > 10) {
+    if (Math.abs(touchDiffY) < 10) {
       event.preventDefault(); // Prevent default window scroll behavior
     }
   });
-
 }());
 </script>
 {% schema %}
