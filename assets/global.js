@@ -1270,8 +1270,16 @@ class AccountAddressForm extends HTMLElement {
   constructor() {
     super()
 
+    this.form = this.querySelector('form')
+    this.buttonSubmit = this.form.querySelector('button.account-address-form__btn-add')
     this.countrySelectEl = this.querySelector('[name="address[country]"]')
+    this.inputPhone = this.querySelector("input[type='tel']")
+    this.inputPhone.addEventListener('input', (e) => {
+      const isValid = e.target.reportValidity();
+      e.target.setAttribute('aria-invalid', !isValid);
+    })
     this.initAddress()
+    this.buttonSubmit && this.buttonSubmit.addEventListener('click', this.onFormSubmit.bind(this))
   }
 
   initAddress() {
@@ -1279,6 +1287,13 @@ class AccountAddressForm extends HTMLElement {
 
     if (value) {
       this.countrySelectEl.value = value
+    }
+  }
+
+  onFormSubmit(e) {
+    e.preventDefault()
+    if (this.form.checkValidity()) {
+      this.form.submit()
     }
   }
 

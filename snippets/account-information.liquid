@@ -51,8 +51,7 @@
               label: email,
               placeholder: email,
               required: true,
-              disabled: true,
-              class: 'account-info__haft text-input--disabled'
+              class: 'account-info__haft'
             -%}
             {%- render 'text-input',
               id: 'customer_phone',
@@ -62,6 +61,7 @@
               label: phone,
               placeholder: placeholder_phone,
               required: true,
+              atr: 'pattern="[0-9.]+"'
               class: 'account-info__haft'
             -%}
           </div>

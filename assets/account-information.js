@@ -49,10 +49,12 @@ class AccountInformation extends HTMLElement {
     this.buttonSubmit = this.form.querySelector('button')
 
     this.inputAll.forEach(item => {
-      item.addEventListener('input', () => {
+      item.addEventListener('input', (e) => {
         let allFilled = true
+        const isValid = e.target.reportValidity();
+        e.target.setAttribute('aria-invalid', !isValid);
         this.inputAll.forEach(item => {
-          if (item.value === '') {
+          if (!item.value) {
             allFilled = false
           }
         })
@@ -97,6 +99,7 @@ class AccountInformation extends HTMLElement {
         customer {
           firstName
           lastName
+          email
           phone
         }
         customerAccessToken {
@@ -113,9 +116,11 @@ class AccountInformation extends HTMLElement {
 
   async onFormSubmit(e) {
     e.preventDefault()
-    const formObject = this.formToObject(this.form)
-    const accessToken = this.getCookie('customerAccessToken')
-    this.changeAccountInfo(accessToken, formObject)
+    if (this.form.checkValidity()) {
+      const formObject = this.formToObject(this.form)
+      const accessToken = this.getCookie('customerAccessToken')
+      this.changeAccountInfo(accessToken, formObject)
+    }
   }
 
   formToObject(form)  {
