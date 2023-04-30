@@ -1728,7 +1728,15 @@ input[type='checkbox'] {
 }
 
 .template-collection #shopify-section-header {
-  top: 9999999999;
+  z-index: 9999999999;
+}
+
+.template-product #shopify-section-header {
+  z-index: 9999999999;
+}
+
+#shopify-section-header.menu-open {
+  z-index: 9999999999;
 }
 
 .shopify-section-header-sticky {

@@ -715,12 +715,12 @@
    var c = false
     $(document).ready(function(){
       $(".icon-menu-drawer-close").click(function(){
-        console.log('click');
         $("#Details-menu-drawer-container").removeClass('menu-opening');
         $(document).removeClass('menu-opened')
         $("#Details-menu-drawer-container").removeAttr('open', '');
         $("body").removeClass('overflow-hidden-tablet');
         $("summary.header__icon--menu").attr('aria-expanded', 'false');
+        $('#shopify-section-header').removeClass('menu-open')
       });
 
       $(".drawwer-mobile").click(function(){
@@ -729,6 +729,7 @@
         $("body").addClass('overflow-hidden-tablet');
         $("#Details-menu-drawer-container").attr('open', '');
         $("summary.header__icon--menu").attr('aria-expanded', 'true');
+        $('#shopify-section-header').addClass('menu-open')
       });
       $(".close-button_lv2").click(function(){
         $(".menu-drawer__inner-submenu").addClass('active');

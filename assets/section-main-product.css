@@ -537,6 +537,10 @@ a.product__text {
   max-width: 100%;
 }
 
+.cl-zoom-img-wrapper {
+  z-index: 10000000000 !important;
+}
+
 .product--no-media fieldset.product-form__input,
 .product--no-media .product-form__quantity,
 .product--no-media .product-form__input--dropdown,
