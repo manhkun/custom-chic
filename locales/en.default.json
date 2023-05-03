@@ -39,10 +39,15 @@
       "next": "Next page",
       "previous": "Previous page"
     },
-    "breadcrumbs": { "home": "Home" },
+    "breadcrumbs": {
+      "home": "Home",
+      "help_center": "Help center",
+      "search_results": "Search results"
+    },
     "search": {
       "title": "Search results",
       "search": "Search",
+
       "placeholder": "What can we help you with?"
     },
     "cart": {
@@ -99,6 +104,7 @@
   "newsletter": {
     "label": "Email",
     "success": "Thanks for subscribing",
+    "input_placeholder": "Enter Your Email",
     "button_label": "Subscribe",
     "submit": "Submit"
   },
@@ -132,6 +138,7 @@
         "one": "{{ count }} comment",
         "other": "{{ count }} comments"
       },
+      "share": "Share",
       "updated_article": " Updated {{ published_att }} days ago",
       "by": "By ",
       "Posted": "Posted ",
@@ -143,7 +150,6 @@
       "message": "Comment",
       "post": "Post comment",
       "back_to_blog": "Back to blog",
-      "share": "Share this article",
       "success": "Your comment was posted successfully! Thank you!",
       "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated."
     },
@@ -177,6 +183,7 @@
       "new_arrival": "New Arrival",
       "hot": "Hot",
       "free_shipping": "FREE SHIPPING on all U.K. orders over £70",
+      "shop_now": "Shop now",
       "product_variants": "Product variants",
       "media": {
         "gallery_viewer": "Gallery Viewer",
@@ -209,7 +216,10 @@
         "sale_price": "Sale price",
         "unit_price": "Unit price"
       },
-      "share": "Share this product",
+      "share": "Share",
+      "share_via": "Share via",
+      "copy": "Copy",
+      "size_guide": "Size guide",
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
       "vendor": "Vendor",
@@ -218,7 +228,21 @@
       "xr_button": "View in your space",
       "xr_button_label": "View in your space, loads item in augmented reality window",
       "include_taxes": "Tax included.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
+      "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
+      "size_guide_popup": {
+        "title": "T-Shirt for women",
+        "classic_tee": "Classic Tee",
+        "premium_tee": "Premium Tee",
+        "pullover_hoddie": "Pullover Hoodie",
+        "sweatshirt": "Sweatshirt",
+        "find_your_size": "Find your size",
+        "calculate_your_size": "Calculate your size",
+        "chest": "Chest",
+        "waist": "Waist",
+        "calculate": "Calculate",
+        "size": "Size",
+        "size_chart": "Size chart"
+      }
     },
     "modal": { "label": "Media gallery" },
     "facets": {
@@ -298,6 +322,12 @@
       "help_center": "Help center",
       "blog": "Blog"
     },
+    "contact": {
+      "or": "or",
+      "live_chat": "Live chat",
+      "live_chat_subtitle": "We’re sorry if you still having an issue, please let us know how we can help",
+      "chat_with_us_now": "Chat with us now"
+    },
     "cart": {
       "title": "SHOPPING CART",
       "caption": "Cart items",
@@ -329,6 +359,7 @@
         "quantity": "Quantity",
         "image": "Product image"
       },
+      "preview_your_design": "Preview your design",
       "update": "Update",
       "login": {
         "title": "Have an account?",
@@ -351,6 +382,9 @@
     "collection_template": {
       "apply": "Apply",
       "title": "Collection",
+      "all": "All",
+      "see_more": "See more",
+      "see_less": "See Less",
       "clear": "Clear",
       "clear_all": "Clear all",
       "empty": "No products found",

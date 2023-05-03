@@ -52,7 +52,7 @@
                 <div class="facets__display filters-{{ filter.label | downcase }}">
                   <ul class="facets__list list-unstyled" role="list">
                     <facet-remove class="active-facets__clear{% unless urlremove contains 'product_type' %} txt-inline{% endunless %}">
-                      <a href="{{ filter.url_to_remove }}" class="btn active-facets__button no-effect js-facet-remove">All</a>
+                      <a href="{{ filter.url_to_remove }}" class="btn active-facets__button no-effect js-facet-remove">{{ 'sections.collection_template.all' | t }}</a>
                     </facet-remove>
 
                     {%- for value in filter.values -%}

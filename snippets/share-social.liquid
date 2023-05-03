@@ -16,12 +16,12 @@
 <div class="share-social-section in">
   <div class="titile-share">
     <div class="titile-sharee">
-      {% render 'icon-share-social' %}<span class="active">Share</span>
+      {% render 'icon-share-social' %}<span class="active">{{- 'products.product.share' | t -}}</span>
     </div>
   </div>
   <div class="popup-share-wrapper">
      <div class="popup-share">
-    <p>Share via</p>
+    <p>{{- 'products.product.share_via' | t -}}</p>
     <ul class="social-sharing list-social list-unstyled">
       <li class="list-social__item copy-item">
         <div class="clipboard">
@@ -31,7 +31,7 @@
           </svg>
 
         </div>
-        <span>Copy</span>
+        <span>{{- 'products.product.copy' | t -}}</span>
       </li>
       <li class="list-social__item">
         <a class="list-social__link link no-effect" href="//www.facebook.com/sharer.php?u={{ shop.url | append: share_permalink }}" target="_blank">

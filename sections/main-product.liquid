@@ -544,7 +544,7 @@
                         </fieldset>
                     {% elsif option.name == 'Size' %}
                       <fieldset class="js product-form__input option-size-wrapper data-layer-{{ o_index }}" data-name="Size">
-                        <div class="title-option-size"><legend class="form__label"><h2 class="form__label">{{ 'products.product.size' | t }}:</h2><span class="selected-value">{{ option.selected_value }}</span></legend><span class="size-popup">{% render 'icon-ruler' %}size guide</span></div>
+                        <div class="title-option-size"><legend class="form__label"><h2 class="form__label">{{ 'products.product.size' | t }}:</h2><span class="selected-value">{{ option.selected_value }}</span></legend><span class="size-popup">{% render 'icon-ruler' %}{{ 'products.product.size_guide' | t }}</span></div>
                         <div class="title-option-size-bt">
                           {%- for value in option.values -%}
                             <input
