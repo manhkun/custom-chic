@@ -269,32 +269,71 @@
                       {% render 'icon-caret' %}
                     </summary>
                     <div class="accordion__content" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                      <p class="sub-title note">{{ 'products.shipping_information.estimated_arrival' | t }}</p>
-                      <p class="title-date"> 
-                       {% for collection in product.collections %}
-                          {% for link in linklists['estimate-shipping'].links %}
-                            {% if collection.url == link.url %}
-                              {% assign collection_metafield = collection %}
-                            {% endif %}
+                      <div class="shipping-information__title">
+                        <p class="sub-title note">{{ 'products.shipping_information.estimated_arrival' | t }}</p>
+                        <p class="title-date"> 
+                         {% for collection in product.collections %}
+                            {% for link in linklists['estimate-shipping'].links %}
+                              {% if collection.url == link.url %}
+                                {% assign collection_metafield = collection %}
+                              {% endif %}
+                            {% endfor %}
                           {% endfor %}
-                        {% endfor %}
-                        {% if collection_metafield.metafields.custom.estimate_arrival != blank %}
-                          {% assign min_arrival = collection_metafield.metafields.custom.estimate_arrival | replace: ' ', '' | split: '-' | first %}
-                          {% assign max_arrival = collection_metafield.metafields.custom.estimate_arrival | replace: ' ', '' | split: '-' | last %}
-                          {% assign seconds3 = min_arrival | times: 24 | times: 60 | times: 60 %}
-                          {% assign seconds4 = max_arrival | times: 24 | times: 60 | times: 60 %}
-                        {% else %}
-                          {% assign seconds3 = 11 | times: 24 | times: 60 | times: 60 %}
-                          {% assign seconds4 = 61 | times: 24 | times: 60 | times: 60 %}
-                        {% endif %}
-
-                        {{ 'now' | date: "%s" | plus: seconds3 | date: "%b %d" }} - {{ 'now' | date: "%s" | plus: seconds4 | date: "%b %d" }}
-                      </p>
+                          {% if collection_metafield.metafields.custom.estimate_arrival != blank %}
+                            {% assign min_arrival = collection_metafield.metafields.custom.estimate_arrival | replace: ' ', '' | split: '-' | first %}
+                            {% assign max_arrival = collection_metafield.metafields.custom.estimate_arrival | replace: ' ', '' | split: '-' | last %}
+                            {% assign seconds3 = min_arrival | times: 24 | times: 60 | times: 60 %}
+                            {% assign seconds4 = max_arrival | times: 24 | times: 60 | times: 60 %}
+                          {% else %}
+                            {% assign seconds3 = 11 | times: 24 | times: 60 | times: 60 %}
+                            {% assign seconds4 = 61 | times: 24 | times: 60 | times: 60 %}
+                          {% endif %}
+  
+                          {%- assign duration_min = seconds3 | divided_by: 24 | divided_by: 60 | divided_by: 60 -%}
+                          {%- assign duration_max = seconds4 | divided_by: 24 | divided_by: 60 | divided_by: 60 -%}
+  
+                          {%- for i in (1..duration_min) -%}
+                            {%- assign days = 86400 | times: i -%}
+                            {%- assign mod_date = 'now' | date: '%s' | plus: days | date: '%a' -%}
+  
+                            {%- if mod_date == 'Sat' -%}
+                              {%- assign seconds3 = seconds3 | plus: 86400 -%}
+                            {%- endif -%}
+                            {%- if mod_date == 'Sun' -%}
+                              {%- assign seconds3 = seconds3 | plus: 86400 -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+  
+                          {%- for i in (1..duration_max) -%}
+                            {%- assign days = 86400 | times: i -%}
+                            {%- assign mod_date = 'now' | date: '%s' | plus: days | date: '%a' -%}
+  
+                            {%- if mod_date == 'Sat' -%}
+                              {%- assign seconds4 = seconds4 | plus: 86400 -%}
+                            {%- endif -%}
+                            {%- if mod_date == 'Sun' -%}
+                              {%- assign seconds4 = seconds4 | plus: 86400 -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+  
+                          {{ 'now' | date: "%s" | plus: seconds3 | date: "%b %d" }} - {{ 'now' | date: "%s" | plus: seconds4 | date: "%b %d" }}
+                        </p>
+                      </div>
+                      <div class="shipping-information__subtitle">
+                        <p>{{- block.settings.subtitle -}}</p>
+                      </div>
                       <div class="icon-text">
                         <div class="icon-text-wrapper left">
                           <div><span class="icon">{% render 'icon-calendar' %}</span></div>
                           <div class="date-text">
-                            <span>{{ "now" | date: "%b %d" }}</span>
+                            {%- assign mod_today = 'now' | date: '%a' -%}
+                            {% if mod_today == 'Sat' %}
+                              <span>{{ "now" | date: '%s' | plus: 172800 | date: "%b %d" }}</span>
+                            {% elsif mod_today == 'Sun' %}
+                              <span>{{ "now" | date: '%s' | plus: 86400 | date: "%b %d" }}</span>
+                            {%- else -%}
+                              <span>{{ "now" | date: "%b %d" }}</span>
+                            {% endif %}
                             <span class="note">
                               {{ 'products.shipping_information.order_placed' | t }}
                             </span>
@@ -316,6 +355,32 @@
                               {% assign seconds = 3 | times: 24 | times: 60 | times: 60 %}
                               {% assign seconds2 = 6 | times: 24 | times: 60 | times: 60 %}
                             {%- endif -%}
+                            {%- assign duration_min = seconds | divided_by: 24 | divided_by: 60 | divided_by: 60 -%}
+                            {%- assign duration_max = seconds2 | divided_by: 24 | divided_by: 60 | divided_by: 60 -%}
+
+                            {%- for i in (1..duration_min) -%}
+                              {%- assign days = 86400 | times: i -%}
+                              {%- assign mod_date = 'now' | date: '%s' | plus: days | date: '%a' -%}
+
+                              {%- if mod_date == 'Sat' -%}
+                                {%- assign seconds = seconds | plus: 86400 -%}
+                              {%- endif -%}
+                              {%- if mod_date == 'Sun' -%}
+                                {%- assign seconds = seconds | plus: 86400 -%}
+                              {%- endif -%}
+                            {%- endfor -%}
+
+                            {%- for i in (1..duration_max) -%}
+                              {%- assign days = 86400 | times: i -%}
+                              {%- assign mod_date = 'now' | date: '%s' | plus: days | date: '%a' -%}
+
+                              {%- if mod_date == 'Sat' -%}
+                                {%- assign seconds2 = seconds2 | plus: 86400 -%}
+                              {%- endif -%}
+                              {%- if mod_date == 'Sun' -%}
+                                {%- assign seconds2 = seconds2 | plus: 86400 -%}
+                              {%- endif -%}
+                            {%- endfor -%}
                             {{'now' | date: "%s" | plus: seconds | date: "%b %d"}}-{{'now' | date: "%s" | plus: seconds2 | date: "%d"}}
                           </span>
                           <span class="note">
@@ -1494,6 +1559,12 @@
           "id": "heading",
           "default": "Shipping information",
           "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "default": "<p>The above time frame is only applied for orders to the UK with standard shipping methods.</p> <p>Orders can be cancelled or modified within 2 hours after being placed</p>"
         }
       ]
     },

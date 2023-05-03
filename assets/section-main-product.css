@@ -1927,13 +1927,6 @@ variant-radios > fieldset:last-child{
   .product__info-container .accordion summary {
     padding: 16px 0;
   }
-  .product__info-container .shipping_information .accordion__content .title-date {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 120%;
-    margin-top: 9px;
-    margin-bottom: 6px;
-  }
   .main-product .product-recommendations {
     padding-top: 33px!important;
   }
@@ -2162,4 +2155,22 @@ variant-radios > fieldset:last-child{
   .main-product-wrapper .product .wishlist-wrapper{
     display: none !important;
   }
+}
+
+.shipping-information__subtitle {
+  background: #F5F5F5;
+  border-radius: 2px;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.shipping-information__subtitle p {
+  margin: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 10px;
+  line-height: 140%;
+  color: #000000;
 }
