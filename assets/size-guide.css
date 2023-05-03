@@ -116,9 +116,8 @@
     color: #FFFFFF;
 }
 .title-size{
-    margin: 48px 0;
+    margin: 24px 0;
     text-align: center;
-    display: none;
 }
 .title-size p{
     margin: 0;
@@ -325,6 +324,7 @@
     }
     .title-size{
         display: block;
+        margin: 48px 0;
     }
     .header-size{
         padding: 0 76.5px;
