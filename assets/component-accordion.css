@@ -4,11 +4,16 @@
   line-height: 1;
   padding: 23.5px 0;
   border-top:1px solid #D9D9D9 ;
+  align-items: center;
 }
 
 .accordion .summary__title {
   display: flex;
   flex: 1;
+}
+
+.accordion-product summary {
+  padding: 16px 0 !important;
 }
 .accordion .summary__title + .icon-caret {
   height: calc(var(--font-heading-scale) * 0.6rem);

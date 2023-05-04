@@ -519,6 +519,8 @@
   .product-card-action .wishlist-wrapper {
     width: 24px;
     height: 24px;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

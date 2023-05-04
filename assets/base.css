@@ -1772,6 +1772,7 @@ input[type='checkbox'] {
   position: relative;
   background-color: rgb(var(--color-background));
   z-index: 1;
+  overflow-x: hidden;
 }
 
 .header-wrapper.menu-opened {
@@ -1855,7 +1856,7 @@ input[type='checkbox'] {
 }
 
 .header__heading-logo {
-  height: auto;
+  height: 69px;
   width: 100%;
 }
 
@@ -3030,4 +3031,41 @@ button[disabled]:hover {
 .viewing-currently-product {
   margin-top: 12px;
   color: var(--color-sub-text);
+}
+
+#fc_frame.fc-mobile-view.h-open-container {
+  z-index: 9999999999;
+}
+
+.summary__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (max-width: 767px) {
+  .summary__icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.summary__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.summary__icon .icon-minus {
+  display: none;
+}
+
+details[open] .summary__icon .icon-minus {
+  display: block;
+}
+
+details[open] .summary__icon .icon-add {
+  display: none;
 }

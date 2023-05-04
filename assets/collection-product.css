@@ -966,7 +966,6 @@ ul#main-collection-product{margin-top: 0;margin-bottom: 16px;row-gap: 10px;}
     width: 9px;
   }
   .collection-product-grid-wrapper .card__badge .badge {
-    padding-left: 0;
     letter-spacing: 0.1px;
   }
   .collection-product-grid-wrapper .card__badge .badge.new {
