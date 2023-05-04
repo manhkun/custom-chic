@@ -90,6 +90,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__inner-container {
   position: relative;
   height: 100%;
+  overflow: hidden;
 }
 
 .menu-drawer__navigation-container {

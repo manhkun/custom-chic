@@ -175,11 +175,16 @@
   font-size: 14px;
   text-align: center;
   margin: 16px auto 0;
+  color: #fff
 }
 @media (min-width:768px) {
   .container-main{
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  .newsletter-around .newsletter-form__message {
+    color: #000;
   }
 }
 
