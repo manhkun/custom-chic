@@ -80,7 +80,8 @@
                   <div class="accordion-header search-help__result-header">
                     <div class="search-help__result-header-inner">
                       <div class="search-help__another-link">
-                        <a href="{{ block.settings.url_refer }}">Help center / {{ block.settings.blog.title }}</a>
+                        <a href="/pages/help-center">Help center /</a>
+                        <a href="{{ block.settings.url_refer }}">{{ block.settings.blog.title }}</a>
                       </div>
                       <button type="button">
                         {%- render 'icon-minus-2' -%}
@@ -170,6 +171,7 @@
                       <div class="accordion-header search-help__result-header">
                         <div class="search-help__result-header-inner">
                           <div class="search-help__another-link">
+                            <a href="/pages/help-center">Help center /</a>
                             <a href="/pages/help-center?section={{ blog_suggestion.title | handleize }}">{{- blog_suggestion.title -}}</a>
                           </div>
                           <button type="button">
@@ -262,11 +264,13 @@
       this.contentHeight = this.content.scrollHeight
 
       this.close()
-      this.header.addEventListener('click', () => {
-        if (this.state.open) {
-          this.close()
-        } else {
-          this.open()
+      this.header.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-help__another-link')) {
+          if (this.state.open) {
+            this.close()
+          } else {
+            this.open()
+          }
         }
       })
 
