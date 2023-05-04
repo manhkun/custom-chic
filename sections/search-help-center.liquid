@@ -154,13 +154,13 @@
       {%- else -%}
         <div class="search-help__notfound">
           <div class="search-help__notfound-header">
-            <h3 class="search-help__notfound-title">Help hub</h3>
-            <p class="search-help__notfound-subtitle">Sorry,  we could not find any results for <strong>“{{ terms }}”</strong>, try searching our <a href="/pages/help-center">Help Hub</a></p>
+            <h3 class="search-help__notfound-title">{{- 'templates.search_help_center.help_hub' | t -}}</h3>
+            <p class="search-help__notfound-subtitle">{{- 'templates.search_help_center.help_hub_subtitle' | t: terms: terms -}}</p>
           </div>
           <div class="search-help__notfound-main">
             <div class="search-help__notfound-main-header">
-              <h3 class="search-help__notfound-title">popular questions</h3>
-              <p class="search-help__notfound-subtitle">Got a question? Check out our articles below to find the answer you’re looking for. Unfortunately, we do not have the meaning of life, we’re not that far ahead just yet...</p>
+              <h3 class="search-help__notfound-title">{{- 'templates.search_help_center.popular_questions' | t -}}</h3>
+              <p class="search-help__notfound-subtitle">{{- 'templates.search_help_center.popular_questions_subtitle' | t -}}</p>
             </div>
             {%- if blog_suggestion.articles.size > 0 -%}
               <ul class="search-help__suggestion">

@@ -39,9 +39,9 @@
               <div class="button-filter-sidebar {% if section.settings.enable_filtering %}show{% endif %}">
                 <span class="mobile-facets__open-label button-label">
                   {% if section.settings.enable_showsidebar %}
-                    <span data-show="false">Hide Filters</span>
+                    <span data-show="false">{{- 'products.facets.hide_filter' | t -}}</span>
                     {% else %}
-                    <span data-show="true">Show Filters</span>
+                    <span data-show="true">{{- 'products.facets.show_filter' | t -}}</span>
                     {% endif %}
                   </span>
                 {% render 'icon-show-hide-filter' %}
@@ -108,7 +108,7 @@
           {% endif %}
           <div class="load-more-wrapper">
             <collection-loadmore>
-              <button class="btn load-more_btn">Load more</button>
+              <button class="btn load-more_btn">{{- 'sections.collection_template.load_more' | t -}}</button>
             </collection-loadmore>
             <div class="viewing-currently-product">{{ 'sections.collection_template.current_view_html' | t: all_products_count: collection.all_products_count, products_count: collection.products.size }}</div>
           </div>
