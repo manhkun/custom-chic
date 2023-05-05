@@ -101,9 +101,12 @@
                   {%- endfor -%}
             </ul>
             <div class="load-more-wrapper">
-              <collection-loadmore>
-                <button class="btn load-more_btn">{{- 'sections.collection_template.load_more' | t -}}</button>
-              </collection-loadmore>
+              {%- if paginate.pages > 1 -%}
+                <collection-loadmore>
+                  <button class="btn load-more_btn">{{- 'sections.collection_template.load_more' | t -}}</button>
+                </collection-loadmore>
+              {%- endif -%}
+              <div class="viewing-currently-product">{{ 'sections.collection_template.current_view_html' | t: all_products_count: paginate.items, products_count: collection.products.size }}</div>
             </div>
           {% endif %}
         </div>
