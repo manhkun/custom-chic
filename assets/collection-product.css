@@ -29,11 +29,7 @@ body.overflow-hidden-mobile {
 .filter-mobile {
   position: sticky;
   top: 54px;
-  z-index: 4;
-}
-
-.filter-mobile.showfilter {
-  z-index: 9999999999;
+  z-index: 999;
 }
 
 .filter-mobile .mobile-facets__heading {
@@ -284,6 +280,7 @@ ul#main-collection-product{margin-top: 0;margin-bottom: 16px;row-gap: 10px;}
     width: 100%;
     background: #fff;
     border-top: 1px solid #D9D9D9;
+    z-index: 999;
 }
 .filter-top-mobile .facets__display .facets__list{
     display: flex;

@@ -1728,7 +1728,7 @@ input[type='checkbox'] {
 }
 
 .template-collection #shopify-section-header {
-  z-index: 9999999999;
+  z-index: 99;
 }
 
 .template-product #shopify-section-header {
@@ -3002,7 +3002,7 @@ button[disabled]:hover {
 }
 
 .load-more_btn {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   line-height: 20px;
   font-family: var(--font-heading-family);

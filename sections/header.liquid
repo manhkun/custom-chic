@@ -728,6 +728,10 @@
         $(".menu-drawer__inner-submenu").removeClass('active');
         $(".menu-drawer__submenu_lv1").addClass('overflow-y');
       });
+
+      $('.header__icon--menu').click(function () {
+        $('#shopify-section-header').removeClass('menu-open')
+      })
     });
    
     $('.level0').hover(

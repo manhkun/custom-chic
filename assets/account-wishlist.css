@@ -106,6 +106,12 @@
   color: #FFFFFF;
 }
 
+@media screen and (min-width: 768px) {
+  .account-wishlist .title-shop-now {
+    font-weight: 600;
+  }
+}
+
 .account-wishlist .product-card-action .wk-button svg {
   display: block;
 }

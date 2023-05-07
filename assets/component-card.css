@@ -487,12 +487,17 @@
   justify-content: center;
   font-family: var(--font-heading-family);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   line-height: 20px;
   text-transform: capitalize;
   color: #FFFFFF;
   width: unset !important;
+  transition: background-color .3s ease;
+}
+
+.title-shop-now:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .card-wrapper:hover .product-card-action,

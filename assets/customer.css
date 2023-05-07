@@ -208,6 +208,12 @@
   margin-bottom: 16px;
   text-decoration:unset;
 }
+
+@media screen and (min-width: 768px) {
+  .customer .btn-login {
+    font-weight: 600;
+  }
+}
 .customer .btn-login:last-child{
   margin-top: 0;
   margin-bottom: 0;

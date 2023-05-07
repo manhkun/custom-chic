@@ -40,6 +40,12 @@
   line-height: 25px;
   color: var(--color-btn-primary-text-hover);
 }
+
+@media screen and (min-width: 768px) {
+  .collection-list-wrapper .card > .card__content .card__information a {
+    font-weight: 600;
+  }
+}
 .collection-list-wrapper .card > .card__content .card__information a:hover {
   color: var(--color-btn-primary-text);
 }

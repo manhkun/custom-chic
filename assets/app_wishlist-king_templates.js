@@ -207,7 +207,7 @@ const templates = [
                   <div class="wk-grid__item card-wrapper product-grid {% if onsale %}wk-product--sale{% endif %}" data-wk-item="{{ product.wishlist_item_id }}">
                     <div class="card-media">
                     <div class="card__inner">
-                    <a href="{{ product | variant_url }}" class="wk-product-image" title="{{ locale.view_product }}" style="background-image: url({{ product | variant_img_url: '300x' }})">
+                    <a href="{{ product | variant_url }}" class="wk-product-image" title="{{ locale.view_product }}" style="background-image: url({{ product | variant_img_url: '500x' }})">
                       <img src="{{ product | variant_img_url: '10x' }}" />
                     </a>
                     {% include 'wishlist-badge', product: product %}
