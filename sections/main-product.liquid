@@ -353,9 +353,12 @@
                           {{ 'now' | date: "%s" | plus: seconds3 | date: "%b %d" }} - {{ 'now' | date: "%s" | plus: seconds4 | date: "%b %d" }}
                         </p>
                       </div>
-                      <div class="shipping-information__subtitle">
-                        <p>{{- block.settings.subtitle -}}</p>
-                      </div>
+                      {%- assign shipping_subtitle = collection_metafield.metafields.custom.shipping_information | metafield_tag -%}
+                      {%- if shipping_subtitle != blank -%}
+                        <div class="shipping-information__subtitle">
+                          <p>{{- shipping_subtitle -}}</p>
+                        </div>
+                      {%- endif -%}
                       <div class="icon-text">
                         <div class="icon-text-wrapper left">
                           <div><span class="icon">{% render 'icon-calendar' %}</span></div>
@@ -1606,12 +1609,6 @@
           "id": "heading",
           "default": "Shipping information",
           "label": "Heading"
-        },
-        {
-          "type": "richtext",
-          "id": "subtitle",
-          "label": "Subtitle",
-          "default": "<p>The above time frame is only applied for orders to the UK with standard shipping methods.</p> <p>Orders can be cancelled or modified within 2 hours after being placed</p>"
         }
       ]
     },

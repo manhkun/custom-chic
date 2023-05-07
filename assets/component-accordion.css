@@ -258,6 +258,7 @@ font-family: var(--font-body-family);
   display: flex;
   gap: 16px;
   align-items: center;
+  margin-bottom: 12px;
 }
 
 .shipping-information__title .title-date {

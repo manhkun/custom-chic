@@ -289,6 +289,9 @@ label.option-item {
 #cl_optionsapp .swatch-container label {
   box-shadow: none !important;
   border: 0.5px solid #d9d9d9 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
 }
 
 #cl_optionsapp .swatch-container input:checked ~ label {
