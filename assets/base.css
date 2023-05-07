@@ -3062,10 +3062,10 @@ button[disabled]:hover {
   display: none;
 }
 
-details[open] .summary__icon .icon-minus {
+summary[aria-expanded="true"] .summary__icon .icon-minus {
   display: block;
 }
 
-details[open] .summary__icon .icon-add {
+summary[aria-expanded="true"] .summary__icon .icon-add {
   display: none;
 }
