@@ -1715,6 +1715,7 @@ variant-radios > fieldset:last-child{
   .product-form__submit.btn.fixed.bg-black {
     background-color: #FFFFFF;
     color: #000000;
+    border: none;
   }
   .jdgm-prev-badge {
     margin-left: 2px;
@@ -1966,6 +1967,8 @@ variant-radios > fieldset:last-child{
     width: 100%;
     left: 0;
     z-index: 9999999;
+    border-radius: 0;
+    margin-bottom: 0%;
   }
   .product-form__buttons .customily-preview-button {
     position: relative !important;

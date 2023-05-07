@@ -104,15 +104,17 @@
     if (text.hasClass("active")) {
       newHeight = defaultHeight;
       text.removeClass("active");
-      $('html, body').animate({
-        scrollTop: text.offset().top - 200
-      }, 200)
+      setTimeout(() => {
+        $('html, body').animate({
+          scrollTop: text.offset().top - 200
+        }, 200)
+      }, 400)
     } else {
       newHeight = textHeight + 20;
       text.addClass("active");
     } text.animate({
       "max-height": newHeight
-    }, 200);
+    }, 300);
     if ($(".button-see span").text() === "{{ 'sections.drop_caps.see_less' | t }}") {
       $(".button-see span").text("{{ 'sections.drop_caps.see_more' | t }}");
     } else {
