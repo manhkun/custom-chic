@@ -411,5 +411,19 @@
         "label": "Storefront Access Token"
       }
     ]
+  },
+  {
+    "name": "Schema",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Home page"
+      },
+      {
+        "type": "textarea",
+        "id": "schema_index",
+        "label": "Schema of the home page"
+      }
+    ]
   }
 ]
