@@ -1772,7 +1772,12 @@ input[type='checkbox'] {
   position: relative;
   background-color: rgb(var(--color-background));
   z-index: 1;
-  overflow-x: hidden;
+}
+
+@media screen and (max-width: 767px) {
+  .header-wrapper {
+    overflow-x: hidden;
+  }
 }
 
 .header-wrapper.menu-opened {
