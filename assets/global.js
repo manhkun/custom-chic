@@ -399,7 +399,8 @@ class MenuDrawer extends HTMLElement {
         window.requestAnimationFrame(handleAnimation);
       } else {
         detailsElement.removeAttribute('open');
-        document.querySelector('.filter-mobile .mobile-facets__disclosure').setAttribute('open','');
+        const facets = document.querySelector('.filter-mobile .mobile-facets__disclosure')
+        facets && facets.setAttribute('open','');
         if (detailsElement.closest('details[open]')) {
           trapFocus(detailsElement.closest('details[open]'), detailsElement.querySelector('summary'));
         }

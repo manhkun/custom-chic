@@ -11,8 +11,8 @@
         {% elsif template contains 'collection' and collection.handle %}
           <h1 class="page-title ">{{ collection.title }}
           </h1>
-          <h4 class="page-sub-title{% if section.settings.hidden_subtile %} hidden-desktop{% endif %}{% if section.settings.hidden_subtile_mb %} hidden-mb{% endif %}">{{ section.settings.subtile }}
-          </h4>
+          <div class="h4 page-sub-title{% if section.settings.hidden_subtile %} hidden-desktop{% endif %}{% if section.settings.hidden_subtile_mb %} hidden-mb{% endif %}">{{ section.settings.subtile }}
+          </div>
           <div class="bre-show-hide{% if section.settings.hidden_breadcrumbs %} hidden-desktop{% endif %}{% if section.settings.hidden_breadcrumbs_mb %} hidden-mb{% endif %}">
             {% render 'breadcrumb' %}
           </div>
@@ -28,13 +28,13 @@
             {% render 'breadcrumb' %}
           </div>
           {%- if template.suffix == 'wishlist' -%}
-            <p class="page-sub-title js-wishlist-count"></p>
+            <div class="page-sub-title js-wishlist-count"></div>
           {%- endif -%}
         {% elsif template contains 'search' %}
           <h1 class="page-title">{{ 'templates.search.title' | t }}</h1>
-          <h4 class="page-sub-title">
+          <div class="h4 page-sub-title">
             {{ 'templates.search.results_with_count_and_term' | t: terms: search.terms, count: search.results_count }}
-          </h4>
+          </div>
         {% else %}
           <h1 class="page-title">{{ page_title }}
           </h1>

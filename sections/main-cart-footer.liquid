@@ -41,7 +41,9 @@
                     {%- assign enabled_payment_types = "american_express,apple_pay,master,paypal,visa" | remove: ' ' | split: ',' -%}
                     {% for type in enabled_payment_types %}
                       <li class="list-payment__item">
-                        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                        {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+                        {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+                        {{- first_svg -}}{{- last_svg -}}
                       </li>
                     {%- endfor -%}
                   </ul>

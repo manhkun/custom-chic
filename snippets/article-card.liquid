@@ -78,63 +78,6 @@
             </div>
           </div>
         {%- endif -%}
-        <div class="card__content">
-        <div class="card__information">
-          <div class="card__information-content">
-          {%- if show_blog_title -%}
-            {% unless blog_title != blank %}
-              {% assign blog_title = blog.title %}
-            {% endunless %}
-            <div class="blog-title-wrapper">{{ blog_title }}</div>
-          {%- endif -%}
-          <h3 class="card__heading">
-            <a href="{{ article.url }}" class="full-unstyled-link">
-              {{ article.title | escape }}
-            </a>
-          </h3>
-          
-          {%- if show_excerpt -%}
-            {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-              <p class="article-card__excerpt rte-width">
-                {%- if article.excerpt.size > 0 -%}
-                  {{ article.excerpt | strip_html }}
-                {%- else -%}
-                  {{ article.content | strip_html }}
-                {%- endif -%}
-              </p>
-            {%- endif -%}
-            <div class="article-card__footer">
-              {%- if article.comments_count > 0 and blog.comments_enabled? -%}
-                <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
-          <div class="article-card__info caption-with-letter-spacing h5">
-            <div class="author">
-              {%- if show_author -%}
-                {% render 'icon-mini-logo' %} <span>{{ 'blogs.article.by' | t }}{{ article.author }}</span>
-              {%- endif -%}
-            </div>
-            <div class="date">
-              {%- if show_date -%}
-                <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g opacity="0.4">
-                  <path d="M10.1986 1.66663C5.60357 1.66663 1.86523 5.40496 1.86523 9.99996C1.86523 14.595 5.60357 18.3333 10.1986 18.3333C14.7936 18.3333 18.5319 14.595 18.5319 9.99996C18.5319 5.40496 14.7936 1.66663 10.1986 1.66663ZM10.1986 16.6666C6.52273 16.6666 3.5319 13.6758 3.5319 9.99996C3.5319 6.32413 6.52273 3.33329 10.1986 3.33329C13.8744 3.33329 16.8652 6.32413 16.8652 9.99996C16.8652 13.6758 13.8744 16.6666 10.1986 16.6666Z" fill="black"/>
-                  <path d="M11.0319 5.83337H9.36523V10.8334H14.3652V9.16671H11.0319V5.83337Z" fill="black"/>
-                  </g>
-                </svg>
-                <span class="circle-divider">{{ 'blogs.article.Posted' | t }}{{ article.created_at | date: '%d %b %Y' }}</span>
-              {%- endif -%}
-            </div>
-          </div>
-          </div>
-        </div>
-        {%- if show_badge -%}
-          <div class="card__badge {{ settings.badge_position }}">
-            <span class="badge color-background-1">{{ 'blogs.article.blog' | t }}</span>
-          </div>
-        {%- endif -%}  
-      </div>
       </div>
       <div class="card__content">
         <div class="card__information">

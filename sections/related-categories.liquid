@@ -10,7 +10,7 @@
 <div data-section-id="{{ section.id }}" class="page-width-desktop related-categories-wrapper section-{{ section.id }}-padding" >
   <div class="text_alignment_{{ section.settings.text_alignment }} related-categories-title">
     {% if section.settings.heading != blank %}
-      <h4 class="{{ section.settings.heading_size }} heading-text">{{ section.settings.heading | escape }}</h4>
+      <div class="{{ section.settings.heading_size }} heading-text">{{ section.settings.heading | escape }}</div>
     {% endif %}
   </div>
     <div class="related-content-wrapper">

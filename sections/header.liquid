@@ -475,7 +475,7 @@
                         </a>
                       </div>
                       {% if section.settings.banner_image_mb_1 != blank or section.settings.banner_image_mb_2 != blank %}
-                      <h2 class="title-img-mega-menu-mb"> {{ section.settings.title_img_mega_menu_mb }}</h2>
+                      <div class="h2 title-img-mega-menu-mb"> {{ section.settings.title_img_mega_menu_mb }}</div>
                       <div class="banner-header-mobile" >
                         {% if section.settings.banner_image_mb_1 != blank %}
                         <div class="banner-mega-mobile-1">
@@ -548,7 +548,9 @@
                             {%- assign enabled_payment_types = "american_express,apple_pay,master,paypal,visa" | remove: ' ' | split: ',' -%}
                             {% for type in enabled_payment_types %}
                               <li class="list-payment__item">
-                                {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                                {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+                                {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+                                {{- first_svg -}}{{- last_svg -}}
                               </li>
                             {%- endfor -%}
                           </ul>

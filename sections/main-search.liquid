@@ -48,9 +48,9 @@
                         <div class='custom-select'>
                            {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
                           <div class="selected">
-                            <h2 class="facet-filters__label caption-large text-body">
+                            <div class="h2 facet-filters__label caption-large text-body">
                               <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
-                            </h2>
+                            </div>
                               <span class='text'> {%- for option in search.sort_options -%} {% if option.value == sort_by %}{{  option.name }}{% endif %}{%- endfor -%}</span>
                               {% render 'icon-caret' %}
                           </div>

@@ -61,8 +61,8 @@
           <div data-block-id="{{ block.id }}" class="footer-block {{ block.settings.width_text }}">
             {%- if block.settings.heading != blank -%}
               <div class="heading-block">
-                <h2 class="footer-block__heading">{{- block.settings.heading | escape -}}
-                </h2>
+                <div class="h2 footer-block__heading">{{- block.settings.heading | escape -}}
+                </div>
                 <span class="icon-add">{%- render 'icon-add' -%}</span>
                 <span class="icon-minus">{%- render 'icon-minus-3' -%}</span>
               </div>
@@ -195,7 +195,9 @@
                         {% endif %}
                         {% for type in enabled_payment_types %}
                           <li class="list-payment__item">
-                            {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                            {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+                            {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+                            {{- first_svg -}}{{- last_svg -}}
                           </li>
                         {%- endfor -%}
                       </ul>
@@ -247,7 +249,9 @@
             <ul class="list list-payment" role="list">
               {% for type in enabled_payment_types %}
                 <li class="list-payment__item">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                  {%- assign first_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '<title' | first -%}
+                  {%- assign last_svg = type | payment_type_svg_tag: class: 'icon icon--full-color' | split: '</title>' | last -%}
+                  {{- first_svg -}}{{- last_svg -}}
                 </li>
               {%- endfor -%}
             </ul>

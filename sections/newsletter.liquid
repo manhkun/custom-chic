@@ -49,8 +49,8 @@
         {%- when '@app' -%}
           {% render block %}
         {%- when 'heading' -%}
-          <h2 class="heading-h2" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}
-          </h2>
+          <div class="h2 heading-h2" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}
+          </div>
         {%- when 'paragraph' -%}
           <div class="newsletter__subheading rte" {{ block.shopify_attributes }}>{{ block.settings.text }}
           </div>
