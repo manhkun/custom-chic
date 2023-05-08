@@ -1161,15 +1161,7 @@ deferred-media {
   color: var(--color-primary);
 }
 .product-form__submit.loading::before {
-  transform: translate(-50%,-50%);
-  z-index: 10;
-  top: 50%;
-  position: absolute;
-  left: calc(50% - 10px);
-  width: 26px;
-  height: 26px;
-  line-height: 1;
-  color: var(--color-primary);
+  display: none;
 }
 /* Button - social share */
 

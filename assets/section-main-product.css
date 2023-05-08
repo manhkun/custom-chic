@@ -1652,6 +1652,17 @@ slider-component .media-wrapper .slider-buttons button {
   transition: all 0s !important;
   z-index: 0;
 }
+
+@media (hover: hover) {
+  .product-form__submit.btn:hover {
+    background-color: transparent;
+  }
+}
+
+.product-form__submit.btn.loading {
+  color: transparent;
+  background-color: transparent;
+}
 .option-color {
   margin: 0 -4px;
 }
@@ -1969,6 +1980,8 @@ variant-radios > fieldset:last-child{
     z-index: 9999999;
     border-radius: 0;
     margin-bottom: 0%;
+    background-color: #000;
+    color: #fff;
   }
   .product-form__buttons .customily-preview-button {
     position: relative !important;

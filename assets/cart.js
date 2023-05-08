@@ -90,7 +90,7 @@ class CartItems extends HTMLElement {
         this.updateLiveRegions(line, parsedState.item_count);
         this.updateCartCount(parsedState.item_count)
         const lineItem = document.getElementById(`CartItem-${line}`) || document.getElementById(`CartDrawer-Item-${line}`);
-        if (quantity === 0) {
+        if (parseInt(quantity) === 0) {
           lineItem.remove()
         }
         if (lineItem && lineItem.querySelector(`[name="${name}"]`)) {
