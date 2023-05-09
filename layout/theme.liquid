@@ -349,6 +349,9 @@
       }
     </script>
     {%- render 'theme-variable' -%}
+    {%- if template contains 'index' -%}
+      {{ settings.custom_code_index }}
+    {%- endif -%}
   </head>
 
   <body class="gradient template-{{ template | handleize }}">

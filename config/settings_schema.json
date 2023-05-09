@@ -413,7 +413,7 @@
     ]
   },
   {
-    "name": "Schema",
+    "name": "Insert custom code into header",
     "settings": [
       {
         "type": "header",
@@ -421,8 +421,8 @@
       },
       {
         "type": "textarea",
-        "id": "schema_index",
-        "label": "Schema of the home page"
+        "id": "custom_code_index",
+        "label": "Custom code at the home page"
       }
     ]
   }

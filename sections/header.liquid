@@ -697,11 +697,6 @@
   }
 </script>
 
-{%- if request.page_type == 'index' and settings.schema_index != blank -%}
-  <script type="application/ld+json">
-    {{ settings.schema_index }}
-  </script>
-{%- endif -%}
 <script async="async">
    var c = false
     $(document).ready(function(){
