@@ -105,8 +105,8 @@
                 <collection-loadmore>
                   <button class="btn load-more_btn">{{- 'sections.collection_template.load_more' | t -}}</button>
                 </collection-loadmore>
+                <div class="viewing-currently-product">{{ 'sections.collection_template.current_view_html' | t: all_products_count: paginate.items, products_count: collection.products.size }}</div>
               {%- endif -%}
-              <div class="viewing-currently-product">{{ 'sections.collection_template.current_view_html' | t: all_products_count: paginate.items, products_count: collection.products.size }}</div>
             </div>
           {% endif %}
         </div>
