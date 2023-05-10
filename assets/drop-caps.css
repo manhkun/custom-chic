@@ -54,6 +54,7 @@
 
 .content-text li {
   list-style: disc;
+  margin: 1em 0;
 }
 .content-text.active::after{
     display: none;

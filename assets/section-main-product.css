@@ -2110,7 +2110,8 @@ variant-radios > fieldset:last-child{
 .product__accordion:not(.shipping_information):not(.product-tab-review) .accordion__content p,
 .product__accordion:not(.shipping_information):not(.product-tab-review) .accordion__content a,
 .product__accordion:not(.shipping_information):not(.product-tab-review) .accordion__content h2,
-.product__accordion:not(.shipping_information):not(.product-tab-review) .accordion__content h1 {
+.product__accordion:not(.shipping_information):not(.product-tab-review) .accordion__content h1,
+.product__accordion:not(.shipping_information):not(.product-tab-review) .accordion__content {
   font-family: var(--font-body-family);
   font-weight: 300;
   font-size: 12px;
