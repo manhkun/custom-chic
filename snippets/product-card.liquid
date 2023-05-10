@@ -29,7 +29,7 @@ endif
 %}
 
 <div class="card-wrapper product-{{ view }}">
-  <a href="{{ product.url | within: collection }}" class="card-wrapper__mask-link"></a>
+  <a href="{{ product.url }}" class="card-wrapper__mask-link"></a>
   <div class="card-media{% if product.featured_media == nil %} no-effect card--text-only card--soft{% endif %}{% if product.featured_media != nil and show_image_outline %} card--outline{% endif %}">
     <div class="card__inner" >
       {%- liquid
@@ -39,7 +39,7 @@ endif
         endif
       -%}
       {%- if product.featured_media -%}
-        <a href="{{ product.url | within: collection | default: '#' }}" class="no-effect media media--transparent media--{{ media_size }} media--hover-effect{% if product.media[1] != nil and show_secondary_image %} hover-second-image{% endif %}" {% if media_size == 'adapt' and product.featured_media %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;" {% endif %}>
+        <a href="{{ product.url | default: '#' }}" class="no-effect media media--transparent media--{{ media_size }} media--hover-effect{% if product.media[1] != nil and show_secondary_image %} hover-second-image{% endif %}" {% if media_size == 'adapt' and product.featured_media %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;" {% endif %}>
           <img srcset="{%- if product.featured_media.width >= 165 -%}{{ product.featured_media | img_url: '165x' }} 165w,{%- endif -%}
           {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | img_url: '360x' }} 360w,{%- endif -%}
           {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | img_url: '533x' }} 533w,{%- endif -%}
@@ -68,13 +68,13 @@ endif
           {%- endif -%}
         </a>
       {%- else -%}
-      <a  href="{{ product.url | within: collection | default: '#' }}" class="no-effect media media--transparent media--{{ media_size }} media--hover-effect"
+      <a  href="{{ product.url | default: '#' }}" class="no-effect media media--transparent media--{{ media_size }} media--hover-effect"
         {% if media_size == 'adapt' %} style="padding-bottom: {{ 1 | divided_by: featured_media_aspect_ratio | times: 100 }}%;"{% endif %}>
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
       </a>
       {%- endif -%}
     <div class="product-card-action">
-      <a class="title-shop-now" href="{{ product.url | within: collection }}">{{- 'products.product.shop_now' | t -}}</a>
+      <a class="title-shop-now" href="{{ product.url }}">{{- 'products.product.shop_now' | t -}}</a>
       <div class="wishlist-wrapper wishlist-link" data-product-id="{{ product.id }}">
       </div>
     </div>
@@ -85,7 +85,7 @@ endif
      %}
   </div>
   <div class="card-details">
-    <h3 class="product-title"><a href="{{ product.url | within: collection }}">
+    <h3 class="product-title"><a href="{{ product.url }}">
       {% assign title = product.title | split: " -" %}
       {{ title[0] }}
       </a></h3>
