@@ -37,3 +37,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
+
+{%- if request.page_type == 'collection' or request.page_type == 'page' -%}
+  {%- assign split_path = request.path | split: '/' -%}
+  {%- if split_path.size > 3 -%}
+    <meta name="robots" content="noindex, nofollow">
+  {%- endif -%}
+{%- endif -%}
