@@ -51,6 +51,10 @@
 .content-text{
     position: relative;
 }
+
+.content-text li {
+  list-style: disc;
+}
 .content-text.active::after{
     display: none;
 }
