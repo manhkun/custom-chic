@@ -188,14 +188,6 @@
                       echo '</span>'
                       elsif title_check == true
                         echo 'products.product.new_arrival' | t | prepend: '<span class="badge new">' | append: '</span>'
-                      elsif product.compare_at_price > product.price and product.available and percent >= 30 and page.template_suffix != 'product'
-                        echo '<span class="badge sale">'
-                          render 'icon-sale'
-                          echo'<span class="badge sale">'
-                          echo percent
-                          echo '% OFF'
-                          echo'</span>'
-                        echo '</span>'
                       endif
                     -%}
                 </div>
