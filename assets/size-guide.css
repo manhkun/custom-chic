@@ -135,7 +135,7 @@
     text-align: center;
     margin-top: 24px;
 }
-.main-size-top h2{
+.main-size-top .h2{
     margin: 0;
     font-weight: 600;
     font-size: 16px;
@@ -180,7 +180,7 @@
     padding: 24px 10px;
     text-align: center;
 }
-.caculator-size h2 {
+.caculator-size .h2 {
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
@@ -247,7 +247,7 @@
     padding-bottom: 46px;
     border-bottom: 1px solid #D9D9D9;
 }
-.size-chart h2 {
+.size-chart .h2 {
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
@@ -340,7 +340,7 @@
         font-size: 12px;
         line-height: 15px;
     }
-    .main-size-top h2{
+    .main-size-top .h2{
         font-weight: 700;
         font-size: 20px;
         line-height: 120%;
@@ -371,7 +371,7 @@
         text-transform: uppercase;
         cursor: pointer;
     }
-    .caculator-size h2 {
+    .caculator-size .h2 {
         font-weight: 700;
         font-size: 20px;
         line-height: 120%;
@@ -390,7 +390,7 @@
     .size-chart {
         padding-bottom: 40px;
     }
-    .size-chart h2 {
+    .size-chart .h2 {
         font-weight: 700;
         font-size: 20px;
         line-height: 120%;
