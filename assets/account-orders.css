@@ -164,6 +164,11 @@
   border: 1px solid #000000;
 }
 
+.account-order__support-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
 .account-order__support {
   margin-top: 10px;
   font-size: 12px;
