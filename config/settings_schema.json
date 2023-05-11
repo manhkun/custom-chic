@@ -413,7 +413,7 @@
     ]
   },
   {
-    "name": "Insert custom code into header",
+    "name": "Insert custom code into head",
     "settings": [
       {
         "type": "header",
@@ -423,6 +423,11 @@
         "type": "textarea",
         "id": "custom_code_index",
         "label": "Custom code at the home page"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_code_all",
+        "label": "Custom code at the all pages"
       }
     ]
   }
