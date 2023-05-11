@@ -602,7 +602,7 @@
                           </div>
                         </div>
                       </fieldset>
-                    {% elsif option.name == 'Color' %}
+                    {% elsif option.name == 'Color' or option.name == 'Farbe' or option.name == 'Colore' or option.name == 'Couleur' %}
                       <fieldset class="js product-form__input option-color-wrapper data-layer-{{ o_index }}" data-name="Color">
                          <legend class="form__label"><h2 class="form__label">{{ option.name }}:</h2><span class="selected-value">{{ option.selected_value }}</span></legend>
                           <div class="option-color">
@@ -633,7 +633,7 @@
                             {%- endfor -%}
                           </div>
                         </fieldset>
-                    {% elsif option.name == 'Size' %}
+                    {% elsif option.name == 'Size' or option.name == 'Taille' or option.name ==  'Taglia' or option.name == 'Größe' %}
                       <fieldset class="js product-form__input option-size-wrapper data-layer-{{ o_index }}" data-name="Size">
                         <div class="title-option-size"><legend class="form__label"><h2 class="form__label">{{ 'products.product.size' | t }}:</h2><span class="selected-value">{{ option.selected_value }}</span></legend><span class="size-popup">{% render 'icon-ruler' %}{{ 'products.product.size_guide' | t }}</span></div>
                         <div class="title-option-size-bt">
