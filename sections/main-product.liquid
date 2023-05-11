@@ -46,19 +46,61 @@
       onload="this.media='all'"
     >
   {%- endif -%}
+  {%- assign breadcrumbs_linklist = linklists['breadcrumbs-product'] -%}
+  {%- assign product_type_link = nil -%}
+
+  {%- for link in breadcrumbs_linklist.links -%}
+    {%- if link.title == product.type -%}
+      {%- assign product_type_link = link -%}
+    {%- endif -%}
+  {%- endfor -%}
   <div class="breadcrumb-wrapper">
-     <li>
+    <li>
       <a href="{{ routes.root_url }}" class="breadcrumb-link" title="{{ 'general.breadcrumbs.home' | t }}">{{ 'general.breadcrumbs.home' | t }}</a>
     </li>
     {% render 'icon-right' %}
-    {% if collection %}
-      {% if collection.handle %}
-        {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
-        <li>{{ collection.title | link_to: url }}</li>
-      {% endif %}
-    {% else %}
-      <li><span>{{ product.type }}</span></li>
-    {% endif %}
+    {%- if product_type_link != nil -%}
+      <li>
+        <a href="{{ product_type_link.url }}">{{ product_type_link.title }}</a>
+      </li>
+      {% render 'icon-right' %}
+    {%- endif -%}
+    <li><span>{{ product.title }}</span></li>
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ shop.url | append: '/' }}"
+          },
+          {% if product_type_link != nil %}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ product_type_link.title }}",
+              "item": "{{ product_type_link.url | prepend: shop.url }}"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "{{ product.title }}",
+              "item": "{{ product.url | prepend: shop.url }}"
+            }
+          {%- else -%}
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "{{ product.title }}",
+              "item": "{{ product.url | prepend: shop.url }}"
+            }
+          {% endif %}
+        ]
+      }
+    </script>
   </div>
   <div class="product product--left  grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper horizontal-thumbnail ">
