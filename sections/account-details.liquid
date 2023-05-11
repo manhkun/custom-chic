@@ -53,6 +53,9 @@
 {%- if page_url contains '/account/orders/' -%}
   {%- render 'account-order-detail' -%}
 {%- else -%}
+{%- if page_url contains 'view=favourites' -%}
+  {%- assign class_detail = 'account-detail--wishlist' -%}
+{%- endif -%}
   {%- render 'account-header', sub_greeting: section.settings.sub_greeting -%}
   <div class="account-detail">
     <div class="page-width-desktop">
@@ -60,7 +63,7 @@
         <div class="account-detail__sidebar js-sidebar-sticky sidebar-sticky-hidden">
           {%- render 'account-sidebar', account_sidebar: section.settings.account_sidebar, page_url: page_url -%}
         </div>
-        <div class="account-detail__content">
+        <div class="account-detail__content {{ class_detail }}">
           {%- case page_url -%}
             {%- when '/account' -%}
               {%- render 'account-information' -%}
@@ -104,7 +107,7 @@
     if (swiperContainer) {
       const swiperrr = new Swiper(swiperContainer, {
         slidesPerView: 2,
-        spaceBetween: 2,
+        spaceBetween: 0,
         watchOverflow: true,
         navigation: {
           nextEl: '.next-{{ section.id }}',

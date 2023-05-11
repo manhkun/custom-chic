@@ -1278,6 +1278,9 @@ class AccountAddressForm extends HTMLElement {
     this.inputPhone.addEventListener('input', (e) => {
       const isValid = e.target.reportValidity();
       e.target.setAttribute('aria-invalid', !isValid);
+      if (this.inputPhone.getAttribute('aria-invalid') === 'false') {
+        this.buttonSubmit.disabled = false
+      }
     })
     this.initAddress()
     this.buttonSubmit && this.buttonSubmit.addEventListener('click', this.onFormSubmit.bind(this))

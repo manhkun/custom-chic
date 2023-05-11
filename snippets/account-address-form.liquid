@@ -181,10 +181,10 @@
           </div>
           <div class="account-address-form__content-bottom {% if type == 'new' %}account-address-form__content-bottom--revert {% endif %} ">
             {%- if type == 'new' -%}
-              <button class="account-address-form__btn-add" type="submit">{{ btn_text_add }}</button>
+              <button class="account-address-form__btn-add" type="submit" disabled>{{ btn_text_add }}</button>
               <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-cancel" type="reset">{{- btn_cancel -}}</button>
             {%- else -%}
-              <button class="account-address-form__btn-add" type="submit">{{ btn_text_save }}</button>
+              <button class="account-address-form__btn-add" type="submit" disabled>{{ btn_text_save }}</button>
             {%- endif -%}
           </div>
         {% endform %}

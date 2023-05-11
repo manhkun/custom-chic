@@ -71,13 +71,15 @@
                 {{- 'customer.order.show_more' | t -}}
                 <div class="load-more_spinner"></div>
               </button>
-              <div class="account-order__support">
-                <span>{{- 'customer.order.text_support' | t -}}</span>
-                <a class="account-order__support-link" href="/pages/help-center">{{- 'customer.order.help_center' | t -}}</a>
-              </div>
             </div>
           {%- endif -%}
         {% endpaginate %}
+        <div class="account-order__support-wrapper">
+          <div class="account-order__support">
+            <span>{{- 'customer.order.text_support' | t -}}</span>
+            <a class="account-order__support-link" href="/pages/help-center">{{- 'customer.order.help_center' | t -}}</a>
+          </div>
+        </div>
       </order-list>
     </div>
   {%- else -%}

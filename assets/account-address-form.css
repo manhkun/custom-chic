@@ -154,6 +154,12 @@
   line-height: 15px;
 }
 
+.account-address-form__btn-add:disabled {
+  background-color: transparent;
+  color: #D9D9D9;
+  border: 1px solid #D9D9D9;
+}
+
 .account-address-form__btn-add:hover {
   color: #000000;
   background-color: #FFFFFF;
@@ -187,8 +193,8 @@
 
 
 .account-address-form__checkbox {
-  width: 20px !important;
-  height: 20px;
+  width: 15px !important;
+  height: 15px;
   margin: 0 8px 0 0;
   color: #000000;
 }
@@ -246,7 +252,8 @@
 
   .account-address-form__btn-add {
     width: fit-content;
-    padding: 15px 46px;
+    min-width: 200px;
+    padding: 15px 0;
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
@@ -256,14 +263,15 @@
     position: absolute;
     bottom: 16px;
     width: fit-content;
-    padding: 16px 72.5px;
+    padding: 15px 72.5px;
     bottom: 0;
-    right: 155px;
+    right: 208px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
+    margin-top: 0;
     /* identical to box height */
 
     text-transform: capitalize;
