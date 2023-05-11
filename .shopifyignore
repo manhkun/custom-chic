@@ -1,1 +1,3 @@
 templates/*.json
+locales/
+config/settings_data.json
