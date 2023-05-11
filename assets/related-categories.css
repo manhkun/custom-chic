@@ -1,4 +1,4 @@
-.related-categories-title h4{
+.related-categories-title .heading-text{
   font-family: var(--font-heading-family);
   font-weight: 600;
   font-size: 24px;
@@ -6,7 +6,7 @@
   margin: 0 0 16px 7px;
   letter-spacing: -0.29px;
 }
-.template-product .related-categories-title h4 {
+.template-product .related-categories-title .heading-text {
   letter-spacing: 0px;
 }
 .related-content {
@@ -28,7 +28,7 @@
   text-transform: capitalize;
 }
 @media screen and (max-width: 767px) {
-  .related-categories-title h4 {
+  .related-categories-title .heading-text {
     font-weight: 600;
     font-size: 18px;
     line-height: 120%;
