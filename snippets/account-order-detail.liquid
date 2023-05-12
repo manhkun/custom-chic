@@ -119,8 +119,7 @@
                 {%- endif -%}
               </div>
               <div class="sku-info">
-                {%- if item.sku == blank -%}
-                  <span>2222</span>
+                {%- if item.sku != blank -%}
                   <span>{{- item.sku -}}</span>
                 {%- else -%}
                   <span>--</span>
