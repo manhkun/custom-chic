@@ -109,7 +109,7 @@
               </div>
               <div class="tracking-info {% if item.fulfillment.tracking_url %} tracking-info-empty{% endif %}">
                 {%- if item.fulfillment -%}
-                  {%- if item.fulfillment.tracking_url == blank -%}
+                  {%- if item.fulfillment.tracking_url != blank -%}
                     <a class="tracking-info-detail" href="{{ item.fulfillment.tracking_url }}">{{- item.fulfillment.tracking_number -}}</a>
                   {%- else -%}
                     <span>{{ item.fulfillment.tracking_number }}</span>
