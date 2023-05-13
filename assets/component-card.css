@@ -529,3 +529,9 @@
     align-items: center;
   }
 }
+
+.article-card .card__information-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

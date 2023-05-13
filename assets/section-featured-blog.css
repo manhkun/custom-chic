@@ -59,9 +59,17 @@
 }
 .blog .card__heading {
   font-weight: 500;
+  margin-bottom: 13px;
+}
+
+@media (max-width: 767px) {
+  .blog .card__heading {
+    margin-bottom: 2px;
+  }
+  
 }
 .blog .blog-wrapper .article-card__excerpt {
-  margin: 5px 0 2px;
+  margin: auto 0 2px;
   color: var(--color-text);
   font-weight: 300;
   font-size: 12px;
@@ -186,7 +194,7 @@
     padding: 24px 16px;
   }
   .blog .blog-wrapper .article-card__excerpt {
-    margin: 13px 0 30px;
+    margin: auto 0 30px;
     font-weight: 300;
     font-size: 14px;
     line-height: 150%;
@@ -261,5 +269,9 @@
   display: flex;
 }
 .featured-blog .blog-list-wrapper .slick-track li {
+  height: auto;
+}
+
+.blog-wrapper-item {
   height: auto;
 }

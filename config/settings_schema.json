@@ -430,5 +430,20 @@
         "label": "Custom code at the all pages"
       }
     ]
+  },
+  {
+    "name": "Collections",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "new_arrivals_collection",
+        "label": "New arrivals collection"
+      },
+      {
+        "type": "collection",
+        "id": "best_sellers_collection",
+        "label": "Best sellers collection"
+      }
+    ]
   }
 ]

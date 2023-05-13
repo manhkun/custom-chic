@@ -3,7 +3,7 @@
       assign product_created_at = product.created_at | date: '%s'
       assign percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | floor
       assign title_lists = false
-      for products in collections['bestsellers'].products limit: 40
+      for products in settings.best_sellers_collection.products limit: 40
       assign title_list = title_list | append: products.title | append: ','
         if product.title contains products.title
         assign title_lists = true
@@ -11,7 +11,7 @@
       endfor
 
       assign title_check = false
-      for products in collections['new-arrivals'].products limit: 40
+      for products in settings.new_arrivals_collection.products limit: 40
       assign title_list = title_list | append: products.title | append: ','
         if product.title contains products.title
         assign title_check = true
