@@ -1275,11 +1275,14 @@ class AccountAddressForm extends HTMLElement {
     this.buttonSubmit = this.form.querySelector('button.account-address-form__btn-add')
     this.countrySelectEl = this.querySelector('[name="address[country]"]')
     this.inputPhone = this.querySelector("input[type='tel']")
+
     this.inputPhone.addEventListener('input', (e) => {
       const isValid = e.target.reportValidity();
       e.target.setAttribute('aria-invalid', !isValid);
       if (this.inputPhone.getAttribute('aria-invalid') === 'false') {
         this.buttonSubmit.disabled = false
+      } else {
+        this.buttonSubmit.disabled = true
       }
     })
     this.initAddress()
