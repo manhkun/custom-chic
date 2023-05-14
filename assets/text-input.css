@@ -49,7 +49,3 @@
 input[type="date"] {
   background: transparent;
 }
-
-input[type="tel"]:invalid {
-  color: red;
-}

@@ -107,6 +107,7 @@
                 value="{{ address.first_name }}" 
                 class="account-address-form__input account-address-form__input-first-name"
                 placeholder="{{ placehoder_first_name }}"
+                required
               >
             </div>
             <div class="account-address-form__field">
@@ -141,6 +142,7 @@
               value="{{ address.province }}" 
               class="account-address-form__input"
               placeholder="{{ placehoder_province }}"
+              required
             >
           </div>
           <div class="account-address-form__ae">
@@ -184,7 +186,7 @@
               <button class="account-address-form__btn-add" type="submit" disabled>{{ btn_text_add }}</button>
               <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-cancel" type="reset">{{- btn_cancel -}}</button>
             {%- else -%}
-              <button class="account-address-form__btn-add" type="submit" disabled>{{ btn_text_save }}</button>
+              <button class="account-address-form__btn-add" type="submit">{{ btn_text_save }}</button>
             {%- endif -%}
           </div>
         {% endform %}

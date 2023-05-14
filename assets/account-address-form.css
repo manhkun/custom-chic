@@ -227,6 +227,13 @@
   display: none;
 }
 
+.account-address__info-province::before,
+.account-address__info-city::before,
+.account-address__info-country::before {
+  content: ',';
+  margin-right: 6px;
+}
+
 @media screen and (min-width: 768px) {
   .account-address-form__heading {
     font-family: 'Montserrat';
