@@ -2635,14 +2635,9 @@ li {
   margin: 0;
 }
 
-.main-product-wrapper .card__badge .badge.new::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  height: 100%;
-  border-left: 1px solid;
-  top: 50%;
-  transform: translateY(-50%);
+.card__badge .badge.new svg {
+  width: 12px;
+  height: 12px;
 }
 .card__badge {
   position: relative;
@@ -2770,6 +2765,8 @@ li {
 .card__badge .badge {
   font-size: 9.5px;
   color: var(--hot-label-bg);
+  display: flex;
+  gap: 2px;
 }
 @media screen and (max-width: 767px) {
   .gp-product-slider .slider::-webkit-scrollbar-thumb {
