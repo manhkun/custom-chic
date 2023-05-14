@@ -36,7 +36,7 @@
       {%- for link in breadcrumbs_linklist.links -%}
         {%- if link.links.size > 0 -%}
           {%- for child_link in link.links -%}
-            {%- if child_link.url contains collection.handle -%}
+            {%- if child_link.url == collection.url -%}
               {%- assign parent_collection = link -%}
             {%- endif -%}
           {%- endfor -%}
