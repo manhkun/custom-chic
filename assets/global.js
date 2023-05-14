@@ -1282,52 +1282,34 @@ class AccountAddressForm extends HTMLElement {
     this.form = this.querySelector('form')
     this.buttonSubmit = this.form.querySelector('button.account-address-form__btn-add')
     this.countrySelectEl = this.querySelector('[name="address[country]"]')
-    this.inputPhone = this.querySelector("input[type='tel']")
-    this.lastName = this.querySelector('[name="address[last_name]"]')
-    this.fieldAddress = this.querySelector('[name="address[address1]"]')
-    this.fieldCity = this.querySelector('[name="address[city]"]')
-    this.fieldZip = this.querySelector('[name="address[zip]"]')
-    this.checkEmpty = false
-    
-    this.lastName.addEventListener('input', (e) => {
-      if (e.target.value.trim() != '') {
-        this.checkLastName = true
-      }
+    this.inputs = this.querySelectorAll('input[type="text"][required],input[type="tel"]')
+    this.fieldValue = {}
+
+    this.inputs.forEach(input => {
+      const name = input.getAttribute('name');
+      const value = input.value;
+      this.fieldValue[name] = value;
     })
 
-    this.fieldAddress.addEventListener('input', (e) => {
-      if (e.target.value.trim() != '') {
-        this.checkFieldAddress = true
-      }
-    })
-
-    this.fieldCity.addEventListener('input', (e) => {
-      if (e.target.value.trim() != '') {
-        this.checkFieldCity = true
-      }
-    })
-
-    this.fieldZip.addEventListener('input', (e) => {
-      if (e.target.value.trim() != '') {
-        this.checkFieldZip = true
-      }
-    })
-
-    this.inputPhone.addEventListener('input', (e) => {
-      const isValid = e.target.reportValidity();
-      e.target.setAttribute('aria-invalid', !isValid);
+    this.inputs.forEach(input => {
+      input.addEventListener('input', this.checkBlank.bind(this))
     })
 
     this.initAddress()
-    if (this.getAttribute('id') == 'address-form-new') {
-      window.addEventListener('keyup',() => {
-        if (this.checkLastName && this.checkFieldAddress && this.checkFieldCity && this.checkFieldZip && this.inputPhone.getAttribute('aria-invalid') === 'false') {
-          this.buttonSubmit.disabled = false
-        } else this.buttonSubmit.disabled = true
-      })
-    }
 
     this.buttonSubmit && this.buttonSubmit.addEventListener('click', this.onFormSubmit.bind(this))
+  }
+
+  checkBlank(e) {
+    this.fieldValue[e.target.name] = e.target.value
+
+    const hasFalsyValue = Object.values(this.fieldValue).some(value => !value);
+
+    if (hasFalsyValue) {
+      this.buttonSubmit.disabled = true
+    } else {
+      this.buttonSubmit.disabled = false
+    }
   }
 
   initAddress() {
