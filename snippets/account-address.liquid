@@ -30,25 +30,16 @@
             <div class="account-address__info">
               <div class="account-address__address">
                 {%- if address.address1 != blank -%}
-                  <span>{{ address.address1 }}</span>
+                  <span class="account-address__info-address">{{ address.address1 }}</span>
                 {%- endif -%}
                 {%- if address.province != blank -%}
-                  {%- if address.address1 != blank -%}
-                    <span>, </span>
-                  {%- endif -%}
-                  <span>{{ address.province }}</span>
+                  <span class="account-address__info-province">{{ address.province }}</span>
                 {%- endif -%}
                 {%- if address.city != blank -%}
-                  {%- if address.province != blank -%}
-                    <span>, </span>
-                  {%- endif -%}
-                  <span>{{ address.city }}</span>
+                  <span class="account-address__info-city">{{ address.city }}</span>
                 {%- endif -%}
                 {%- if address.country != blank -%}
-                  {%- if address.city != blank -%}
-                    <span>, </span>
-                  {%- endif -%}
-                  <span>{{ address.country }}</span>
+                  <span class="account-address__info-country">{{ address.country }}</span>
                 {%- endif -%}
                 {%- if address.zip != blank -%}
                   <div class="postcode-desktop">
@@ -82,25 +73,16 @@
             <div class="account-address__info">
               <div class="account-address__address">
                 {%- if address.address1 != blank -%}
-                  <span>{{ address.address1 }}</span>
+                  <span class="account-address__info-address">{{ address.address1 }}</span>
                 {%- endif -%}
                 {%- if address.province != blank -%}
-                  {%- if address.address1 != blank -%}
-                    <span>, </span>
-                  {%- endif -%}
-                  <span>{{ address.province }}</span>
+                  <span class="account-address__info-province">{{ address.province }}</span>
                 {%- endif -%}
                 {%- if address.city != blank -%}
-                  {%- if address.province != blank -%}
-                    <span>, </span>
-                  {%- endif -%}
-                  <span>{{ address.city }}</span>
+                  <span class="account-address__info-city">{{ address.city }}</span>
                 {%- endif -%}
                 {%- if address.country != blank -%}
-                  {%- if address.city != blank -%}
-                    <span>, </span>
-                  {%- endif -%}
-                  <span>{{ address.country }}</span>
+                  <span class="account-address__info-country">{{ address.country }}</span>
                 {%- endif -%}
                 {%- if address.zip != blank -%}
                   <div class="postcode-desktop">
