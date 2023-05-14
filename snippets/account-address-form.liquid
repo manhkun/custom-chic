@@ -60,7 +60,7 @@
       tabindex="-1"
       class="account-address-form-modal__content js-content-modal" 
     >
-      <account-address-form class="account-address-form">
+      <account-address-form class="account-address-form" id="address-form-{{- address.id | default: 'new' -}}">
         <div class="account-address-form-modal__content-header">
           <h2 class="account-address-form__heading">{{- heading-}}</h2>
           <button id="ModalClose-{{ address.id | default: 'new' }}" class="account-address-form__btn-close" >
@@ -107,7 +107,6 @@
                 value="{{ address.first_name }}" 
                 class="account-address-form__input account-address-form__input-first-name"
                 placeholder="{{ placehoder_first_name }}"
-                required
               >
             </div>
             <div class="account-address-form__field">
@@ -142,7 +141,6 @@
               value="{{ address.province }}" 
               class="account-address-form__input"
               placeholder="{{ placehoder_province }}"
-              required
             >
           </div>
           <div class="account-address-form__ae">

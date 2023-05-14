@@ -462,6 +462,8 @@ class ModalDialog extends HTMLElement {
         if (event.target === this) this.hide();
       });
     }
+    this.form = this.querySelector('form')
+    this.btnAddAddress = this.querySelector('.account-address-form__btn-add')
   }
 
   connectedCallback() {
@@ -479,6 +481,9 @@ class ModalDialog extends HTMLElement {
     trapFocus(this, this.querySelector('[role="dialog"]'));
     window.pauseAllMedia();
     this.contentModalEl && window.bodyScrollLock.disableBodyScroll(this.contentModalEl)
+    if (this.btnAddAddress) {
+      this.btnAddAddress.disabled = true
+    }
   }
 
   hide() {
@@ -488,6 +493,9 @@ class ModalDialog extends HTMLElement {
     removeTrapFocus(this.openedBy);
     window.pauseAllMedia();
     window.bodyScrollLock.clearAllBodyScrollLocks()
+    if(this.getAttribute('id') === 'address-new') {
+      this.form && this.form.reset()
+    }
   }
 }
 customElements.define('modal-dialog', ModalDialog);
@@ -1275,17 +1283,53 @@ class AccountAddressForm extends HTMLElement {
     this.buttonSubmit = this.form.querySelector('button.account-address-form__btn-add')
     this.countrySelectEl = this.querySelector('[name="address[country]"]')
     this.inputPhone = this.querySelector("input[type='tel']")
+    this.lastName = this.querySelector('[name="address[last_name]"]')
+    this.fieldAddress = this.querySelector('[name="address[address1]"]')
+    this.fieldCity = this.querySelector('[name="address[city]"]')
+    this.fieldZip = this.querySelector('[name="address[zip]"]')
+    this.checkEmpty = false
+    
+    this.lastName.addEventListener('input', (e) => {
+      const lastNameValue = e.target.value.trim()
+      if (lastNameValue!= '') {
+        this.checkLastName = true
+      }
+    })
+
+    this.fieldAddress.addEventListener('input', (e) => {
+      const fieldAddressValue = e.target.value.trim()
+      if (fieldAddressValue != '') {
+        this.checkFieldAddress = true
+      }
+    })
+
+    this.fieldCity.addEventListener('input', (e) => {
+      cons
+      if (e.target.value != '') {
+        this.checkFieldCity = true
+      }
+    })
+
+    this.fieldZip.addEventListener('input', (e) => {
+      if (e.target.value != '') {
+        this.checkFieldZip = true
+      }
+    })
 
     this.inputPhone.addEventListener('input', (e) => {
       const isValid = e.target.reportValidity();
       e.target.setAttribute('aria-invalid', !isValid);
-      if (this.inputPhone.getAttribute('aria-invalid') === 'false') {
-        this.buttonSubmit.disabled = false
-      } else {
-        this.buttonSubmit.disabled = true
-      }
     })
+
     this.initAddress()
+    if (this.getAttribute('id') == 'address-form-new') {
+      window.addEventListener('keyup',() => {
+        if (this.checkLastName && this.checkFieldAddress && this.checkFieldCity && this.checkFieldZip && this.inputPhone.getAttribute('aria-invalid') === 'false') {
+          this.buttonSubmit.disabled = false
+        } else this.buttonSubmit.disabled = true
+      })
+    }
+
     this.buttonSubmit && this.buttonSubmit.addEventListener('click', this.onFormSubmit.bind(this))
   }
 
