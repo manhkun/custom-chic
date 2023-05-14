@@ -481,9 +481,6 @@ class ModalDialog extends HTMLElement {
     trapFocus(this, this.querySelector('[role="dialog"]'));
     window.pauseAllMedia();
     this.contentModalEl && window.bodyScrollLock.disableBodyScroll(this.contentModalEl)
-    if (this.btnAddAddress) {
-      this.btnAddAddress.disabled = true
-    }
   }
 
   hide() {
@@ -495,6 +492,9 @@ class ModalDialog extends HTMLElement {
     window.bodyScrollLock.clearAllBodyScrollLocks()
     if(this.getAttribute('id') === 'address-new') {
       this.form && this.form.reset()
+      if (this.btnAddAddress) {
+        this.btnAddAddress.disabled = true
+      }
     }
   }
 }
@@ -1290,28 +1290,25 @@ class AccountAddressForm extends HTMLElement {
     this.checkEmpty = false
     
     this.lastName.addEventListener('input', (e) => {
-      const lastNameValue = e.target.value.trim()
-      if (lastNameValue!= '') {
+      if (e.target.value.trim() != '') {
         this.checkLastName = true
       }
     })
 
     this.fieldAddress.addEventListener('input', (e) => {
-      const fieldAddressValue = e.target.value.trim()
-      if (fieldAddressValue != '') {
+      if (e.target.value.trim() != '') {
         this.checkFieldAddress = true
       }
     })
 
     this.fieldCity.addEventListener('input', (e) => {
-      cons
-      if (e.target.value != '') {
+      if (e.target.value.trim() != '') {
         this.checkFieldCity = true
       }
     })
 
     this.fieldZip.addEventListener('input', (e) => {
-      if (e.target.value != '') {
+      if (e.target.value.trim() != '') {
         this.checkFieldZip = true
       }
     })
