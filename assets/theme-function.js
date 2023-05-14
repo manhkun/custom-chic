@@ -257,23 +257,22 @@ const closestIndex = (num, arr) => {
   });
   $('#tabs li a').click(function(){
     var t = $(this).attr('id');
+    var title = $(this).attr('data-title')
     $("#tab1Q").attr("data-id",t);
     
+    $(".title-size p").html(title);
+    $(".size-top p").html(title)
     if($('.size-chart').hasClass('show')){
       $('.size-chart').removeClass('show');
     }
     if(t == 'tab1'){
       $('.size-chart-tab1').addClass('show');
-       $(".title-size p").html("Classic Tee");
     }else if (t == 'tab2'){
       $('.size-chart-tab2').addClass('show');
-      $(".title-size p").html("Premium Tee");
     }else if (t == 'tab3'){
       $('.size-chart-tab3').addClass('show');
-      $(".title-size p").html("Pullover Hoodie");
     }else{
       $('.size-chart-tab4').addClass('show');
-      $(".title-size p").html("Sweatshirt");
     }
     if($(this).hasClass('inactive')){ //this is the start of our condition 
       $('#tabs li a').addClass('inactive');           

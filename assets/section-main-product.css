@@ -648,7 +648,7 @@ a.product__text {
 }
 
 .customily-modal-preview-only {
-  z-index: 9999999999999;
+  z-index: 9999999999999 !important;
 }
 
 @media screen and (min-width: 768px) {
@@ -2066,6 +2066,13 @@ variant-radios > fieldset:last-child{
   align-items: center;
   margin-bottom: 22px;
   margin-top: 57px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.breadcrumb-wrapper svg {
+  flex-shrink: 0;
 }
 .breadcrumb-wrapper li span {
   font-weight: 400;

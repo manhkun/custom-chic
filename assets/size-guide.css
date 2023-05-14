@@ -119,6 +119,12 @@
     margin: 24px 0;
     text-align: center;
 }
+
+@media (max-width: 767px) {
+    .title-size {
+        display: none;
+    }
+}
 .title-size p{
     margin: 0;
     font-weight: 700;

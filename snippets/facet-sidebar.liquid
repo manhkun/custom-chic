@@ -39,12 +39,16 @@
                 {%- endfor -%}
                 {% if filter.type == "price_range" %}
                   {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
-                    <facet-remove>
-                      <a class="active-facets__button no-effect button--tertiary js-facet-remove" href="{{ filter.url_to_remove }}">
-                         <span class="icon-close">{% render 'icon-close-filter' %}</span>
-                         {% if filter.min_value.value %}{{ filter.min_value.value | money }}{% else %}{{ 0 | money }}{% endif %} - {% if filter.max_value.value %}{{ filter.max_value.value | money }}{% else %}{{ filter.range_max | money }}{% endif %}
-                      </a>
-                    </facet-remove>
+                    {%- assign max_value_round = filter.range_max | money_without_currency | round -%}
+                    {%- assign max_value_filter = filter.max_value.value | money_without_currency | round -%}
+                    {%- unless filter.min_value.value == 0 and max_value_filter == max_value_round -%}
+                      <facet-remove>
+                        <a class="active-facets__button no-effect button--tertiary js-facet-remove" href="{{ filter.url_to_remove }}">
+                          <span class="icon-close">{% render 'icon-close-filter' %}</span>
+                          {% if filter.min_value.value %}{{ filter.min_value.value | money }}{% else %}{{ 0 | money }}{% endif %} - {% if filter.max_value.value %}{{ filter.max_value.value | money }}{% else %}{{ filter.range_max | money }}{% endif %}
+                        </a>
+                      </facet-remove>
+                    {%- endunless -%}
                   {%- endif -%}
                 {% endif %}
               {%- endfor -%}
