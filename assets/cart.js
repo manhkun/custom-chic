@@ -4,7 +4,7 @@ class CartRemoveButton extends HTMLElement {
     this.addEventListener('click', (event) => {
       event.preventDefault();
       const cartItems = this.closest('cart-items') || this.closest('cart-drawer-items');
-      cartItems.updateQuantity(this.dataset.index, 0);
+      cartItems.updateQuantity(this.dataset.key, 0);
     });
   }
 }
@@ -42,7 +42,7 @@ class CartItems extends HTMLElement {
 
   
   onChange(event) {
-    this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
+    this.updateQuantity(event.target.dataset.key, event.target.value, document.activeElement.getAttribute('name'));
   }
 
   getSectionsToRender() {
@@ -55,11 +55,11 @@ class CartItems extends HTMLElement {
     ];
   }
 
-  updateQuantity(line, quantity, name) {
-    this.enableLoading(line);
+  updateQuantity(key, quantity, name) {
+    this.enableLoading(key);
 
     const body = JSON.stringify({
-      line,
+      id: key,
       sections: this.getSectionsToRender().map((section) => section.section),
       sections_url: window.location.pathname,
       quantity
@@ -87,9 +87,8 @@ class CartItems extends HTMLElement {
 
         parsedState.items.forEach(this.updateLineItem.bind(this))
         this.updateTotalPrice(parsedState.total_price)
-        this.updateLiveRegions(line, parsedState.item_count);
         this.updateCartCount(parsedState.item_count)
-        const lineItem = document.getElementById(`CartItem-${line}`) || document.getElementById(`CartDrawer-Item-${line}`);
+        const lineItem = document.querySelector(`[data-key="${key}"]`) || document.querySelector(`[data-key="${key}"]`);
         if (parseInt(quantity) === 0) {
           lineItem.remove()
         }
@@ -128,8 +127,8 @@ class CartItems extends HTMLElement {
     totalEl.innerHTML = Shopify.formatMoney(total, Shopify.currency_format)
   }
 
-  updateLineItem(item, index) {
-    const itemEl = this.querySelector(`#CartItem-${index + 1}`)
+  updateLineItem(item) {
+    const itemEl = this.querySelector(`[data-key="${item.key}"]`)
     if (itemEl) {
       const itemPrices = itemEl.querySelectorAll('.price')
       itemPrices.forEach(itemPrice => itemPrice.innerHTML = Shopify.formatMoney(item.final_line_price, Shopify.currency_format))
@@ -168,8 +167,8 @@ class CartItems extends HTMLElement {
   enableLoading(line) {
     const mainCartItems = document.getElementById('main-cart-items') || document.getElementById('CartDrawer-CartItems');
     mainCartItems.classList.add('cart__items--disabled');
-    const cartItemElements = this.querySelectorAll(`#CartItem-${line} .loading-overlay`);
-    const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .loading-overlay`);
+    const cartItemElements = this.querySelectorAll(`[data-key="${line}"] .loading-overlay`);
+    const cartDrawerItemElements = this.querySelectorAll(`[data-key="${line}"] .loading-overlay`);
     [...cartItemElements, ...cartDrawerItemElements].forEach((overlay) => overlay.classList.remove('hidden'));
 
     document.activeElement.blur();

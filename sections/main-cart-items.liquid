@@ -69,7 +69,7 @@
               </thead>
               <tbody>
                 {%- for item in cart.items -%}
-                  <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+                  <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}" data-key="{{ item.key }}">
                     <td class="cart-item__img" colspan="2" scope="col">
                       <div class="cart-item__media">
                         {% if item.image %}
@@ -121,12 +121,12 @@
                             <path d="M9.5 14C9.77613 14 10 13.7761 10 13.5V7C10 6.72387 9.77613 6.5 9.5 6.5C9.22387 6.5 9 6.72387 9 7V13.5C9 13.7761 9.22384 14 9.5 14Z" fill="black"/>
                             <path d="M4.5 14C4.77613 14 5 13.7761 5 13.5V7C5 6.72387 4.77613 6.5 4.5 6.5C4.22387 6.5 4 6.72387 4 7V13.5C4 13.7761 4.22384 14 4.5 14Z" fill="black"/>
                           </svg>
-                            <div class="cart-remove-button-popup" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                            <div class="cart-remove-button-popup" id="Remove-{{ item.index | plus: 1 }}" data-key="{{ item.key }}">
                               <div class="cart-remove-button">
                                 <div class="cart-remove">
                                   <h2>{{ 'sections.cart.remove_item' | t }}</h2>
                                   <p>{{ 'sections.cart.content' | t }}</p>
-                                  <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                                  <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.key }}">
                                     <a href="{{ item.url_to_remove }}" class="button button--tertiary btn" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
                                     {{ 'sections.cart.remove' | t }}
                                   </a>
@@ -197,7 +197,7 @@
                                 min="0"
                                 aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
                                 id="Quantity-{{ item.index | plus: 1 }}"
-                                data-index="{{ item.index | plus: 1 }}"
+                                data-key="{{ item.key }}"
                               >
                               <button class="quantity__button no-js-hidden" name="plus" type="button">
                                 <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
@@ -278,7 +278,7 @@
                             min="0"
                             aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
                             id="Quantity-{{ item.index | plus: 1 }}"
-                            data-index="{{ item.index | plus: 1 }}"
+                            data-key="{{ item.key }}"
                           >
                           <button class="quantity__button quantity__button-cart no-js-hidden" name="plus" type="button">
                             <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
@@ -287,12 +287,12 @@
                         </quantity-input>
                             <span class="cart-remove-button-popup-wrapper">
                                {{ 'sections.cart.remove' | t }}
-                               <div class="cart-remove-button-popup" id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                               <div class="cart-remove-button-popup" id="Remove-{{ item.index | plus: 1 }}" data-key="{{ item.key }}">
                             <div class="cart-remove-button">
                               <div class="cart-remove">
                                 <h2>{{ 'sections.cart.remove_item' | t }}</h2>
                                 <p>{{ 'sections.cart.content' | t }}</p>
-                                <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                                <cart-remove-button id="Remove-{{ item.index | plus: 1 }}" data-key="{{ item.key }}">
                                    <a href="{{ item.url_to_remove }}" class="button button--tertiary btn" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
                                   {{ 'sections.cart.remove' | t }}
                                 </a>
