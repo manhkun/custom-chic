@@ -30,7 +30,11 @@
     </title>
 
     {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+      {%- if current_page != 1 -%}
+        <meta name="description" content="{{ page_description | escape }} - Page {{ current_page }}">
+      {%- else -%}
+        <meta name="description" content="{{ page_description | escape }}">
+      {%- endif -%}
     {% endif %}
 
     {%- if page.template_suffix == 'about-us' -%}

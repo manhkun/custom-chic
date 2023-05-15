@@ -32,7 +32,7 @@
 {%- endstyle -%}
 
 {%- if template contains 'collection' -%}
-  {%- if collection.description != blank -%}
+  {%- if collection.description != blank and current_page == 1 -%}
     <div class="drop-caps" id="section-{{ section.id }}" data-section-id="{{ section.id }}">
       <div class="page-width-desktop container-drop-caps">
         <div class="drop-caps-width drop-caps__width--{{ section.settings.width_section }}">
