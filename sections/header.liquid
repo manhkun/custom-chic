@@ -396,7 +396,7 @@
                               </summary>
                               <div id="link-{{ link.handle | escape }}" class="menu-drawer__submenu menu-drawer__submenu_lv1 has-submenu gradient motion-reduce" tabindex="-1">
                                 <div class="menu-drawer__inner-submenu">
-                                  <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                                  <button class="menu-drawer__close-button js-close-panel link link--text focus-inset" aria-expanded="true">
                                     {% render 'icon-arrow' %}
                                     {{ 'sections.header.all' | t | escape }}
                                   </button>
@@ -417,8 +417,10 @@
                                             </summary>
                                             <div id="childlink-{{ childlink.handle | escape }}" class="menu-drawer__submenu menu-drawer__submenu-lv2 has-submenu gradient motion-reduce">
                                               <button class="menu-drawer__close-button close-button_lv2 link link--text focus-inset" aria-expanded="true">
-                                                {% render 'icon-arrow' %}
-                                                {{ childlink.title | escape }}
+                                                <span class="js-close-panel">
+                                                  {% render 'icon-arrow' %}
+                                                </span>
+                                                <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
                                               </button>
                                               <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                                                 {%- for grandchildlink in childlink.links -%}
