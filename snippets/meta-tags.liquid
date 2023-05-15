@@ -44,3 +44,11 @@
     <meta name="robots" content="noindex, nofollow">
   {%- endif -%}
 {%- endif -%}
+
+{%- if request.page_type == 'collection' or request.page_type == 'page' or request.page_type == 'blogs' -%}
+  {%- if current_page > 1 -%}
+    <meta name="robots" content="noindex, nofollow">
+  {%- else -%}
+    <meta name="robots" content="index,follow" />
+  {%- endif -%}
+{%- endif -%}
