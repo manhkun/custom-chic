@@ -14,7 +14,7 @@
           <div class="h4 page-sub-title{% if section.settings.hidden_subtile %} hidden-desktop{% endif %}{% if section.settings.hidden_subtile_mb %} hidden-mb{% endif %}">{{ section.settings.subtile }}
           </div>
           <div class="bre-show-hide{% if section.settings.hidden_breadcrumbs %} hidden-desktop{% endif %}{% if section.settings.hidden_breadcrumbs_mb %} hidden-mb{% endif %}">
-            {% render 'breadcrumb' %}
+            {% render 'breadcrumb', show_schema: false %}
           </div>
 
         {% elsif template == 'blog' %}
@@ -25,7 +25,7 @@
           <h1 class="page-title">{{ page.title }}
           </h1>
           <div class="bre-show-hide hidden-desktop">
-            {% render 'breadcrumb' %}
+            {% render 'breadcrumb', show_schema: false %}
           </div>
           {%- if template.suffix == 'wishlist' -%}
             <div class="page-sub-title js-wishlist-count"></div>

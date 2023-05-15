@@ -1,3 +1,4 @@
+{%- assign show_schema = show_schema | default: true, allow_false: true  -%}
 {% unless template == 'index' %}
   <ul class="breadcrumb" aria-label="breadcrumbs">
     <li>
@@ -65,41 +66,43 @@
         </li>
       {% endif %}
 
-      <script type="application/ld+json">
-        {
-          "@context": "http://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "{{ shop.url | append: '/' }}"
-            },
-            {% if parent_collection != nil %}
+      {%- if show_schema -%}
+        <script type="application/ld+json">
+          {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
               {
                 "@type": "ListItem",
-                "position": 2,
-                "name": "{{ parent_collection.title }}",
-                "item": "{{ parent_collection.url | prepend: shop.url }}"
+                "position": 1,
+                "name": "Home",
+                "item": "{{ shop.url | append: '/' }}"
               },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "{{ collection.title }}",
-                "item": "{{ collection.url | prepend: shop.url }}"
-              }
-            {%- else -%}
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "{{ collection.title }}",
-                "item": "{{ collection.url | prepend: shop.url }}"
-              }
-            {% endif %}
-          ]
-        }
-      </script>
+              {% if parent_collection != nil %}
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "{{ parent_collection.title }}",
+                  "item": "{{ parent_collection.url | prepend: shop.url }}"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "{{ collection.title }}",
+                  "item": "{{ collection.url | prepend: shop.url }}"
+                }
+              {%- else -%}
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "{{ collection.title }}",
+                  "item": "{{ collection.url | prepend: shop.url }}"
+                }
+              {% endif %}
+            ]
+          }
+        </script>
+      {%- endif -%}
 
     {% elsif template == 'blog' %}
 
