@@ -32,7 +32,7 @@
     {%- assign article_title = article.title | downcase -%}
     {%- assign blog_title = block.settings.blog | downcase -%}
     {%- for term in terms_search -%}
-      {%- if article_title contains term or blog_title contains term -%}
+      {%- if article_title contains term or blog_title contains term or article.content contains term -%}
         {%- assign contains_result = true -%}
         {%- continue -%}
       {%- endif -%}
@@ -71,7 +71,7 @@
             {%- assign article_title = article.title | downcase -%}
             {%- assign blog_title = block.settings.blog | downcase -%}
             {%- for term in terms_search -%}
-              {%- if article_title contains term or blog_title contains term -%}
+              {%- if article_title contains term or blog_title contains term or article.content contains term -%}
                 {%- assign contains_result = true -%}
                 {%- continue -%}
               {%- endif -%}
