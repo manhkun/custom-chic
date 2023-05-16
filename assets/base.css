@@ -3063,3 +3063,93 @@ summary[aria-expanded="true"] .summary__icon .icon-minus {
 summary[aria-expanded="true"] .summary__icon .icon-add {
   display: none;
 }
+
+.wysiwyg h1 {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.wysiwyg h2 {
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.wysiwyg h3 {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.wysiwyg h4 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.wysiwyg h5 {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.wysiwyg h6 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.wysiwyg p {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.wysiwyg ul {
+  list-style-type: disc;
+  line-height: 180%;
+}
+
+.wysiwyg ol {
+  list-style-type: decimal;
+}
+
+@media screen and (max-width: 767px) {
+  .wysiwyg h1 {
+    font-weight: 700;
+    font-size: 24px;
+  }
+
+  .wysiwyg h2 {
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  .wysiwyg h3 {
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .wysiwyg h4 {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .wysiwyg h5 {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .wysiwyg h6 {
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .wysiwyg p {
+    font-weight: 400;
+    font-size: 14px;
+  }
+
+  .wysiwyg ul {
+    list-style-type: disc;
+    line-height: inherit;
+  }
+
+  .wysiwyg ol {
+    list-style-type: decimal;
+  }
+}
