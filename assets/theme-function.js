@@ -290,13 +290,20 @@ const closestIndex = (num, arr) => {
           }
       });
   });
+    if ($('.change-resize-cm').hasClass('active')) {
+      $('.chest-waist-item span').html("cm");
+      $('.size-guide-section').attr('data-measure', 'cm')
+      $(".size-data").each(function(index) {
+        $(this).html(parseFloat(parseFloat($(this).attr('data-in'))*2.54).toFixed(0)); 
+      });
+    }
     $('.change-resize-cm').click(function(){
       $('.change-resize-in').removeClass('active');           
       $(this).addClass('active');
       $('.chest-waist-item span').html("cm");
       $('.size-guide-section').attr('data-measure', 'cm')
       $(".size-data").each(function(index) {
-            $(this).html(parseFloat(parseFloat($(this).attr('data-in'))*2.54).toFixed(2)); 
+            $(this).html(parseFloat(parseFloat($(this).attr('data-in'))*2.54).toFixed(0)); 
       });
     });
   $('.change-resize-in').click(function(){
