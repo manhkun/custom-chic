@@ -1,24 +1,27 @@
-<link rel="stylesheet" href="{{ 'related-categories.css' | asset_url }}" onload="this.media='all'">
-{%- style -%}
-  @media screen and (min-width: 768px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+{%- assign related_collections = product.metafields.custom.related_collections.value -%}
+{%- if related_collections != nil -%}
+  <link rel="stylesheet" href="{{ 'related-categories.css' | asset_url }}" onload="this.media='all'">
+  {%- style -%}
+    @media screen and (min-width: 768px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
     }
-  }
-{%- endstyle -%}
-<div data-section-id="{{ section.id }}" class="page-width-desktop related-categories-wrapper section-{{ section.id }}-padding" >
-  <div class="text_alignment_{{ section.settings.text_alignment }} related-categories-title">
-    {% if section.settings.heading != blank %}
-      <div class="{{ section.settings.heading_size }} heading-text">{{ section.settings.heading | escape }}</div>
-    {% endif %}
-  </div>
-    <div class="related-content-wrapper">
-      {% for collection in product.collections %}
-         <span class="related-content"> {{- collection.title | link_to: collection.url }}</span>
-      {% endfor %}
+  {%- endstyle -%}
+  <div data-section-id="{{ section.id }}" class="page-width-desktop related-categories-wrapper section-{{ section.id }}-padding" >
+    <div class="text_alignment_{{ section.settings.text_alignment }} related-categories-title">
+      {% if section.settings.heading != blank %}
+        <div class="{{ section.settings.heading_size }} heading-text">{{ section.settings.heading | escape }}</div>
+      {% endif %}
     </div>
-</div>
+      <div class="related-content-wrapper">
+        {% for collection in related_collections %}
+          <span class="related-content"> {{- collection.title | link_to: collection.url }}</span>
+        {% endfor %}
+      </div>
+  </div>
+{%- endif -%}
 
 {% schema %}
 {

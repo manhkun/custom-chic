@@ -20,13 +20,13 @@
 
     <title>
       {{ page_title }}
-      {%- if current_tags %}
+      {% if current_tags %}
         &ndash; tagged "{{ current_tags | join: ', ' }}
-        "{% endif -%}
-      {%- if current_page != 1 %}
+        "{% endif %}
+      {% if current_page != 1 %}
         &ndash; Page
         {{ current_page }}
-      {% endif -%}
+      {% endif %} - {{ shop.name }}
     </title>
 
     {% if page_description %}
@@ -352,6 +352,9 @@
     {%- render 'theme-variable' -%}
     {%- if template contains 'index' -%}
       {{ settings.custom_code_index }}
+    {%- endif -%}
+    {%- if template contains 'collection' -%}
+      <script src="{{ 'readmore.min.js' | asset_url }}"></script>
     {%- endif -%}
   </head>
 

@@ -43,43 +43,15 @@
   </div>
 </div>
 <script>
-// Configure/customize these variables.
-  var showChar = 100; // How many characters are shown by default
-  var ellipsestext = "...";
-  var moretext = "{{ 'sections.collection_template.see_more' | t }}";
-  var lesstext = "{{ 'sections.collection_template.see_less' | t }}";
-
-
-  $('.page-sub-title p').each(function() {
-    var content = $(this).html();
-
-    if (content.length > showChar) {
-
-      var c = content.substr(0, showChar);
-      var h = content.substr(showChar, content.length - showChar);
-
-      var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-
-      $(this).html(html);
-    }
-
-  });
-
-  $(".morelink").click(function() {
-
-    if ($(this).hasClass("less")) {
-      $(this).removeClass("less");
-      $(".morecontent").removeClass("inherit");
-      $(this).html(moretext);
-    } else {
-      $(this).addClass("less");
-      $(this).html(lesstext);
-      $(".morecontent").addClass("inherit");
-    }
-    $(this).parent().prev().toggle();
-    $(this).prev().toggle();
-    return false;
-  });
+  if ($readMoreJS) {
+    $readMoreJS({
+      target: '.page-sub-title .metafield-rich_text_field',
+      wordsCount: 50,
+      linkClass: 'morelink',
+      moreLink: '{{ 'sections.collection_template.see_more' | t }}',
+      lessLink: '{{ 'sections.collection_template.see_less' | t }}'
+    })
+  }
 
   {%- if template.suffix == 'wishlist' -%}
     $(document).ready(() => {
@@ -132,10 +104,13 @@
   }
   .collection-banner-wrapper .page-sub-title p {
     color: {{ section.settings.color_subtitle }};
+    display: inline;
   }
-  .collection-banner-wrapper .page-sub-title p a {
+  .collection-banner-wrapper .page-sub-title .metafield-rich_text_field .morelink {
     color: {{ section.settings.color_subtitle }};
     font-weight: 600;
+    display: inline-block;
+    margin-left: 10px;
   }
   .collection-banner-wrapper .banner .breadcrumb li svg path {
     stroke: {{ section.settings.color_text_breadcrumb_link }};
