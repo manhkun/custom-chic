@@ -30,6 +30,7 @@
           {% render 'facet-sidebar', results: search, view_mode: view_mode, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, title_category_tree: section.settings.title_category_tree, navigation_filter: section.settings.navigation_filter, product_count: section.settings.collection_page_display_product_count, filter_position: section.settings.position_filter %}
         </div>
         <div class="main-collection-product-grid">
+          <span data-total-pages="{{ page_count }}" style="display: none;"></span>
           <div class="loading-overlay"></div>
           <div class="top-filter">
               <div class="button-filter-sidebar {% if section.settings.enable_filtering %}show{% endif %}">

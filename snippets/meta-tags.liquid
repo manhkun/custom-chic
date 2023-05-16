@@ -38,17 +38,24 @@
 <meta name="twitter:title" content="{{ og_title | escape }}">
 <meta name="twitter:description" content="{{ og_description | escape }}">
 
+{%- assign robots_index = true -%}
 {%- if request.page_type == 'collection' or request.page_type == 'page' -%}
   {%- assign split_path = request.path | split: '/' -%}
   {%- if split_path.size > 3 -%}
-    <meta name="robots" content="noindex, nofollow">
+    {%- assign robots_index = false -%}
   {%- endif -%}
 {%- endif -%}
 
 {%- if request.page_type == 'collection' or request.page_type == 'page' or request.page_type == 'blogs' -%}
   {%- if current_page > 1 -%}
-    <meta name="robots" content="noindex, nofollow">
+    {%- assign robots_index = false -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if request.page_type == 'index' or request.page_type == 'collection' or request.page_type == 'product' or request.page_type == 'page' -%}
+  {%- if robots_index == true -%}
+    <meta name="robots" content="index,follow">
   {%- else -%}
-    <meta name="robots" content="index,follow" />
+    <meta name="robots" content="noindex,nofollow">
   {%- endif -%}
 {%- endif -%}

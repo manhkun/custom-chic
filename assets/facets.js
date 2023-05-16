@@ -532,6 +532,13 @@ class Loadmore extends HTMLElement {
 
     const queryString = urlParams.toString();
 
+    let url = ''
+    if (window.location.search) {
+      url = window.location.search + `&page=${this.currentPage}`
+    } else {
+      url = `?page=${this.currentPage}`
+    }
+    window.history.pushState('', '', url)
     FacetFiltersForm.renderPage(queryString, null, false, true)
     this.maxPages = this.getMaxPages()
 
