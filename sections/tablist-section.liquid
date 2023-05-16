@@ -97,7 +97,7 @@
                       <h3 class="social-title">{{ 'general.social.alt_text.share_this_article' | t }}</h3>
                       <ul class="list-unstyled list-social" role="list">
                         <li class="list-social__item">
-                          <a class="list-social__link link no-effect" href="//www.facebook.com/sharer.php?u={{ article.url | append: share_permalink }}" target="_blank">
+                          <a class="list-social__link link no-effect" href="//www.facebook.com/sharer.php?u={{ article.url | append: share_permalink }}" rel="noindex nofollow" target="_blank">
                             {% render 'icon-share-facebook' %}
                             <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_facebook' | t }}</span>
                             <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
@@ -105,7 +105,7 @@
                           <span>{{ 'general.social.links.facebook' | t }}</span>
                         </li>
                         <li class="list-social__item twitter-item">
-                          <a class="list-social__link link no-effect" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                          <a class="list-social__link link no-effect" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" rel="noindex nofollow" target="_blank">
                             {% render 'icon-share-twitter' %}
                             <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_twitter' | t }}</span>
                             <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
@@ -113,12 +113,12 @@
                           <span>{{ 'general.social.links.twitter' | t }}</span>
                         </li>
                         <li class="list-social__item">
-                          <a class="list-social__link link no-effect" href="//instagram.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" target="_blank">
+                          <a class="list-social__link link no-effect" href="//instagram.com/share?text={{ share_title | url_param_escape }}&amp;url={{ article.url | append: share_permalink }}" rel="noindex nofollow" target="_blank">
                           {%- render 'icon-instagram-2' -%}
                           </a>
                         </li>
                         <li class="list-social__item">
-                          <a class="list-social__link link no-effect" href="//pinterest.com/pin/create/button/?url={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                          <a class="list-social__link link no-effect" href="//pinterest.com/pin/create/button/?url={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" rel="noindex nofollow" target="_blank">
                             {% render 'icon-share-pinterest' %}
                             <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
                             <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>
@@ -126,7 +126,7 @@
                           <span>{{ 'general.social.links.pinterest' | t }}</span>
                         </li>
                         <li class="list-social__item mailto-item">
-                          <a class="list-social__link link no-effect" href="mailto:?body={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" target="_blank">
+                          <a class="list-social__link link no-effect" href="mailto:?body={{ article.url | append: share_permalink }}}&amp;media={{ share_image | image_url: '1024x1024' }}&amp;description={{ share_title | url_param_escape }}" rel="noindex nofollow" target="_blank">
                             {% render 'icon-share-mail' %}
                             <span class="visually-hidden visually-hidden--inline">{{ 'general.social.alt_text.share_on_pinterest' | t }}</span>
                             <span class="visually-hidden visually-hidden--inline">{{ 'accessibility.link_messages.new_window' | t }}</span>

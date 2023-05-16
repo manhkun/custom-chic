@@ -534,7 +534,11 @@ class Loadmore extends HTMLElement {
 
     let url = ''
     if (window.location.search) {
-      url = window.location.search + `&page=${this.currentPage}`
+      if (window.location.search.includes('page=')) {
+        url = window.location.search.replace(/page=\d+/g, `page=${this.currentPage}`)
+      } else {
+        url = window.location.search + `&page=${this.currentPage}`
+      }
     } else {
       url = `?page=${this.currentPage}`
     }
